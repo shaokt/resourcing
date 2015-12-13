@@ -1,0 +1,9 @@
+{{! output each day of the month }}
+{{#each days as |day|}}
+    <div class="day" data-column="{{day.data-column}}" data-date="{{day.data-date}}" data-day-name="{{day.name}}">
+        {{#if daily}}
+            <div class="dayName">{{day.name}}</div>
+        {{/if}}
+        <div class="dayNum">{{day.num}}</div>
+    </div>
+{{/each}}

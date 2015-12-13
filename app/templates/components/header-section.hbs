@@ -1,0 +1,16 @@
+<div style="position:fixed;left:20px;">
+    <label class="" {{action "toggleView" on="click"}}>
+        {{#if assignment}}
+            Time off
+        {{else}}
+            Assignment
+        {{/if}}
+    </label>
+</div>
+
+{{#if assignment}}
+    {{calendar-widget elementId="calendarWeekly" daily=false}}
+{{else}}
+    {{calendar-widget elementId="calendarDaily" daily=true}}
+{{/if}}
+{{yield}}

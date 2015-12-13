@@ -1,0 +1,15 @@
+{{! renders the full calendar: weekly or daily }}
+{{#each quarters as |quarter|}}
+    {{calendar-quarter quarter=quarter year=year}}
+    <div class="quarter">
+        {{#each-in quarter.months as |month theYear|}}
+            <div class="month" data-date="{{theYear}} {{convert-month months month}}">
+                <pre>{{month}}{{#if daily}} - {{theYear}}{{/if}}</pre>
+                {{#calendar-date year=theYear quarter=quarter month=month daily=daily}}
+                    {{outlet}}
+                {{/calendar-date}}
+            </div>
+        {{/each-in}}
+        <pre>{{quarter.quarter}} {{quarter.monthYear}}</pre>
+    </div>
+{{/each}}

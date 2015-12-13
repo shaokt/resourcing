@@ -1,0 +1,125 @@
+.calendar { border-left:1px solid #aaa;clear:both;display:block;font-size:.8em;overflow:hidden;padding:65px 0 15px 0;white-space:nowrap;z-index:12; }
+
+.quarter {
+    float:left;
+    font-weight:bold;
+    position:relative;
+    white-space:nowrap;
+    & pre {
+        position:absolute;top:-38px;
+        clear:both;color:#fff;padding:5px 0;text-align:center;
+        width:100%;
+    }
+
+    & .month {
+        float:left;
+        position:relative;
+        text-align:center;
+        & pre {
+            padding-bottom:5px;
+            top:-20px;
+        }
+        &.selected pre {background:#fff;color:#000;opacity:.5;border-top:22px solid #c1a;border-bottom:none;margin-top:-22px; }
+
+            & .day {
+            border-top:5px solid #f6ceef;
+            border-bottom:5px solid transparent;
+            box-sizing:border-box;
+            float:left;
+            font-size:.8em;
+            padding:5px 0 0 0;
+            position:relative;
+            text-align:center;
+            width:15px;
+            &:hover{ cursor:none; }
+            &[data-day-name="M"]{ border-left:1px solid #f6ceef; }
+            &[data-day-name="F"]{ border-right:1px solid #f6ceef; }
+            &.selected{
+                background:#fff !important;
+                border-color:transparent;
+                border-bottom:5px solid #c1a;
+                color:#000 !important;
+            }
+        } //day
+    } //month
+} //quarter
+#calendarWeekly .day { border-left:0; }
+
+.quarter:nth-child(even) pre { background: #eee;color:#ccc; }
+.quarter:nth-child(odd) pre { background: #ccc; }
+.quarter:nth-child(odd) .month:nth-child(even) .day,
+.quarter:nth-child(even) .month:nth-child(odd) .day { background:#ccc; color:#fff; }
+.quarter:nth-child(even) .month:nth-child(even) .day,
+.quarter:nth-child(odd) .month:nth-child(odd) .day { background:#eee;color:#ccc; }
+
+.quarter:nth-child(odd) .month:nth-child(even) .day:hover,
+.quarter:nth-child(even) .month:nth-child(odd) .day:hover,
+.quarter:nth-child(even) .month:nth-child(even) .day:hover,
+.quarter:nth-child(odd) .month:nth-child(odd) .day:hover { border-color:#c1a;border-right-color:#eee;border-left-color:#eee;color:#000; }
+
+.month:hover { cursor:none;box-shadow:0px 5px 10px 0px rgba(0,0,0,.3); }
+
+/* current week selection */
+
+/*calendar magnification properties*/
+
+/*.calendar [data-type="tile"] {position:relative;}/**/
+#dateLine { background:#c1a;height:100%;left:0px;opacity:.8;margin-left:8px;position:absolute;top:-3px;width:1px;z-index:1; }
+.projectView #dateLine {z-index:5;}
+#dateLine.edit { background:#000;opacity:.3; }
+.dateMarker { background:#c1a;height:100%;margin:0 0 0 7px;position:absolute;top:0;width:1px;z-index:5;box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.5); }
+
+#thisdate {
+	height:30px;
+	overflow: hidden;
+	position:absolute;
+	bottom:0px;
+	margin-left:1px;
+	width:15px;
+	border-bottom: 15px solid rgba(204, 17, 170, .1);
+	z-index:12;
+}
+
+#magnifyDate {
+	display: block;
+	bottom:0;
+	left: 0px;
+	overflow: visible;
+	position: absolute;
+
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+#magnifyDate .day { opacity:1; }
+
+#magnifyDate .quarter:nth-child(even) .month:nth-child(even) .day,
+#magnifyDate .quarter:nth-child(odd) .month:nth-child(odd) .day { background:#fff;color:#000; }
+#magnifyDate .day { font-size:8px; }
+
+.vacationView #thisdate { bottom:0px;height:45px }
+.vacationView #magnifyDate { bottom:0px; }
+
+.vacationView #vacationList,
+.vacationView [data-view="vacationView"],
+.vacationView #calendarDaily,
+.projectView #projectList,
+.projectView [data-view="projectView"],
+.projectView #calendarWeekly { display:block; }
+
+
+.detailsView [data-view="projectView"],
+.detailsView [data-view="vacationView"],
+.detailsView #projectList,
+.detailsView #vacationList,
+.detailsView #calendarDaily,
+.detailsView #calendarWeekly,
+.vacationView #projectList,
+.vacationView [data-view="projectView"],
+.vacationView [data-view="detailsView"],
+.vacationView #calendarWeekly,
+.projectView #vacationList,
+.projectView [data-view="vacationView"],
+.projectView [data-view="detailsView"],
+.projectView #calendarDaily { display:none; }
