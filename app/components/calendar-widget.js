@@ -81,7 +81,6 @@ export default Ember.Component.extend({
     	date.month.addClass("selected");
         var self = this;
     	setTimeout(function(){
-    		date.week.attr("tabindex", 0).focus();
     		$(window).scrollLeft(date.week.attr("data-column") - (self.constants.DIM*22) );
     	}, 500);
     },

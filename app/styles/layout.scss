@@ -1,0 +1,14 @@
+* { box-sizing: border-box; }
+button {
+    background:none;
+    & span {
+        border-radius:5px;
+        border:1px solid #fff;
+    	box-shadow: 2px 2px 10px 0 rgba(0,0,0,0.5);
+        color:#fff;
+        cursor: pointer;
+        display:block;
+        padding:5px;
+        text-shadow: 1px 1px #666;
+    }
+}

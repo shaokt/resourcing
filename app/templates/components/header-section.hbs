@@ -1,11 +1,11 @@
-<div style="position:fixed;left:20px;">
-    <label class="" {{action "toggleView" on="click"}}>
+<div class="menu">
+    <button {{action "toggleView" on="click"}}>
         {{#if assignment}}
-            Time off
+            <span class="timeOff">Time off</span>
         {{else}}
-            Assignment
+            <span class="assignment">Assignment</span>
         {{/if}}
-    </label>
+    </button>
 </div>
 
 {{#if assignment}}
