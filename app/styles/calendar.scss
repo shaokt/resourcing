@@ -1,4 +1,13 @@
-.calendar { border-left:1px solid #aaa;clear:both;display:block;font-size:.8em;overflow:hidden;padding:65px 0 15px 0;white-space:nowrap;z-index:12; }
+.calendar {
+    border-left:1px solid #aaa;
+    clear:both;
+    display:block;
+    font-size:.8em;
+    overflow:hidden;
+    padding:85px 0 15px 0;
+    white-space:nowrap;
+    z-index:12;
+}
 
 .quarter {
     float:left;
@@ -8,7 +17,39 @@
     & pre {
         position:absolute;top:-38px;
         clear:both;color:#fff;padding:5px 0;text-align:center;
+        text-shadow:1px 1px #999;
         width:100%;
+    }
+    &:nth-child(even) pre {
+        background:#eee;
+        color:#aaa;
+        text-shadow:-1px -1px #fff;
+    }
+    &:nth-child(odd) pre { background:#ccc; }
+
+    &:nth-child(odd) .month:nth-child(even) .day,
+    &:nth-child(even) .month:nth-child(odd) .day {
+        background:#ccc;
+        color:#fff;
+        text-shadow:1px 1px #aaa;
+    }
+
+    &:nth-child(even) .month:nth-child(even) .day,
+    &:nth-child(odd) .month:nth-child(odd) .day {
+        background:#eee;
+        color:#bbb;
+        text-shadow:-1px -1px #fff;
+    }
+
+    &:nth-child(odd) .month:nth-child(even) .day:hover,
+    &:nth-child(even) .month:nth-child(odd) .day:hover,
+    &:nth-child(even) .month:nth-child(even) .day:hover,
+    &:nth-child(odd) .month:nth-child(odd) .day:hover {
+        border-color:#c1a;
+        border-right-color:#eee;
+        border-left-color:#eee;
+        color:#000;
+        text-shadow:1px 1px #fff;
     }
 
     & .month {
@@ -19,7 +60,13 @@
             padding-bottom:5px;
             top:-20px;
         }
-        &.selected pre {background:#fff;color:#000;opacity:.5;border-top:22px solid #c1a;border-bottom:none;margin-top:-22px; }
+
+        &:hover {
+            cursor:none;
+            box-shadow:0 5px 10px 0 rgba(0,0,0,.3);
+        }
+
+        &.selected pre {background:#fff;color:#000;opacity:.5;border-top:22px solid #c1a;border-bottom:none;margin-top:-22px;text-shadow:1px 1px yellow; }
 
             & .day {
             border-top:5px solid #f6ceef;
@@ -31,65 +78,77 @@
             position:relative;
             text-align:center;
             width:15px;
-            &:hover{ cursor:none; }
-            &[data-day-name="M"]{ border-left:1px solid #f6ceef; }
-            &[data-day-name="F"]{ border-right:1px solid #f6ceef; }
-            &.selected{
+            &:hover { cursor:none; }
+            &[data-day-name="M"] { border-left:1px solid #f6ceef; }
+            &[data-day-name="F"] { border-right:1px solid #f6ceef; }
+            &.selected {
                 background:#fff !important;
                 border-color:transparent;
                 border-bottom:5px solid #c1a;
                 color:#000 !important;
+                text-shadow:none !important;
             }
         } //day
     } //month
 } //quarter
+
 #calendarWeekly .day { border-left:0; }
 
-.quarter:nth-child(even) pre { background: #eee;color:#ccc; }
-.quarter:nth-child(odd) pre { background: #ccc; }
-.quarter:nth-child(odd) .month:nth-child(even) .day,
-.quarter:nth-child(even) .month:nth-child(odd) .day { background:#ccc; color:#fff; }
-.quarter:nth-child(even) .month:nth-child(even) .day,
-.quarter:nth-child(odd) .month:nth-child(odd) .day { background:#eee;color:#ccc; }
+.holiday {
+    border-top-color:#c1b !important;
+    z-index:12;
+    &:after {
+        content:"";color:#fff;display:block;font-size:.8rem;text-align:center;
+    }
+    &:hover:before {
+    	background:#000;
+    	border:3px solid #fff;
+    	border-radius:5px;
+    	top:-3em;
+    	box-shadow:5px 5px 5px 0 rgba(0,0,0,0.5);
+    	color:#fff;
+    	content:attr(data-holiday);
+    	float:left;
+    	font-size:1.2rem;
+    	height:1.5rem;
+    	left:100%;
+    	line-height:125%;
+    	padding:5px;
+    	position:absolute;
+    	white-space:nowrap;
+        text-shadow:none;
+    }
 
-.quarter:nth-child(odd) .month:nth-child(even) .day:hover,
-.quarter:nth-child(even) .month:nth-child(odd) .day:hover,
-.quarter:nth-child(even) .month:nth-child(even) .day:hover,
-.quarter:nth-child(odd) .month:nth-child(odd) .day:hover { border-color:#c1a;border-right-color:#eee;border-left-color:#eee;color:#000; }
+}
 
-.month:hover { cursor:none;box-shadow:0px 5px 10px 0px rgba(0,0,0,.3); }
-
-/* current week selection */
-
-/*calendar magnification properties*/
-
-/*.calendar [data-type="tile"] {position:relative;}/**/
-#dateLine { background:#c1a;height:100%;left:0px;opacity:.8;margin-left:8px;position:absolute;top:-3px;width:1px;z-index:1; }
+/*
+//calendar magnification properties
+#dateLine { background:#c1a;height:100%;left:0;opacity:.8;margin-left:8px;position:absolute;top:-3px;width:1px;z-index:1; }
 .projectView #dateLine {z-index:5;}
 #dateLine.edit { background:#000;opacity:.3; }
-.dateMarker { background:#c1a;height:100%;margin:0 0 0 7px;position:absolute;top:0;width:1px;z-index:5;box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.5); }
+.dateMarker { background:#c1a;height:100%;margin:0 0 0 7px;position:absolute;top:0;width:1px;z-index:5;box-shadow:2px 2px 2px 0 rgba(0,0,0,0.5); }
 
 #thisdate {
 	height:30px;
-	overflow: hidden;
+	overflow:hidden;
 	position:absolute;
-	bottom:0px;
+	bottom:0;
 	margin-left:1px;
 	width:15px;
-	border-bottom: 15px solid rgba(204, 17, 170, .1);
+	border-bottom:15px solid rgba(204, 17, 170, .1);
 	z-index:12;
 }
 
 #magnifyDate {
-	display: block;
+	display:block;
 	bottom:0;
-	left: 0px;
-	overflow: visible;
-	position: absolute;
+	left:0;
+	overflow:visible;
+	position:absolute;
 
-	user-select: none;
-	-moz-user-select: none;
-	-webkit-user-select: none;
+	user-select:none;
+	-moz-user-select:none;
+	-webkit-user-select:none;
 }
 
 #magnifyDate .day { opacity:1; }
@@ -98,8 +157,8 @@
 #magnifyDate .quarter:nth-child(odd) .month:nth-child(odd) .day { background:#fff;color:#000; }
 #magnifyDate .day { font-size:8px; }
 
-.vacationView #thisdate { bottom:0px;height:45px }
-.vacationView #magnifyDate { bottom:0px; }
+.vacationView #thisdate { bottom:0;height:45px }
+.vacationView #magnifyDate { bottom:0; }
 
 .vacationView #vacationList,
 .vacationView [data-view="vacationView"],
@@ -123,3 +182,4 @@
 .projectView [data-view="vacationView"],
 .projectView [data-view="detailsView"],
 .projectView #calendarDaily { display:none; }
+*/

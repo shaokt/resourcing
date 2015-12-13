@@ -24,26 +24,39 @@ export default Ember.Component.extend({
     weekdays: ["M", "T", "W", "R", "F"],
     quarters: [
         {
-            year: -1,
+            year: 0,
             quarter: "Q1",
-            months:{"Nov":0, "Dec":0, "Jan":0 }
+            months:{"Nov":-1, "Dec":-1, "Jan":0 }
         },
         {
+            year: 0,
             quarter: "Q2",
             months: {"Feb":0, "Mar":0, "Apr":0}
         },
         {
+            year: 0,
             quarter: "Q3",
             months: {"May":0, "Jun":0, "Jul":0}
         },
         {
+            year: 0,
             quarter: "Q4",
             months: {"Aug":0, "Sep":0, "Oct":0}
         },
         {
             year: 1,
             quarter: "Q1",
-            months: {"Nov":0, "Dec":0, "Jan":0}
+            months: {"Nov":0, "Dec":0, "Jan":1}
+        },
+        {
+            year: 1,
+            quarter: "Q2",
+            months: {"Feb":1, "Mar":1, "Apr":1}
+        },
+        {
+            year: 1,
+            quarter: "Q3",
+            months: {"May":1, "Jun":1, "Jul":1}
         }
     ],
 
@@ -58,11 +71,6 @@ export default Ember.Component.extend({
         this.dayNum = index;
     },
 
-    // pad all dates to two digits
-    padSingleDates:function(num){
-        return num < 10 ? "0" + num: num;
-    },
-
     // highlight today in the calendar
     highlightToday:function(){
     	var year = this.today.getFullYear();
@@ -73,7 +81,6 @@ export default Ember.Component.extend({
     	date.month.addClass("selected");
         var self = this;
     	setTimeout(function(){
-    		date.week.attr("tabindex", 0).focus();
     		$(window).scrollLeft(date.week.attr("data-column") - (self.constants.DIM*22) );
     	}, 500);
     },
@@ -89,13 +96,25 @@ export default Ember.Component.extend({
     	return {month:month, week:week};
     },
 
+    // reset global values when re-rendering a calendar
+    reset:function(){
+        this.constants.numDays=0;
+        this.constants._DIM=0;
+    },
+
     // customize page after calendar loads
     didRender() {
         $('#pageContainer').css({width:((this.constants.numDays + 2) * this.constants.DIM) +"px"});
         this.calendar = $('#' + this.attrs.elementId);
         this.highlightToday();
-        //move to reset
-        this.constants.numDays=0;
-        this.constants._DIM=0;
+
+        if(this.daily){
+            if(!this.holidays.year){
+                this.holidays.year = this.year;
+                this.holidays.getDates();
+            }
+            this.holidays.display();
+        }
+        this.reset();
     }
 });

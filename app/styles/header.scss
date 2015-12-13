@@ -1,0 +1,12 @@
+header {
+    padding:10px 0;
+    & .menu {
+        left:20px;
+        position:fixed;
+        
+        & button {
+            & .assignment { background:#EF741B; }
+            & .timeOff { background:#1F74F2; }
+        }
+    }
+}

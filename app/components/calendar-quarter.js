@@ -1,27 +1,23 @@
 import Ember from 'ember';
 
-// determine quarter properties since fiscal quarters span different calendar years
+/*
+ * determine quarter properties since fiscal quarters span different calendar years
+ * sets this.year as "theYear" for template usage in calendar-widget.hbs
+ * only do this once no matter how many times calendar views get loaded
+ */
 export default Ember.Component.extend({
-    // sets this.year as "theYear" for template usage in calendar-widget.hbs
     tagName: '',
     onload: function(){
-        if(this.quarter.year == -1){
-            this.quarter.monthYear = this.year;
-            this.quarter.months["Nov"] = this.year-1;
-            this.quarter.months["Dec"] = this.year-1;
-            this.quarter.months["Jan"] = this.year;
+        if(this.quarter.done) return;
+
+        // determine the fiscal year this month falls in
+        this.quarter.fiscalYear = this.year + this.quarter.year;
+
+        // take the current year and offset by year that the month falls in
+        for(var key in this.quarter.months) {
+            this.quarter.months[key] += this.year;
         }
-        else if(this.quarter.year == 1){
-            this.quarter.monthYear = this.year+1;
-            this.quarter.months["Nov"] = this.year;
-            this.quarter.months["Dec"] = this.year;
-            this.quarter.months["Jan"] = this.year+1;
-        }
-        else{
-            this.quarter.monthYear = this.year;
-            for(var key in this.quarter.months) {
-                this.quarter.months[key] = this.year;
-            }
-        }
+
+        this.quarter.done = true;
     }.on('init')
 });
