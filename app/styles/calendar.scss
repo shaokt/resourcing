@@ -8,6 +8,7 @@
     & pre {
         position:absolute;top:-38px;
         clear:both;color:#fff;padding:5px 0;text-align:center;
+        text-shadow: 1px 1px #999;
         width:100%;
     }
 
@@ -19,7 +20,7 @@
             padding-bottom:5px;
             top:-20px;
         }
-        &.selected pre {background:#fff;color:#000;opacity:.5;border-top:22px solid #c1a;border-bottom:none;margin-top:-22px; }
+        &.selected pre {background:#fff;color:#000;opacity:.5;border-top:22px solid #c1a;border-bottom:none;margin-top:-22px;text-shadow:1px 1px yellow; }
 
             & .day {
             border-top:5px solid #f6ceef;
@@ -31,31 +32,59 @@
             position:relative;
             text-align:center;
             width:15px;
-            &:hover{ cursor:none; }
-            &[data-day-name="M"]{ border-left:1px solid #f6ceef; }
-            &[data-day-name="F"]{ border-right:1px solid #f6ceef; }
-            &.selected{
+            &:hover { cursor:none; }
+            &[data-day-name="M"] { border-left:1px solid #f6ceef; }
+            &[data-day-name="F"] { border-right:1px solid #f6ceef; }
+            &.selected {
                 background:#fff !important;
                 border-color:transparent;
                 border-bottom:5px solid #c1a;
                 color:#000 !important;
+                text-shadow:none !important;
             }
         } //day
     } //month
 } //quarter
 #calendarWeekly .day { border-left:0; }
 
-.quarter:nth-child(even) pre { background: #eee;color:#ccc; }
+.holiday {
+    border-top-color:#c1b !important;
+    z-index:12;
+    &:after {
+        content:"";color:#fff;display:block;font-size:.8rem;text-align:center;
+    }
+    &:hover:before {
+    	background:#000;
+    	border:3px solid #fff;
+    	border-radius:5px;
+    	top:-3em;
+    	box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
+    	color:#fff;
+    	content:attr(data-holiday);
+    	float:left;
+    	font-size:1.2rem;
+    	height:1.5rem;
+    	left:100%;
+    	line-height:125%;
+    	padding:5px;
+    	position:absolute;
+    	white-space:nowrap;
+        text-shadow:none;
+    }
+
+}
+
+.quarter:nth-child(even) pre { background: #eee;color:#aaa;text-shadow: -1px -1px #fff; }
 .quarter:nth-child(odd) pre { background: #ccc; }
 .quarter:nth-child(odd) .month:nth-child(even) .day,
-.quarter:nth-child(even) .month:nth-child(odd) .day { background:#ccc; color:#fff; }
+.quarter:nth-child(even) .month:nth-child(odd) .day { background:#ccc; color:#fff;text-shadow: 1px 1px #aaa; }
 .quarter:nth-child(even) .month:nth-child(even) .day,
-.quarter:nth-child(odd) .month:nth-child(odd) .day { background:#eee;color:#ccc; }
+.quarter:nth-child(odd) .month:nth-child(odd) .day { background:#eee;color:#bbb;text-shadow: -1px -1px #fff; }
 
 .quarter:nth-child(odd) .month:nth-child(even) .day:hover,
 .quarter:nth-child(even) .month:nth-child(odd) .day:hover,
 .quarter:nth-child(even) .month:nth-child(even) .day:hover,
-.quarter:nth-child(odd) .month:nth-child(odd) .day:hover { border-color:#c1a;border-right-color:#eee;border-left-color:#eee;color:#000; }
+.quarter:nth-child(odd) .month:nth-child(odd) .day:hover { border-color:#c1a;border-right-color:#eee;border-left-color:#eee;color:#000;text-shadow: 1px 1px #fff;}
 
 .month:hover { cursor:none;box-shadow:0px 5px 10px 0px rgba(0,0,0,.3); }
 

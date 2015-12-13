@@ -8,15 +8,17 @@ export default Ember.Component.extend({
 
         for(var i=1; i<this.cal.lastDay+1; i++){
             this.cal.setDate(this.year, this.month, i);
+
             var condition = this.daily ?
                 this.cal.dayName != "S" : // do not look at Sat & Sun
                 this.cal.dayName == "M";  // only look at Mondays
+
 			if(condition){
 				this.constants.numDays++;
                 this.days.pushObject({
                     "name": this.cal.dayName,
                     "data-column": this.constants._DIM+=this.constants.DIM,
-                    "data-date": this.year + " " + this.cal.months[this.month] + " " + this.cal.padSingleDates(this.cal.dayNum),
+                    "data-date": this.year + " " + this.cal.months[this.month] + " " + this.cal.dayNum,
                     "num": this.cal.dayNum
                 })
             }
