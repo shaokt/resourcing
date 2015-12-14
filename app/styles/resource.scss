@@ -1,0 +1,31 @@
+section.resourceRow {
+    background:#eee;
+    border:1px solid #aaa;
+    height:60px;
+    position:relative;
+    .info {
+        border-left:70px solid transparent;
+        display:inline-block;
+        margin-left:-70px;
+
+        .name {
+            background:#a9a9a9;
+            color:#fff;
+            border:1px solid #fff;
+            border-radius:2px;
+            box-shadow:1px 1px 5px 0 rgba(0, 0, 0, .5);
+            padding:0 2px;
+            text-shadow:1px 1px #888;
+        }
+
+        .name[contenteditable] {
+            background:#000;
+            color:#fff;
+            margin-top:-10px;
+            padding:5px;
+            text-shadow:none;
+        }
+    }
+
+    &:first-child { border-bottom:none; }
+}
