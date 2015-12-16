@@ -1,0 +1,26 @@
+[data-view="assignment"]{
+    section.resourceRow {
+
+        &[data-active="true"],
+        &:hover {
+            box-shadow:1px 5px 10px rgba(0,0,0,.5);
+            z-index:3;
+        }
+
+        &:after {
+            background:#fff;
+            content: "";
+            display:block;
+            height:100%;
+            opacity:.6;
+            position:absolute;
+            top:0;
+            width:100%;
+        }
+
+        &:hover:after {
+            display:none;
+        }
+
+    }
+}

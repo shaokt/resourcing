@@ -13,7 +13,7 @@
 </ul>
 
 {{#if editing}}
-    {{content-editable class="name" escape-press="submitName" value="Shao T" key-press="filter"}}
+    {{content-editable class="name" sescape-press="submitName" value=resource.name key-press="filter"}}
 {{else}}
-	<div class="name">Shao T</div>
+	<div class="name">{{resource.name}}</div>
 {{/if}}

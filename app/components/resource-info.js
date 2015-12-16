@@ -7,25 +7,28 @@ export default Ember.Component.extend({
     editing: false,
     actions: {
         editing() {
+            let resource = this.get('resource');
             this.toggleProperty('editing');
+            this.set("resource.active",this.editing); 
+            //this.set("active", this.editing);
         },
 
         filter(currentValue, event) {
             const keyCode = event.which;
-            keyCode == 13 ? event.preventDefault() : 0
+            keyCode == 13 ? this.send('submitName') : 0
         },
 
         submitName() {
+           let resource = this.get('resource');
+           this.sendAction('updateName', this.get('resource'));
            this.set('editing', false);
-            /*
-           let todo = this.get('todo');
-           if (todo.get('title') === "") {
-               this.sendAction('deleteTodo', todo);
-           } else {
-               this.sendAction('updateTodo', this.get('todo'));
-           }
-           this.set('editing', false);
-           */
+       },
+
+        submitTodo(newTitle) {
+            if (newTitle) {
+                this.sendAction('action', newTitle);
+            }
+            this.set('newTitle', '');
         }
     }
 });

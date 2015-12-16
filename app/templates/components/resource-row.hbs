@@ -1,20 +1,20 @@
-<section class="resourceRow">
-    {{resource-info}}
+{{#each model as |resource|}}
+    <section class="resourceRow" data-active="{{resource.active}}">
+        {{resource-info resource=resource active=active}}
 
-	<div class="row" data-view="assignment">
-    </div>
+        {{#if isAssignment}}
+        	<div class="row" data-view="assignment">
+                <div class="tiles">{{{resource.assignment.tiles}}}</div>
+                <div class="text">{{{resource.assignment.text}}}</div>
+            </div>
+        {{/if}}
 
-	<div class="row" data-view="timeOff">
-    </div>
-</section>
+        {{#if isTimeOff}}
+    	<div class="row" data-view="timeOff">
+            <div class="tiles">{{{resource.timeoff.tiles}}}</div>
+            <div class="text">{{{resource.timeoff.text}}}</div>
+        </div>
+        {{/if}}
 
-
-<section class="resourceRow">
-    {{resource-info}}
-
-	<div class="row" data-view="assignment">
-    </div>
-
-	<div class="row" data-view="timeOff">
-    </div>
-</section>
+    </section>
+{{/each}}
