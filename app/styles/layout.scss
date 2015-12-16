@@ -1,7 +1,10 @@
-* { box-sizing: border-box; }
+html { font:62.5% Helvetica, Arial, sans-serif; }
+body { float:left;font-size:1.2rem; }
+
 button {
     background:none;
-    & span {
+
+    span {
         border-radius:5px;
         border:1px solid #fff;
     	box-shadow: 2px 2px 10px 0 rgba(0,0,0,0.5);
@@ -11,4 +14,23 @@ button {
         padding:5px;
         text-shadow: 1px 1px #666;
     }
+}
+
+#pageContainer {
+    border:1px solid #aaa;
+    margin-right:20px;
+    margin:10px 20px 0 70px;
+    padding:0 10px;
+
+    main {
+        border-top:0;
+        padding:0 0 15px 0;
+        position:relative;
+    }
+}
+
+.row {
+	outline:1px solid #000;
+	position:relative;
+	height:32px;
 }

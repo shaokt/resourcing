@@ -1,7 +1,7 @@
-<div id="pageContainer">
-    {{header-section}}
+<div id="pageContainer" data-view="{{viewType}}">
+    {{header-section viewType=viewType}}
 
-    <main>
-            hi
+    <main class="viewType">
+        {{resource-row model=model viewType=viewType}}
     </main>
 </div>

@@ -2,10 +2,23 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     tagName: 'header',
-    classNameBindings: ['assignment'],
+
+    isAssignment: function() {
+        return this.get('viewType') === 'assignment';
+    }.property('viewType'),
+
+    isTimeOff: function() {
+        return this.get('viewType') === 'timeoff';
+    }.property('viewType'),
+
     actions: {
         toggleView() {
-            this.toggleProperty('assignment');
+            if(this.viewType == "assignment"){
+                this.set("viewType","timeoff");
+            }
+            else{
+                this.set("viewType","assignment");
+            }
         }
     }
 });
