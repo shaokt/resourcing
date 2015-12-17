@@ -5,7 +5,6 @@ export default Ember.Component.extend({
     classNames: ['calendar'],
     year: 2015,
     today: new Date(),
-    type: "weekly",
 	dayNames: ["S", "M", "T", "W", "R", "F", "S"],
     months: {
         "Jan" : "01",
@@ -105,6 +104,7 @@ export default Ember.Component.extend({
     // customize page after calendar loads
     didRender() {
         $('#pageContainer').css({width:((this.constants.numDays) * this.constants.DIM) + 3 +"px"});
+
         this.calendar = $('#' + this.attrs.elementId);
         this.highlightToday();
 

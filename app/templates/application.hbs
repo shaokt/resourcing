@@ -1,3 +1,8 @@
+{{! do not move styles to component as it will cause multiple view renders}}
+<style>
+    .info { left:{{leftScroll}}px; }
+</style>
+
 <div id="pageContainer" data-view="{{viewType}}">
     {{header-section viewType=viewType}}
 
