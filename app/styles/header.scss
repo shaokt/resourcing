@@ -1,8 +1,18 @@
 header {
-    padding:10px 0;
+    background:#fff;
+    border-left:69px solid #fff;
+    border-top:10px solid #fff;
+    left:0;
+    position:fixed;
+    width:100%;
+    z-index: 4;
+
     & .menu {
-        left:80px;
+        margin-left:0px;
+        padding:10px 0 0 0;
         position:fixed;
+        width:100%;
+        z-index:4;
 
         & button {
             & .assignment { background:#EF741B; }

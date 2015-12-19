@@ -1,13 +1,12 @@
 [data-view="timeoff"] {
     section.resourceRow {
-         border:none;
         .row {
             outline:none;
             height:15px;
         }
 
         &:after {
-            background:#c1a;
+            background:#100;
             content: "";
             display:block;
             height:100%;
@@ -22,9 +21,9 @@
         }
 
         &[data-active="true"] {
-            &:after { display:none; }
+            .row { height:15px; }
         }
-    }
+    }//resourceRow
 
     [data-scope="text"] {
         background:none;
@@ -47,7 +46,7 @@
         background:#4271AE;
         &[data-scope="text"]:after { content:'V'; }
     }
-}
+}//data-view=timeoff
 
 //.active [data-view="vacationView"] .vacation:hover:after,
 //.vacation.counter:after { content: "V : " counter(vacationCounter); }

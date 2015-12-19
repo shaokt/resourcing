@@ -1,7 +1,14 @@
+{{! do not move styles to component as it will cause multiple view renders}}
+<style>
+    .info { left:{{leftScroll}}px; }
+    .dateMarker { left:{{mousePos}}px; }
+    #dateLine { left:{{mousePos}}px; }
+</style>
+
 <div id="pageContainer" data-view="{{viewType}}">
     {{header-section viewType=viewType}}
-
     <main class="viewType">
+        <div class="dateLine" id="dateLine"></div>
         {{resource-row model=model viewType=viewType}}
     </main>
 </div>

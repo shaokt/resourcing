@@ -3,11 +3,11 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: 'header',
 
-    isAssignment: function() {
+    isWeeklyCalendar: function(){
         return this.get('viewType') === 'assignment';
     }.property('viewType'),
 
-    isTimeOff: function() {
+    isDailyCalendar: function(){
         return this.get('viewType') === 'timeoff';
     }.property('viewType'),
 

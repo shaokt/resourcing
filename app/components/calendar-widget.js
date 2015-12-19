@@ -5,7 +5,6 @@ export default Ember.Component.extend({
     classNames: ['calendar'],
     year: 2015,
     today: new Date(),
-    type: "weekly",
 	dayNames: ["S", "M", "T", "W", "R", "F", "S"],
     months: {
         "Jan" : "01",
@@ -81,7 +80,7 @@ export default Ember.Component.extend({
     	date.month.addClass("selected");
         var self = this;
     	setTimeout(function(){
-    		//$(window).scrollLeft(date.week.attr("data-column") - (self.constants.DIM*22) );
+    		$(window).scrollLeft(date.week.attr("data-column") - (self.constants.DIM*22) );
     	}, 500);
     },
 
@@ -104,7 +103,10 @@ export default Ember.Component.extend({
 
     // customize page after calendar loads
     didRender() {
-        $('#pageContainer').css({width:((this.constants.numDays) * this.constants.DIM) + 3 +"px"});
+        this.constants.calWidth = ((this.constants.numDays) * this.constants.DIM);// + 3;
+        $('#pageContainer').css({width:this.constants.calWidth});
+        $('.calendar').css({width:this.constants.calWidth});
+
         this.calendar = $('#' + this.attrs.elementId);
         this.highlightToday();
 

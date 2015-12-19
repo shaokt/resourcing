@@ -1,19 +1,19 @@
 <div class="menu">
     <button {{action "toggleView" on="click"}}>
-        {{#if isAssignment}}
+
+        {{#if isWeeklyCalendar}}
             <span class="timeOff">Time off</span>
         {{/if}}
-        {{#if isTimeOff}}
+        {{#if isDailyCalendar}}
             <span class="assignment">Assignment</span>
         {{/if}}
     </button>
 </div>
 
-{{#if isAssignment}}
-    {{calendar-widget elementId="calendarWeekly" daily=false}}
+{{#if isWeeklyCalendar}}
+    {{calendar-widget elementId="calendarWeekly" daily=false width=width}}
 {{/if}}
 
-{{#if isTimeOff}}
-    {{calendar-widget elementId="calendarDaily" daily=true}}
+{{#if isDailyCalendar}}
+    {{calendar-widget elementId="calendarDaily" daily=true width=width}}
 {{/if}}
-{{yield}}
