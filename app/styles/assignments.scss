@@ -4,7 +4,6 @@
         &[data-active="true"],
         &:hover {
             box-shadow:1px 5px 10px rgba(0,0,0,.5);
-            z-index:3;
         }
 
         &:after {
@@ -21,6 +20,5 @@
         &:hover:after {
             display:none;
         }
-
     }
 }
