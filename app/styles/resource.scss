@@ -8,6 +8,11 @@ section.resourceRow {
     	outline:1px solid #000;
     	position:relative;
     	height:32px;
+
+        .pointer {
+            display:none;
+            height:12px;width:12px;margin:1px 0 0 1px;opacity:1;outline:4px dotted #af0b1c;position:absolute;border-radius:12px;
+        }
     }
 
     .info {
@@ -72,6 +77,10 @@ section.resourceRow {
             outline:3px solid #fff;
         	box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5);
             height:60px;
+
+            .pointer {
+                display:block;
+            }
         }
     }//data-active
 }//resourceRow

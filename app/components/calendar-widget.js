@@ -110,6 +110,7 @@ export default Ember.Component.extend({
         this.calendar = $('#' + this.attrs.elementId);
         this.highlightToday();
 
+        this.constants.daily = this.daily;
         if(this.daily){
             if(!this.holidays.year){
                 this.holidays.year = this.year;

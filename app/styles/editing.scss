@@ -1,0 +1,10 @@
+body[data-editing="true"] {
+    header button,
+    .viewOptions {
+        display:none !important;
+    }
+
+    .editing .viewOptions {
+        display:block !important
+    }
+}
