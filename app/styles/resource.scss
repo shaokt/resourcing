@@ -17,6 +17,16 @@ section.resourceRow {
             display:none;
             height:12px;width:12px;margin:1px 0 0 1px;opacity:1;outline:4px dotted #af0b1c;position:absolute;border-radius:12px;
         }
+
+        .sizer {
+            background:#fffc00;
+            display:none;
+            height:12px;
+            opacity:.3;
+            outline:4px dotted #000;
+            position:absolute;
+            width:12px;
+         }
     }
 
     .info {

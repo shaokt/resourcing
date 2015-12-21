@@ -82,7 +82,6 @@ export default Ember.Component.extend({
         date.week.attr("tabindex", 0)
         this.constants.todayColumn = date.week;
         this.scrollToday(500);
-        console.log(date.week.attr('data-column'))
         $('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))})
     },
 
