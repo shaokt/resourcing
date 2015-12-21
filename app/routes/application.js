@@ -66,21 +66,6 @@ export default Ember.Route.extend({
             ,{ name: "test" }
             ,{ name: "test" }
             ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
         ];
         return resources;
     },

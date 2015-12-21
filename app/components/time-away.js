@@ -28,7 +28,7 @@ export default Ember.Component.extend({
     // remove active state on selected item if it exists
     unselect: function(){
         try{ this.active.removeClass('active'); }
-        catch(e){ console.log(e.message)}
+        catch(e){}
     },
 
     // make clicked obj the active tile
@@ -37,6 +37,7 @@ export default Ember.Component.extend({
             this.unselect();
             this.active = $(event.target);
             this.active.addClass('active');
+            this.constants.webcel.setTile(this.active);
         }
     }
 });
