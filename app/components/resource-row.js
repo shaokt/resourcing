@@ -9,7 +9,7 @@ export default Ember.Component.extend(Webcel, {
     }.property('viewType'),
 
     isDailyCalendar: function(){
-        return this.get('viewType') === 'timeoff';
+        return this.get('viewType') === 'timeaway';
     }.property('viewType'),
 
     edit: function(){

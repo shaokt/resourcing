@@ -1,23 +1,37 @@
 /*http://nicolasgallagher.com/pure-css-gui-icons/demo/*/
-ul.viewOptions {
-    display:none;
-    left:-60px;
-    position:absolute;
-    top:0;
-    width:60px;
+section.resourceRow {
+    ul.viewOptions {
+        display:none;
+        left:-60px;
+        position:absolute;
+        top:0;
+        width:60px;
 
+        li {
+            height:1.2em;
+            width:20px;
+
+            a {
+                width:20px;
+            }
+        }
+    }
+}
+
+// icons can appear in the header too
+ul.viewOptions {
     li {
         background:#fff;
         float:right;
-        height:1.2em;
         list-style:none;
         padding:0;
         position:relative;
-        width:20px;
         z-index:1;
     }
 
-    li a { display:block;width:20px; }
+    li a {
+        display:block;
+    }
 
     li a:hover,
     li a:focus,
@@ -100,15 +114,17 @@ ul.viewOptions {
 
     .toggle {
         a:before {
-            left:3px;
-            width:14px;
-            height:14px;
-            margin-top:-8px;
             background:#000;
-            -webkit-border-top-left-radius:12px;
-            -webkit-border-bottom-right-radius:12px;
-            -moz-border-radius:12px 0 12px 0;
-            border-radius:12px 0 12px 0;
+            height:1.17em;
+            left:.25em;
+            margin-top:-.67em;
+            width:1.17em;
+
+            -webkit-border-top-left-radius:1em;
+            -webkit-border-bottom-right-radius:1em;
+            -moz-border-radius:1em 0 1em 0;
+            border-radius:1em 0 1em 0;
+
             -webkit-transform:rotate(45deg);
             -moz-transform:rotate(45deg);
             -ms-transform:rotate(45deg);
@@ -118,21 +134,21 @@ ul.viewOptions {
 
         a:after {
             background:#000;
-            left:6px;
-            width:4px;
-            height:4px;
-            border:2px solid #fff !important;
-            margin-top:-5px;
-            -webkit-border-radius:6px;
-            -moz-border-radius:6px;
-            border-radius:6px;
+            border:.17em solid #fff !important;
+            height:.33em;
+            left:.5em;
+            width:.33em;
+            margin-top:-.42em;
+
+            -webkit-border-radius:.5em;
+            -moz-border-radius:.5em;
+            border-radius:.5em;
+
         }
         a:hover:after { background:#c55500 !important; }
     }//views
 
     .expand {
-        smargin-top:-1px;
-
         &:before {
             background:#fff;
             height:10px;

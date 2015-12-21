@@ -2,10 +2,14 @@
 @import "layout";
 @import "grid";
 @import "tiles";
-@import "assignment-view";
-@import "time-off-view";
+
 @import "header";
+
 @import "calendar";
 @import "resource";
 @import "icons";
 @import "editing";
+@import "assignments";
+
+@import "data-view-assignment";
+@import "data-view-timeaway";

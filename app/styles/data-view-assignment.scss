@@ -1,4 +1,12 @@
 [data-view="assignment"]{
+    header {
+        .menu {
+            button.changeView span {
+                background:#ef741b;
+                border:2px solid #B95502;
+            }
+        }
+    }
     section.resourceRow {
 
         &[data-active="true"],
@@ -21,4 +29,6 @@
             display:none;
         }
     }
+
+    .tileOptions li:before { content:"Assignment: "; }
 }

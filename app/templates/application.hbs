@@ -6,8 +6,8 @@
 </style>
 
 <div id="pageContainer" data-view="{{viewType}}">
-    {{header-section viewType=viewType}}
-    <main class="viewType">
+    {{header-section viewType=viewType assignments=assignments}}
+    <main>
         <div class="dateLine" id="dateLine"></div>
         {{resource-row model=model viewType=viewType}}
     </main>
