@@ -12,6 +12,10 @@ export default Ember.Component.extend({
     }.property('viewType'),
 
     actions: {
+        scrollToday() {
+            this.cal.scrollToday();
+        },
+
         toggleView() {
             if(this.viewType == "assignment"){
                 this.set("viewType","timeaway");

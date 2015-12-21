@@ -23,10 +23,11 @@
 
         &:after {
             content:'';
-            background:#c1a;
+            background:#000;
             bottom:-18px;
             height:15px;
             left:7px;
+            opacity:.2;
             position:absolute;
             width:1px;
         }
@@ -109,7 +110,6 @@
 
             & .day {
                 border-top:5px solid #f6ceef;
-                border-bottom:5px solid transparent;
                 box-sizing:border-box;
                 float:left;
                 font-size:.8em;
@@ -127,6 +127,17 @@
                     border-bottom:5px solid #c1a;
                     color:#000 !important;
                     text-shadow:none !important;
+
+                    &:after {
+                        content:'';
+                        background:#c1a;
+                        bottom:-20px;
+                        height:15px;
+                        left:7px;
+                        opacity:.2;
+                        position:absolute;
+                        width:1px;
+                    }
                 }
             } //day
         } //month
@@ -175,6 +186,13 @@ header {
 }
 
 #calendarWeekly .day { border-left:0; }
+#calendarDaily .day {
+    &.selected[data-day-name="M"] {
+        &:after {
+            left:6px;
+        }
+    }
+}
 
 [data-view="assignment"] {
     .dateMarker {
@@ -183,14 +201,20 @@ header {
 }
 
 .dateLine {
-    background:#c1a;
+    background:#000;
     height:100%;
     left:0;
     margin:0 0 0 6px;
+    opacity:.2;
     position:absolute;
     top:130px;
     width:1px;
     z-index:3;
+    margin-top:-145px;
+
+    &#todayDateLine {
+        background:#c1a;
+    }
 }
 
 /*
