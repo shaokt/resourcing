@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import WebcelMixin from "../mixins/webcel";
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(WebcelMixin, {
     tagName:'div',
     classNames: ['calendar'],
     year: 2015,
@@ -82,7 +83,6 @@ export default Ember.Component.extend({
         date.week.attr("tabindex", 0)
         this.constants.todayColumn = date.week;
         this.scrollToday(500);
-        console.log(date.week.attr('data-column'))
         $('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))})
     },
 
@@ -111,6 +111,7 @@ export default Ember.Component.extend({
 
     // customize page after calendar loads
     didRender() {
+        this.constants.webcel = this.Webcel();
         this.constants.calWidth = ((this.constants.numDays) * this.constants.DIM);// + 3;
         $('#pageContainer').css({width:this.constants.calWidth});
         $('.calendar').css({width:this.constants.calWidth});

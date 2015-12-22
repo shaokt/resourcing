@@ -13,7 +13,7 @@ export default Ember.Component.extend(Webcel, {
     }.property('viewType'),
 
     edit: function(){
-        this.constants.webcel = this.Webcel(this.$());
+        this.constants.webcel.setup(this.$());
     },
 
     save: function(){
