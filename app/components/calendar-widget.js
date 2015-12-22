@@ -1,11 +1,11 @@
 import Ember from 'ember';
+import WebcelMixin from "../mixins/webcel";
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(WebcelMixin, {
     tagName:'div',
     classNames: ['calendar'],
     year: 2015,
     today: new Date(),
-    type: "weekly",
 	dayNames: ["S", "M", "T", "W", "R", "F", "S"],
     months: {
         "Jan" : "01",
@@ -80,9 +80,16 @@ export default Ember.Component.extend({
     	date.week.addClass("selected");
     	date.month.addClass("selected");
         var self = this;
-    	setTimeout(function(){
-    		$(window).scrollLeft(date.week.attr("data-column") - (self.constants.DIM*22) );
-    	}, 500);
+        date.week.attr("tabindex", 0)
+        this.constants.todayColumn = date.week;
+        this.scrollToday(500);
+        $('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))})
+    },
+
+    // scroll to today
+    scrollToday:function(time){
+        var self = this;
+    	setTimeout(function(){ $(window).scrollLeft(self.constants.todayColumn.attr("data-column") - (self.constants.DIM*22) );}, time);
     },
 
     // figure out which column in the calendar to select
@@ -99,15 +106,20 @@ export default Ember.Component.extend({
     // reset global values when re-rendering a calendar
     reset:function(){
         this.constants.numDays=0;
-        this.constants._DIM=0;
+        this.constants._DIM=-this.constants.DIM;
     },
 
     // customize page after calendar loads
     didRender() {
-        $('#pageContainer').css({width:((this.constants.numDays + 2) * this.constants.DIM) +"px"});
+        this.constants.webcel = this.Webcel();
+        this.constants.calWidth = ((this.constants.numDays) * this.constants.DIM);// + 3;
+        $('#pageContainer').css({width:this.constants.calWidth});
+        $('.calendar').css({width:this.constants.calWidth});
+
         this.calendar = $('#' + this.attrs.elementId);
         this.highlightToday();
 
+        this.constants.daily = this.daily;
         if(this.daily){
             if(!this.holidays.year){
                 this.holidays.year = this.year;

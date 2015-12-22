@@ -1,0 +1,206 @@
+/*http://nicolasgallagher.com/pure-css-gui-icons/demo/*/
+section.resourceRow {
+    ul.viewOptions {
+        display:none;
+        left:-60px;
+        position:absolute;
+        top:0;
+        width:60px;
+
+        li {
+            height:1.2em;
+            width:20px;
+
+            a {
+                width:20px;
+            }
+        }
+    }
+}
+
+// icons can appear in the header too
+ul.viewOptions {
+    li {
+        background:#fff;
+        float:right;
+        list-style:none;
+        padding:0;
+        position:relative;
+        z-index:1;
+    }
+
+    li a {
+        display:block;
+    }
+
+    li a:hover,
+    li a:focus,
+    li a:active {
+        color:#730800;
+        background:transparent;
+    }
+
+    li:before,
+    li:after,
+    li a:before,
+    li a:after {
+        content:"";
+        position:absolute;
+        top:50%;
+        left:0;
+    }
+
+    li a:before,
+    li a:after {
+        margin:-8px 0 0;
+        background:#000;
+    }
+
+    li a:hover:before,
+    li a:focus:before,
+    li a:active:before {
+        background:#c55500;
+    }
+
+    .lock {
+        &:before,
+        &:after {
+            z-index:10;
+            left:8px;
+            width:3px;
+            height:3px;
+            margin-top:-2px;
+            background:#fff;
+            /* css3 */
+            -webkit-border-radius:3px;
+            -moz-border-radius:3px;
+            border-radius:3px;
+        }
+
+        &:before {
+            left:9px;
+            width:1px;
+            height:4px;
+            margin-top:0px;
+        }
+
+        a:before {
+            left:3px;
+            width:13px;
+            height:10px;
+            margin-top:-4px;
+        }
+
+        a:after {
+            left:5px;
+            width:5px;
+            height:5px;
+            border:2px solid #000;
+            border-bottom:0;
+            margin-top:-11px;
+            background:#fff;
+            /* css3 */
+            -webkit-border-radius:5px 5px 0 0;
+            -moz-border-radius:5px 5px 0 0;
+            border-radius:5px 5px 0 0;
+        }
+
+        a:hover:after,
+        a:focus:after,
+        a:active:after {
+            border-color:#c55500;
+        }
+    }//locks
+
+    .toggle {
+        a:before {
+            background:#000;
+            height:1.17em;
+            left:.25em;
+            margin-top:-.67em;
+            width:1.17em;
+
+            -webkit-border-top-left-radius:1em;
+            -webkit-border-bottom-right-radius:1em;
+            -moz-border-radius:1em 0 1em 0;
+            border-radius:1em 0 1em 0;
+
+            -webkit-transform:rotate(45deg);
+            -moz-transform:rotate(45deg);
+            -ms-transform:rotate(45deg);
+            -o-transform:rotate(45deg);
+            transform:rotate(45deg);
+        }
+
+        a:after {
+            background:#000;
+            border:.17em solid #fff !important;
+            height:.33em;
+            left:.5em;
+            width:.33em;
+            margin-top:-.42em;
+
+            -webkit-border-radius:.5em;
+            -moz-border-radius:.5em;
+            border-radius:.5em;
+
+        }
+        a:hover:after { background:#c55500 !important; }
+    }//views
+
+    .expand {
+        &:before {
+            background:#fff;
+            height:10px;
+            left:7px;
+            margin-top:-5px;
+            width:2px;
+            z-index:10;
+        }
+        a:before {
+            border-radius:16px;
+            height:16px;
+            width:16px;
+            -webkit-border-radius:16px;
+            -moz-border-radius:16px;
+        }
+
+        a:after {
+            background:#fff;
+            height:2px;
+            left:3px;
+            margin-top:-1px;
+            width:10px;
+        }
+
+    }//expand
+
+    .remove a:before {
+        width:16px;
+        height:16px;
+        /* css3 */
+        -webkit-border-radius:16px;
+        -moz-border-radius:16px;
+        border-radius:16px;
+    }
+
+    .remove a:after {
+        left:3px;
+        width:10px;
+        height:2px;
+        margin-top:-1px;
+        background:#fff;
+    }
+}
+
+.editing ul.viewOptions {
+    display:block;
+    .lock a:after {
+        left:12px;
+    }
+
+    .toggle,
+    .expand { display:none; }
+}
+
+.info:hover ul.viewOptions { display:block; }

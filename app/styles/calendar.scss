@@ -1,124 +1,220 @@
 .calendar {
-    border-left:1px solid #aaa;
+    background:#fff;
+    border-top:55px solid #fff;
     clear:both;
     display:block;
-    font-size:.8em;
+    font-size:1em;
     overflow:hidden;
-    padding:85px 0 15px 0;
-    white-space:nowrap;
-    z-index:12;
-}
-
-.quarter {
-    float:left;
-    font-weight:bold;
+    padding:45px 0 15px 0;
     position:relative;
     white-space:nowrap;
-    & pre {
-        position:absolute;top:-38px;
-        clear:both;color:#fff;padding:5px 0;text-align:center;
-        text-shadow:1px 1px #999;
-        width:100%;
-    }
-    &:nth-child(even) pre {
-        background:#eee;
-        color:#aaa;
-        text-shadow:-1px -1px #fff;
-    }
-    &:nth-child(odd) pre { background:#ccc; }
+    z-index:3;
 
-    &:nth-child(odd) .month:nth-child(even) .day,
-    &:nth-child(even) .month:nth-child(odd) .day {
-        background:#ccc;
-        color:#fff;
-        text-shadow:1px 1px #aaa;
-    }
+    .dateMarker {
+        background:transparent;
+        border-bottom:2px solid red;
+        box-shadow:0 0 10px 5px rgba(0,0,0,.5);
+        height:30px;
+        margin-top:5px;
+        outline:1px solid #000;
+        position:absolute;
+        width:15px;
+        z-index:5 !important;
 
-    &:nth-child(even) .month:nth-child(even) .day,
-    &:nth-child(odd) .month:nth-child(odd) .day {
-        background:#eee;
-        color:#bbb;
-        text-shadow:-1px -1px #fff;
+        &:after {
+            content:'';
+            background:#000;
+            bottom:-18px;
+            height:15px;
+            left:7px;
+            opacity:.2;
+            position:absolute;
+            width:1px;
+        }
     }
 
-    &:nth-child(odd) .month:nth-child(even) .day:hover,
-    &:nth-child(even) .month:nth-child(odd) .day:hover,
-    &:nth-child(even) .month:nth-child(even) .day:hover,
-    &:nth-child(odd) .month:nth-child(odd) .day:hover {
-        border-color:#c1a;
-        border-right-color:#eee;
-        border-left-color:#eee;
-        color:#000;
-        text-shadow:1px 1px #fff;
-    }
-
-    & .month {
+    .quarter {
         float:left;
+        font-weight:bold;
         position:relative;
-        text-align:center;
+        white-space:nowrap;
+
         & pre {
-            padding-bottom:5px;
-            top:-20px;
+            clear:both;
+            color:#000;
+            padding:5px 0;
+            position:absolute;
+            text-align:center;
+            top:-38px;
+            width:100%;
         }
 
-        &:hover {
-            cursor:none;
-            box-shadow:0 5px 10px 0 rgba(0,0,0,.3);
+        &:nth-child(even) pre {
+            background:#eee;
+            color:#000;
         }
 
-        &.selected pre {background:#fff;color:#000;opacity:.5;border-top:22px solid #c1a;border-bottom:none;margin-top:-22px;text-shadow:1px 1px yellow; }
+        &:nth-child(odd) pre { background:#ccc; }
 
-            & .day {
-            border-top:5px solid #f6ceef;
-            border-bottom:5px solid transparent;
-            box-sizing:border-box;
+        &:nth-child(odd) .month:nth-child(even) .day,
+        &:nth-child(even) .month:nth-child(odd) .day {
+            background:#ccc;
+            color:#fff;
+            text-shadow:1px 1px #aaa;
+        }
+
+        &:nth-child(even) .month:nth-child(even) .day,
+        &:nth-child(odd) .month:nth-child(odd) .day {
+            background:#eee;
+            color:#bbb;
+            text-shadow:-1px -1px #fff;
+        }
+
+        &:nth-child(odd) .month:nth-child(even) .day:hover,
+        &:nth-child(even) .month:nth-child(odd) .day:hover,
+        &:nth-child(even) .month:nth-child(even) .day:hover,
+        &:nth-child(odd) .month:nth-child(odd) .day:hover {
+            border-color:#c1a;
+            border-right-color:#eee;
+            border-left-color:#eee;
+            color:#000;
+            text-shadow:1px 1px #fff;
+        }
+
+        & .month {
             float:left;
-            font-size:.8em;
-            padding:5px 0 0 0;
             position:relative;
             text-align:center;
-            width:15px;
-            &:hover { cursor:none; }
-            &[data-day-name="M"] { border-left:1px solid #f6ceef; }
-            &[data-day-name="F"] { border-right:1px solid #f6ceef; }
-            &.selected {
-                background:#fff !important;
-                border-color:transparent;
-                border-bottom:5px solid #c1a;
-                color:#000 !important;
-                text-shadow:none !important;
+            & pre {
+                border-top:22px solid #bad;
+                font-size:1.2em;
+                margin-top:-22px;
+                opacity:.5;
+                padding-bottom:5px;
+                top:-20px;
             }
-        } //day
-    } //month
-} //quarter
+
+            &:hover {
+                cursor:none;
+                box-shadow:0 5px 10px 0 rgba(0,0,0,.3);
+            }
+
+            &.selected pre {
+                background:#fff;
+                border-top:22px solid #c1a;
+                color:#000;
+                opacity:1;
+                margin-top:-22px;
+                text-shadow:none;
+            }
+
+            & .day {
+                border-top:5px solid #f6ceef;
+                box-sizing:border-box;
+                float:left;
+                font-size:.8em;
+                padding:5px 0 0 0;
+                position:relative;
+                text-align:center;
+                width:15px;
+
+                &:hover { cursor:none; }
+                &[data-day-name="M"] { border-left:1px solid #f6ceef; }
+                &[data-day-name="F"] { border-right:1px solid #f6ceef; }
+                &.selected {
+                    background:#fff !important;
+                    border-color:transparent;
+                    border-bottom:5px solid #c1a;
+                    color:#000 !important;
+                    text-shadow:none !important;
+
+                    &:after {
+                        content:'';
+                        background:#c1a;
+                        bottom:-20px;
+                        height:15px;
+                        left:7px;
+                        opacity:.2;
+                        position:absolute;
+                        width:1px;
+                    }
+                }
+            } //day
+        } //month
+    } //quarter
+
+    .holiday {
+        border-top-color:#c1b !important;
+        z-index:1;
+
+        &:after {
+            color:#fff;
+            display:block;
+            font-size:.8rem;
+            text-align:center;
+        }
+
+        &:hover:before {
+        	background:#000;
+        	border:3px solid #fff;
+        	border-radius:5px;
+        	top:-3em;
+        	box-shadow:5px 5px 5px 0 rgba(0,0,0,0.5);
+        	color:#fff;
+        	content:attr(data-holiday);
+        	float:left;
+        	font-size:1.2rem;
+        	height:1.5rem;
+        	left:100%;
+        	line-height:125%;
+        	padding:5px;
+        	position:absolute;
+        	white-space:nowrap;
+            text-shadow:none;
+        }
+    }// holiday
+}//calendar
+
+header {
+    &:hover {
+        .dateMarker {
+            box-shadow:none;
+            outline:none;
+            z-index:0;
+        }
+    }
+}
 
 #calendarWeekly .day { border-left:0; }
-
-.holiday {
-    border-top-color:#c1b !important;
-    z-index:12;
-    &:after {
-        content:"";color:#fff;display:block;font-size:.8rem;text-align:center;
+#calendarDaily .day {
+    &.selected[data-day-name="M"] {
+        &:after {
+            left:6px;
+        }
     }
-    &:hover:before {
-    	background:#000;
-    	border:3px solid #fff;
-    	border-radius:5px;
-    	top:-3em;
-    	box-shadow:5px 5px 5px 0 rgba(0,0,0,0.5);
-    	color:#fff;
-    	content:attr(data-holiday);
-    	float:left;
-    	font-size:1.2rem;
-    	height:1.5rem;
-    	left:100%;
-    	line-height:125%;
-    	padding:5px;
-    	position:absolute;
-    	white-space:nowrap;
-        text-shadow:none;
-    }
+}
 
+[data-view="assignment"] {
+    .dateMarker {
+        height:20px;
+    }
+}
+
+.dateLine {
+    background:#000;
+    height:100%;
+    left:0;
+    margin:0 0 0 6px;
+    opacity:.2;
+    position:absolute;
+    top:130px;
+    width:1px;
+    z-index:3;
+    margin-top:-145px;
+
+    &#todayDateLine {
+        background:#c1a;
+    }
 }
 
 /*

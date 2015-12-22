@@ -1,12 +1,167 @@
 header {
-    padding:10px 0;
-    & .menu {
-        left:20px;
+    background:#fff;
+    border-left:69px solid #fff;
+    border-top:10px solid #fff;
+    left:0;
+    position:fixed;
+    width:100%;
+    z-index: 4;
+
+    #year {
+        background:#000;
+        color:#fff;
+        font-size:1.5em;
+        font-weight:bold;
+        left:15px;
+        padding:5px;
         position:fixed;
-        
-        & button {
-            & .assignment { background:#EF741B; }
-            & .timeOff { background:#1F74F2; }
-        }
+        top:1.2em;
+        z-index: 4;
     }
-}
+
+    .menu {
+        margin-left:0px;
+        position:fixed;
+        width:100%;
+        z-index:4;
+
+        .buttonContainer {
+            padding-top:12px;
+            button {
+                margin-left:10px;
+
+                &#addResource span {
+                    background:#008A14;
+                    border:2px solid #005009;
+                }
+
+                &#save span {
+                    background:#FF312C;
+                    border:2px solid #BA2D29;
+                }
+
+                &#today span {
+                    background:#30D4DE;
+                    border:2px solid #1D969E;
+                }
+            }
+        }
+
+        .viewOptions {
+            display:inline-block;
+            margin-left:10px;
+
+            a {
+                font-size:2em;
+            }
+        }
+
+        // chicklet tiles used to paint into each row
+        .tileOptions {
+            clear:both;
+
+            li {
+                 border:2px solid transparent;
+                 float:left;
+                 list-style:none;
+                 margin-right:5px;
+                 max-width:975px;
+                 padding:8px 0 0 10px;
+
+                 &:before {
+                    float:left;
+                    font-weight:bold;
+                    margin:10px 5px 0 0;
+                 }
+
+                [data-scope="text"] {
+                    border:1px solid transparent;
+                    border-radius:5px;
+                    display:none;
+                    float:left;
+                    line-height:0;
+                	margin:1px 0 0 1px;
+                    opacity:.4;
+                	padding:1px;
+                    position:relative;
+                    text-decoration:none;
+                	width:auto;
+
+                    &:after {
+                        padding:5px;
+                        position:relative;
+                        top:-1.4em;
+                    }
+
+                    &.active,
+                    &:focus,
+                    &:hover {
+                        border:1px solid #000;
+                        opacity:1;
+                        z-index:2;
+
+                        span {
+                             display:block;
+                             margin:3px;
+                             padding:10px;
+                        }
+                        &:before {
+                            background:#fff;
+                            border:1px solid #000;
+                            border-radius:5px;
+                            bottom:-3.5em;
+                            box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
+                            color:#000;
+                            float:left;
+                            font-size:1.5em;
+                            left:0%;
+                            line-height:125%;
+                            padding:5px;
+                            position:absolute;
+                            white-space:nowrap;
+                        }
+                    }
+
+                    span {
+                        background:#000;
+                        border-radius:5px;
+                        display:block;
+                        padding:13px;
+                    }
+                    &.empty {
+                        span { background:none; }
+                    }
+
+                    &.active {
+                        display:block;
+                        opacity:1;
+                    }
+                 }//data-scope="text"
+
+                .empty:hover:before { content:"Delete"; }
+            }//li
+
+            &:focus,
+            &:hover {
+                outline:none;
+                li {
+                    background:#eee;
+                    border-radius:5px;
+                    border-color:#aaa;
+                    cursor:pointer;
+                    padding-bottom:20px !important;
+                    padding-right:20px !important;
+                }
+
+                [data-scope="text"] { display:inline-block; }
+
+                + .buttonContainer { display:none; }
+            }
+        }//.tileOptions
+    }//.menu
+}//header
+
+/*
+.tileOptions li [data-status="selected"] { border:1px solid #000;display:block;opacity:1; }
+.tileOptions li [data-status="selected"] div { padding:10px;margin:3px;}
+*/

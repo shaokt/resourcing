@@ -2,10 +2,27 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     tagName: 'header',
-    classNameBindings: ['assignment'],
+
+    isWeeklyCalendar: function(){
+        return this.get('viewType') === 'assignment';
+    }.property('viewType'),
+
+    isDailyCalendar: function(){
+        return this.get('viewType') === 'timeaway';
+    }.property('viewType'),
+
     actions: {
+        scrollToday() {
+            this.cal.scrollToday();
+        },
+
         toggleView() {
-            this.toggleProperty('assignment');
+            if(this.viewType == "assignment"){
+                this.set("viewType","timeaway");
+            }
+            else{
+                this.set("viewType","assignment");
+            }
         }
     }
 });

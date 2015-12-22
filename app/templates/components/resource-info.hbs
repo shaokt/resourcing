@@ -1,0 +1,19 @@
+<ul class="viewOptions">
+    <li class="lock">
+        <a href="/" class="" {{action "editing" on="click"}}></a>
+    </li>
+
+    <li class="toggle">
+        <a href="#" class=""></a>
+    </li>
+
+    <li class="expand">
+        <a href="#" class=""></a>
+    </li>
+</ul>
+
+{{#if editing}}
+    {{content-editable class="name" value=resource.name key-press="filter"}}
+{{else}}
+	<div class="name">{{resource.name}}</div>
+{{/if}}

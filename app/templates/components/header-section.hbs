@@ -1,16 +1,47 @@
+<div id="year">2015</div>
 <div class="menu">
-    <button {{action "toggleView" on="click"}}>
-        {{#if assignment}}
-            <span class="timeOff">Time off</span>
-        {{else}}
-            <span class="assignment">Assignment</span>
+    <ul class="tileOptions">
+        {{#if isWeeklyCalendar}}
+            <li class="assignments">
+				<div class="empty" data-scope="text"><div></div></div>
+                {{#each assignments as |assignment|}}
+                    <div class="{{assignment.class}}" data-scope="text"><div></div></div>
+                {{/each}}
+            </li>
         {{/if}}
-    </button>
+        {{#if isDailyCalendar}}
+            {{time-away}}
+        {{/if}}
+    </ul>
+
+    <div class="buttonContainer">
+        <button class="changeView" {{action "toggleView" on="click"}}>
+            {{#if isWeeklyCalendar}}
+                <span class="timeOff">Time off</span>
+            {{/if}}
+            {{#if isDailyCalendar}}
+                <span class="assignment">Assignment</span>
+            {{/if}}
+        </button>
+
+        <button id="today" {{action "scrollToday" on="click"}}><span>Today</span></button>
+
+        <button id="addResource"><span>Add</span></button>
+
+        <button id="save"><span>Save</span></button>
+
+        <ul class="viewOptions">
+            <li class="toggle">
+                <a href="#" class=""></a>
+            </li>
+        </ul>
+    </div>
 </div>
 
-{{#if assignment}}
-    {{calendar-widget elementId="calendarWeekly" daily=false}}
-{{else}}
-    {{calendar-widget elementId="calendarDaily" daily=true}}
+{{#if isWeeklyCalendar}}
+    {{calendar-widget elementId="calendarWeekly" daily=false width=width}}
 {{/if}}
-{{yield}}
+
+{{#if isDailyCalendar}}
+    {{calendar-widget elementId="calendarDaily" daily=true width=width}}
+{{/if}}
