@@ -33,9 +33,11 @@ export default Ember.Route.extend({
     },
     /**/
     actions: {
-        updateName(todo) {
-            console.log('sae')
-            resources.save();
+        updateName(resource) {
+            //console.log(this.response.get('Shao T'))
+            //console.log(resource.timeoff)
+            //console.log(this.response)
+            //resource.save();
         },
         deleteTodo(todo) {
             todo.destroyRecord();
