@@ -8,13 +8,17 @@ export default Ember.Component.extend({
     }.property('viewType'),
 
     isDailyCalendar: function(){
-        return this.get('viewType') === 'timeoff';
+        return this.get('viewType') === 'timeaway';
     }.property('viewType'),
 
     actions: {
+        scrollToday() {
+            this.cal.scrollToday();
+        },
+
         toggleView() {
             if(this.viewType == "assignment"){
-                this.set("viewType","timeoff");
+                this.set("viewType","timeaway");
             }
             else{
                 this.set("viewType","assignment");

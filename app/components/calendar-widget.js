@@ -79,9 +79,17 @@ export default Ember.Component.extend({
     	date.week.addClass("selected");
     	date.month.addClass("selected");
         var self = this;
-    	setTimeout(function(){
-    		$(window).scrollLeft(date.week.attr("data-column") - (self.constants.DIM*22) );
-    	}, 500);
+        date.week.attr("tabindex", 0)
+        this.constants.todayColumn = date.week;
+        this.scrollToday(500);
+        console.log(date.week.attr('data-column'))
+        $('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))})
+    },
+
+    // scroll to today
+    scrollToday:function(time){
+        var self = this;
+    	setTimeout(function(){ $(window).scrollLeft(self.constants.todayColumn.attr("data-column") - (self.constants.DIM*22) );}, time);
     },
 
     // figure out which column in the calendar to select
@@ -98,7 +106,7 @@ export default Ember.Component.extend({
     // reset global values when re-rendering a calendar
     reset:function(){
         this.constants.numDays=0;
-        this.constants._DIM=0;
+        this.constants._DIM=-this.constants.DIM;
     },
 
     // customize page after calendar loads
@@ -110,6 +118,7 @@ export default Ember.Component.extend({
         this.calendar = $('#' + this.attrs.elementId);
         this.highlightToday();
 
+        this.constants.daily = this.daily;
         if(this.daily){
             if(!this.holidays.year){
                 this.holidays.year = this.year;
