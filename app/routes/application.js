@@ -2,6 +2,17 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
     model() {
+        return $.getJSON('shao.json').then(
+            function(response) {
+                return response.employees.map(function (child) {
+                    return child
+                });
+            }
+        );
+    },
+
+    /*
+    model() {
         let resources = [
             {
                 name: "Shao T",
@@ -16,70 +27,14 @@ export default Ember.Route.extend({
             },
             {
                 name: "Kristin T"
-            },
-            {
-                name: "Julie N"
             }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
-            ,{ name: "test" }
         ];
         return resources;
     },
-
+    /**/
     actions: {
-        /*
-        createTodo(newTitle) {
-           this.store.createRecord('todo', {
-               title: newTitle,
-               complete: false
-           }).save();
-        },
-        */
         updateName(todo) {
+            console.log('sae')
             resources.save();
         },
         deleteTodo(todo) {
