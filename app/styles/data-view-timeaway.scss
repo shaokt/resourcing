@@ -33,7 +33,7 @@
         }
     }//resourceRow
 
-    [data-scope="text"] {
+    [data-stamp="true"] {
         background:none;
         border:none;
         color:#fff;
@@ -50,17 +50,17 @@
     }
 
     .empty {
-        &[data-scope="text"]:after { content: "\2002"; }
+        &[data-stamp="true"]:after { content: "\2002"; }
     }
 
     .bereavement {
         background:#871C00;
-        &[data-scope="text"]:after { content: "B"; }
+        &[data-stamp="true"]:after { content: "B"; }
     }
 
     .conference {
         background:#9C9E30;
-        &[data-scope="text"]:after { content: "C"; }
+        &[data-stamp="true"]:after { content: "C"; }
     }
 
     .empty {
@@ -69,72 +69,72 @@
 
     .firstDay {
         background:#718C00;
-        &[data-scope="text"]:after { content: "FD"; }
+        &[data-stamp="true"]:after { content: "FD"; }
     }
 
     .half {
         background:#99CC99;
-        &[data-scope="text"]:after { content: "1/2"; }
+        &[data-stamp="true"]:after { content: "1/2"; }
     }
 
     .jury {
         background:#1A8007;
-        &[data-scope="text"]:after { content: "J"; }
+        &[data-stamp="true"]:after { content: "J"; }
     }
 
     .lastDay {
         background:#C82829;
-        &[data-scope="text"]:after { content: "LD"; }
+        &[data-stamp="true"]:after { content: "LD"; }
     }
 
     .lieu {
         background:#8959A8;
-        &[data-scope="text"]:after { content: "L"; }
+        &[data-stamp="true"]:after { content: "L"; }
     }
 
     .parentalLeave {
         background:#b44970;
-        &[data-scope="text"]:after { content:'PL'; }
+        &[data-stamp="true"]:after { content:'PL'; }
     }
 
     .personal {
         background:#B798BF;
-        &[data-scope="text"]:after { content: "P"; }
+        &[data-stamp="true"]:after { content: "P"; }
     }
 
     .vacation {
         background:#4271AE;
-        &[data-scope="text"]:after { content:'V'; }
+        &[data-stamp="true"]:after { content:'V'; }
     }
 
     .vacationCarryover {
         background:#3E999F;
-        &[data-scope="text"]:after { content: "VC"; }
+        &[data-stamp="true"]:after { content: "VC"; }
     }
 
     .vacationTentative {
         background:#9F3E99;
-        &[data-scope="text"]:after { content: "V?"; }
+        &[data-stamp="true"]:after { content: "V?"; }
     }
 
     .sick {
         background:#c1a;
-        &[data-scope="text"]:after { content: "S"; }
+        &[data-stamp="true"]:after { content: "S"; }
     }
 
     .training {
         background:#C99E00;
-        &[data-scope="text"]:after { content: "T"; }
+        &[data-stamp="true"]:after { content: "T"; }
     }
 
     .unofficial {
         background:#515151;
-        &[data-scope="text"]:after { content: "\263C"; }
+        &[data-stamp="true"]:after { content: "\263C"; }
     }
 
     .wfh {
         background:#F5871F;
-        &[data-scope="text"]:after { content:'R'; }
+        &[data-stamp="true"]:after { content:'R'; }
     }
 
     .tileOptions li {
@@ -158,8 +158,6 @@
         .wfh:hover:before { content:"Remote Work (WFH)"; }
     }
 }//data-view=timeaway
-
-
 
 /*
 .active [data-view="vacationView"] .lieu:hover:after { content: "L"; }
