@@ -27,7 +27,7 @@ export default Ember.Component.extend({
 
     // remove active state on selected item if it exists
     unselect: function(){
-        try{ this.active.removeClass('active'); }
+        try{ this.active.attr('data-active', false); }
         catch(e){}
     },
 
@@ -36,7 +36,7 @@ export default Ember.Component.extend({
         select() {
             this.unselect();
             this.active = $(event.target);
-            this.active.addClass('active');
+            this.active.attr('data-active', true);
             this.constants.webcel.setTile(this.active);
         }
     }
