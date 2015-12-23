@@ -2,19 +2,12 @@
     "employees": [
         {
             "name": "Shao T",
-            "assignment": {
-                "tiles": "<span class='vacation' data-type='tile' data-x='300' data-y='0' data-year='2015'></span>",
-                "text": "<span class='vacation' data-type='tile' data-x='300' data-y='0'></span>"
-            },
-            "timeoff": {
-                "tiles": "<span class='vacation' data-type='tile' data-x='90' data-y='0' data-year='2015' data-stamp='true'></span><span class='sick' data-type='tile' data-x='4425' data-y='0' data-stamp='true'></span><span class='sick' data-type='tile' data-x='4440' data-y='0'></span><span class='sick' data-type='tile' data-x='4455' data-y='0'></span><span class='sick' data-type='tile' data-x='4470' data-y='0'></span>"
-            }
+            "assignment": "<span class='vacation' data-type='tile' data-x='300' data-y='0' data-year='2015'></span>",
+            "timeoff": "<span class='vacation' data-type='tile' data-x='90' data-y='0' data-year='2015' data-stamp='true'></span><span class='sick' data-type='tile' data-x='4425' data-y='0' data-stamp='true'></span><span class='sick' data-type='tile' data-x='4440' data-y='0'></span><span class='sick' data-type='tile' data-x='4455' data-y='0'></span><span class='sick' data-type='tile' data-x='4470' data-y='0'></span>"
         },
         {
             "name": "Kristin T",
-            "timeoff": {
-                "tiles": "<span class=\"vacation\" data-type=\"tile\" data-x=\"4380\" data-y=\"0\" data-year=\"2015\" data-stamp='true'></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4395\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4410\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4425\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4440\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4455\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4470\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4485\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4500\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4515\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4530\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4545\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4560\" data-y=\"0\" data-year=\"2016\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4575\" data-y=\"0\" data-year=\"2016\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4590\" data-y=\"0\" data-year=\"2016\"></span>"
-                }
+            "timeoff": "<span class=\"vacation\" data-type=\"tile\" data-x=\"4380\" data-y=\"0\" data-year=\"2015\" data-stamp='true'></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4395\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4410\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4425\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4440\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4455\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4470\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4485\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4500\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4515\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4530\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4545\" data-y=\"0\" data-year=\"2015\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4560\" data-y=\"0\" data-year=\"2016\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4575\" data-y=\"0\" data-year=\"2016\"></span><span class=\"vacation\" data-type=\"tile\" data-x=\"4590\" data-y=\"0\" data-year=\"2016\"></span>"
         },
         {
             "name": "Julie N"
