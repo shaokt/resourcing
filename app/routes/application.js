@@ -1,6 +1,13 @@
 import Ember from 'ember';
+import Resources from '../models/resources';
 
 export default Ember.Route.extend({
+    model() {
+        return Ember.$.getJSON('shao.json').then((data)=> {
+            return this.blah = data.employees.map(attrs => this.store.createRecord('resources', attrs));
+        });
+    },
+    /*
     model() {
         return $.getJSON('shao.json').then(
             function(response) {
@@ -10,37 +17,17 @@ export default Ember.Route.extend({
             }
         );
     },
+    */
 
-    /*
-    model() {
-        let resources = [
-            {
-                name: "Shao T",
-                assignment: {
-                    tiles:"<span class='vacation' data-type='tile' data-scope='project' data-x='300' data-y='0' data-year='2015'></span>",
-                    text:"<span class='vacation' data-type='tile' data-scope='text' data-x='300' data-y='0'>"
-                },
-                timeoff: {
-                    tiles:"<span class='vacation' data-type='tile' data-scope='project' data-x='90' data-y='0' data-year='2015'></span>",
-                    text:"<span class='vacation' data-type='tile' data-scope='text' data-x='90' data-y='0'>"
-                }
-            },
-            {
-                name: "Kristin T"
-            }
-        ];
-        return resources;
-    },
-    /**/
     actions: {
         updateName(resource) {
-            //console.log(this.response.get('Shao T'))
-            //console.log(resource.timeoff)
-            //console.log(this.response)
-            //resource.save();
-        },
-        deleteTodo(todo) {
-            todo.destroyRecord();
+            //console.log(this.blah[0].get('name'))
+            /*
+            var promises = Ember.A();
+            this.blah.forEach(function(item){
+                promises.push(item.save());
+            });
+            /**/
         }
     }
 });
