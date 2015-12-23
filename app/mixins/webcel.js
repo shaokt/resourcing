@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import CalendarWidget from '../components/calendar-widget';
 
-export default Ember.Mixin.create({
+export default Ember.Mixin.create(CalendarWidget, {
     row: null, // the current row being edited
     pointer: null, // the square pointer
     sizer: null, // indicator for drag/paint area
@@ -69,13 +70,11 @@ export default Ember.Mixin.create({
 					if(!holidayTile.length){ // tile does not exist, create new tile if not a holiday
 						addTiles+='<span class="' + tileClass + '" data-scope="project" data-type="tile" data-x="' + x + '" data-y="' + y + '"';
 
-						// add year indicator for vacation tracking
-                        /*
+						// add year indicator for out of office tracking
                         this.constants.daily ?
 							tileClass == "vacationCarryover" ?
-							addTiles+=' data-year="' + (x < nextYear ? (calendarYear - 1) : calendarYear) + '"' :
-							addTiles+=' data-year="' + (x < nextYear ? calendarYear : (calendarYear + 1)) + '"' : 0;
-                            */
+							addTiles+=' data-year="' + (x < this.constants.nextYear ? (this.year - 1) : this.year) + '"' :
+							addTiles+=' data-year="' + (x < this.constants.nextYear ? this.year : (this.year + 1)) + '"' : 0;
 
 						addTiles+='></span>';
                         /*
@@ -88,8 +87,6 @@ export default Ember.Mixin.create({
 			}
 		}
 		addTiles != "" ? $(this.row).find(".tiles")[0].innerHTML += addTiles : 0;
-        /*
-        */
 		$(this.sizer).hide();
     },
 

@@ -1,6 +1,6 @@
 {{#each model as |resource|}}
     <section class="resourceRow" data-active="{{resource.active}}">
-        {{resource-info resource=resource active=active}}
+        {{resource-info resource=resource active=active updateName="updateName"}}
 
         {{#if isWeeklyCalendar}}
         	<div class="row" data-view="assignment">
