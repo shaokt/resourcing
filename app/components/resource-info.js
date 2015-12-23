@@ -7,10 +7,11 @@ export default ResourceRowComponent.extend({
     classNames: ['info'],
     classNameBindings: ['editing'],
     editing: false,
+
     actions: {
         editing() {
             this.toggleProperty('editing');
-            this.set("resource.active",this.editing);
+            this.set("resource.active", this.editing);
             if(this.editing == true){
                 this.edit();
                 $('body').attr('data-editing', true)
@@ -28,15 +29,7 @@ export default ResourceRowComponent.extend({
 
         editName() {
             this.sendAction('updateName', this.get('resource'));
-            this.set('editing', false);
-            this.set("resource.active", false);
-       },
-
-        submitTodo(newTitle) {
-            if (newTitle) {
-                this.sendAction('action', newTitle);
-            }
-            this.set('newTitle', '');
-        }
+            this.send('editing')
+       }
     }
 });

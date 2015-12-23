@@ -18,5 +18,12 @@ export default Ember.Component.extend(Webcel, {
 
     save: function(){
         this.constants.webcel.done();
+    },
+    actions:{
+        updateName(resource) {
+            this.sendAction('updateName', resource);
+            //resources.save();
+        }
+
     }
 });
