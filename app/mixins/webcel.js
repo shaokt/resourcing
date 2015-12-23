@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import CalendarWidget from '../components/calendar-widget';
 
-export default Ember.Mixin.create({
+export default Ember.Mixin.create(CalendarWidget, {
     row: null, // the current row being edited
     pointer: null, // the square pointer
     sizer: null, // indicator for drag/paint area
@@ -67,15 +68,13 @@ export default Ember.Mixin.create({
 				else{
 					thisTile.remove();
 					if(!holidayTile.length){ // tile does not exist, create new tile if not a holiday
-						addTiles+='<span class="' + tileClass + '" data-scope="project" data-type="tile" data-x="' + x + '" data-y="' + y + '"';
+						addTiles+='<span class="' + tileClass + '" data-type="tile" data-x="' + x + '" data-y="' + y + '"';
 
-						// add year indicator for vacation tracking
-                        /*
+						// add year indicator for out of office tracking
                         this.constants.daily ?
 							tileClass == "vacationCarryover" ?
-							addTiles+=' data-year="' + (x < nextYear ? (calendarYear - 1) : calendarYear) + '"' :
-							addTiles+=' data-year="' + (x < nextYear ? calendarYear : (calendarYear + 1)) + '"' : 0;
-                            */
+							addTiles+=' data-year="' + (x < this.constants.nextYear ? (this.year - 1) : this.year) + '"' :
+							addTiles+=' data-year="' + (x < this.constants.nextYear ? this.year : (this.year + 1)) + '"' : 0;
 
 						addTiles+='></span>';
                         /*
@@ -88,8 +87,6 @@ export default Ember.Mixin.create({
 			}
 		}
 		addTiles != "" ? $(this.row).find(".tiles")[0].innerHTML += addTiles : 0;
-        /*
-        */
 		$(this.sizer).hide();
     },
 
@@ -124,21 +121,39 @@ export default Ember.Mixin.create({
         }
 
 		mouseDown = function(e){
+			self.downX = e.pageX - $(this).offset().left;
+			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
+			self.downY = e.pageY  - $(this).offset().top
+			self.upY = self.downY = self.downY - self.downY%self.constants.DIM;
+
+            self.downY > self.maxY ? self.downY = self.maxY : 0;
+
 			switch (e.which){
 				case 1: { // left mouse button
                     if(!self.isDown){
-						self.isDown = 1;
-						self.downX = e.pageX - $(this).offset().left;
-						self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
-						self.downY = e.pageY  - $(this).offset().top
-						self.upY = self.downY = self.downY - self.downY%self.constants.DIM;
-
-                        self.downY > self.maxY ? self.downY = self.maxY : 0;
+            			self.isDown = 1;
                         /*
                         //self.resize(e);
 						sizer.show();
                         */
                     }
+                    break;
+                }
+				case 3: { // right click: stamp
+                    /*
+					var downX = e.pageX - $(this).offset().left;
+					downX = downX - downX%self.constants.DIM;
+					var downY = e.pageY  - $(this).offset().top
+					downY = downY - downY%self.constants.DIM;
+                    downY > self.maxY ? downY = self.maxY : 0;
+                    */
+
+					var thisTile = $(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
+                    if(thisTile.attr('data-stamp') == "true"){
+                        thisTile.removeAttr('data-stamp')
+                    }
+                    else{ thisTile.attr('data-stamp', true) }
+
                     break;
                 }
             }//switch
@@ -156,7 +171,7 @@ export default Ember.Mixin.create({
         }
 
         $(this.row).bind('mousemove', movePointer);
-        $(this.row).bind('mousedown', mouseDown);
+        $(this.row).bind('mousedown', mouseDown).bind('contextmenu', function(e){e.preventDefault();});
         $(this.row).bind('mouseup', mouseUp);
 
         return this;
