@@ -1,10 +1,11 @@
 {{#each model as |resource|}}
     <section class="resourceRow" data-active="{{resource.active}}">
-        {{resource-info resource=resource active=active}}
+        {{resource-info resource=resource active=active updateName="updateName"}}
 
         {{#if isWeeklyCalendar}}
         	<div class="row" data-view="assignment">
                 <div class="pointer"></div>
+                <div class="sizer"></div>
                 <div class="tiles">{{{resource.assignment.tiles}}}</div>
                 <div class="text">{{{resource.assignment.text}}}</div>
             </div>
@@ -13,6 +14,7 @@
         {{#if isDailyCalendar}}
         	<div class="row" data-view="timeOff">
                 <div class="pointer"></div>
+                <div class="sizer"></div>
                 <div class="tiles">{{{resource.timeoff.tiles}}}</div>
                 <div class="text">{{{resource.timeoff.text}}}</div>
             </div>
