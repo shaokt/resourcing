@@ -72,7 +72,6 @@ export default Ember.Mixin.create(CalendarWidget, {
 					if(!holidayTile.length){ // tile does not exist, create new tile if not a holiday
 						addTiles+='<span class="' + tileClass + '" data-type="tile" data-x="' + x + '" data-y="' + y + '"';
 
-						// add year indicator for out of office tracking
                         this.constants.daily ?
 							tileClass == "vacationCarryover" ?
 							addTiles+=' data-year="' + (x < this.constants.nextYear ? (this.year - 1) : this.year) + '"' :
@@ -80,9 +79,6 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 						addTiles+= stamp + '></span>';
 					}
-				}
-			}
-		}
         if(addTiles != ""){
             //var test = addTiles.htmlSafe();
             //this.stuff.set('timeaway', test.string);
@@ -93,12 +89,8 @@ export default Ember.Mixin.create(CalendarWidget, {
 		$(this.sizer).hide();
     },
 
-    setup: function(obj, emData){
-        this.stuff = emData;
-
         var movePointer, mouseDown, mouseUp;
         this.constants.webcel = this;
-        this.row = $($(obj.context.parentNode).find('.row')[0]);
         this.pointer = $(this.row).find('.pointer')[0]
         this.sizer = $(this.row).find('.sizer')[0]
         this.maxY = this.constants.daily ? 0 : 45;
@@ -139,7 +131,6 @@ export default Ember.Mixin.create(CalendarWidget, {
                     if(!self.isDown){
             			self.isDown = 1;
                         /*
-                        //self.resize(e);
 						sizer.show();
                         */
                     }
@@ -177,6 +168,5 @@ export default Ember.Mixin.create(CalendarWidget, {
         $(this.row).unbind('mousemove');
         $(this.row).unbind('mousedown');
         $(this.row).unbind('mouseup');
-        //this.constants.webcel = null;
     }
 });
