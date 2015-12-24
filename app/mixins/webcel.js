@@ -11,7 +11,7 @@ export default Ember.Mixin.create(CalendarWidget, {
     currentTile: null, // the tile to use for painting
     _self: this,
 
-    Webcel: function(obj){
+    Webcel: function(obj, emData){
         var setup, _this = this;
         var isDown = 0;
         return this;
@@ -83,11 +83,19 @@ export default Ember.Mixin.create(CalendarWidget, {
 				}
 			}
 		}
-		addTiles != "" ? $(this.row).find(".tiles")[0].innerHTML += addTiles : 0;
+        if(addTiles != ""){
+            //var test = addTiles.htmlSafe();
+            //this.stuff.set('timeaway', test.string);
+            //TODO: find a way to only use .set
+    		$(this.row).find(".tiles")[0].innerHTML += addTiles;
+            this.stuff.set('timeaway', $(this.row).find(".tiles")[0].innerHTML);
+        }
 		$(this.sizer).hide();
     },
 
-    setup: function(obj){
+    setup: function(obj, emData){
+        this.stuff = emData;
+
         var movePointer, mouseDown, mouseUp;
         this.constants.webcel = this;
         this.row = $($(obj.context.parentNode).find('.row')[0]);
