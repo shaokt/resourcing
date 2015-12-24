@@ -3,6 +3,11 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: '',
     dayInMonth: function(){
+        if(this.constants.nextYear == 0){
+            if(this.year == this.cal.year+1){
+                this.constants.nextYear = this.constants._DIM + this.constants.DIM
+            }
+        }
         this.days = new Array();
         this.cal.getLastDayInMonth(this.month);
 

@@ -5,7 +5,7 @@ header {
     left:0;
     position:fixed;
     width:100%;
-    z-index: 4;
+    z-index: 10;
 
     #year {
         background:#000;
@@ -74,7 +74,7 @@ header {
                     margin:10px 5px 0 0;
                  }
 
-                [data-scope="text"] {
+                [data-stamp="true"] {
                     border:1px solid transparent;
                     border-radius:5px;
                     display:none;
@@ -93,7 +93,7 @@ header {
                         top:-1.4em;
                     }
 
-                    &.active,
+                    &[data-active="true"],
                     &:focus,
                     &:hover {
                         border:1px solid #000;
@@ -132,11 +132,11 @@ header {
                         span { background:none; }
                     }
 
-                    &.active {
+                    &[data-active="true"]{
                         display:block;
                         opacity:1;
                     }
-                 }//data-scope="text"
+                }//data-stamp="true"
 
                 .empty:hover:before { content:"Delete"; }
             }//li
@@ -153,7 +153,7 @@ header {
                     padding-right:20px !important;
                 }
 
-                [data-scope="text"] { display:inline-block; }
+                [data-stamp="true"] { display:inline-block; }
 
                 + .buttonContainer { display:none; }
             }

@@ -13,10 +13,18 @@ export default Ember.Component.extend(Webcel, {
     }.property('viewType'),
 
     edit: function(){
-        this.constants.webcel = this.Webcel(this.$());
+        this.constants.webcel.setup({
+            row: this.$().parent().find('.row')[0], // the row being edited
+            data: this.get('resource') // the data in store
+        });
     },
 
     save: function(){
         this.constants.webcel.done();
+    },
+    actions:{
+        updateName(resource) {
+            this.sendAction('updateName', resource);
+        }
     }
 });
