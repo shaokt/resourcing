@@ -11,7 +11,7 @@ export default Ember.Mixin.create(CalendarWidget, {
     currentTile: null, // the tile to use for painting
     _self: this,
 
-    Webcel: function(obj){
+    Webcel: function(obj, emData){
         var setup, _this = this;
         var isDown = 0;
         return this;
@@ -57,16 +57,18 @@ export default Ember.Mixin.create(CalendarWidget, {
 		for(var x = this.downX; x <= this.upX; x+=this.constants.DIM){
 			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
 				var thisTile = $(this.row).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
-				var thisTileText = $(this.row).find('.text [data-x="' + x +'"][data-y="' + y + '"]');
 				//var holidayTile = $(this.row).find('.holidayContainer [data-x="' + x +'"][data-y="' + y + '"]');
                 var holidayTile = false;
 
 				if(empty){ // remove tiles
 					thisTile.remove();
-					thisTileText.remove();
 				}
 				else{
-					thisTile.remove();
+                    var stamp = "";
+                    if(thisTile.length && thisTile.attr('data-stamp')){
+                        stamp = ' data-stamp="true"';
+                    }
+                    thisTile.remove();
 					if(!holidayTile.length){ // tile does not exist, create new tile if not a holiday
 						addTiles+='<span class="' + tileClass + '" data-type="tile" data-x="' + x + '" data-y="' + y + '"';
 
@@ -76,21 +78,24 @@ export default Ember.Mixin.create(CalendarWidget, {
 							addTiles+=' data-year="' + (x < this.constants.nextYear ? (this.year - 1) : this.year) + '"' :
 							addTiles+=' data-year="' + (x < this.constants.nextYear ? this.year : (this.year + 1)) + '"' : 0;
 
-						addTiles+='></span>';
-                        /*
-						if(thisTileText.length){ // tile text exists, update text identifier
-							thisTileText.attr('class', selectedProjectClass);
-						}
-                        */
+						addTiles+= stamp + '></span>';
 					}
 				}
 			}
 		}
-		addTiles != "" ? $(this.row).find(".tiles")[0].innerHTML += addTiles : 0;
+        if(addTiles != ""){
+            //var test = addTiles.htmlSafe();
+            //this.stuff.set('timeaway', test.string);
+            //TODO: find a way to only use .set
+    		$(this.row).find(".tiles")[0].innerHTML += addTiles;
+            this.stuff.set('timeaway', $(this.row).find(".tiles")[0].innerHTML);
+        }
 		$(this.sizer).hide();
     },
 
-    setup: function(obj){
+    setup: function(obj, emData){
+        this.stuff = emData;
+
         var movePointer, mouseDown, mouseUp;
         this.constants.webcel = this;
         this.row = $($(obj.context.parentNode).find('.row')[0]);
@@ -124,9 +129,10 @@ export default Ember.Mixin.create(CalendarWidget, {
 			self.downX = e.pageX - $(this).offset().left;
 			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
 			self.downY = e.pageY  - $(this).offset().top
-			self.upY = self.downY = self.downY - self.downY%self.constants.DIM;
+			self.downY = self.downY - self.downY%self.constants.DIM;
 
             self.downY > self.maxY ? self.downY = self.maxY : 0;
+            self.upY = self.downY;
 
 			switch (e.which){
 				case 1: { // left mouse button
@@ -140,18 +146,8 @@ export default Ember.Mixin.create(CalendarWidget, {
                     break;
                 }
 				case 3: { // right click: stamp
-                    /*
-					var downX = e.pageX - $(this).offset().left;
-					downX = downX - downX%self.constants.DIM;
-					var downY = e.pageY  - $(this).offset().top
-					downY = downY - downY%self.constants.DIM;
-                    downY > self.maxY ? downY = self.maxY : 0;
-                    */
-
 					var thisTile = $(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
-                    if(thisTile.attr('data-stamp') == "true"){
-                        thisTile.removeAttr('data-stamp')
-                    }
+                    if(thisTile.attr('data-stamp') == "true"){ thisTile.removeAttr('data-stamp') }
                     else{ thisTile.attr('data-stamp', true) }
 
                     break;
