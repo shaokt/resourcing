@@ -77,11 +77,11 @@ export default Ember.Mixin.create(CalendarWidget, {
 			}
 		}
 
-        if(addTiles != ""){
+        //if(addTiles != ""){
     		addTiles = ($(this.row).find(".tiles")[0].innerHTML + addTiles).htmlSafe();
             this.data.set('updated', true) // this is needed to bypass triple stash in the templates
             this.data.set('timeaway', addTiles)
-        }
+        //}
 		$(this.sizer).hide();
     },
 
