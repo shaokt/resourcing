@@ -14,7 +14,15 @@
         	<div class="row" data-view="timeOff">
                 <div class="pointer"></div>
                 <div class="sizer"></div>
-                <div class="tiles">{{{resource.timeaway}}}</div>
+                <div class="tiles">
+                    {{#if resource.updated}}
+                        {{! this is needed to unescaple during edits}}
+                        {{resource.timeaway}}
+                    {{else}}
+                        {{! this is needed on initial load as HTML within a string}}
+                        {{{resource.timeaway}}}
+                    {{/if}}
+                </div>
             </div>
         {{/if}}
     </section>
