@@ -22,7 +22,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 		$(this.sizer).css({width:Math.abs(this.upX - this.downX) + this.constants.DIM, height:Math.abs(this.upY - this.downY) + this.constants.DIM});
     },
 
-    // select project for painting
+    // set tile for painting
     setTile: function(obj){
         this.currentTile = obj;
     },
@@ -76,7 +76,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 				}
 			}
 		}
-        
+
         if(addTiles != ""){
     		addTiles = ($(this.row).find(".tiles")[0].innerHTML + addTiles).htmlSafe();
             this.data.set('updated', true) // this is needed to bypass triple stash in the templates
