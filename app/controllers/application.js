@@ -3,8 +3,6 @@ import ScrollingMixin from "../mixins/scrolling";
 import MouseMoveMixin from "../mixins/mousemove";
 
 export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
-    viewType: "assignment",
-    viewType: "timeaway",
     leftScroll: 0,
     minLeft: 0, // the minimum left position to show names when scrolling
 
@@ -31,7 +29,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
 
     scrolled: function(){
         var left = $(window).scrollLeft()
-        this.set('leftScroll', left == 0 && this.viewType == 'timeaway' ? this.minLeft : left)
+        this.set('leftScroll', left == 0 && this.get('config.view') == 'timeaway' ? this.minLeft : left)
         $('.calendar').css({left:-left})
     },
 

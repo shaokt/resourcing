@@ -4,12 +4,12 @@ export default Ember.Component.extend({
     tagName: 'header',
 
     isWeeklyCalendar: function(){
-        return this.get('viewType') === 'assignment';
-    }.property('viewType'),
+        return this.get('config.view') === 'assignment';
+    }.property('config.view'),
 
     isDailyCalendar: function(){
-        return this.get('viewType') === 'timeaway';
-    }.property('viewType'),
+        return this.get('config.view') === 'timeaway';
+    }.property('config.view'),
 
     actions: {
         scrollToday() {
@@ -17,12 +17,7 @@ export default Ember.Component.extend({
         },
 
         toggleView() {
-            if(this.viewType == "assignment"){
-                this.set("viewType","timeaway");
-            }
-            else{
-                this.set("viewType","assignment");
-            }
+            this.set("config.view", this.get('isWeeklyCalendar') ? "timeaway": "assignment");
         }
     }
 });
