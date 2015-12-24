@@ -13,13 +13,12 @@
     .dateMarker {
         background:transparent;
         border-bottom:2px solid red;
-        box-shadow:0 0 10px 5px rgba(0,0,0,.5);
-        height:30px;
-        margin-top:5px;
+        box-shadow:0 0 10px 2px rgba(100,0,0,.5);
+        height:32px;
         outline:1px solid #000;
         position:absolute;
         width:15px;
-        z-index:5 !important;
+        z-index:4;
 
         &:after {
             content:'';
@@ -113,7 +112,7 @@
                 box-sizing:border-box;
                 float:left;
                 font-size:.8em;
-                padding:5px 0 0 0;
+                padding:5px 0 2px 0;
                 position:relative;
                 text-align:center;
                 width:15px;
@@ -124,19 +123,21 @@
                 &.selected {
                     background:#fff !important;
                     border-color:transparent;
-                    border-bottom:5px solid #c1a;
-                    color:#000 !important;
+                    color:#c1a !important;
+                    font-size:1em;
+                    margin-top:-.2em;
                     text-shadow:none !important;
 
                     &:after {
                         content:'';
-                        background:#c1a;
-                        bottom:-20px;
+                        background:none;
+                        box-shadow:0 5px 10px 5px rgba(0,0,0,.1);
+                        bottom:-15px;
                         height:15px;
-                        left:7px;
-                        opacity:.2;
+                        left:0;
+                        opacity:.5;
                         position:absolute;
-                        width:1px;
+                        width:15px;
                     }
                 }
             } //day
@@ -187,16 +188,13 @@ header {
 
 #calendarWeekly .day { border-left:0; }
 #calendarDaily .day {
+    &.selected {
+        margin-top:-.3em;
+    }
     &.selected[data-day-name="M"] {
         &:after {
-            left:6px;
+            left:-1px;
         }
-    }
-}
-
-[data-view="assignment"] {
-    .dateMarker {
-        height:20px;
     }
 }
 
@@ -204,78 +202,17 @@ header {
     background:#000;
     height:100%;
     left:0;
-    margin:0 0 0 6px;
+    margin:-145px 0 0 6px;
     opacity:.2;
     position:absolute;
     top:130px;
     width:1px;
     z-index:3;
-    margin-top:-145px;
 
     &#todayDateLine {
-        background:#c1a;
+        background:none;
+        box-shadow:0 5px 10px 5px rgba(0,0,0,.2);
+        margin-left:-1px;
+        width:15px;
     }
 }
-
-/*
-//calendar magnification properties
-#dateLine { background:#c1a;height:100%;left:0;opacity:.8;margin-left:8px;position:absolute;top:-3px;width:1px;z-index:1; }
-.projectView #dateLine {z-index:5;}
-#dateLine.edit { background:#000;opacity:.3; }
-.dateMarker { background:#c1a;height:100%;margin:0 0 0 7px;position:absolute;top:0;width:1px;z-index:5;box-shadow:2px 2px 2px 0 rgba(0,0,0,0.5); }
-
-#thisdate {
-	height:30px;
-	overflow:hidden;
-	position:absolute;
-	bottom:0;
-	margin-left:1px;
-	width:15px;
-	border-bottom:15px solid rgba(204, 17, 170, .1);
-	z-index:12;
-}
-
-#magnifyDate {
-	display:block;
-	bottom:0;
-	left:0;
-	overflow:visible;
-	position:absolute;
-
-	user-select:none;
-	-moz-user-select:none;
-	-webkit-user-select:none;
-}
-
-#magnifyDate .day { opacity:1; }
-
-#magnifyDate .quarter:nth-child(even) .month:nth-child(even) .day,
-#magnifyDate .quarter:nth-child(odd) .month:nth-child(odd) .day { background:#fff;color:#000; }
-#magnifyDate .day { font-size:8px; }
-
-.vacationView #thisdate { bottom:0;height:45px }
-.vacationView #magnifyDate { bottom:0; }
-
-.vacationView #vacationList,
-.vacationView [data-view="vacationView"],
-.vacationView #calendarDaily,
-.projectView #projectList,
-.projectView [data-view="projectView"],
-.projectView #calendarWeekly { display:block; }
-
-
-.detailsView [data-view="projectView"],
-.detailsView [data-view="vacationView"],
-.detailsView #projectList,
-.detailsView #vacationList,
-.detailsView #calendarDaily,
-.detailsView #calendarWeekly,
-.vacationView #projectList,
-.vacationView [data-view="projectView"],
-.vacationView [data-view="detailsView"],
-.vacationView #calendarWeekly,
-.projectView #vacationList,
-.projectView [data-view="vacationView"],
-.projectView [data-view="detailsView"],
-.projectView #calendarDaily { display:none; }
-*/

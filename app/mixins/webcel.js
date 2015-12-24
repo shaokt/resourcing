@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import CalendarWidget from '../components/calendar-widget';
 
-export default Ember.Mixin.create({
+export default Ember.Mixin.create(CalendarWidget, {
     row: null, // the current row being edited
     pointer: null, // the square pointer
     sizer: null, // indicator for drag/paint area
@@ -10,11 +11,10 @@ export default Ember.Mixin.create({
     currentTile: null, // the tile to use for painting
     _self: this,
 
-    Webcel: function(obj){
+    Webcel: function(obj, emData){
         var setup, _this = this;
         var isDown = 0;
         return this;
-        //return this.setup(obj);
     },
 
     resize: function(e){
@@ -22,14 +22,9 @@ export default Ember.Mixin.create({
 		$(this.sizer).css({width:Math.abs(this.upX - this.downX) + this.constants.DIM, height:Math.abs(this.upY - this.downY) + this.constants.DIM});
     },
 
-    // select project for painting
+    // set tile for painting
     setTile: function(obj){
         this.currentTile = obj;
-        /*
-    	obj.parent().find("[data-status='selected']").removeAttr('data-status');
-    	obj.attr("data-status", "selected");
-    	selectedProject = obj;
-        */
     },
 
     // get the area to paint over
@@ -47,8 +42,7 @@ export default Ember.Mixin.create({
 		}
     },
 
-    getTiles: function(){
-        this.setPaintableArea();
+    getTiles: function(){ this.setPaintableArea();
 		var addTiles = "";
 		var empty = this.currentTile.hasClass('empty');
 		var tileClass = this.currentTile.attr('class');
@@ -56,47 +50,48 @@ export default Ember.Mixin.create({
 		for(var x = this.downX; x <= this.upX; x+=this.constants.DIM){
 			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
 				var thisTile = $(this.row).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
-				var thisTileText = $(this.row).find('.text [data-x="' + x +'"][data-y="' + y + '"]');
 				//var holidayTile = $(this.row).find('.holidayContainer [data-x="' + x +'"][data-y="' + y + '"]');
                 var holidayTile = false;
 
 				if(empty){ // remove tiles
 					thisTile.remove();
-					thisTileText.remove();
 				}
 				else{
-					thisTile.remove();
+                    var stamp = "";
+                    if(thisTile.length && thisTile.attr('data-stamp')){
+                        stamp = ' data-stamp="true"';
+                    }
+                    thisTile.remove();
 					if(!holidayTile.length){ // tile does not exist, create new tile if not a holiday
-						addTiles+='<span class="' + tileClass + '" data-scope="project" data-type="tile" data-x="' + x + '" data-y="' + y + '"';
+						addTiles+='<span class="' + tileClass + '" data-type="tile" data-x="' + x + '" data-y="' + y + '"';
 
-						// add year indicator for vacation tracking
-                        /*
+						// add year indicator for out of office tracking
                         this.constants.daily ?
 							tileClass == "vacationCarryover" ?
-							addTiles+=' data-year="' + (x < nextYear ? (calendarYear - 1) : calendarYear) + '"' :
-							addTiles+=' data-year="' + (x < nextYear ? calendarYear : (calendarYear + 1)) + '"' : 0;
-                            */
+							addTiles+=' data-year="' + (x < this.constants.nextYear ? (this.year - 1) : this.year) + '"' :
+							addTiles+=' data-year="' + (x < this.constants.nextYear ? this.year : (this.year + 1)) + '"' : 0;
 
-						addTiles+='></span>';
-                        /*
-						if(thisTileText.length){ // tile text exists, update text identifier
-							thisTileText.attr('class', selectedProjectClass);
-						}
-                        */
+						addTiles+= stamp + '></span>';
 					}
 				}
 			}
 		}
-		addTiles != "" ? $(this.row).find(".tiles")[0].innerHTML += addTiles : 0;
-        /*
-        */
+
+        if(addTiles != ""){
+    		addTiles = ($(this.row).find(".tiles")[0].innerHTML + addTiles).htmlSafe();
+            this.data.set('updated', true) // this is needed to bypass triple stash in the templates
+            this.data.set('timeaway', addTiles)
+        }
 		$(this.sizer).hide();
     },
 
-    setup: function(obj){
+    //setup: function(obj, emData){
+    setup: function(params){
         var movePointer, mouseDown, mouseUp;
         this.constants.webcel = this;
-        this.row = $($(obj.context.parentNode).find('.row')[0]);
+        this.row = params.row;
+        this.data = params.data;
+
         this.pointer = $(this.row).find('.pointer')[0]
         this.sizer = $(this.row).find('.sizer')[0]
         this.maxY = this.constants.daily ? 0 : 45;
@@ -124,21 +119,30 @@ export default Ember.Mixin.create({
         }
 
 		mouseDown = function(e){
+			self.downX = e.pageX - $(this).offset().left;
+			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
+			self.downY = e.pageY  - $(this).offset().top
+			self.downY = self.downY - self.downY%self.constants.DIM;
+
+            self.downY > self.maxY ? self.downY = self.maxY : 0;
+            self.upY = self.downY;
+
 			switch (e.which){
 				case 1: { // left mouse button
                     if(!self.isDown){
-						self.isDown = 1;
-						self.downX = e.pageX - $(this).offset().left;
-						self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
-						self.downY = e.pageY  - $(this).offset().top
-						self.upY = self.downY = self.downY - self.downY%self.constants.DIM;
-
-                        self.downY > self.maxY ? self.downY = self.maxY : 0;
+            			self.isDown = 1;
                         /*
                         //self.resize(e);
 						sizer.show();
                         */
                     }
+                    break;
+                }
+				case 3: { // right click: stamp
+					var thisTile = $(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
+                    if(thisTile.attr('data-stamp') == "true"){ thisTile.removeAttr('data-stamp') }
+                    else{ thisTile.attr('data-stamp', true) }
+
                     break;
                 }
             }//switch
@@ -156,7 +160,7 @@ export default Ember.Mixin.create({
         }
 
         $(this.row).bind('mousemove', movePointer);
-        $(this.row).bind('mousedown', mouseDown);
+        $(this.row).bind('mousedown', mouseDown).bind('contextmenu', function(e){e.preventDefault();});
         $(this.row).bind('mouseup', mouseUp);
 
         return this;
@@ -166,6 +170,5 @@ export default Ember.Mixin.create({
         $(this.row).unbind('mousemove');
         $(this.row).unbind('mousedown');
         $(this.row).unbind('mouseup');
-        //this.constants.webcel = null;
     }
 });
