@@ -16,10 +16,8 @@
                 <div class="sizer"></div>
                 <div class="tiles">
                     {{#if resource.updated}}
-                        {{! this is needed to unescaple during edits}}
                         {{resource.timeaway}}
                     {{else}}
-                        {{! this is needed on initial load as HTML within a string}}
                         {{{resource.timeaway}}}
                     {{/if}}
                 </div>

@@ -15,7 +15,6 @@ export default Ember.Mixin.create(CalendarWidget, {
         var setup, _this = this;
         var isDown = 0;
         return this;
-        //return this.setup(obj);
     },
 
     resize: function(e){
@@ -26,11 +25,6 @@ export default Ember.Mixin.create(CalendarWidget, {
     // select project for painting
     setTile: function(obj){
         this.currentTile = obj;
-        /*
-    	obj.parent().find("[data-status='selected']").removeAttr('data-status');
-    	obj.attr("data-status", "selected");
-    	selectedProject = obj;
-        */
     },
 
     // get the area to paint over
@@ -48,8 +42,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 		}
     },
 
-    getTiles: function(){
-        this.setPaintableArea();
+    getTiles: function(){ this.setPaintableArea();
 		var addTiles = "";
 		var empty = this.currentTile.hasClass('empty');
 		var tileClass = this.currentTile.attr('class');
@@ -72,6 +65,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 					if(!holidayTile.length){ // tile does not exist, create new tile if not a holiday
 						addTiles+='<span class="' + tileClass + '" data-type="tile" data-x="' + x + '" data-y="' + y + '"';
 
+						// add year indicator for out of office tracking
                         this.constants.daily ?
 							tileClass == "vacationCarryover" ?
 							addTiles+=' data-year="' + (x < this.constants.nextYear ? (this.year - 1) : this.year) + '"' :
@@ -79,18 +73,25 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 						addTiles+= stamp + '></span>';
 					}
+				}
+			}
+		}
+        
         if(addTiles != ""){
-            //var test = addTiles.htmlSafe();
-            //this.stuff.set('timeaway', test.string);
-            //TODO: find a way to only use .set
-    		$(this.row).find(".tiles")[0].innerHTML += addTiles;
-            this.stuff.set('timeaway', $(this.row).find(".tiles")[0].innerHTML);
+    		addTiles = ($(this.row).find(".tiles")[0].innerHTML + addTiles).htmlSafe();
+            this.data.set('updated', true) // this is needed to bypass triple stash in the templates
+            this.data.set('timeaway', addTiles)
         }
 		$(this.sizer).hide();
     },
 
+    //setup: function(obj, emData){
+    setup: function(params){
         var movePointer, mouseDown, mouseUp;
         this.constants.webcel = this;
+        this.row = params.row;
+        this.data = params.data;
+
         this.pointer = $(this.row).find('.pointer')[0]
         this.sizer = $(this.row).find('.sizer')[0]
         this.maxY = this.constants.daily ? 0 : 45;
@@ -131,6 +132,7 @@ export default Ember.Mixin.create(CalendarWidget, {
                     if(!self.isDown){
             			self.isDown = 1;
                         /*
+                        //self.resize(e);
 						sizer.show();
                         */
                     }
