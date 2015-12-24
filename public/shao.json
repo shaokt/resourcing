@@ -1,4 +1,12 @@
 {
+    "config": [
+        {
+            "view": "timeaway",
+            "assignmentTile": "aem",
+            "timeawayTile": "vacation"
+        }
+    ],
+
     "employees": [
         {
             "name": "Shao T",
