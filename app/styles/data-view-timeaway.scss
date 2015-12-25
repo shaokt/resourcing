@@ -33,7 +33,6 @@
         }
     }//resourceRow
 
-    [data-scope="text"],
     [data-stamp="true"] {
         background:none;
         border:none;
@@ -41,9 +40,7 @@
         font-size:.8rem;
         line-height:180%;
         outline:none;
-        padding:0;
         text-align:center;
-        width:15px;
     }
 
     [data-type="tile"] {

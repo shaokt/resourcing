@@ -36,7 +36,7 @@ section.resourceRow {
         display:inline-block;
         margin-left:-70px;
         position:absolute;
-        z-index:2;
+        z-index:3;
 
         .name {
             background:#a9a9a9;
@@ -44,6 +44,7 @@ section.resourceRow {
             border-radius:2px;
             box-shadow:1px 1px 5px 0 rgba(0, 0, 0, .5);
             color:#fff;
+            float:left;
             padding:0 2px;
             text-shadow:1px 1px #888;
         }
