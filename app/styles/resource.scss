@@ -33,25 +33,25 @@ section.resourceRow {
 
     .info {
         border-left:70px solid transparent;
+        cursor:default;
         display:inline-block;
         margin-left:-70px;
         position:absolute;
+        top:0;
         z-index:3;
 
         .name {
-            background:#a9a9a9;
+            background:#000;
             border:1px solid #fff;
             border-radius:2px;
             box-shadow:1px 1px 5px 0 rgba(0, 0, 0, .5);
             color:#fff;
             float:left;
             padding:0 2px;
-            text-shadow:1px 1px #888;
         }
 
         .name[contenteditable] {
-            background:#000;
-            border-bottom:0;
+            background:#c55500;
             color:#fff;
             font-size:120%;
             margin-top:-5px;
@@ -64,7 +64,7 @@ section.resourceRow {
         z-index:3;
 
         .info .name {
-            background:#000;
+            background:#c55500;
             text-shadow:none;
         }
     }

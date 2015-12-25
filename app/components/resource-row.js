@@ -2,7 +2,6 @@ import Ember from 'ember';
 import Webcel from "../mixins/webcel";
 
 export default Ember.Component.extend(Webcel, {
-//export default ResourceRowComponent.extend({
     webcel: 'webcel',
     isWeeklyCalendar: function(){
         return this.get('config.view') === 'assignment';
@@ -26,7 +25,7 @@ export default Ember.Component.extend(Webcel, {
     save: function(){
         this.constants.webcel.done();
     },
-    
+
     actions:{
         updateName(resource) {
             this.sendAction('updateName', resource);

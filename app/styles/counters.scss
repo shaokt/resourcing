@@ -4,11 +4,12 @@
     background:#fff;
     border:1px solid #fff;
     box-shadow:1px 1px 5px 0 rgba(0, 0, 0, .8);
+    cursor:default;
     display:none;
     margin:0 0 0 10px;
     white-space:nowrap;
 
-    .counter {
+    div {
         color:#fff;
         display:inline-block;
         float:left;

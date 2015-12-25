@@ -3,6 +3,7 @@ import ScrollingMixin from "../mixins/scrolling";
 import MouseMoveMixin from "../mixins/mousemove";
 
 export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
+    counterCSS: '',
     leftScroll: 0,
     minLeft: 0, // the minimum left position to show names when scrolling
 
@@ -25,6 +26,20 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         this.minLeft = 22 * this.constants.DIM; // assume 22 business days in a month
         this.bindScrolling();
         this.bindMouseMove();
+
+        //TODO: dynamic year
+        this.year=2015
+        var self = this;
+        var vacationCounters = ['lieu', 'personal', 'sick', 'unofficial', 'vacation'];
+        var vacationCountersPrevious = ['vacationCarryover'];
+        $.each(vacationCounters, function(i, val){
+        	self.counterCSS += '.tiles .' + val + '[data-year="' + self.year+ '"] { counter-increment:' + val + 'Counter } ';
+        });
+        $.each(vacationCountersPrevious, function(i, val){
+        	self.counterCSS += '.tiles .' + val + '[data-year="' + (self.year-1) + '"] { counter-increment:' + val + 'Counter } ';
+        });
+
+
     }.on('init'),
 
     scrolled: function(){
