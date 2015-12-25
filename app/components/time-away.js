@@ -27,16 +27,21 @@ export default Ember.Component.extend({
 
     // remove active state on selected item if it exists
     unselect: function(){
-        try{ this.active.removeClass('active'); }
+        if(!this.active){
+            this.active = $('.tileOptions [data-active="true"]'); // this only occurs on load of default tile
+        }
+        try{ this.active.attr('data-active', false); }
         catch(e){}
     },
 
-    // make clicked obj the active tile
+    // make clicked obj the active tile for painting
+    // TODO: extend a tile component
     actions: {
         select() {
             this.unselect();
             this.active = $(event.target);
-            this.active.addClass('active');
+            this.active.attr('data-active', true);
+            this.set('config.timeawayTile', this.active.context.className); // update config store
             this.constants.webcel.setTile(this.active);
         }
     }
