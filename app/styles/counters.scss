@@ -1,0 +1,36 @@
+.row { counter-reset: lieuCounter personalCounter sickCounter unofficialCounter vacationCounter vacationCarryoverCounter; }
+
+.counters {
+    background:#fff;
+    border:1px solid #fff;
+    box-shadow:1px 1px 5px 0 rgba(0, 0, 0, .8);
+    cursor:default;
+    display:none;
+    margin:0 0 0 10px;
+    white-space:nowrap;
+
+    div {
+        color:#fff;
+        display:inline-block;
+        float:left;
+        font-size:.8rem;
+        margin:1px;
+        padding:1px 2px 0 2px;
+        white-space:nowrap;
+
+        &.lieu:after { content: "L : " counter(lieuCounter); }
+        &.personal:after { content: "P : " counter(personalCounter); }
+        &.sick:after { content: "S : " counter(sickCounter); }
+        &.unofficial:after { content: "\263C  : " counter(unofficialCounter); }
+        &.vacation:after { content: "V : " counter(vacationCounter); }
+        &.vacationCarryover:after { content: "VC : " counter(vacationCarryoverCounter); }
+    }
+}
+
+[data-active="true"] .counters {
+    display:inline-block;
+    margin-top:-3px;
+}
+.info:hover .counters {
+	display:inline-block;
+}

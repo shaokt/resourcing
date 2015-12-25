@@ -122,7 +122,7 @@
                 &[data-day-name="F"] { border-right:1px solid #f6ceef; }
                 &.selected {
                     background:#fff !important;
-                    border-color:transparent;
+                    border-color:transparent !important;
                     color:#c1a !important;
                     font-size:1em;
                     margin-top:-.2em;
