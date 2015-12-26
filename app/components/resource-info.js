@@ -1,14 +1,25 @@
 import Ember from 'ember';
+import ResourceRowComponent from "./resource-row";
 
-export default Ember.Component.extend({
+//export default Ember.Component.extend(ResourceRowComponent, {
+export default ResourceRowComponent.extend({
     tagName: 'div',
     classNames: ['info'],
     classNameBindings: ['editing'],
     editing: false,
+
     actions: {
         editing() {
             this.toggleProperty('editing');
-            this.set("resource.active",this.editing);
+            this.set("resource.active", this.editing);
+            if(this.editing == true){
+                this.edit();
+                $('body').attr('data-editing', true)
+            }
+            else {
+                this.save();
+                $('body').attr('data-editing', false)
+            }
         },
 
         filter(currentValue, event) {
@@ -18,15 +29,7 @@ export default Ember.Component.extend({
 
         editName() {
             this.sendAction('updateName', this.get('resource'));
-            this.set('editing', false);
-            this.set("resource.active", false);
-       },
-
-        submitTodo(newTitle) {
-            if (newTitle) {
-                this.sendAction('action', newTitle);
-            }
-            this.set('newTitle', '');
-        }
+            this.send('editing')
+       }
     }
 });

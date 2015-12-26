@@ -1,0 +1,33 @@
+[data-view="assignment"]{
+    header {
+        .menu {
+            button.changeView span {
+                background:#ef741b;
+                border:2px solid #B95502;
+            }
+        }
+
+        .dateMarker {
+            height:20px;
+        }
+    }
+
+    section.resourceRow {
+        &[data-active="true"],
+        &:hover {
+            box-shadow:1px 5px 10px rgba(0,0,0,.5);
+        }
+
+        &:hover:after {
+            display:none;
+        }
+    }
+
+    .tileOptions li:before { content:"Assignment: "; }
+
+    #todayDateLine {
+        &:before {
+            top:162px;
+        }
+    }
+}

@@ -1,36 +1,47 @@
 html { font:62.5% Helvetica, Arial, sans-serif; }
-body { float:left;font-size:1.2rem; }
+
+body { float:left;font-size:1.2rem;
+    > .ember-view{
+        overflow:hidden;
+    }
+}
 
 button {
     background:none;
 
     span {
         border-radius:5px;
-        border:1px solid #fff;
-    	box-shadow: 2px 2px 10px 0 rgba(0,0,0,0.5);
         color:#fff;
         cursor: pointer;
         display:block;
         padding:5px;
         text-shadow: 1px 1px #666;
     }
+
+    &:focus,
+    &:hover {
+        outline:0;
+        span {
+        	box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.6);
+            border-color:#fff !important;
+        }
+    }
 }
 
 #pageContainer {
-    border:1px solid #aaa;
     margin-right:20px;
-    margin:10px 20px 0 70px;
-    padding:0 10px;
+    margin:0 20px 0 70px;
+    position:relative;
 
     main {
         border-top:0;
-        padding:0 0 15px 0;
+        padding:163px 0 15px 0;
         position:relative;
     }
 }
 
-.row {
-	outline:1px solid #000;
-	position:relative;
-	height:32px;
+#pageContainer[data-view="assignment"] {
+    main {
+        padding-top:153px;
+    }
 }

@@ -1,20 +1,26 @@
 {{#each model as |resource|}}
     <section class="resourceRow" data-active="{{resource.active}}">
-        {{resource-info resource=resource active=active}}
-
         {{#if isWeeklyCalendar}}
         	<div class="row" data-view="assignment">
-                <div class="tiles">{{{resource.assignment.tiles}}}</div>
-                <div class="text">{{{resource.assignment.text}}}</div>
+                <div class="pointer"></div>
+                <div class="sizer"></div>
+                <div class="tiles">{{{resource.assignment}}}</div>
             </div>
         {{/if}}
 
         {{#if isDailyCalendar}}
-    	<div class="row" data-view="timeOff">
-            <div class="tiles">{{{resource.timeoff.tiles}}}</div>
-            <div class="text">{{{resource.timeoff.text}}}</div>
-        </div>
+        	<div class="row" data-view="timeOff">
+                <div class="pointer"></div>
+                <div class="sizer"></div>
+                <div class="tiles">
+                    {{#if resource.updated}}
+                        {{resource.timeaway}}
+                    {{else}}
+                        {{{resource.timeaway}}}
+                    {{/if}}
+                </div>
+            </div>
         {{/if}}
-
+        {{resource-info resource=resource config=config updateName="updateName"}}
     </section>
 {{/each}}

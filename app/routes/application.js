@@ -1,43 +1,30 @@
 import Ember from 'ember';
+import Resources from '../models/resources';
 
 export default Ember.Route.extend({
+
     model() {
-        let resources = [
-            {
-                name: "Shao T",
-                assignment: {
-                    tiles:"<span class='vacation' data-type='tile' data-scope='project' data-x='300' data-y='0' data-year='2015'></span>",
-                    text:"<span class='vacation' data-type='tile' data-scope='text' data-x='300' data-y='0'>"
-                },
-                timeoff: {
-                    tiles:"<span class='vacation' data-type='tile' data-scope='project' data-x='90' data-y='0' data-year='2015'></span>",
-                    text:"<span class='vacation' data-type='tile' data-scope='text' data-x='90' data-y='0'>"
-                }
-            },
-            {
-                name: "Kristin T"
-            },
-            {
-                name: "Julie N"
-            }
-        ];
-        return resources;
+        self = this;
+        return Ember.$.getJSON('shao.json').then((data)=> {
+            self.config = data.config.map(attrs => this.store.createRecord('config', attrs))
+            return data.employees.map(attrs => this.store.createRecord('resources', attrs));
+        });
+    },
+
+    setupController: function(controller, model) {
+        this._super(controller, model);
+        controller.set('config', this.config[0]); // config settings for user session
     },
 
     actions: {
-        /*
-        createTodo(newTitle) {
-           this.store.createRecord('todo', {
-               title: newTitle,
-               complete: false
-           }).save();
-        },
-        */
-        updateName(todo) {
-            resources.save();
-        },
-        deleteTodo(todo) {
-            todo.destroyRecord();
+        updateName(resource) {
+            //console.log(this.blah[0].get('name'))
+            /*
+            var promises = Ember.A();
+            this.blah.forEach(function(item){
+                promises.push(item.save());
+            });
+            /**/
         }
     }
 });
