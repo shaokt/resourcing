@@ -9,19 +9,7 @@
     }
     section.resourceRow {
         .row {
-            outline:none;
             height:15px;
-        }
-
-        &:after {
-            background:#100;
-            content: "";
-            display:block;
-            height:100%;
-            opacity:.1;
-            position:absolute;
-            top:0;
-            width:100%;
         }
 
         &:hover:after {
@@ -39,7 +27,6 @@
         color:#fff;
         font-size:.8rem;
         line-height:180%;
-        outline:none;
         text-align:center;
     }
 

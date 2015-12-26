@@ -11,13 +11,18 @@ section.resourceRow {
     }
 
     .row {
-    	outline:1px solid #000;
     	position:relative;
     	height:32px;
 
         .pointer {
+            border-radius:12px;
             display:none;
-            height:12px;width:12px;margin:1px 0 0 1px;opacity:1;outline:4px dotted #af0b1c;position:absolute;border-radius:12px;
+            height:12px;
+            margin:1px 0 0 1px;
+            opacity:1;
+            outline:4px dotted #af0b1c;
+            position:absolute;
+            width:12px;
         }
 
         .sizer {
@@ -29,6 +34,17 @@ section.resourceRow {
             position:absolute;
             width:12px;
          }
+    }
+
+    &:after {
+        background:#100;
+        content: "";
+        display:block;
+        height:100%;
+        opacity:.1;
+        position:absolute;
+        top:0;
+        width:100%;
     }
 
     .info {

@@ -211,8 +211,17 @@ header {
 
     &#todayDateLine {
         background:none;
-        box-shadow:0 5px 10px 5px rgba(0,0,0,.2);
+        box-shadow:0 5px 20px 10px rgba(255,255,255,1);
         margin-left:-1px;
         width:15px;
+
+        &:before {
+            content:' ';
+            position:absolute;
+            box-shadow:0 0px 10px 5px rgba(0,0,0,.2);
+            top:172px;
+            width:15px;
+            height:6px;
+        }
     }
 }
