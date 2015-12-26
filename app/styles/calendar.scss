@@ -200,12 +200,13 @@ header {
 
 .dateLine {
     background:#000;
+    box-shadow:1px 1px 1px 1px rgba(255,255,255,1);
     height:100%;
     left:0;
-    margin:-145px 0 0 6px;
+    margin-left:6px;
     opacity:.2;
     position:absolute;
-    top:130px;
+    top:0;
     width:1px;
     z-index:3;
 
@@ -216,12 +217,12 @@ header {
         width:15px;
 
         &:before {
+            box-shadow:0 -10px 15px 5px rgba(0,0,0,.4);
             content:' ';
+            height:10px;
             position:absolute;
-            box-shadow:0 0px 10px 5px rgba(0,0,0,.2);
-            top:172px;
+            top:157px;
             width:15px;
-            height:6px;
         }
     }
 }

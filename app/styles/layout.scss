@@ -35,13 +35,13 @@ button {
 
     main {
         border-top:0;
-        padding:163px 0 15px 0;
+        border-bottom:1px solid #aaa;
         position:relative;
     }
-}
 
-#pageContainer[data-view="assignment"] {
-    main {
-        padding-top:153px;
+    &[data-show-hidden="false"] {
+        section.resourceRow.hidden {
+            display:none;
+        }
     }
 }
