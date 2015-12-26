@@ -81,7 +81,8 @@ export default Ember.Component.extend(WebcelMixin, {
     	date.month.addClass("selected");
         var self = this;
         date.week.attr("tabindex", 0)
-        this.constants.todayColumn = date.week;
+        this.set('constants.todayColumn', date.week.attr("data-column"));
+
         this.scrollToday(500);
         $('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))})
     },
@@ -89,6 +90,7 @@ export default Ember.Component.extend(WebcelMixin, {
     // scroll to today
     scrollToday:function(time){
         var self = this;
+    	setTimeout(function(){ $(window).scrollLeft(self.constants.todayColumn - (self.constants.DIM*22) );}, time);
     },
 
     // figure out which column in the calendar to select
