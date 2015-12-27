@@ -8,7 +8,7 @@
         }
     ],
 
-    "employees": [
+    "resources": [
         {
             "name": "Shao T",
             "assignment": "<span class='vacation' data-type='tile' data-x='300' data-y='0' data-year='2015'></span>",
