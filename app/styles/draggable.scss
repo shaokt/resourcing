@@ -1,0 +1,20 @@
+#pageContainer[data-dragging="true"]{
+    header {
+        button:not(#dragDisable),
+        .tileOptions,
+        .viewOptions { visibility:hidden; }
+    }
+
+    .resourceRow {
+        cursor:move;
+
+        .info {
+            cursor:move;
+        }
+
+        .counters,
+        .viewOptions li:not(.drag) {
+            display:none;
+        }
+    }
+}
