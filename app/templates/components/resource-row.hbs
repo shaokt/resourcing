@@ -1,5 +1,11 @@
 {{#each model as |resource|}}
-    <section class="resourceRow{{if resource.hidden ' hidden'}}" data-active="{{resource.active}}" draggable="{{if constants.draggable 'true'}}">
+    <section class="resourceRow{{if resource.hidden ' hidden'}}" data-active="{{resource.active}}"
+        draggable="{{if constants.draggable 'true'}}"
+        ondragenter={{action "dragEnter"}}
+        ondragstart={{action "dragStart"}}
+        ondragend={{action "dragEnd"}}
+        ondragover={{action "dragOver"}}
+    >
         {{#if isWeeklyCalendar}}
         	<div class="row" data-view="assignment">
                 <div class="pointer"></div>

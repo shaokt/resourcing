@@ -12,9 +12,41 @@
             cursor:move;
         }
 
+        &:after,
         .counters,
         .viewOptions li:not(.drag) {
             display:none;
         }
-    }
+
+        .row { opacity:.5; }
+
+        &.moving {
+            border:2px solid #923C01;
+
+            .info {
+                &:before {
+                    display:none;
+                }
+                .name {
+                    background:#923C01
+                }
+            }
+
+            .row {
+                opacity:1;
+
+                &:after {
+                    background:#C75500;
+                    content:"";
+                    display:block;
+                    height:100%;
+                    opacity:.2;
+                }
+            }
+        }// moving
+    }// resourceRow
+
+    #dateLine,
+    .dateMarker { display:none; }
+    #todayDateLine { box-shadow:none; }
 }

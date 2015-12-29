@@ -2,7 +2,8 @@ import Ember from 'ember';
 import Webcel from "../mixins/webcel";
 
 export default Ember.Component.extend(Webcel, {
-    webcel: 'webcel',
+    dragSource: null,
+
     isWeeklyCalendar: function(){
         return this.get('config.view') === 'assignment';
     }.property('config.view'),
@@ -26,9 +27,44 @@ export default Ember.Component.extend(Webcel, {
         this.constants.webcel.done();
     },
 
+    isbefore:function (a, b){
+    	if (a.parentNode == b.parentNode) {
+    		for (var cur = a; cur; cur = cur.previousSibling) {
+    			if (cur === b) { return true; }
+    		}
+    	}
+        //$(b).attr('hover', false)
+    	return false;
+    },
+
     actions:{
         updateName(resource) {
             this.sendAction('updateName', resource);
+        },
+
+        dragEnter(e) {
+            try{
+            	var drop = $(e.target).parents('section')[0];
+            	if(drop != this.dragSource){
+            		drop.parentNode.insertBefore(this.dragSource, this.isbefore(this.dragSource, drop) ? drop : drop.nextSibling)
+                }
+            }catch(e){}
+        },
+
+        dragStart(e) {
+        	this.dragSource = e.target;
+        	$(this.dragSource).addClass('moving');
+        	e.dataTransfer.effectAllowed = 'link';
+        	e.dataTransfer.setDragImage($(this.dragSource).find(".name")[0], -15, 0);
+
+        },
+
+        dragEnd() {
+        	$(this.dragSource).removeClass('moving');
+        },
+
+        dragOver(e) {
+            e.preventDefault();
         }
     }
 });
