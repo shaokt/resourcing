@@ -2,13 +2,10 @@ section.resourceRow {
     background:#eee;
     border:1px solid #aaa;
     box-sizing: border-box;
-    border-top:none;
+    //border-top:none;
+    border-bottom:none;
     margin-left:-2px;
     position:relative;
-
-    &:first-child {
-        border-top:1px solid #aaa;
-    }
 
     .row {
     	position:relative;
@@ -117,4 +114,17 @@ section.resourceRow {
             }
         }
     }//data-active
+
+    &.hidden {
+        .lock, .expand, .counters, .stiles { display:none; }
+        .toggle { left:-20px; }
+        .name { background:red; }
+        &:after {
+            background:#000;
+            display:block;
+            opacity:.8;
+            width:100%;
+            z-index: 2;
+        }
+    }
 }//resourceRow

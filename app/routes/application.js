@@ -1,13 +1,13 @@
 import Ember from 'ember';
 import Resources from '../models/resources';
+import Config from '../models/config';
 
 export default Ember.Route.extend({
-
     model() {
         self = this;
         return Ember.$.getJSON('shao.json').then((data)=> {
             self.config = data.config.map(attrs => this.store.createRecord('config', attrs))
-            return data.employees.map(attrs => this.store.createRecord('resources', attrs));
+            return data.resources.map(attrs => this.store.createRecord('resources', attrs));
         });
     },
 
@@ -18,12 +18,11 @@ export default Ember.Route.extend({
 
     actions: {
         updateName(resource) {
-            //console.log(this.blah[0].get('name'))
             /*
-            var promises = Ember.A();
-            this.blah.forEach(function(item){
-                promises.push(item.save());
-            });
+            this.store.findAll('config')
+            console.log(this.config[0].get('view'))
+            this.config[0].set('view', 'assignment')
+            this.config[0].save()
             /**/
         }
     }

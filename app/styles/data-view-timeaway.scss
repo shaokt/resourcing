@@ -7,12 +7,17 @@
             }
         }
     }
+
+    main {
+        padding-top:163px;
+    }
+
     section.resourceRow {
         .row {
             height:15px;
         }
 
-        &:hover:after {
+        &:not(.hidden):hover:after {
             display:none;
         }
 

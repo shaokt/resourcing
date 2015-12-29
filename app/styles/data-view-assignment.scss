@@ -12,6 +12,10 @@
         }
     }
 
+    main {
+        padding-top:153px;
+    }
+
     section.resourceRow {
         &[data-active="true"],
         &:hover {
@@ -27,7 +31,7 @@
 
     #todayDateLine {
         &:before {
-            top:162px;
+            top:147px;
         }
     }
 }
