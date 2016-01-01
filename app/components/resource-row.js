@@ -54,13 +54,14 @@ export default Ember.Component.extend(Webcel, {
         dragStart(e) {
         	this.dragSource = e.target;
         	$(this.dragSource).addClass('moving');
-        	e.dataTransfer.effectAllowed = 'link';
-        	e.dataTransfer.setDragImage($(this.dragSource).find(".name")[0], -15, 0);
-
+            $('#pageContainer').addClass('moving');
+        	e.dataTransfer.effectAllowed = 'copyMove';
+        	e.dataTransfer.setDragImage($(this.dragSource).find(".name")[0], -15, 15);
         },
 
         dragEnd() {
         	$(this.dragSource).removeClass('moving');
+            $('#pageContainer').removeClass('moving');
         },
 
         dragOver(e) {
