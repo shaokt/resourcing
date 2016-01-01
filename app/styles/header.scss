@@ -30,22 +30,41 @@ header {
             button {
                 margin-left:10px;
 
+                span {
+                    border:2px solid;
+                }
+
                 &#addResource span {
                     background:#008A14;
-                    border:2px solid #005009;
+                    border-color:#005009;
+                }
+
+                &#details span {
+                    background:#30D4DE;
+                    border-color:#1D969E;
                 }
 
                 &#save span {
                     background:#FF312C;
-                    border:2px solid #BA2D29;
+                    border-color:#BA2D29;
+                }
+
+                &#dragDisable span {
+                    background:#C75500;
+                    border-color:#923C01;
+                }
+
+                &#dragEnable span {
+                    background:#C75500;
+                    border-color:#923C01;
                 }
 
                 &#today span {
-                    background:#30D4DE;
-                    border:2px solid #1D969E;
+                    background:#c1a;
+                    border-color:#882074;
                 }
             }
-        }
+        }// buttonContainer
 
         .viewOptions {
             display:inline-block;
@@ -187,9 +206,7 @@ header {
             }
         }
     }
-
 }
-
 /*
 .tileOptions li [data-status="selected"] { border:1px solid #000;display:block;opacity:1; }
 .tileOptions li [data-status="selected"] div { padding:10px;margin:3px;}

@@ -1,0 +1,71 @@
+#pageContainer {
+
+    /* needed to override accidental hover of siblings during drag */
+    &.moving {
+        .resourceRow {
+            &:hover {
+                .info .name {
+                    background:#000;
+                }
+
+                &.hidden .info .name {
+                    background:red;
+                }
+            }
+        }
+    }
+
+    &[data-dragging="true"]{
+        header {
+            button:not(#dragDisable),
+            .tileOptions,
+            .viewOptions { visibility:hidden; }
+        }
+
+        .resourceRow {
+            cursor:move;
+
+            .info {
+                cursor:move;
+            }
+
+            &:after,
+            .counters,
+            .viewOptions li:not(.drag) {
+                display:none;
+            }
+
+            &.moving {
+                border:2px solid #923C01;
+                box-shadow:4px 4px 10px 5px rgba(0,0,0,.5);
+                z-index:10;
+                cursor:none !important;
+
+                .info {
+                    &:before {
+                        display:none;
+                    }
+                    .name {
+                        background:#923C01
+                    }
+                }
+
+                .row {
+                    opacity:1;
+
+                    &:after {
+                        background:#C75500;
+                        content:"";
+                        display:block;
+                        height:100%;
+                        opacity:.2;
+                    }
+                }
+            }// moving
+        }// resourceRow
+
+        #dateLine,
+        .dateMarker { display:none; }
+        #todayDateLine { box-shadow:none; }
+    }
+}
