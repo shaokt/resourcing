@@ -28,6 +28,16 @@ export default Ember.Component.extend({
             var show = JSON.parse($('#pageContainer').attr('data-show-hidden'));
             show = (show == false ? true : false);
             this.set("config.showHiddenRows", show)
+        },
+
+        // enable drag & drop of resource rows
+        dragEnable() {
+            this.set('constants.draggable', true);
+        },
+
+        // disable drag & drop of resource rows
+        dragDisable() {
+            this.set('constants.draggable', false);
         }
     }
 });

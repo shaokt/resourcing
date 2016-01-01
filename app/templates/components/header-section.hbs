@@ -24,6 +24,12 @@
             {{/if}}
         </button>
 
+        {{#if this.constants.draggable}}
+            <button id="dragDisable" {{action "dragDisable" on="click"}}><span>Drag Done</span></button>
+        {{else}}
+            <button id="dragEnable" {{action "dragEnable" on="click"}}><span>Drag Sort</span></button>
+        {{/if}}
+
         <button id="today" {{action "scrollToday" on="click"}}><span>Today</span></button>
 
         <button id="addResource"><span>Add</span></button>
