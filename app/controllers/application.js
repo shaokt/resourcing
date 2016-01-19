@@ -7,6 +7,11 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     leftScroll: 0,
     minLeft: 0, // the minimum left position to show names when scrolling
 
+    config: {
+        view: "timeaway",
+        timeawayTile: "vacation"
+    }, // config settings for user session
+
     assignments: [
         {
             class: "aem",
@@ -22,7 +27,11 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         }
     ],
 
-    init: function(){
+    //setupSomething: Ember.on('init', function(){
+
+    init() {
+        this._super();
+
         this.minLeft = 22 * this.constants.DIM; // assume 22 business days in a month
         this.bindScrolling();
         this.bindMouseMove();
@@ -38,9 +47,10 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         $.each(vacationCountersPrevious, function(i, val){
         	self.counterCSS += '.tiles .' + val + '[data-year="' + (self.year-1) + '"] { counter-increment:' + val + 'Counter } ';
         });
+    },
 
 
-    }.on('init'),
+    // }.on('init'),
 
     scrolled: function(){
         var left = $(window).scrollLeft()
@@ -55,5 +65,18 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     	pos <= 0 ? pos = 0 : 0;
 		pos = pos >= max ? max : pos;
         this.set('mousePos', pos)
+    },
+
+    actions: {
+        updateName(resource) {
+            //debugger;
+            this.get('model').save();
+            /*
+            this.store.findAll('config')
+            console.log(this.config[0].get('view'))
+            this.config[0].set('view', 'assignment')
+            this.config[0].save()
+            /**/
+        }
     }
 });

@@ -10,7 +10,7 @@ module.exports = function(environment) {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline'",
       'font-src': "'self'",
-      'connect-src': "'self'",
+      'connect-src': "'self' http://localhost:3000",
       'img-src': "'self' data:",
       'style-src': "'self' 'unsafe-inline'",
       'media-src': "'self'"
