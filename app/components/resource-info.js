@@ -36,7 +36,7 @@ export default ResourceRowComponent.extend({
 
         // TODO:  send the name back up for saving
         editName() {
-            this.sendAction('updateName', this.get('resource'));
+            //this.sendAction('updateName', this.get('resource'));
             this.send('editing')
        }
     }

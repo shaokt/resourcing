@@ -9,7 +9,8 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
 
     config: {
         view: "timeaway",
-        timeawayTile: "vacation"
+        timeawayTile: "vacation",
+        showHiddenRows: true
     }, // config settings for user session
 
     assignments: [
@@ -70,7 +71,10 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     actions: {
         updateName(resource) {
             //debugger;
-            this.get('model').save();
+            console.log(this.get('model').findBy('id', '1').get('name'))
+            //this.get('model').save();
+            //console.log(resource.get('name'));
+            //console.log(this.get('store').findAll('resource', 1))
             /*
             this.store.findAll('config')
             console.log(this.config[0].get('view'))
