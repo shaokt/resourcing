@@ -23,6 +23,10 @@ export default Ember.Component.extend({
             this.sendAction('updateName');
         },
 
+        addEmployee(){
+            this.sendAction('addEmployee');
+        },
+
         // switch views between assignment vs timeaway
         // TODO: additional views like "details"
         toggleView() {

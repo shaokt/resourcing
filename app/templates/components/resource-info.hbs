@@ -15,6 +15,6 @@
 {{#if editing}}
     {{content-editable class="name" value=resource.name key-press="filter"}}
 {{else}}
-	<div class="name">{{resource.name}}</div>
+	<div class="name">{{index}} {{resource.name}}</div>
 {{/if}}
 {{resource-counters}}
