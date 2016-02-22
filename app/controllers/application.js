@@ -70,20 +70,25 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
 
     actions: {
         addEmployee(){
+            var self = this;
             var d = new Date();
             var newID = d.getFullYear() + "" + d.getMonth()+1 + "" + d.getDate() + "" + d.getHours() + "" + d.getMinutes() + "" + d.getMilliseconds();
-            var post = this.get('store').createRecord('resource', {
+            var newEmployee = this.get('store').createRecord('resource', {
               id: newID,
               name: 'Enter Name',
               hidden: false,
               assignment: "",
               timeaway: "",
             });
+
+            this.set('constants.saving', true)
+            newEmployee.save()
+            setTimeout(function(){self.set('constants.saving', false)}, 500);
         },
 
         updateName(resource) {
             //debugger;
-            this.get('model').save();
+            //this.get('model').save();
             //console.log(resource.get('name'));
             //console.log(this.get('store').findAll('resource', 1))
             /*

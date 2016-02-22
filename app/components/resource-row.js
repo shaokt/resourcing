@@ -30,6 +30,7 @@ export default Ember.Component.extend(Webcel, {
     },
 
     save: function(){
+        this.get('resource').save()
         this.constants.webcel.done();
     },
 
@@ -43,10 +44,6 @@ export default Ember.Component.extend(Webcel, {
     },
 
     actions:{
-        updateName(resource) {
-            this.sendAction('updateName', resource);
-        },
-
         dragEnter(e) {
             try{
             	var drop = $(e.target).parents('section')[0];

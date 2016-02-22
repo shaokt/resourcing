@@ -17,12 +17,6 @@ export default Ember.Component.extend({
             this.cal.scrollToday();
         },
 
-        // save the changes made to the model
-        saveChanges(){
-            //this.sendAction('updateName', this.get('resource'));
-            this.sendAction('updateName');
-        },
-
         addEmployee(){
             this.sendAction('addEmployee');
         },

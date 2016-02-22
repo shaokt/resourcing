@@ -204,3 +204,65 @@ ul.viewOptions {
 }
 
 .info:hover ul.viewOptions { display:block; }
+
+//spinner from: http://codepen.io/MattIn4D/pen/LiKFC
+#saving {
+    background-color: transparent;
+    border: 0;
+    //color:#FF312C;
+    font-size:20px;
+    position:fixed;
+    right:50px;
+    top:25px;
+
+    :before {
+        background-color: rgba(0,0,0,0.3);
+        content: '';
+        display: none;
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 9999;
+    }
+
+    :after {
+        border-radius: 0.5em;
+        content: '';
+        display: block;
+        font-size: 10px;
+        height: 1em;
+        margin:-1.5em 0 0 80px;
+        width: 1em;
+        animation: spinner 1500ms infinite linear;
+
+        box-shadow:
+            rgba(255, 49, 44, 0.1) 1.5em 0 0 0,
+            rgba(255, 49, 44, 0.20) 1.1em 1.1em 0 0,
+            rgba(255, 49, 44, 0.3) 0 1.5em 0 0,
+            rgba(255, 49, 44, 0.4) -1.1em 1.1em 0 0,
+            rgba(255, 49, 44, 0.5) -1.5em 0 0 0,
+            rgba(255, 49, 44, 0.6) -1.1em -1.1em 0 0,
+            rgba(255, 49, 44, 0.7) 0 -1.5em 0 0,
+            rgba(255, 49, 44, 1) 1.1em -1.1em 0 0;
+    }
+}
+
+/* Animation */
+@keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}

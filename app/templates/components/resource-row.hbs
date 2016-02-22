@@ -22,14 +22,10 @@
                 <div class="pointer"></div>
                 <div class="sizer"></div>
                 <div class="tiles">
-                    {{#if resource.updated}}
-                        {{resource.timeaway}}
-                    {{else}}
-                        {{{resource.timeaway}}}
-                    {{/if}}
+                    {{{resource.timeaway}}}
                 </div>
             </div>
         {{/if}}
-        {{resource-info index=index resource=resource config=config updateName="updateName"}}
+        {{resource-info index=index resource=resource config=config updateName="updateName" updateRow="updateRow"}}
     </section>
 {{/each}}

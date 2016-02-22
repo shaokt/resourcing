@@ -34,14 +34,16 @@
 
         <button id="addResource" {{action "addEmployee"}}><span>Add</span></button>
 
-        <button id="save" {{action "saveChanges" on="click"}}><span>Save</span></button>
-
         <ul class="viewOptions">
             <li class="toggle">
                 <a href="/" {{action "toggleViewHiddenRows" on="click"}}></a>
             </li>
         </ul>
     </div>
+
+    {{#if this.constants.saving}}
+        <div id="saving"><span>Saving</span></div>
+    {{/if}}
 </div>
 
 {{#if isWeeklyCalendar}}
