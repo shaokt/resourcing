@@ -18,17 +18,14 @@ export default ResourceRowComponent.extend({
                 $('body').attr('data-editing', true)
             }
             else {
-                this.set('constants.saving', true)
                 this.save();
-                $('body').attr('data-editing', false)
-                var self = this;
-                setTimeout(function(){self.set('constants.saving', false)}, 500);
             }
         },
 
         toggleRow() {
             this.$().parent().toggleClass('hidden');
             this.set('resource.hidden', this.$().parent().hasClass('hidden'));
+            this.constants.save(this.get('resource'))
         },
 
         // filter for contenteditable name field
