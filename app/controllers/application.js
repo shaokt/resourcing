@@ -72,7 +72,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         addEmployee(){
             var self = this;
             var d = new Date();
-            var newID = d.getFullYear() + "" + d.getMonth()+1 + "" + d.getDate() + "" + d.getHours() + "" + d.getMinutes() + "" + d.getMilliseconds();
+            var newID = d.getFullYear() + "" + this.constants.padout(d.getMonth()+1) + "" + d.getDate() + "" + d.getHours() + "" + d.getMinutes() + "" + d.getMilliseconds();
             var newEmployee = this.get('store').createRecord('resource', {
               id: newID,
               name: 'Enter Name',

@@ -80,7 +80,7 @@ export default Ember.Component.extend({
 		var M = 3 + Math.floor((L + 40)/44);
 		var D = L + 28 - 31*Math.floor(M/4);
 
-		return new Date(year + " " + this.padout(M) + ' ' + D);
+		return new Date(year + " " + this.constants.padout(M) + ' ' + D);
 	},
 
 	// calculate Victoria Day - Monday before May 25th
@@ -93,8 +93,6 @@ export default Ember.Component.extend({
 		}
 		return(date.getFullYear() + " 05 " + date.getDate());
 	},
-
-	padout: function(number) { return (number < 10) ? '0' + number : number; },
 
     display: function(){
 		$.each(this.collection, function(key, value){
