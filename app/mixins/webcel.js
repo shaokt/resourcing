@@ -78,8 +78,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 		}
 
         //if(addTiles != ""){
-    		addTiles = ($(this.row).find(".tiles")[0].innerHTML + addTiles).htmlSafe();
-            this.data.set('updated', true) // this is needed to bypass triple stash in the templates
+    		addTiles = ($(this.row).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
             this.data.set('timeaway', addTiles)
         //}
 		$(this.sizer).hide();
@@ -142,6 +141,11 @@ export default Ember.Mixin.create(CalendarWidget, {
 					var thisTile = $(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
                     if(thisTile.attr('data-stamp') == "true"){ thisTile.removeAttr('data-stamp') }
                     else{ thisTile.attr('data-stamp', true) }
+
+
+            		var addTiles = ($(self.row).find(".tiles")[0].innerHTML.replace(/<!---->/gi, '').trim()).htmlSafe();
+                    self.data.set('timeaway', addTiles)
+                    /**/
 
                     break;
                 }

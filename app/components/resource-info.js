@@ -18,8 +18,11 @@ export default ResourceRowComponent.extend({
                 $('body').attr('data-editing', true)
             }
             else {
+                this.set('constants.saving', true)
                 this.save();
                 $('body').attr('data-editing', false)
+                var self = this;
+                setTimeout(function(){self.set('constants.saving', false)}, 500);
             }
         },
 
@@ -36,7 +39,6 @@ export default ResourceRowComponent.extend({
 
         // TODO:  send the name back up for saving
         editName() {
-            this.sendAction('updateName', this.get('resource'));
             this.send('editing')
        }
     }

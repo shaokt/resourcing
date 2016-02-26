@@ -32,9 +32,7 @@
 
         <button id="today" {{action "scrollToday" on="click"}}><span>Today</span></button>
 
-        <button id="addResource"><span>Add</span></button>
-
-        <button id="save"><span>Save</span></button>
+        <button id="addResource" {{action "addEmployee"}}><span>Add</span></button>
 
         <ul class="viewOptions">
             <li class="toggle">
@@ -42,6 +40,10 @@
             </li>
         </ul>
     </div>
+
+    {{#if this.constants.saving}}
+        <div id="saving"><span>Saving</span></div>
+    {{/if}}
 </div>
 
 {{#if isWeeklyCalendar}}

@@ -25,6 +25,7 @@ header {
         width:100%;
         z-index:4;
 
+
         .buttonContainer {
             padding-top:12px;
             button {
@@ -42,11 +43,6 @@ header {
                 &#details span {
                     background:#30D4DE;
                     border-color:#1D969E;
-                }
-
-                &#save span {
-                    background:#FF312C;
-                    border-color:#BA2D29;
                 }
 
                 &#dragDisable span {

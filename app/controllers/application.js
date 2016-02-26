@@ -7,6 +7,12 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     leftScroll: 0,
     minLeft: 0, // the minimum left position to show names when scrolling
 
+    config: {
+        view: "timeaway",
+        timeawayTile: "vacation",
+        showHiddenRows: true
+    }, // config settings for user session
+
     assignments: [
         {
             class: "aem",
@@ -22,7 +28,11 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         }
     ],
 
-    init: function(){
+    //setupSomething: Ember.on('init', function(){
+
+    init() {
+        this._super();
+
         this.minLeft = 22 * this.constants.DIM; // assume 22 business days in a month
         this.bindScrolling();
         this.bindMouseMove();
@@ -38,9 +48,10 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         $.each(vacationCountersPrevious, function(i, val){
         	self.counterCSS += '.tiles .' + val + '[data-year="' + (self.year-1) + '"] { counter-increment:' + val + 'Counter } ';
         });
+    },
 
 
-    }.on('init'),
+    // }.on('init'),
 
     scrolled: function(){
         var left = $(window).scrollLeft()
@@ -55,5 +66,37 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     	pos <= 0 ? pos = 0 : 0;
 		pos = pos >= max ? max : pos;
         this.set('mousePos', pos)
+    },
+
+    actions: {
+        addEmployee(){
+            var self = this;
+            var d = new Date();
+            var newID = d.getFullYear() + "" + d.getMonth()+1 + "" + d.getDate() + "" + d.getHours() + "" + d.getMinutes() + "" + d.getMilliseconds();
+            var newEmployee = this.get('store').createRecord('resource', {
+              id: newID,
+              name: 'Enter Name',
+              hidden: false,
+              assignment: "",
+              timeaway: "",
+            });
+
+            this.set('constants.saving', true)
+            newEmployee.save()
+            setTimeout(function(){self.set('constants.saving', false)}, 500);
+        },
+
+        updateName(resource) {
+            //debugger;
+            //this.get('model').save();
+            //console.log(resource.get('name'));
+            //console.log(this.get('store').findAll('resource', 1))
+            /*
+            this.store.findAll('config')
+            console.log(this.config[0].get('view'))
+            this.config[0].set('view', 'assignment')
+            this.config[0].save()
+            /**/
+        }
     }
 });

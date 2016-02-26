@@ -1,8 +1,14 @@
 import Ember from 'ember';
 import Webcel from "../mixins/webcel";
 
+const{
+    inject
+}=Ember;
+const { service }=inject;
+
 export default Ember.Component.extend(Webcel, {
     dragSource: null,
+    store: service(),
 
     isWeeklyCalendar: function(){
         return this.get('config.view') === 'assignment';
@@ -24,6 +30,7 @@ export default Ember.Component.extend(Webcel, {
     },
 
     save: function(){
+        this.get('resource').save()
         this.constants.webcel.done();
     },
 
@@ -33,35 +40,59 @@ export default Ember.Component.extend(Webcel, {
     			if (cur === b) { return true; }
     		}
     	}
-        //$(b).attr('hover', false)
     	return false;
     },
 
     actions:{
-        updateName(resource) {
-            this.sendAction('updateName', resource);
-        },
-
         dragEnter(e) {
             try{
             	var drop = $(e.target).parents('section')[0];
-            	if(drop != this.dragSource){
-            		drop.parentNode.insertBefore(this.dragSource, this.isbefore(this.dragSource, drop) ? drop : drop.nextSibling)
+            	if(drop != this.dragSource && drop != undefined){
+                    if(this.dragSource.ghost){
+                        this.dragSource.ghost.remove();
+                    }
+                    else{
+                        this.dragSource.ghost = document.createElement("section");
+                        $(this.dragSource.ghost).addClass('resourceRow ghost')
+                        $(this.dragSource.ghost).html(this.dragSource.innerHTML)
+                    }
+
+                    var isBefore = this.isbefore(this.dragSource, drop);
+            		drop.parentNode.insertBefore(this.dragSource.ghost, isBefore ? drop : drop.nextSibling)
+                    this.dragSource.newIndex = $(drop).attr('data-index')
                 }
-            }catch(e){}
+                else if(drop == this.dragSource) {
+                    this.dragSource.newIndex = this.dragSource.index
+                    this.dragSource.ghost.remove()
+                }
+            }
+            catch(e){}
         },
 
         dragStart(e) {
         	this.dragSource = e.target;
+            var item = this.get('model').findBy('id', $(this.dragSource).attr('data-id'));
+            this.dragSource.index = this.dragSource.newIndex = this.get('model').indexOf(item);
+
         	$(this.dragSource).addClass('moving');
             $('#pageContainer').addClass('moving');
         	e.dataTransfer.effectAllowed = 'copyMove';
-        	e.dataTransfer.setDragImage($(this.dragSource).find(".name")[0], -15, 15);
         },
 
         dragEnd() {
+            console.log(this.dragSource.index + " : " + this.dragSource.newIndex)
         	$(this.dragSource).removeClass('moving');
+            $(this.dragSource.ghost).remove()
             $('#pageContainer').removeClass('moving');
+
+            var items = this.get('model')
+            var item = this.get('model').objectAt(this.dragSource.index)
+
+            items.removeAt(this.dragSource.index);
+            try{
+                items.insertAt(this.dragSource.newIndex, item._internalModel)
+            }
+            catch(e){ console.log(e.message)}
         },
 
         dragOver(e) {

@@ -17,6 +17,10 @@ export default Ember.Component.extend({
             this.cal.scrollToday();
         },
 
+        addEmployee(){
+            this.sendAction('addEmployee');
+        },
+
         // switch views between assignment vs timeaway
         // TODO: additional views like "details"
         toggleView() {
@@ -25,9 +29,7 @@ export default Ember.Component.extend({
 
         // show/hide hidden rows
         toggleViewHiddenRows() {
-            var show = JSON.parse($('#pageContainer').attr('data-show-hidden'));
-            show = (show == false ? true : false);
-            this.set("config.showHiddenRows", show)
+            this.set("config.showHiddenRows", this.get("config.showHiddenRows") == false ? true : false)
         },
 
         // enable drag & drop of resource rows
