@@ -3,14 +3,6 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: 'header',
 
-    isWeeklyCalendar: function(){
-        return this.get('config.view') === 'assignment';
-    }.property('config.view'),
-
-    isDailyCalendar: function(){
-        return this.get('config.view') === 'timeaway';
-    }.property('config.view'),
-
     actions: {
         // scroll today's column into view
         scrollToday() {
@@ -21,15 +13,14 @@ export default Ember.Component.extend({
             this.sendAction('addEmployee');
         },
 
-        // switch views between assignment vs timeaway
-        // TODO: additional views like "details"
-        toggleView() {
-            this.set("config.view", this.get('isWeeklyCalendar') ? "timeaway": "assignment");
+        // switch views between assignment, timeaway etc
+        toggleView(view) {
+            this.get('settings').set('view', view)
         },
 
         // show/hide hidden rows
         toggleViewHiddenRows() {
-            this.set("config.showHiddenRows", this.get("config.showHiddenRows") == false ? true : false)
+            this.get('settings').set('showHiddenRows', !(this.get('settings').get('showHiddenRows')))
         },
 
         // enable drag & drop of resource rows

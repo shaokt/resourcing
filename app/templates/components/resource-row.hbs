@@ -9,7 +9,7 @@
         ondragend={{action "dragEnd"}}
         ondragover={{action "dragOver"}}
     >
-        {{#if isWeeklyCalendar}}
+        {{#if settings.isWeeklyCalendar}}
         	<div class="row" data-view="assignment">
                 <div class="pointer"></div>
                 <div class="sizer"></div>
@@ -17,7 +17,7 @@
             </div>
         {{/if}}
 
-        {{#if isDailyCalendar}}
+        {{#if settings.isDailyCalendar}}
         	<div class="row" data-view="timeOff">
                 <div class="pointer"></div>
                 <div class="sizer"></div>
@@ -26,6 +26,6 @@
                 </div>
             </div>
         {{/if}}
-        {{resource-info index=index resource=resource config=config updateName="updateName" updateRow="updateRow"}}
+        {{resource-info index=index resource=resource updateName="updateName" updateRow="updateRow"}}
     </section>
 {{/each}}

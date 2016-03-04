@@ -1,17 +1,12 @@
 import Ember from 'ember';
 import ScrollingMixin from "../mixins/scrolling";
 import MouseMoveMixin from "../mixins/mousemove";
+import { storageFor } from 'ember-local-storage';
 
 export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     counterCSS: '',
     leftScroll: 0,
     minLeft: 0, // the minimum left position to show names when scrolling
-
-    config: {
-        view: "timeaway",
-        timeawayTile: "vacation",
-        showHiddenRows: true
-    }, // config settings for user session
 
     assignments: [
         {
@@ -27,6 +22,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
             background: "#f9aff8"
         }
     ],
+    settings: storageFor("settings"),
 
     //setupSomething: Ember.on('init', function(){
 
@@ -55,7 +51,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
 
     scrolled: function(){
         var left = $(window).scrollLeft()
-        this.set('leftScroll', left == 0 && this.get('config.view') == 'timeaway' ? this.minLeft : left)
+        this.set('leftScroll', left == 0 && this.get('settings.view') == 'timeaway' ? this.minLeft : left)
         $('.calendar').css({left:-left})
     },
 
@@ -91,12 +87,6 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
             //this.get('model').save();
             //console.log(resource.get('name'));
             //console.log(this.get('store').findAll('resource', 1))
-            /*
-            this.store.findAll('config')
-            console.log(this.config[0].get('view'))
-            this.config[0].set('view', 'assignment')
-            this.config[0].save()
-            /**/
         }
     }
 });

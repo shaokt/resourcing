@@ -4,7 +4,7 @@ export default Ember.Component.extend({
     tagName: 'li',
     active: null,
 
-    // TODO: config through JSON for easy updates
+    // TODO: JSON file for easy updates
     timeaway: [
             "empty",
             "vacation",
@@ -24,6 +24,10 @@ export default Ember.Component.extend({
         	"firstDay",
         	"lastDay"
     ],
+    tester: function(){
+        console.log(this.get('item'))
+        return true
+    }.property('item'),
 
     // remove active state on selected item if it exists
     unselect: function(){
@@ -41,7 +45,7 @@ export default Ember.Component.extend({
             this.unselect();
             this.active = $(event.target);
             this.active.attr('data-active', true);
-            this.set('config.timeawayTile', this.active.context.className); // update config store
+            this.set('settings.timeawayTile', this.active.context.className);
             this.constants.webcel.setTile(this.active);
         }
     }
