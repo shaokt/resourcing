@@ -61,8 +61,8 @@ export default Ember.Component.extend(WebcelMixin, {
     ],
 
     // determines the last day in the given month
-    getLastDayInMonth:function(month){
-        this.lastDay = (new Date(this.year, this.months[month], 0).getDate());
+    getLastDayInMonth:function(year, month){
+        this.lastDay = (new Date(year, this.months[month], 0).getDate());
     },
 
     // determines if the day 1-31 of the month is a M, T, W, R, F

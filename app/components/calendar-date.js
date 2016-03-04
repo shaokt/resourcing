@@ -9,7 +9,7 @@ export default Ember.Component.extend({
             }
         }
         this.days = new Array();
-        this.cal.getLastDayInMonth(this.month);
+        this.cal.getLastDayInMonth(this.year, this.month);
 
         for(var i=1; i<this.cal.lastDay+1; i++){
             this.cal.setDate(this.year, this.month, i);
