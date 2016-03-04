@@ -1,16 +1,57 @@
+<div id="year">2015</div>
 <div class="menu">
-    <button {{action "toggleView" on="click"}}>
-        {{#if assignment}}
-            <span class="timeOff">Time off</span>
-        {{else}}
-            <span class="assignment">Assignment</span>
+    <ul class="tileOptions">
+        {{#if settings.isWeeklyCalendar}}
+            <li class="assignments">
+				<div class="empty" data-scope="text"><div></div></div>
+                {{#each assignments as |assignment|}}
+                    <div class="{{assignment.class}}" data-scope="text"><div></div></div>
+                {{/each}}
+            </li>
         {{/if}}
-    </button>
+        {{#if settings.isDailyCalendar}}
+            {{time-away settings=settings}}
+        {{/if}}
+    </ul>
+
+    <div class="buttonContainer">
+        {{#if settings.isWeeklyCalendar}}
+            <button class="changeView" {{action "toggleView" 'timeaway' on="click"}}>
+                <span class="timeOff">Time off</span>
+            </button>
+        {{/if}}
+        {{#if settings.isDailyCalendar}}
+            <button class="changeView" {{action "toggleView" 'assignment' on="click"}}>
+                <span class="assignment">Assignment</span>
+            </button>
+        {{/if}}
+
+        {{#if this.constants.draggable}}
+            <button id="dragDisable" {{action "dragDisable" on="click"}}><span>Drag Done</span></button>
+        {{else}}
+            <button id="dragEnable" {{action "dragEnable" on="click"}}><span>Drag Sort</span></button>
+        {{/if}}
+
+        <button id="today" {{action "scrollToday" on="click"}}><span>Today</span></button>
+
+        <button id="addResource" {{action "addEmployee"}}><span>Add</span></button>
+
+        <ul class="viewOptions">
+            <li class="toggle">
+                <a href="/" {{action "toggleViewHiddenRows" on="click"}}></a>
+            </li>
+        </ul>
+    </div>
+
+    {{#if this.constants.saving}}
+        <div id="saving"><span>Saving</span></div>
+    {{/if}}
 </div>
 
-{{#if assignment}}
-    {{calendar-widget elementId="calendarWeekly" daily=false}}
-{{else}}
-    {{calendar-widget elementId="calendarDaily" daily=true}}
+{{#if settings.isWeeklyCalendar}}
+    {{calendar-widget elementId="calendarWeekly" daily=false width=width}}
 {{/if}}
-{{yield}}
+
+{{#if settings.isDailyCalendar}}
+    {{calendar-widget elementId="calendarDaily" daily=true width=width}}
+{{/if}}

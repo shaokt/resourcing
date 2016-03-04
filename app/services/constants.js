@@ -1,5 +1,17 @@
 export default Ember.Service.extend({
-    DIM: 15,
+    DIM: 15,            // width of each day
     _DIM: -15,
-    numDays: 0
+    calWidth: 0,        // calendar width
+    numDays: 0,         // number of days rendered on calendar
+    nextYear: 0,        // next year's column
+    todayColumn: null,  // today's column on the calendar
+    draggable: false,   // if the rows are drag sortable or not
+    webcel:null,         // singleton Webcel object - only one editable instance at a time
+	padout: function(number) { return (number < 10) ? '0' + number : number; }, // pad single digits to double (for date use)
+    save: function(resource){
+        var self = this;
+        this.set('saving', true)
+        resource.save()
+        setTimeout(function(){self.set('saving', false)}, 500);
+    }
 });

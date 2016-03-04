@@ -1,0 +1,3 @@
+{{#each timeaway as |item|}}
+    <a href="#" class="{{item}}" data-stamp="true" {{action "select" on="click" event=event}} data-active="{{settings-default-tile 'timeaway' item}}"><span></span></a>
+{{/each}}
