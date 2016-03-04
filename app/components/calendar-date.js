@@ -8,6 +8,12 @@ export default Ember.Component.extend({
                 this.constants.nextYear = this.constants._DIM + this.constants.DIM
             }
         }
+        if(this.constants.prevYear == 0){
+            if(this.year == this.cal.year){
+                this.constants.prevYear = this.constants._DIM
+            }
+        }
+
         this.days = new Array();
         this.cal.getLastDayInMonth(this.year, this.month);
 

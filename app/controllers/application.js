@@ -34,7 +34,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         this.bindMouseMove();
 
         //TODO: dynamic year
-        this.year=2015
+        this.year=2016
         var self = this;
         var vacationCounters = ['lieu', 'personal', 'sick', 'unofficial', 'vacation'];
         var vacationCountersPrevious = ['vacationCarryover'];

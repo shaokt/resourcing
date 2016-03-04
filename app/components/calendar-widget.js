@@ -4,7 +4,7 @@ import WebcelMixin from "../mixins/webcel";
 export default Ember.Component.extend(WebcelMixin, {
     tagName:'div',
     classNames: ['calendar'],
-    year: 2015,
+    year: 2016,
     today: new Date(),
 	dayNames: ["S", "M", "T", "W", "R", "F", "S"],
     months: {

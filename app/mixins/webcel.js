@@ -63,15 +63,17 @@ export default Ember.Mixin.create(CalendarWidget, {
                     }
                     thisTile.remove();
 					if(!holidayTile.length){ // tile does not exist, create new tile if not a holiday
-						addTiles+='<span class="' + tileClass + '" data-type="tile" data-x="' + x + '" data-y="' + y + '"';
+                        if(x > this.constants.prevYear){ // only permit tiles on anything after the previous year
+    						addTiles+='<span class="' + tileClass + '" data-type="tile" data-x="' + x + '" data-y="' + y + '"';
 
-						// add year indicator for out of office tracking
-                        this.constants.daily ?
-							tileClass == "vacationCarryover" ?
-							addTiles+=' data-year="' + (x < this.constants.nextYear ? (this.year - 1) : this.year) + '"' :
-							addTiles+=' data-year="' + (x < this.constants.nextYear ? this.year : (this.year + 1)) + '"' : 0;
+    						// add year indicator for out of office tracking
+                            this.constants.daily ?
+    							tileClass == "vacationCarryover" ?
+    							addTiles+=' data-year="' + (x < this.constants.nextYear ? (this.year - 1) : this.year) + '"' :
+    							addTiles+=' data-year="' + (x < this.constants.nextYear ? this.year : (this.year + 1)) + '"' : 0;
 
-						addTiles+= stamp + '></span>';
+    						addTiles+= stamp + '></span>';
+                        }
 					}
 				}
 			}
