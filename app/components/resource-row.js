@@ -10,14 +10,6 @@ export default Ember.Component.extend(Webcel, {
     dragSource: null,
     store: service(),
 
-    isWeeklyCalendar: function(){
-        return this.get('config.view') === 'assignment';
-    }.property('config.view'),
-
-    isDailyCalendar: function(){
-        return this.get('config.view') === 'timeaway';
-    }.property('config.view'),
-
     // row available for editing/painting
     edit: function(){
         // if a tile wasn't chosen, register the default loaded tile for painting

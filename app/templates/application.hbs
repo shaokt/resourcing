@@ -6,11 +6,11 @@
     {{counterCSS}}
 </style>
 
-<div id="pageContainer" data-view="{{config.view}}" data-show-hidden={{config.showHiddenRows}} data-dragging={{constants.draggable}}>
-    {{header-section config=config assignments=assignments updateName="updateName" addEmployee="addEmployee"}}
+<div id="pageContainer" data-view="{{settings.view}}" data-show-hidden={{settings.showHiddenRows}} data-dragging={{constants.draggable}}>
+    {{header-section settings=settings assignments=assignments updateName="updateName" addEmployee="addEmployee"}}
     <main>
         <div class="dateLine" id="dateLine"></div>
         <div class="dateLine" id="todayDateLine"></div>
-        {{resource-row model=model config=config updateName="updateName"}}
+        {{resource-row model=model settings=settings updateName="updateName"}}
     </main>
 </div>

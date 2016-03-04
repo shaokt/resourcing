@@ -1,7 +1,7 @@
 <div id="year">2015</div>
 <div class="menu">
     <ul class="tileOptions">
-        {{#if isWeeklyCalendar}}
+        {{#if settings.isWeeklyCalendar}}
             <li class="assignments">
 				<div class="empty" data-scope="text"><div></div></div>
                 {{#each assignments as |assignment|}}
@@ -9,20 +9,22 @@
                 {{/each}}
             </li>
         {{/if}}
-        {{#if isDailyCalendar}}
-            {{time-away config=config}}
+        {{#if settings.isDailyCalendar}}
+            {{time-away settings=settings}}
         {{/if}}
     </ul>
 
     <div class="buttonContainer">
-        <button class="changeView" {{action "toggleView" on="click"}}>
-            {{#if isWeeklyCalendar}}
+        {{#if settings.isWeeklyCalendar}}
+            <button class="changeView" {{action "toggleView" 'timeaway' on="click"}}>
                 <span class="timeOff">Time off</span>
-            {{/if}}
-            {{#if isDailyCalendar}}
+            </button>
+        {{/if}}
+        {{#if settings.isDailyCalendar}}
+            <button class="changeView" {{action "toggleView" 'assignment' on="click"}}>
                 <span class="assignment">Assignment</span>
-            {{/if}}
-        </button>
+            </button>
+        {{/if}}
 
         {{#if this.constants.draggable}}
             <button id="dragDisable" {{action "dragDisable" on="click"}}><span>Drag Done</span></button>
@@ -46,10 +48,10 @@
     {{/if}}
 </div>
 
-{{#if isWeeklyCalendar}}
+{{#if settings.isWeeklyCalendar}}
     {{calendar-widget elementId="calendarWeekly" daily=false width=width}}
 {{/if}}
 
-{{#if isDailyCalendar}}
+{{#if settings.isDailyCalendar}}
     {{calendar-widget elementId="calendarDaily" daily=true width=width}}
 {{/if}}
