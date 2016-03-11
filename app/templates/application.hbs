@@ -1,16 +1,1 @@
-{{! do not move styles to component as it will cause multiple view renders}}
-<style>
-    .info { left:{{leftScroll}}px; }
-    .dateMarker { left:{{mousePos}}px; }
-    #dateLine { left:{{mousePos}}px; }
-    {{counterCSS}}
-</style>
-
-<div id="pageContainer" data-view="{{settings.view}}" data-show-hidden={{settings.showHiddenRows}} data-dragging={{constants.draggable}}>
-    {{header-section settings=settings assignments=assignments updateName="updateName" addEmployee="addEmployee"}}
-    <main>
-        <div class="dateLine" id="dateLine"></div>
-        <div class="dateLine" id="todayDateLine"></div>
-        {{resource-row model=model settings=settings updateName="updateName"}}
-    </main>
-</div>
+{{outlet}}
