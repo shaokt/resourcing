@@ -4,8 +4,8 @@
         {{#if settings.isWeeklyCalendar}}
             <li class="assignments">
 				<div class="empty" data-scope="text"><div></div></div>
-                {{#each assignments as |assignment|}}
-                    <div class="{{assignment.class}}" data-scope="text"><div></div></div>
+                {{#each model.assignment as |assignment|}}
+                    {{assignment.short}}
                 {{/each}}
             </li>
         {{/if}}
