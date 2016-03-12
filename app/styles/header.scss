@@ -144,6 +144,8 @@ header {
                         padding:13px;
                     }
                     &.empty {
+                        background: repeating-linear-gradient( -55deg, #222, #222 5px, #333 5px, #333 10px);
+                        &[data-stamp="true"]:after { content: "\2002"; }
                         span { background:none; }
                     }
 

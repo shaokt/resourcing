@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    tagName: 'li',
+    tagName: '',
     active: null,
 
     // TODO: JSON file for easy updates
@@ -24,10 +24,6 @@ export default Ember.Component.extend({
         	"firstDay",
         	"lastDay"
     ],
-    tester: function(){
-        console.log(this.get('item'))
-        return true
-    }.property('item'),
 
     // remove active state on selected item if it exists
     unselect: function(){

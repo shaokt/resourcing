@@ -3,14 +3,13 @@
     <ul class="tileOptions">
         {{#if settings.isWeeklyCalendar}}
             <li class="assignments">
-				<div class="empty" data-scope="text"><div></div></div>
-                {{#each model.assignment as |assignment|}}
-                    {{assignment.short}}
-                {{/each}}
+                {{assignment-tile model=model settings=settings}}
             </li>
         {{/if}}
         {{#if settings.isDailyCalendar}}
-            {{time-away settings=settings}}
+            <li class="timeAway">
+                {{time-away settings=settings}}
+            </li>
         {{/if}}
     </ul>
 

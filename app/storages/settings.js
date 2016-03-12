@@ -14,7 +14,7 @@ Storage.reopenClass({
     initialState() {
         return {
             view: "timeaway",
-            assignmentTile: "delete",
+            assignmentTile: "empty",
             timeawayTile: "vacation",
             showHiddenRows: true
         };

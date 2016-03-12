@@ -29,6 +29,14 @@
 
     .tileOptions li:before { content:"Assignment: "; }
 
+    [data-stamp="true"] {
+        border:none;
+        color:#fff;
+        font-size:.8rem;
+        line-height:180%;
+        text-align:center;
+    }
+
     #todayDateLine {
         &:before {
             top:147px;
