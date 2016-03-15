@@ -7,7 +7,7 @@
     <a href="#" data-assignment="{{item.id}}" data-stamp="true" {{action "select" on="click" event=event}} data-active="{{settings-default-tile 'assignment' item.id}}"><span></span></a>
     <style>
         [data-assignment="{{item.id}}"] { background:#{{item.background}}; }
-        [data-assignment="{{item.id}}"]:after { content:'{{item.short}}' }
-        [data-assignment="{{item.id}}"]:hover:before{ content:'{{item.long}}' }
+        [data-assignment="{{item.id}}"][data-stamp="true"]:after { content:'{{item.short}}' }
+        [data-assignment="{{item.id}}"][data-stamp="true"]:hover:before{ content:'{{item.long}}' }
     </style>
 {{/each}}

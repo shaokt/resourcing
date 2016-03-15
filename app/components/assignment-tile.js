@@ -22,6 +22,7 @@ export default Ember.Component.extend({
             this.active = $(event.target);
             this.active.attr('data-active', true);
             this.set('settings.assignmentTile', this.active.attr('data-assignment'));
+            this.constants.webcel.setTile(this.active);
         }
     }
 });

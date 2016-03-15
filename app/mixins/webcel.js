@@ -46,6 +46,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 		var addTiles = "";
 		var empty = this.currentTile.hasClass('empty');
 		var tileClass = this.currentTile.attr('class');
+		var tileAssignment = this.currentTile.attr('data-assignment');
 
 		for(var x = this.downX; x <= this.upX; x+=this.constants.DIM){
 			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
@@ -64,15 +65,22 @@ export default Ember.Mixin.create(CalendarWidget, {
                     thisTile.remove();
 					if(!holidayTile.length){ // tile does not exist, create new tile if not a holiday
                         if(x > this.constants.prevYear){ // only permit tiles on anything after the previous year
-    						addTiles+='<span class="' + tileClass + '" data-type="tile" data-x="' + x + '" data-y="' + y + '"';
+    						addTiles+='<span data-type="tile" data-x="' + x + '" data-y="' + y + '"';
 
     						// add year indicator for out of office tracking
-                            this.constants.daily ?
-    							tileClass == "vacationCarryover" ?
-    							addTiles+=' data-year="' + (x < this.constants.nextYear ? (this.year - 1) : this.year) + '"' :
-    							addTiles+=' data-year="' + (x < this.constants.nextYear ? this.year : (this.year + 1)) + '"' : 0;
+                            if(this.constants.daily){
+                                addTiles+='class="' + tileClass + '"';
+                                tileClass == "vacationCarryover" ?
+        							addTiles+=' data-year="' + (x < this.constants.nextYear ? (this.year - 1) : this.year) + '"' :
+        							addTiles+=' data-year="' + (x < this.constants.nextYear ? this.year : (this.year + 1)) + '"'
+                            } else {
+                                addTiles+=' data-assignment="' + tileAssignment + '"';
+                               addTiles+=' data-year="' + (x < this.constants.nextYear ? this.year : (this.year + 1)) + '"'
+
+                            };
 
     						addTiles+= stamp + '></span>';
+                            console.log(addTiles)
                         }
 					}
 				}
@@ -81,7 +89,9 @@ export default Ember.Mixin.create(CalendarWidget, {
 
         //if(addTiles != ""){
     		addTiles = ($(this.row).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
-            this.data.set('timeaway', addTiles)
+            this.constants.daily ?
+                this.data.set('timeaway', addTiles) :
+                this.data.set('assignment', addTiles);
         //}
 		$(this.sizer).hide();
     },
