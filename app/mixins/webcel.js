@@ -80,19 +80,17 @@ export default Ember.Mixin.create(CalendarWidget, {
                             };
 
     						addTiles+= stamp + '></span>';
-                            console.log(addTiles)
                         }
 					}
 				}
 			}
 		}
 
-        //if(addTiles != ""){
-    		addTiles = ($(this.row).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
-            this.constants.daily ?
-                this.data.set('timeaway', addTiles) :
-                this.data.set('assignment', addTiles);
-        //}
+		addTiles = ($(this.row).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
+        this.constants.daily ?
+            this.data.set('timeaway', addTiles) :
+            this.data.set('assignment', addTiles);
+            
 		$(this.sizer).hide();
     },
 
@@ -156,9 +154,9 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 
             		var addTiles = ($(self.row).find(".tiles")[0].innerHTML.replace(/<!---->/gi, '').trim()).htmlSafe();
-                    self.data.set('timeaway', addTiles)
-                    /**/
-
+                    self.constants.daily ?
+                        self.data.set('timeaway', addTiles) :
+                        self.data.set('assignment', addTiles);
                     break;
                 }
             }//switch
