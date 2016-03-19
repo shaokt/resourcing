@@ -23,7 +23,6 @@ export default Ember.Component.extend(Webcel, {
 
     save: function(){
         this.constants.save(this.get('resource'))
-        $('body').attr('data-editing', false)
         this.constants.webcel.done();
     },
 

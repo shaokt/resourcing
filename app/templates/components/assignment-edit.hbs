@@ -1,6 +1,5 @@
 <tr>
     <td class="value">
-        <div class="hoverGuide"></div>
         <div class="hexabackground"></div>
         <style>
             [data-assignment-id="{{assignment.id}}"] tr { border-color:#{{hexbackground}}; }
@@ -18,7 +17,7 @@
         {{#if editing}}
             {{content-editable class="short" value=assignment.short allowNewlines=false}}
             {{content-editable class="long" value=assignment.long allowNewlines=false}}
-            {{content-editable class="background" 
+            {{content-editable class="background"
                 value=assignment.background
                 allowNewlines=false
                 maxlength="6"

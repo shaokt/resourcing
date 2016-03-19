@@ -11,7 +11,6 @@
 
                 &:hover, &.editing {
                     .viewOptions, .hexabackground {
-                        display:block;
                     }
                 }
 
@@ -34,7 +33,6 @@
                 border-width:5px;
 
                 .viewOptions {
-                    display:none;
                     padding-right:10px;
                     height:20px;
                     position:absolute;
@@ -89,16 +87,6 @@
                             color:#C55500;
                             outline:none;
                         }
-                    }
-
-                    .hoverGuide {
-                        height:100%;
-                        left:-30px;
-                        margin:0;
-                        padding:0;
-                        position:absolute;
-                        top:0;
-                        width:25px;
                     }
 
                     .background {

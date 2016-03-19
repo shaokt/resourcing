@@ -6,19 +6,20 @@ export default Ember.Component.extend({
     attributeBindings: ['assignment.id:data-assignment-id'],
     editing: false,
 
+    // background for assignment row based on hex value assigned
     hexbackground: Ember.computed('background', function() {
         var color = this.assignment.get('background');
         return new Ember.String.htmlSafe(color);
-        //Ember.String.htmlSafe
     }).property('assignment.background'),
 
     actions: {
         editing() {
             this.toggleProperty('editing');
             if(this.editing == true){
-                //TODO:  hide other locks
+                $('body').attr('data-editing', true)
             }
             else {
+                $('body').attr('data-editing', false)
                 this.constants.save(this.get('assignment'))
             }
         },
