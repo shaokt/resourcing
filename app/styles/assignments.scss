@@ -10,22 +10,12 @@
                 }
 
                 &:hover, &.editing {
-                    .viewOptions, .hexabackground {
+                   .hexabackground {
+                        display:block;
                     }
                 }
 
                 .hexabackground { display:none; }
-            }
-
-            th {
-                background:#000;
-                color:#fff;
-                padding:10px;
-                text-align:left;
-
-                &[colspan="2"] {
-                    padding-bottom:0;
-                }
             }
 
             tr {
@@ -39,7 +29,7 @@
                     border:20px solid transparent;
                     margin-left:-45px;
                     left:0;
-                    top:-10px;
+                    top:-6px;
 
                     li {
                         top:10px;
@@ -107,14 +97,43 @@
                 }//td.value
 
                 &.headerPreview {
+                    padding-left:60px;
+                    vertical-align:middle;
+
                     [data-assignment]:before {
                         display:none;
+                    }
+
+                    &:after, &:before {
+                        background:#888;
+                        content:"";
+                        height:50%;
+                        left:0;
+                        position:absolute;
+                        width:10px;
+                    }
+
+                    &:after {
+                        bottom:0;
+                        transform:skew(-45deg);
+                    }
+
+                    &:before {
+                        top:0;
+                        transform:skew(45deg);
                     }
                 }
 
                 &.rowPreview {
                     border-right-style:solid;
                     border-right-width:1px;
+                    vertical-align:middle;
+
+                    [data-type="tile"] {
+                        height:32px;
+                        position:relative;
+                        width:200px;
+                    }
                 }
 
                 .hexabackground {

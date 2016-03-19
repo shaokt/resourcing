@@ -3,8 +3,12 @@
         <div class="hexabackground"></div>
         <style>
             [data-assignment-id="{{assignment.id}}"] tr { border-color:#{{hexbackground}}; }
-            [data-assignment-id="{{assignment.id}}"] .hexabackground { background:#{{assignment.background}}; }
-            [data-assignment="{{assignment.id}}"] { background:#{{assignment.background}}; }
+
+            [data-assignment-id="{{assignment.id}}"] .headerPreview:after,
+            [data-assignment-id="{{assignment.id}}"] .headerPreview:before,
+            [data-assignment-id="{{assignment.id}}"] .hexabackground,
+            [data-assignment="{{assignment.id}}"] { background:#{{assignment.background}} !important; }
+
             [data-assignment="{{assignment.id}}"][data-stamp="true"]:after { content:'{{assignment.short}}' }
             [data-assignment="{{assignment.id}}"]:before { content:'{{assignment.long}}' }
         </style>
@@ -41,6 +45,8 @@
     </td>
     <td class="rowPreview">
         <div class="hexabackground"></div>
-        TBD
+        <section class="resourceRow">
+            <div data-type="tile" sdata-x="435" sdata-y="0" data-stamp="true" data-assignment="{{assignment.id}}"></div>
+        </section>
     </td>
 </tr>
