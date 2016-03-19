@@ -3,7 +3,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName:'tbody',
     classNameBindings: ['editing'],
-    attributeBindings:['assignment.id:data-assignment-id'],
+    attributeBindings: ['assignment.id:data-assignment-id'],
+    editing: false,
 
     hexbackground: Ember.computed('background', function() {
         var color = this.assignment.get('background');
@@ -14,6 +15,12 @@ export default Ember.Component.extend({
     actions:{
         editing() {
             this.toggleProperty('editing');
+            if(this.editing == true){
+                //TODO:  hide other locks
+            }
+            else {
+                this.constants.save(this.get('assignment'))
+            }
         }
     }
 });

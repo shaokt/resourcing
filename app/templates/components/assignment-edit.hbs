@@ -1,43 +1,41 @@
 <tr>
-<td class="value">
-    <div class="hoverGuide"></div>
-    <div class="hexabackground"></div>
-    <style>
-        [data-assignment-id="{{assignment.id}}"] tr { border-color:#{{hexbackground}}; }
-        [data-assignment-id="{{assignment.id}}"] .hexabackground { background:#{{assignment.background}}; }
-        [data-assignment="{{assignment.id}}"] { background:#{{assignment.background}}; }
-        [data-assignment="{{assignment.id}}"][data-stamp="true"]:after { content:'{{assignment.short}}' }
-        [data-assignment="{{assignment.id}}"]:before{ content:'{{assignment.long}}' }
-    </style>
+    <td class="value">
+        <div class="hoverGuide"></div>
+        <div class="hexabackground"></div>
+        <style>
+            [data-assignment-id="{{assignment.id}}"] tr { border-color:#{{hexbackground}}; }
+            [data-assignment-id="{{assignment.id}}"] .hexabackground { background:#{{assignment.background}}; }
+            [data-assignment="{{assignment.id}}"] { background:#{{assignment.background}}; }
+            [data-assignment="{{assignment.id}}"][data-stamp="true"]:after { content:'{{assignment.short}}' }
+            [data-assignment="{{assignment.id}}"]:before { content:'{{assignment.long}}' }
+        </style>
 
-    <ul class="viewOptions">
-        <li class="lock">
-            <a href="/" {{action "editing" on="click"}}></a>
-        </li>
-    </ul>
-    {{#if editing}}
-        {{content-editable class="short" value=assignment.short allowNewlines=false}}
-        {{content-editable class="long" value=assignment.long allowNewlines=false}}
-        {{content-editable class="background" value=assignment.background allowNewlines=false maxlength="6"}}
-    {{else}}
-        <div class="short" data-type="value">{{assignment.short}}</div>
-        <div class="long" data-type="value">{{assignment.long}}</div>
-        <div class="background" data-type="value">{{assignment.background}}</div>
-    {{/if}}
-    <!--
--->
+        <ul class="viewOptions">
+            <li class="lock">
+                <a href="/" {{action "editing" on="click"}}></a>
+            </li>
+        </ul>
+        {{#if editing}}
+            {{content-editable class="short" value=assignment.short allowNewlines=false}}
+            {{content-editable class="long" value=assignment.long allowNewlines=false}}
+            {{content-editable class="background" value=assignment.background allowNewlines=false maxlength="6"}}
+        {{else}}
+            <div class="short" data-type="value">{{assignment.short}}</div>
+            <div class="long" data-type="value">{{assignment.long}}</div>
+            <div class="background" data-type="value">{{assignment.background}}</div>
+        {{/if}}
+    </td>
 
-</td>
-<td class="headerPreview">
-    <div class="hexabackground"></div>
-    <ul class="tileOptions">
-        <li>
-            <div data-assignment="{{assignment.id}}" data-stamp="true" data-active="true"><span></span></div>
-        </li>
-    </ul>
-</td>
-<td class="rowPreview">
-    <div class="hexabackground"></div>
-    TBD
-</td>
+    <td class="headerPreview">
+        <div class="hexabackground"></div>
+        <ul class="tileOptions">
+            <li>
+                <div data-assignment="{{assignment.id}}" data-stamp="true" data-active="true"><span></span></div>
+            </li>
+        </ul>
+    </td>
+    <td class="rowPreview">
+        <div class="hexabackground"></div>
+        TBD
+    </td>
 </tr>
