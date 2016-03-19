@@ -14,5 +14,12 @@ export default Ember.Service.extend({
         this.set('saving', true)
         data.save()
         setTimeout(function(){self.set('saving', false)}, 500);
+    },
+    focusInContentEditable: function(currentValue, event){
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(currentValue.element);
+        selection.removeAllRanges();
+        selection.addRange(range);
     }
 });

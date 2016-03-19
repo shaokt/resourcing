@@ -19,14 +19,15 @@
             </li>
         </ul>
         {{#if editing}}
-            {{content-editable class="short" value=assignment.short allowNewlines=false}}
-            {{content-editable class="long" value=assignment.long allowNewlines=false}}
+            {{content-editable class="short" value=assignment.short allowNewlines=false focus-in=constants.focusInContentEditable}}
+            {{content-editable class="long" value=assignment.long allowNewlines=false focus-in=constants.focusInContentEditable}}
             {{content-editable class="background"
                 value=assignment.background
                 allowNewlines=false
                 maxlength="6"
                 key-press="filter"
                 focus-out="upperCase"
+                focus-in=constants.focusInContentEditable
             }}
         {{else}}
             <div class="short" data-type="value">{{assignment.short}}</div>
