@@ -12,7 +12,7 @@ export default Ember.Component.extend({
         //Ember.String.htmlSafe
     }).property('assignment.background'),
 
-    actions:{
+    actions: {
         editing() {
             this.toggleProperty('editing');
             if(this.editing == true){
@@ -21,6 +21,21 @@ export default Ember.Component.extend({
             else {
                 this.constants.save(this.get('assignment'))
             }
+        },
+
+        // only allow 0-9, a-f, A-F for hex values
+        filter(currentValue, event){
+            const keyCode = event.which;
+            if( !(keyCode >= 48 && keyCode <= 57) &&
+                !(keyCode >= 65 && keyCode <= 70) &&
+                !(keyCode >= 97 && keyCode <= 102)){
+                event.preventDefault();
+            }
+        },
+
+        // capitalize hex values
+        upperCase(currentValue, event){
+            currentValue.set('value', currentValue.get('value').toUpperCase())
         }
     }
 });

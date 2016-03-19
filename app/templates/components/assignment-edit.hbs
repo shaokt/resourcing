@@ -18,7 +18,13 @@
         {{#if editing}}
             {{content-editable class="short" value=assignment.short allowNewlines=false}}
             {{content-editable class="long" value=assignment.long allowNewlines=false}}
-            {{content-editable class="background" value=assignment.background allowNewlines=false maxlength="6"}}
+            {{content-editable class="background" 
+                value=assignment.background
+                allowNewlines=false
+                maxlength="6"
+                key-press="filter"
+                focus-out="upperCase"
+            }}
         {{else}}
             <div class="short" data-type="value">{{assignment.short}}</div>
             <div class="long" data-type="value">{{assignment.long}}</div>
