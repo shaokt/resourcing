@@ -1,0 +1,146 @@
+// editing actual assignments, not paiting into resource rows
+#pageContainer[data-view="assignment"] {
+    main {
+        table.edit  {
+            tbody {
+                &:before {
+                    content:"";
+                    height:5px;
+                    display:block;
+                }
+
+                &:hover, &.editing {
+                    .viewOptions, .hexabackground {
+                        display:block;
+                    }
+                }
+
+                .hexabackground { display:none; }
+            }
+
+            th {
+                background:#000;
+                color:#fff;
+                padding:10px;
+                text-align:left;
+
+                &[colspan="2"] {
+                    padding-bottom:0;
+                }
+            }
+
+            tr {
+                border-style:solid;
+                border-width:5px;
+
+                .viewOptions {
+                    display:none;
+                    padding-right:10px;
+                    height:20px;
+                    position:absolute;
+                    border:20px solid transparent;
+                    margin-left:-45px;
+                    left:0;
+                    top:-10px;
+
+                    li {
+                        top:10px;
+                    }
+                }
+
+                .tileOptions {
+                    &:hover {
+                        [data-assignment]:before {
+                            display:block;
+                        }
+                    }
+
+                    li {
+                        border:none;
+                        padding:0;
+
+                        &:before { display:none; }
+                    }
+                }
+            }//tr
+
+            td {
+                padding:10px;
+                position:relative;
+                vertical-align:top;
+
+                &.value {
+                    font-weight:bold;
+
+                    [data-type="value"], [contenteditable="true"] {
+                        border:1px solid transparent;
+                        clear:both;
+                        float:left;
+                        margin:2px 0;
+                        padding:5px;
+                    }
+
+                    [contenteditable="true"] {
+                        background:rgba(255,255,255, .4);
+                        border:1px solid #888;
+
+                        &:focus {
+                            box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.5);
+                            color:#C55500;
+                            outline:none;
+                        }
+                    }
+
+                    .hoverGuide {
+                        height:100%;
+                        left:-30px;
+                        margin:0;
+                        padding:0;
+                        position:absolute;
+                        top:0;
+                        width:25px;
+                    }
+
+                    .background {
+                        text-transform:uppercase;
+                        &:before {
+                            content:"#";
+                            margin-right:1px;
+                        }
+
+                        &[contenteditable="true"] {
+                            padding-left:15px;
+
+                            &:before {
+                                margin-left:-10px;
+                            }
+                        }
+                    }
+                }//td.value
+
+                &.headerPreview {
+                    [data-assignment]:before {
+                        display:none;
+                    }
+                }
+
+                &.rowPreview {
+                    border-right-style:solid;
+                    border-right-width:1px;
+                }
+
+                .hexabackground {
+                    height:100%;
+                    left:0px;
+                    margin:0;
+                    opacity:.2;
+                    padding:0;
+                    position:absolute;
+                    top:0;
+                    width:100%;
+                    z-index:-1;
+                }
+            }//td
+        }// table.edit
+    }//main
+}//pageContainer

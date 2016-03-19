@@ -1,0 +1,19 @@
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+    tagName:'tbody',
+    classNameBindings: ['editing'],
+    attributeBindings:['assignment.id:data-assignment-id'],
+
+    hexbackground: Ember.computed('background', function() {
+        var color = this.assignment.get('background');
+        return new Ember.String.htmlSafe(color);
+        //Ember.String.htmlSafe
+    }).property('assignment.background'),
+
+    actions:{
+        editing() {
+            this.toggleProperty('editing');
+        }
+    }
+});
