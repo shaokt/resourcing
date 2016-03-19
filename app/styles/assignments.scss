@@ -1,6 +1,8 @@
 // editing actual assignments, not paiting into resource rows
-#pageContainer[data-view="assignment"] {
+#pageContainer[data-view="assignment"][data-action="edit"] {
     main {
+        border-bottom:none;
+
         table.edit  {
             tbody {
                 &:before {
