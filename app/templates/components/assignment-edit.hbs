@@ -1,17 +1,20 @@
 <tr>
     <td class="value">
-        <div class="hexabackground"></div>
         <style>
+            [data-assignment-id="{{assignment.id}}"] .hexbackgroundArrow { border-left-color:#{{hexbackground}} !important; }
             [data-assignment-id="{{assignment.id}}"] tr { border-color:#{{hexbackground}}; }
 
             [data-assignment-id="{{assignment.id}}"] .headerPreview:after,
             [data-assignment-id="{{assignment.id}}"] .headerPreview:before,
-            [data-assignment-id="{{assignment.id}}"] .hexabackground,
+            [data-assignment-id="{{assignment.id}}"] .hexbackground,
             [data-assignment="{{assignment.id}}"] { background:#{{assignment.background}} !important; }
 
             [data-assignment="{{assignment.id}}"][data-stamp="true"]:after { content:'{{assignment.short}}' }
             [data-assignment="{{assignment.id}}"]:before { content:'{{assignment.long}}' }
         </style>
+
+        <div class="hexbackground"></div>
+        <div class="hexbackgroundArrow"></div>
 
         <ul class="viewOptions">
             <li class="lock">
@@ -37,7 +40,6 @@
     </td>
 
     <td class="headerPreview">
-        <div class="hexabackground"></div>
         <ul class="tileOptions">
             <li>
                 <div data-assignment="{{assignment.id}}" data-stamp="true" data-active="true"><span></span></div>
@@ -45,7 +47,6 @@
         </ul>
     </td>
     <td class="rowPreview">
-        <div class="hexabackground"></div>
         <section class="resourceRow">
             <div data-type="tile" sdata-x="435" sdata-y="0" data-stamp="true" data-assignment="{{assignment.id}}"></div>
         </section>
