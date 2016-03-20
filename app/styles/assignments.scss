@@ -1,7 +1,12 @@
 // editing actual assignments, not paiting into resource rows
 #pageContainer[data-view="assignment"][data-action="edit"] {
+    header {
+        height:50px;
+        width:100%;
+    }
     main {
         border-bottom:none;
+        padding-top:80px;
 
         table.edit  {
             tbody {

@@ -5,7 +5,7 @@ export default Ember.Route.extend({
         return this.get('store').findAll('assignment')
     },
 
-    ssetupController(controller, model) {
-        this._super(controller, model);
-    },
+    afterModel: function(){
+        document.title += " - Edit Assignments"
+    }
 });
