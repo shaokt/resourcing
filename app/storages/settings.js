@@ -7,6 +7,10 @@ const Storage = StorageObject.extend({
 
     isDailyCalendar: function(){
         return this.get('view') == 'timeaway';
+    }.property('view'),
+
+    hasCalendar: function(){
+        return this.get('view') == 'timeaway' || this.get('view') == 'timeaway';
     }.property('view')
 });
 

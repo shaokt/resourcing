@@ -31,9 +31,10 @@
             <button id="dragEnable" {{action "dragEnable" on="click"}}><span>Drag Sort</span></button>
         {{/if}}
 
-        <button id="today" {{action "scrollToday" on="click"}}><span>Today</span></button>
-
-        <button id="addResource" {{action "addEmployee"}}><span>Add</span></button>
+        {{#if settings.hasCalendar}}
+            <button id="today" {{action "scrollToday" on="click"}}><span>Today</span></button>
+            <button id="addResource" {{action "addEmployee"}}><span>Add</span></button>
+        {{/if}}
 
         <ul class="viewOptions">
             <li class="toggle">
