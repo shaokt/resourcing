@@ -12,7 +12,7 @@
                 }
 
                 &:hover, &.editing {
-                   .hexbackground, .hexbackgroundArrow {
+                   .hexbackground, .hexbackgroundArrow, .hexbackgroundArrow:after {
                         display:block;
                     }
                 }
@@ -69,7 +69,6 @@
                         float:left;
                         margin:2px 0;
                         padding:5px;
-                        white-space:nowrap;
                     }
 
                     [contenteditable="true"] {
@@ -101,6 +100,7 @@
                 }//td.value
 
                 &.headerPreview {
+                    overflow:hidden;
                     padding-left:80px;
                     vertical-align:middle;
 
@@ -120,11 +120,15 @@
                     &:after {
                         bottom:0;
                         transform:skew(-45deg);
+                        padding-bottom:20px;
+                        bottom:-20px;
                     }
 
                     &:before {
                         top:0;
                         transform:skew(45deg);
+                        padding-top:20px;
+                        top:-20px;
                     }
                 }
 
@@ -153,18 +157,32 @@
                 }
 
                 .hexbackgroundArrow {
-                    border-color:transparent;
-                    border-style:solid;
-                    border-width:55px;
-                    display:none;
-                    height:0;
-                    margin:0;
-                    opacity:.3;
-                    padding:0;
+                    float:left;
+                    height: 0;
+                    left:65px;
+                    margin:0.5%;
+                    margin-top:-2px;
+                    padding-top: 5%;
+                    padding-bottom: 5%;
+                    padding-left: 5%;
                     position:absolute;
-                    right:-110px;
-                    top:0;
-                    width:0;
+                    top:50%;
+                    width: 0;
+
+                    &:after {
+                        border-bottom: 500px solid transparent;
+                        border-left-width:500px;
+                        border-left-style:solid;
+                        border-left-color:transparent;
+                        border-top: 500px solid transparent;
+                        content: "";
+                        display:none;
+                        height: 0;
+                        margin-left:-500px;
+                        margin-top:-500px;
+                        opacity:.3;
+                        width: 0;
+                    }
                 }
             }//td
         }// table.edit

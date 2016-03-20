@@ -1,7 +1,7 @@
 <tr>
     <td class="value">
         <style>
-            [data-assignment-id="{{assignment.id}}"] .hexbackgroundArrow { border-left-color:#{{hexbackground}} !important; }
+            [data-assignment-id="{{assignment.id}}"] .hexbackgroundArrow:after { border-left-color:#{{hexbackground}} !important; }
             [data-assignment-id="{{assignment.id}}"] tr { border-color:#{{hexbackground}}; }
 
             [data-assignment-id="{{assignment.id}}"] .headerPreview:after,
@@ -14,7 +14,6 @@
         </style>
 
         <div class="hexbackground"></div>
-        <div class="hexbackgroundArrow"></div>
 
         <ul class="viewOptions">
             <li class="lock">
@@ -40,6 +39,7 @@
     </td>
 
     <td class="headerPreview">
+        <div class="hexbackgroundArrow"></div>
         <ul class="tileOptions">
             <li>
                 <div data-assignment="{{assignment.id}}" data-stamp="true" data-active="true"><span></span></div>
