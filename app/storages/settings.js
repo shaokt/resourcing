@@ -10,7 +10,7 @@ const Storage = StorageObject.extend({
     }.property('view'),
 
     hasCalendar: function(){
-        return this.get('view') == 'timeaway' || this.get('view') == 'timeaway';
+        return this.get('view') == 'timeaway' || this.get('view') == 'assignment';
     }.property('view')
 });
 
