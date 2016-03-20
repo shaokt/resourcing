@@ -16,6 +16,9 @@ export default Ember.Component.extend({
         // switch views between assignment, timeaway etc
         toggleView(view) {
             this.get('settings').set('view', view)
+            document.title = this.get('settings.view') == "timeaway" ?
+                "Resourcing - Time Off" :
+                "Resourcing - Assignments";
         },
 
         // show/hide hidden rows

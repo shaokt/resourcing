@@ -7,6 +7,10 @@ const Storage = StorageObject.extend({
 
     isDailyCalendar: function(){
         return this.get('view') == 'timeaway';
+    }.property('view'),
+
+    hasCalendar: function(){
+        return this.get('view') == 'timeaway' || this.get('view') == 'assignment';
     }.property('view')
 });
 
@@ -14,7 +18,7 @@ Storage.reopenClass({
     initialState() {
         return {
             view: "timeaway",
-            assignmentTile: "delete",
+            assignmentTile: "empty",
             timeawayTile: "vacation",
             showHiddenRows: true
         };

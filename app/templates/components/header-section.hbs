@@ -3,14 +3,13 @@
     <ul class="tileOptions">
         {{#if settings.isWeeklyCalendar}}
             <li class="assignments">
-				<div class="empty" data-scope="text"><div></div></div>
-                {{#each model.assignment as |assignment|}}
-                    {{assignment.short}}
-                {{/each}}
+                {{assignment-tile model=model settings=settings}}
             </li>
         {{/if}}
         {{#if settings.isDailyCalendar}}
-            {{time-away settings=settings}}
+            <li class="timeAway">
+                {{time-away settings=settings}}
+            </li>
         {{/if}}
     </ul>
 
@@ -32,9 +31,10 @@
             <button id="dragEnable" {{action "dragEnable" on="click"}}><span>Drag Sort</span></button>
         {{/if}}
 
-        <button id="today" {{action "scrollToday" on="click"}}><span>Today</span></button>
-
-        <button id="addResource" {{action "addEmployee"}}><span>Add</span></button>
+        {{#if settings.hasCalendar}}
+            <button id="today" {{action "scrollToday" on="click"}}><span>Today</span></button>
+            <button id="addResource" {{action "addEmployee"}}><span>Add</span></button>
+        {{/if}}
 
         <ul class="viewOptions">
             <li class="toggle">

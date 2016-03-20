@@ -9,10 +9,17 @@ export default Ember.Service.extend({
     draggable: false,   // if the rows are drag sortable or not
     webcel:null,         // singleton Webcel object - only one editable instance at a time
 	padout: function(number) { return (number < 10) ? '0' + number : number; }, // pad single digits to double (for date use)
-    save: function(resource){
+    save: function(data){
         var self = this;
         this.set('saving', true)
-        resource.save()
+        data.save()
         setTimeout(function(){self.set('saving', false)}, 500);
+    },
+    focusInContentEditable: function(currentValue, event){
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(currentValue.element);
+        selection.removeAllRanges();
+        selection.addRange(range);
     }
 });

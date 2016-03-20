@@ -33,15 +33,23 @@ section.resourceRow {
          }
     }
 
+    &:hover:after {
+        background:none;
+    }
+
     &:after {
         background:#100;
-        content: "";
+        content:"";
         display:block;
         height:100%;
         opacity:.1;
         position:absolute;
         top:0;
         width:100%;
+
+        &:hover {
+            background:none;
+        }
     }
 
     .info {

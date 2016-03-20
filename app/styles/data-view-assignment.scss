@@ -16,14 +16,75 @@
         padding-top:153px;
     }
 
+    [data-type="tile"] {
+        height:8px;
+        &[data-y="15"]{ top:8px; }
+        &[data-y="30"]{ top:16px; }
+        &[data-y="45"]{ top:24px; }
+    }
+
+    [data-stamp="true"] {
+        border:none;
+        color:#fff;
+        font-size:.8rem;
+        line-height:180%;
+        text-align:center;
+        
+        &:hover {
+            &:before {
+                display:block;
+            }
+        }
+        &:before {
+            background:#000;
+            cursor:none;
+            display: none;
+            padding:0 5px 1px 5px;
+            position:absolute;
+            width:auto;
+            white-space:nowrap;
+            z-index:2;
+        }
+        &[data-y="45"]{
+            &:before{
+                top:-8px;
+            }
+        }
+    }
+
     section.resourceRow {
         &[data-active="true"],
         &:hover {
             box-shadow:1px 5px 10px rgba(0,0,0,.5);
         }
 
-        &:hover:after {
-            display:none;
+        &[data-active="true"]{
+            [data-type="tile"] {
+                height:15px;
+                &[data-y="15"]{ top:15px; }
+                &[data-y="30"]{ top:30px; }
+                &[data-y="45"]{ top:45px; }
+            }
+
+            [data-stamp="true"]{
+                &:hover:before {
+                    background:none;
+                    content:"";
+                }
+            }
+        }
+
+        [data-stamp="true"]{
+            &:after {
+                background:rgba(0,0,0,.4);
+                cursor:none;
+                left:0;
+                line-height:100%;
+                padding:0 2px;
+                position:absolute;
+                top:0;
+                z-index: 1;
+            }
         }
     }
 

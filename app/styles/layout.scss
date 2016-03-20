@@ -1,9 +1,12 @@
 html { font:62.5% Helvetica, Arial, sans-serif; }
 
-body { float:left;font-size:1.2rem;
+body {
+    float:left;font-size:1.2rem;
+    /*
     > .ember-view{
         overflow:hidden;
     }
+    */
 }
 
 button {

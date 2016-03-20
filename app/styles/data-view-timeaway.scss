@@ -39,10 +39,6 @@
         z-index:1;
     }
 
-    .empty {
-        &[data-stamp="true"]:after { content: "\2002"; }
-    }
-
     .bereavement {
         background:#871C00;
         &[data-stamp="true"]:after { content: "B"; }
@@ -51,10 +47,6 @@
     .conference {
         background:#9C9E30;
         &[data-stamp="true"]:after { content: "C"; }
-    }
-
-    .empty {
-        background: repeating-linear-gradient( -55deg, #222, #222 5px, #333 5px, #333 10px);
     }
 
     .firstDay {

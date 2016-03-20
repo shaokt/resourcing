@@ -105,10 +105,15 @@ ul.viewOptions {
             border-radius:5px 5px 0 0;
         }
 
-        a:hover:after,
+        a:active:after,
         a:focus:after,
-        a:active:after {
+        a:hover:after {
             border-color:#c55500;
+        }
+
+        a:focus:before,
+        a:hover:before {
+            box-shadow:-1px 3px 1px 1px rgba(0, 0, 0, .3);
         }
     }//locks
 

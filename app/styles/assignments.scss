@@ -1,3 +1,198 @@
-.aem { background:#f9aff8; }
-.aem[data-scope="text"]:after { content:'AEM'; }
-.tilesOptions .aem:hover:before { content:"Adobe Experience Manager"; }
+// editing actual assignments, not paiting into resource rows
+#pageContainer[data-view="assignment"][data-action="edit"] {
+    header {
+        height:50px;
+        width:100%;
+    }
+    main {
+        border-bottom:none;
+        padding-top:80px;
+
+        table.edit  {
+            tbody {
+                &:before {
+                    content:"";
+                    height:5px;
+                    display:block;
+                }
+
+                &:hover, &.editing {
+                   .hexbackground, .hexbackgroundArrow, .hexbackgroundArrow:after {
+                        display:block;
+                    }
+                }
+
+                .hexbackground { display:none; }
+            }
+
+            tr {
+                border-style:solid;
+                border-width:5px;
+
+                .viewOptions {
+                    padding-right:10px;
+                    height:20px;
+                    position:absolute;
+                    border:20px solid transparent;
+                    margin-left:-45px;
+                    left:0;
+                    top:-6px;
+
+                    li {
+                        top:10px;
+                    }
+                }
+
+                .tileOptions {
+                    &:hover {
+                        [data-assignment]:before {
+                            display:block;
+                        }
+                    }
+
+                    li {
+                        border:none;
+                        padding:0;
+
+                        &:before { display:none; }
+                    }
+                }
+            }//tr
+
+            td {
+                padding:10px;
+                position:relative;
+                vertical-align:top;
+
+                &.value {
+                    font-weight:bold;
+                    padding-right:0;
+
+                    [data-type="value"], [contenteditable="true"] {
+                        border:1px solid transparent;
+                        clear:both;
+                        float:left;
+                        margin:2px 0;
+                        padding:5px;
+                    }
+
+                    [contenteditable="true"] {
+                        background:rgba(255,255,255, .4);
+                        border:1px solid #888;
+
+                        &:focus {
+                            box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.5);
+                            color:#C55500;
+                            outline:none;
+                        }
+                    }
+
+                    .background {
+                        text-transform:uppercase;
+                        &:before {
+                            content:"#";
+                            margin-right:1px;
+                        }
+
+                        &[contenteditable="true"] {
+                            padding-left:15px;
+
+                            &:before {
+                                margin-left:-10px;
+                            }
+                        }
+                    }
+                }//td.value
+
+                &.arrow {
+                    min-width:60px;
+                    overflow:hidden;
+
+                    &:after, &:before {
+                        background:transparent;
+                        content:"";
+                        height:50%;
+                        left:25px;
+                        position:absolute;
+                        width:10px;
+                    }
+
+                    &:after {
+                        bottom:0;
+                        transform:skew(-45deg);
+                        padding-bottom:20px;
+                        bottom:-20px;
+                    }
+
+                    &:before {
+                        top:0;
+                        transform:skew(45deg);
+                        padding-top:20px;
+                        top:-20px;
+                    }
+                }
+
+                &.headerPreview {
+                    vertical-align:middle;
+
+                    [data-assignment]:before {
+                        display:none;
+                    }
+                }
+
+                &.rowPreview {
+                    border-right-style:solid;
+                    border-right-width:1px;
+                    vertical-align:middle;
+
+                    [data-type="tile"] {
+                        height:32px;
+                        position:relative;
+                        width:200px;
+                    }
+                }
+
+                .hexbackground {
+                    height:100%;
+                    left:0px;
+                    margin:0;
+                    opacity:.3;
+                    padding:0;
+                    position:absolute;
+                    top:0;
+                    width:100%;
+                    z-index:-1;
+                }
+
+                .hexbackgroundArrow {
+                    float:left;
+                    height: 0;
+                    left:65px;
+                    margin:0.5%;
+                    margin-top:-2px;
+                    padding-top: 5%;
+                    padding-bottom: 5%;
+                    padding-left: 5%;
+                    position:absolute;
+                    top:50%;
+                    width: 0;
+
+                    &:after {
+                        border-bottom: 500px solid transparent;
+                        border-left-width:500px;
+                        border-left-style:solid;
+                        border-left-color:transparent;
+                        border-top: 500px solid transparent;
+                        content: "";
+                        display:none;
+                        height: 0;
+                        margin-left:-500px;
+                        margin-top:-500px;
+                        opacity:.3;
+                        width: 0;
+                    }
+                }
+            }//td
+        }// table.edit
+    }//main
+}//pageContainer

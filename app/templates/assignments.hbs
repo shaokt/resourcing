@@ -1,2 +1,6 @@
-Assignment View
-{{tester}}
+<div id="pageContainer" data-view="assignment" data-action="edit" data-show-hidden={{settings.showHiddenRows}} data-dragging={{constants.draggable}}>
+    {{header-section model=model settings=settings updateName="updateName" addEmployee="addEmployee"}}
+    <main>
+        {{outlet}}
+    </main>
+</div>

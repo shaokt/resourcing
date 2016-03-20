@@ -18,6 +18,7 @@ export default ResourceRowComponent.extend({
                 $('body').attr('data-editing', true)
             }
             else {
+                $('body').attr('data-editing', false)
                 this.save();
             }
         },

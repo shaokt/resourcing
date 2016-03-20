@@ -17,6 +17,8 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         this.bindScrolling();
         this.bindMouseMove();
 
+        document.title += this.get('settings.view') == "timeaway" ? " - Time Off" : " - Assignments";
+
         //TODO: dynamic year
         this.year=2016
         var self = this;
