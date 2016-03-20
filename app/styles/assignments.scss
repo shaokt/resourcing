@@ -99,14 +99,9 @@
                     }
                 }//td.value
 
-                &.headerPreview {
+                &.arrow {
+                    min-width:60px;
                     overflow:hidden;
-                    padding-left:80px;
-                    vertical-align:middle;
-
-                    [data-assignment]:before {
-                        display:none;
-                    }
 
                     &:after, &:before {
                         background:transparent;
@@ -129,6 +124,14 @@
                         transform:skew(45deg);
                         padding-top:20px;
                         top:-20px;
+                    }
+                }
+
+                &.headerPreview {
+                    vertical-align:middle;
+
+                    [data-assignment]:before {
+                        display:none;
                     }
                 }
 

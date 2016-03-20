@@ -4,8 +4,8 @@
             [data-assignment-id="{{assignment.id}}"] .hexbackgroundArrow:after { border-left-color:#{{hexbackground}} !important; }
             [data-assignment-id="{{assignment.id}}"] tr { border-color:#{{hexbackground}}; }
 
-            [data-assignment-id="{{assignment.id}}"] .headerPreview:after,
-            [data-assignment-id="{{assignment.id}}"] .headerPreview:before,
+            [data-assignment-id="{{assignment.id}}"] .arrow:after,
+            [data-assignment-id="{{assignment.id}}"] .arrow:before,
             [data-assignment-id="{{assignment.id}}"] .hexbackground,
             [data-assignment="{{assignment.id}}"] { background:#{{assignment.background}} !important; }
 
@@ -38,8 +38,11 @@
         {{/if}}
     </td>
 
-    <td class="headerPreview">
+    <td class="arrow">
         <div class="hexbackgroundArrow"></div>
+    </td>
+
+    <td class="headerPreview">
         <ul class="tileOptions">
             <li>
                 <div data-assignment="{{assignment.id}}" data-stamp="true" data-active="true"><span></span></div>
