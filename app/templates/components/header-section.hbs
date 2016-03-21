@@ -33,12 +33,14 @@
 
         {{#if settings.hasCalendar}}
             <button id="today" {{action "scrollToday" on="click"}}><span>Today</span></button>
-            <button id="addResource" {{action "addEmployee"}}><span>Add</span></button>
         {{/if}}
 
         <ul class="viewOptions">
+            <li class="profile">
+                <a href="/" {{action "addEmployee"}}><span></span></a>
+            </li>
             <li class="toggle">
-                <a href="/" {{action "toggleViewHiddenRows" on="click"}}></a>
+                <a href="/" {{action "toggleViewHiddenRows" on="click"}}><span></span></a>
             </li>
         </ul>
     </div>

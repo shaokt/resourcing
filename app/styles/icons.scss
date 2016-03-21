@@ -20,17 +20,53 @@ section.resourceRow {
 
 // icons can appear in the header too
 ul.viewOptions {
+    position:relative;
     li {
         background:#fff;
         float:right;
         list-style:none;
         padding:0;
         position:relative;
-        z-index:1;
     }
 
     li a {
         display:block;
+
+        &:focus, &:hover {
+            span {
+                &:before {
+                    color:#C55000;
+                }
+
+                &:after {
+                    display:block;
+                }
+            }
+        }
+
+        span {
+            &:before {
+                color:#000;
+                font-size:.8em;
+                position:absolute;
+            }
+
+            &:after {
+                background:#fff;
+                border:1px solid #000;
+                border-radius:5px;
+                box-shadow:5px 5px 10px 2px rgba(0,0,0,.5);
+                color:#C55500;
+                display:none;
+                font-size:.5em;
+                font-weight:bold;
+                padding:5px;
+                position:absolute;
+                top:15px;
+                white-space:nowrap;
+                z-index:9;
+            }
+        }
     }
 
     li a:hover,
@@ -150,7 +186,6 @@ ul.viewOptions {
             border-radius:.5em;
 
         }
-        a:hover:after { background:#c55500 !important; }
     }//views
 
     .expand {
@@ -196,6 +231,60 @@ ul.viewOptions {
         margin-top:-1px;
         background:#fff;
     }
+
+    .profile {
+        top:0px;
+        width:50px;
+
+        a {
+            &:focus, &:hover {
+                span {
+                    &:before {
+                        color:#008A14;
+                    }
+                }
+            }
+
+            &:after { // head
+                border:3px solid #fff;
+                border-radius:100px;
+                height:14px;
+                left:12px;
+                margin-top:-17px;
+                width:14px;
+            }
+
+            &:before { // base of profile
+                left:8px;
+                width:28px;
+                height:8px;
+                margin-top:1px;
+                border-radius:10px 10px 0 0;
+            }
+
+            span {
+                &:before { // + sign
+                    content:"+";
+                    color:#008A14;
+                    font-size:1em;
+                    font-weight:bold;
+                    left:-5px;
+                    top:-.8em;
+                }
+
+                &:after {
+                    content:"New Person";
+                }
+            }
+        }
+    }//profile
+
+    .profile a:hover:after,
+    .profile a:focus:after,
+    .profile a:active:after {
+        background:#C55000;
+    }
+
 }
 
 .editing ul.viewOptions {

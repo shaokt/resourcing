@@ -35,11 +35,6 @@ header {
                     border:2px solid;
                 }
 
-                &#addResource span {
-                    background:#008A14;
-                    border-color:#005009;
-                }
-
                 &#details span {
                     background:#30D4DE;
                     border-color:#1D969E;
@@ -72,6 +67,25 @@ header {
         }
     }//.menu
 }//header
+
+#pageContainer {
+    header {
+        .viewOptions {
+            .toggle {
+                &:hover a:after, a:after {
+                    background:#799AFF;
+                }
+                a {
+                    span {
+                        &:after {
+                            content:"Hide Hidden Rows";
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 #pageContainer[data-show-hidden="false"] {
     header {
