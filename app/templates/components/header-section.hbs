@@ -36,6 +36,9 @@
         {{/if}}
 
         <ul class="viewOptions">
+            <li class="today">
+                <a href="/" {{action "scrollToday" on="click"}}><span></span></a>
+            </li>
             <li class="profile">
                 <a href="/" {{action "addEmployee"}}><span></span></a>
             </li>

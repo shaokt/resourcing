@@ -61,8 +61,13 @@ header {
             display:inline-block;
             margin-left:10px;
 
-            a {
-                font-size:2em;
+            li {
+                display:inline-block;
+                float:none;
+                
+                a {
+                    font-size:2em;
+                }
             }
         }
     }//.menu
