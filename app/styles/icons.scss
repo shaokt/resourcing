@@ -286,21 +286,6 @@ ul.viewOptions {
         top:0;
         width:50px;
         a {
-            &:after {
-                background:#fff;
-                border-bottom-left-radius:2px;
-                border-bottom-right-radius:2px;
-                color:#c1a;
-                content:"22";
-                font-size:.8em;
-                font-weight:bold;
-                height:18px;
-                left:3px;
-                position:absolute;
-                text-align:center;
-                top:-1px;
-                width:24px;
-            }
 
             &:before {
                 background:#000;
@@ -313,23 +298,37 @@ ul.viewOptions {
             }
 
             span {
+                background:#fff;
+                border-bottom-left-radius:2px;
+                border-bottom-right-radius:2px;
+                color:#c1a;
+                content:"22";
+                font-size:.8em;
+                font-weight:bold;
+                height:18px;
+                left:3px;
+                position:absolute;
+                text-align:center;
+                top:-9px;
+                width:24px;
+
                 &:after, &:before {
-                    background:#000;
+                    background:#882074;
                     box-shadow:none;
                     border:1px solid #fff;
                     border-radius:5px;
                     content:"";
                     display:block;
                     height:6px;
-                    left:5px;
+                    left:0;
                     padding:0;
                     position:absolute;
-                    top:-19px;
+                    top:-10px;
                     width:3px;
                     z-index:3;
                 }
                 &:after {
-                    left:20px;
+                    left:19px;
                 }
 
 

@@ -5,9 +5,10 @@ export default Ember.Service.extend({
     numDays: 0,         // number of days rendered on calendar
     prevYear: 0,        // previous year's column
     nextYear: 0,        // next year's column
+    todayDate: null,    // today's day number to show in header buttons
     todayColumn: null,  // today's column on the calendar
     draggable: false,   // if the rows are drag sortable or not
-    webcel:null,         // singleton Webcel object - only one editable instance at a time
+    webcel:null,        // singleton Webcel object - only one editable instance at a time
 	padout: function(number) { return (number < 10) ? '0' + number : number; }, // pad single digits to double (for date use)
     save: function(data){
         var self = this;

@@ -31,14 +31,12 @@
             <button id="dragEnable" {{action "dragEnable" on="click"}}><span>Drag Sort</span></button>
         {{/if}}
 
-        {{#if settings.hasCalendar}}
-            <button id="today" {{action "scrollToday" on="click"}}><span>Today</span></button>
-        {{/if}}
-
         <ul class="viewOptions">
-            <li class="today">
-                <a href="/" {{action "scrollToday" on="click"}}><span></span></a>
-            </li>
+            {{#if settings.hasCalendar}}
+                  <li class="today">
+                      <a href="/" {{action "scrollToday" on="click"}}><span>{{constants.todayDate}}</span></a>
+                  </li>
+            {{/if}}
             <li class="profile">
                 <a href="/" {{action "addEmployee"}}><span></span></a>
             </li>
