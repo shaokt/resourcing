@@ -125,39 +125,32 @@ ul.viewOptions {
     }//locks
 
     .toggle {
-        a:before {
-            background:#000;
-            height:1.17em;
-            left:.25em;
-            margin-top:-.67em;
-            width:1.17em;
-
-            -webkit-border-top-left-radius:1em;
-            -webkit-border-bottom-right-radius:1em;
-            -moz-border-radius:1em 0 1em 0;
-            border-radius:1em 0 1em 0;
-
-            -webkit-transform:rotate(45deg);
-            -moz-transform:rotate(45deg);
-            -ms-transform:rotate(45deg);
-            -o-transform:rotate(45deg);
-            transform:rotate(45deg);
+        &:hover {
+            a:after {
+                background:#C55500;
+            }
         }
-
+        
         a:after {
             background:#000;
+            border-radius:.5em;
             border:.17em solid #fff !important;
             height:.33em;
             left:.5em;
-            width:.33em;
             margin-top:-.42em;
-
-            -webkit-border-radius:.5em;
-            -moz-border-radius:.5em;
-            border-radius:.5em;
-
+            width:.33em;
         }
-    }//views
+
+        a:before {
+            background:#000;
+            border-radius:1em 0 1em 0;
+            height:1.17em;
+            left:.25em;
+            margin-top:-.67em;
+            transform:rotate(45deg);
+            width:1.17em;
+        }
+    }//toggle
 
     .expand {
         &:before {
