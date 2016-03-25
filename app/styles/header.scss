@@ -64,7 +64,7 @@ header {
             li {
                 display:inline-block;
                 float:none;
-                
+
                 a {
                     font-size:2em;
                 }
@@ -76,6 +76,16 @@ header {
 #pageContainer {
     header {
         .viewOptions {
+            li {
+                a {
+                    span {
+
+                        &:before {
+                            position:absolute;
+                        }
+                    }
+                }
+            }
             .toggle {
                 &:hover a:after, a:after {
                     background:#799AFF;

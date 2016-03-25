@@ -8,6 +8,7 @@ section.resourceRow {
         width:60px;
 
         li {
+            float:right;
             height:1.2em;
             width:20px;
 
@@ -20,83 +21,60 @@ section.resourceRow {
 
 // icons can appear in the header too
 ul.viewOptions {
-    position:relative;
     li {
         background:#fff;
-        float:right;
         list-style:none;
-        padding:0;
         position:relative;
-    }
 
-    li a {
-        display:block;
+        &:after, &:before {
+            content:"";
+            position:absolute;
+            top:50%;
+        }
 
-        &:focus, &:hover {
+        a {
+            &:after, &:before {
+                background:#000;
+                content:"";
+                margin:-8px 0 0;
+                position:absolute;
+                top:50%;
+            }
+
+            &:active:before,
+            &:focus:before,
+            &:hover:before {
+                background:#C55500;
+            }
+
+
+            &:focus, &:hover {
+                span {
+                    &:after { // hover text
+                        display:block;
+                    }
+                }
+            }
+
             span {
-                &:before {
-                    color:#C55000;
+                &:after { // hover text
+                    background:#fff;
+                    border:1px solid #000;
+                    border-radius:5px;
+                    box-shadow:5px 5px 10px 2px rgba(0,0,0,.5);
+                    color:#C55500;
+                    display:none;
+                    font-size:.5em;
+                    font-weight:bold;
+                    padding:5px;
+                    position:absolute;
+                    top:15px;
+                    white-space:nowrap;
+                    z-index:9;
                 }
-
-                &:after {
-                    display:block;
-                }
-            }
-        }
-
-        span {
-            &:before {
-                color:#000;
-                font-size:.8em;
-                position:absolute;
-            }
-
-            &:after {
-                background:#fff;
-                border:1px solid #000;
-                border-radius:5px;
-                box-shadow:5px 5px 10px 2px rgba(0,0,0,.5);
-                color:#C55500;
-                display:none;
-                font-size:.5em;
-                font-weight:bold;
-                padding:5px;
-                position:absolute;
-                top:15px;
-                white-space:nowrap;
-                z-index:9;
-            }
-        }
-    }
-
-    li a:hover,
-    li a:focus,
-    li a:active {
-        color:#730800;
-        background:transparent;
-    }
-
-    li:before,
-    li:after,
-    li a:before,
-    li a:after {
-        content:"";
-        position:absolute;
-        top:50%;
-        left:0;
-    }
-
-    li a:before,
-    li a:after {
-        margin:-8px 0 0;
-        background:#000;
-    }
-
-    li a:hover:before,
-    li a:focus:before,
-    li a:active:before {
-        background:#C55500;
-    }
+            } //span
+        } // a
+    }// ul.viewOptions
 
     .lock {
         &:before,
