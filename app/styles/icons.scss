@@ -130,7 +130,7 @@ ul.viewOptions {
                 background:#C55500;
             }
         }
-        
+
         a:after {
             background:#000;
             border-radius:.5em;
@@ -165,8 +165,6 @@ ul.viewOptions {
             border-radius:16px;
             height:16px;
             width:16px;
-            -webkit-border-radius:16px;
-            -moz-border-radius:16px;
         }
 
         a:after {
@@ -176,25 +174,25 @@ ul.viewOptions {
             margin-top:-1px;
             width:10px;
         }
-
     }//expand
 
-    .remove a:before {
-        width:16px;
-        height:16px;
-        /* css3 */
-        -webkit-border-radius:16px;
-        -moz-border-radius:16px;
-        border-radius:16px;
-    }
+    .remove {
+        a {
+            &:after {
+                background:#fff;
+                height:2px;
+                left:3px;
+                margin-top:-1px;
+                width:10px;
+            }
 
-    .remove a:after {
-        left:3px;
-        width:10px;
-        height:2px;
-        margin-top:-1px;
-        background:#fff;
-    }
+            &:before {
+                border-radius:16px;
+                height:16px;
+                width:16px;
+            }
+        }
+    }//remove
 
     .profile {
         top:0px;
