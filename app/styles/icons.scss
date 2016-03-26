@@ -52,7 +52,7 @@ ul.viewOptions {
             &:after, &:before {
                 background:#000;
                 content:"";
-                margin:-8px 0 0;
+                //margin:-8px 0 0;
                 position:absolute;
                 top:50%;
             }
@@ -145,7 +145,7 @@ ul.viewOptions {
         a:after {
             background:#000;
             border-radius:.5em;
-            border:.17em solid #fff !important;
+            border:.17em solid #FFF;
             height:.33em;
             left:.5em;
             margin-top:-.42em;
@@ -172,6 +172,11 @@ ul.viewOptions {
             width:2px;
             z-index:10;
         }
+
+        a:before, a:after {
+            margin:-8px 0 0;
+        }
+
         a:before {
             border-radius:16px;
             height:16px;
@@ -206,8 +211,7 @@ ul.viewOptions {
     }//remove
 
     .profile {
-        margin-top:-20px;
-
+        &:after, &:before { display:none; }
         a {
             &:focus, &:hover {
                 &:after {
@@ -224,8 +228,8 @@ ul.viewOptions {
                 border:4px solid #fff;
                 border-radius:100px;
                 height:20px;
-                left:11px;
-                margin-top:-16px;
+                left:13px;
+                top:0;
                 width:20px;
             }
 
@@ -233,9 +237,9 @@ ul.viewOptions {
                 border-radius:10px 10px 0 0;
                 display:block;
                 height:14px;
-                left:7px;
+                left:9px;
                 position:relative;
-                top:34px;
+                top:25px;
                 width:36px;
             }
 
@@ -243,10 +247,11 @@ ul.viewOptions {
                 &:before { // + sign
                     content:"+";
                     color:#008A14;
-                    font-size:1.2em;
+                    font-size:1.3em;
                     font-weight:bold;
                     position:relative;
                     left:-3px;
+                    top:-12px;
                     z-index:5;
                 }
 
@@ -261,7 +266,6 @@ ul.viewOptions {
 
     .today {
         background:none;
-        top:5px;
 
         &:after, &:before { display:none; }
 
@@ -279,35 +283,44 @@ ul.viewOptions {
                 border-radius:5px;
                 content:"";
                 display:block;
-                height:6px;
+                height:9px;
                 padding:0;
                 position:absolute;
-                top:-3px;
-                width:3px;
+                top:-2px;
+                width:4px;
                 z-index:3;
             }
 
-            &:before { left:4px; }
+            &:before { left:9px; }
 
-            &:after { right:4px; }
+            &:after { right:10px; }
 
             span {
+                background:#FFF;
+                border-bottom-left-radius:2px;
+                border-bottom-right-radius:2px;
                 color:#c1a;
+                display:block;
                 font-weight:bold;
+                height:1em;
+                left:7px;
                 padding:0 2px;
+                position:absolute;
                 text-align:center;
+                top:12px;
+                width:1.3em;
 
                 &:before {
                     background:#000;
-                    border:3px solid #000;
-                    border-top-width:8px;
+                    border:6px solid #000;
                     border-radius:5px;
                     content:"";
-                    height:100%;
-                    left:-3px;
+                    display:block;
+                    height:1em;
+                    left:-4px;
                     position:absolute;
-                    top:-8px;
-                    width:100%;
+                    top:-9px;
+                    width:1.3em;
                     z-index:-1;
                 }
                 &:after {
@@ -327,6 +340,8 @@ ul.viewOptions {
     }//today
 
     .dragSort {
+        &:after, &:before { display:none; }
+
         a {
             display:block;
             width:40px;
@@ -343,7 +358,8 @@ ul.viewOptions {
                 border-top:10px solid #ABC123;
                 border-bottom-left-radius: 5px;
                 padding-bottom:2px;
-                top:0px;
+                left:10px;
+                top:17px;
                 width:15px;
             }
 
@@ -351,8 +367,7 @@ ul.viewOptions {
                 border:17px solid #ABC123;
                 border-top-color:transparent;
                 display:block;
-                left:-9px;
-                top:-34px;
+                top:-17px;
             }
 
             span {
@@ -360,9 +375,9 @@ ul.viewOptions {
                     border-bottom:10px solid #FF2F1D;
                     border-top:5px solid #FF2F1D;
                     border-top-right-radius:5px;
-                    left:30px;
+                    right:7px;
                     padding-top:2px;
-                    top:-17px;
+                    top:8px;
                     width:10px;
                 }
 
@@ -371,7 +386,8 @@ ul.viewOptions {
                     border-bottom-color:transparent;
                     display:block;
                     height:0;
-                    left:23px;
+                    right:0;
+                    top:25px;
                 }
             }
 
