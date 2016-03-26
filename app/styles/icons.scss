@@ -333,7 +333,7 @@ ul.viewOptions {
             top:-20px;
             width:40px;
 
-            &:before {
+            &:before { // left block
                 background:#FFF;
                 border-bottom:5px solid #ABC123;
                 border-top:10px solid #ABC123;
@@ -344,37 +344,37 @@ ul.viewOptions {
                 padding-bottom:2px;
                 position:absolute;
                 top:19px;
-                width:10px;
+                width:15px;
             }
 
-            &:after {
+            &:after { // left point
                 background:#FFF;
-                border:12px solid #ABC123;
+                border:17px solid #ABC123;
                 border-left-color:transparent;
                 border-right-color:transparent;
                 border-top-color:transparent;
                 content:"";
                 display:block;
-                left:-7px;
-                top:-5px;
+                left:-9px;
+                top:-15px;
             }
 
             span {
                 position:absolute;
-        &:after {
-            background:#FFF;
-            border-bottom:10px solid #FF2F1D;
-            border-top:5px solid #FF2F1D;
-            border-top-right-radius:5px;
-            content:"";
-            left:22px;
-            padding-top:2px;
-            position:absolute;
-            top:3px;
-            width:10px;
-        }
-                &:before {
-                    background:#fff;
+                &:after { // right block
+                    background:#FFF;
+                    border-bottom:10px solid #FF2F1D;
+                    border-top:5px solid #FF2F1D;
+                    border-top-right-radius:5px;
+                    content:"";
+                    left:30px;
+                    padding-top:2px;
+                    position:absolute;
+                    top:3px;
+                    width:10px;
+                }
+                &:before { // right point
+                    background:#FFF;
                     border:12px solid #FF2F1D;
                     border-left-color:transparent;
                     border-right-color:transparent;
@@ -382,7 +382,7 @@ ul.viewOptions {
                     content:"";
                     display:block;
                     height:0;
-                    left:15px;
+                    left:23px;
                     position:relative;
                     top:20px;
                     width:0;

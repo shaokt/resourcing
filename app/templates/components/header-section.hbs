@@ -25,13 +25,17 @@
             </button>
         {{/if}}
 
-        {{#if this.constants.draggable}}
-            <button id="dragDisable" {{action "dragDisable" on="click"}}><span>Drag Done</span></button>
-        {{else}}
-            <button id="dragEnable" {{action "dragEnable" on="click"}}><span>Drag Sort</span></button>
-        {{/if}}
-
         <ul class="viewOptions">
+            {{#if this.constants.draggable}}
+                <li class="dragSort">
+                    <a href="/" {{action "dragDisable" on="click"}}><span></span></a>
+                </li>
+            {{else}}
+                <li class="dragSort">
+                    <a href="/" {{action "dragEnable" on="click"}}><span></span></a>
+                </li>
+            {{/if}}
+
             {{#if settings.hasCalendar}}
                   <li class="today">
                       <a href="/" {{action "scrollToday" on="click"}}><span>{{constants.todayDate}}</span></a>
