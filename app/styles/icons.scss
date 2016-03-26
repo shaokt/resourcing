@@ -14,10 +14,16 @@ section.resourceRow {
 
             a {
                 width:20px;
+
+                &:active:before,
+                &:focus:before,
+                &:hover:before {
+                    background:#C55500;
+                }
             }
         }
     }
-}
+}//section.resourceRow
 
 // icons can appear in the header too
 ul.viewOptions {
@@ -49,12 +55,6 @@ ul.viewOptions {
                 margin:-8px 0 0;
                 position:absolute;
                 top:50%;
-            }
-
-            &:active:before,
-            &:focus:before,
-            &:hover:before {
-                background:#C55500;
             }
 
             &:focus, &:hover {
@@ -329,69 +329,62 @@ ul.viewOptions {
     .dragSort {
         a {
             display:block;
-            position:relative;
-            top:-20px;
             width:40px;
 
-            &:before { // left block
+            &:after, :after { // shared block properties
                 background:#FFF;
+                content:"";
+                display:block;
+                position:absolute;
+            }
+
+            &:after { // left block
                 border-bottom:5px solid #ABC123;
                 border-top:10px solid #ABC123;
                 border-bottom-left-radius: 5px;
-                content:"";
-                display:block;
-                margin-bottom:5px;
                 padding-bottom:2px;
-                position:absolute;
-                top:19px;
+                top:0px;
                 width:15px;
             }
 
-            &:after { // left point
-                background:#FFF;
+            &:before { // left point
                 border:17px solid #ABC123;
-                border-left-color:transparent;
-                border-right-color:transparent;
                 border-top-color:transparent;
-                content:"";
                 display:block;
                 left:-9px;
-                top:-15px;
+                top:-34px;
             }
 
             span {
-                position:absolute;
                 &:after { // right block
-                    background:#FFF;
                     border-bottom:10px solid #FF2F1D;
                     border-top:5px solid #FF2F1D;
                     border-top-right-radius:5px;
-                    content:"";
                     left:30px;
                     padding-top:2px;
-                    position:absolute;
-                    top:3px;
+                    top:-17px;
                     width:10px;
                 }
+
                 &:before { // right point
-                    background:#FFF;
                     border:12px solid #FF2F1D;
-                    border-left-color:transparent;
-                    border-right-color:transparent;
                     border-bottom-color:transparent;
-                    content:"";
                     display:block;
                     height:0;
                     left:23px;
-                    position:relative;
-                    top:20px;
-                    width:0;
                 }
-
             }
-        }
-    }
-}
+
+            &:before, span:before { // shared point properties
+                background:#FFF;
+                border-left-color:transparent;
+                border-right-color:transparent;
+                content:"";
+                position:absolute;
+            }
+        }//a
+    }//dragSort
+}//ul.viewOptions
 
 .editing ul.viewOptions {
     display:block;
