@@ -19,13 +19,16 @@
                 <span class="timeOff">Time off</span>
             </button>
         {{/if}}
-        {{#if settings.isDailyCalendar}}
-            <button class="changeView" {{action "toggleView" 'assignment' on="click"}}>
-                <span class="assignment">Assignment</span>
-            </button>
-        {{/if}}
 
         <ul class="viewOptions">
+            {{#if settings.isDailyCalendar}}
+                <li class="assignment">
+                    <a href="/" class="assignment" {{action "toggleView" 'assignment' on="click"}}>
+                        <div class="lapiz"><span class="lapiz3"></span></div>
+                    </a>
+                </li>
+            {{/if}}
+
             {{#if this.constants.draggable}}
                 <li class="dragSort">
                     <a href="/" {{action "dragDisable" on="click"}}><span></span></a>
