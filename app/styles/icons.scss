@@ -152,7 +152,7 @@ ul.viewOptions {
             width:.33em;
         }
 
-        a:before {
+        a:before { // pupil
             background:#000;
             border-radius:1em 0 1em 0;
             height:1.17em;
@@ -214,13 +214,37 @@ ul.viewOptions {
         &:after, &:before { display:none; }
         a {
             &:focus, &:hover {
-                &:after {
-                    background:#C55000;
-                }
                 span {
                     &:before {
-                        color:#008A14;
+                        display:block;
+                        animation: growPlus 5000ms infinite linear;
                     }
+                }
+            }
+            @keyframes growPlus {
+                5% {
+                    color:green;
+                }
+                10% {
+                    color:#99D4DE;
+                }
+                25% {
+                    transform: scale(1.5);
+                }
+                50% {
+                    color:#008A14;
+                    text-shadow:1px 1px 1px #555;
+                    transform: scale(1.5);
+                }
+                55% {
+                    text-shadow:2px 2px 12x #999;
+                }
+                65% {
+                    color:#90D4DE;
+                    transform: scale(1)
+                }
+                90% {
+                    color:#008A14;
                 }
             }
 
@@ -428,7 +452,7 @@ ul.viewOptions {
         background-color: rgba(0,0,0,0.3);
         content: '';
         display: none;
-        height: 100%;
+            height: 100%;
         left: 0;
         position: fixed;
         top: 0;
