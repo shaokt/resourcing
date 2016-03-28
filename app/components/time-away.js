@@ -6,14 +6,13 @@ export default Ember.Component.extend({
 
     // TODO: JSON file for easy updates
     timeaway: [
-            "empty",
             "vacation",
             "vacationCarryover",
             "vacationTentative",
+        	"unofficial",
             "sick",
             "personal",
         	"lieu",
-        	"unofficial",
         	"wfh",
         	"conference",
         	"training",
@@ -22,7 +21,8 @@ export default Ember.Component.extend({
             "parentalLeave",
         	"jury",
         	"firstDay",
-        	"lastDay"
+        	"lastDay",
+            "empty"
     ],
 
     // remove active state on selected item if it exists
