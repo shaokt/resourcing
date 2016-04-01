@@ -429,21 +429,21 @@ ul.viewOptions {
     .assignment {
         &:hover {
             &:after {
+                animation:scribble 1000ms infinite alternate;
                 background:#888;
-                top:37px;
                 content:"";
                 display:block;
                 height:2px;
                 position:absolute;
                 right:17px;
+                top:37px;
                 width:0;
-                animation:scribble 1000ms infinite alternate;
             }
-            .lapiz {
-                animation:girar 1000ms infinite alternate;
+            .pencil {
+                animation:write 1000ms infinite alternate;
             }
 
-            @keyframes girar {
+            @keyframes write {
                 0% {
                     margin-left:20px;
                     top:3px;
@@ -471,29 +471,22 @@ ul.viewOptions {
             }
         }// hover
 
-        .lapiz { // yellow stick
+        .pencil { // yellow stick
             font-size:.5em;
             background: linear-gradient(to right, rgba(242,197,84,1) 0%, rgba(242,197,84,1) 25%, rgba(245,166,8,1) 25%, rgba(248,181,0,1) 75%, rgba(245,166,8,1) 75%, rgba(245,166,8,1) 100%);
-            height:162px;
+            height:2.5em;
+            left:20px;
             position:absolute;
             transform: rotate(90deg);
-            width:90px;
-
-            height:2.5em;
+            top:8px;
             width:1.5em;
 
-            left:20px;
-            top:8px;
-
-            &:before { // silver stick
-                background: linear-gradient(to right, rgba(250,249,245,1) 0%, rgba(250,249,245,1) 25%, rgba(240,240,240,1) 25%, rgba(230,230,230,1) 75%, rgba(217,213,217,1) 75%, rgba(217,213,217,1) 100%);
+            &:before { // ferrule
+                background:linear-gradient(to right, rgba(250,249,245,1) 0%, rgba(250,249,245,1) 25%, rgba(240,240,240,1) 25%, rgba(230,230,230,1) 75%, rgba(217,213,217,1) 75%, rgba(217,213,217,1) 100%);
                 content:"";
                 display:block;
-                height:30px;
-                margin:0px 0px;
-                width:90px;
-
                 height:.5em;
+                margin:0px 0px;
                 width:1.5em;
             }// silver stick
 
@@ -502,38 +495,33 @@ ul.viewOptions {
                 border-radius:90px 90px 0 0;
                 content:"";
                 display:block;
-                height:45px;
-                margin:-70px 0px;
-                width:90px;
-
                 height:.75em;
                 margin:-1.2em 0;
                 width:1.5em;
             }//eraser
-        }// lapiz
 
-        .lapiz3 { // sharpened part
-            border-left: .8em solid transparent;
-            border-right: .8em solid transparent;
-            border-top: 1em solid #FFE3B2;
-            height: 0;
-            margin:2em 0;
-            position:absolute;
-            width: 0;
-
-            &:before { // pencil nib
-                border-left: .3em solid transparent;
-                border-right: .3em solid transparent;
-                border-top: .3em solid #212121;
-                content:"";
-                display:block;
+            .wood {
+                border-left: .8em solid transparent;
+                border-right: .8em solid transparent;
+                border-top: 1em solid #FFE3B2;
                 height: 0;
-                margin:-.35em  -.25em;
-                width:0;
-            }
-        }// lapiz3
-    }// assignment/pencil
+                margin:2em 0;
+                position:absolute;
+                width: 0;
 
+                &:before { // lead
+                    border-left: .3em solid transparent;
+                    border-right: .3em solid transparent;
+                    border-top: .3em solid #212121;
+                    content:"";
+                    display:block;
+                    height: 0;
+                    margin:-.35em  -.25em;
+                    width:0;
+                }
+            }//wood
+        }//pencil
+    }// assignment/pencil
 }//ul.viewOptions
 
 .editing ul.viewOptions {
