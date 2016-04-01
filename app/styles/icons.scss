@@ -522,6 +522,51 @@ ul.viewOptions {
             }//wood
         }//pencil
     }// assignment/pencil
+
+    .timeaway {
+        &:before {
+            background:#000;
+            content:"";
+            display:block;
+            height:2px;
+            left:23px;
+            top:1px;
+            width:5px;
+        }
+        a {
+            &:after { //stop buttons
+                background:#000;
+                border-radius:2px;
+                height:3px;
+                top:-2px;
+                left:20px;
+                width:11px;
+            }
+
+            &:before { // clock
+                background:#fff;
+                border:5px solid silver;
+                border-radius:30px;
+                box-sizing:border-box;
+                height:38px;
+                left:7px;
+                top:3px;
+                width:38px;
+            }
+            span {
+                &:after {
+                    background:#000;
+                    content:"";
+                    display:block;
+                    height:12px;
+                    left:25px;
+                    position:absolute;
+                    top:10px;
+                    width:2px;
+                }
+            }
+        }
+    }
 }//ul.viewOptions
 
 .editing ul.viewOptions {

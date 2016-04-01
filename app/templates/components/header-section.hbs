@@ -14,17 +14,19 @@
     </ul>
 
     <div class="buttonContainer">
-        {{#if settings.isWeeklyCalendar}}
-            <button class="changeView" {{action "toggleView" 'timeaway' on="click"}}>
-                <span class="timeOff">Time off</span>
-            </button>
-        {{/if}}
-
         <ul class="viewOptions">
+            {{#if settings.isWeeklyCalendar}}
+                <li class="timeaway">
+                    <a href="/" {{action "toggleView" 'timeaway' on="click"}}>
+                        <span></span>
+                    </a>
+                </li>
+            {{/if}}
+
             {{#if settings.isDailyCalendar}}
                 <li class="assignment">
-                    <a href="/" class="assignment" {{action "toggleView" 'assignment' on="click"}}>
-                        <div class="lapiz"><span class="lapiz3"></span></div>
+                    <a href="/" {{action "toggleView" 'assignment' on="click"}}>
+                        <span class="pencil"><span class="wood"></span></span>
                     </a>
                 </li>
             {{/if}}
