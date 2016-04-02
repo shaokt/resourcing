@@ -18,7 +18,13 @@
             {{#if settings.isWeeklyCalendar}}
                 <li class="timeaway">
                     <a href="/" {{action "toggleView" 'timeaway' on="click"}}>
-                        <span></span>
+                        <span class="start"></span>
+                        <span class="reset"></span>
+                        <span class="hands"></span>
+                        <span class="time" data-time="3"></span>
+                        <span class="time" data-time="6"></span>
+                        <span class="time" data-time="9"></span>
+                        <span class="time" data-time="12"></span>
                     </a>
                 </li>
             {{/if}}

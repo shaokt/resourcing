@@ -524,49 +524,195 @@ ul.viewOptions {
     }// assignment/pencil
 
     .timeaway {
-        &:before {
-            background:#000;
-            content:"";
-            display:block;
-            height:2px;
-            left:23px;
-            top:1px;
-            width:5px;
-        }
         a {
-            &:after { //stop buttons
+            /*
+            &:after { // main stop button
                 background:#000;
                 border-radius:2px;
                 height:3px;
                 top:-2px;
                 left:20px;
-                width:11px;
+                width:12px;
+            }
+            */
+            &:after { // clock face
+                background:#FFF;
+                border-radius:100%;
+                height:28px;
+                left:12px;
+                top:8px;
+                width:28px;
             }
 
-            &:before { // clock
-                background:#fff;
-                border:5px solid silver;
-                border-radius:30px;
-                box-sizing:border-box;
+            &:before { // clock border
+                background-image: linear-gradient(45deg, #000 0%, #fff 50%, #000 100%);
+                border-radius:100%;
                 height:38px;
                 left:7px;
                 top:3px;
                 width:38px;
+
             }
-            span {
-                &:after {
-                    background:#000;
+
+            span.start {
+                display:block;
+                position:absolute;
+                left:0;
+                top:-0px;
+
+                &:after { // main stop button
+                    background-image: linear-gradient(to right, #000 0%, #fff 50%, #000 100%);
+                    border-radius:5%;
+                    content:"";
+                    height:3px;
+                    position:absolute;
+                    top:-2px;
+                    left:22px;
+                    width:8px;
+                }
+
+                &:before {
+                    background-image: linear-gradient(to right, #000 0%, #fff 50%, #000 100%);
                     content:"";
                     display:block;
-                    height:12px;
+                    height:2px;
+                    left:23px;
+                    position:absolute;
+                    top:1px;
+                    width:6px;
+                }
+            }
+
+            span.reset {
+                display:block;
+                position:absolute;
+                left:40px;
+                top:4px;
+                transform:rotate(45deg) scale(.75);
+
+                &:after { // button
+                    background-image: linear-gradient(to left, #000 0%, #fff 50%, #000 100%);
+                    border-radius:5%;
+                    content:"";
+                    height:3px;
+                    position:absolute;
+                    width:8px;
+                }
+
+                &:before { // stem
+                    background-image: linear-gradient(to right, #000 0%, #fff 50%, #000 100%);
+                    content:"";
+                    display:block;
+                    height:2px;
+                    left:1px;
+                    position:absolute;
+                    top:3px;
+                    width:6px;
+                }
+            }
+
+            span.hands {
+                &:after { // hour hand
+                    border-right:10px solid red;
+                    border-left:10px solid transparent;
+                    content:"";
+                    display:block;
+                    font-size:.5em;
+                    height:2px;
+                    left:16px;
+                    position:absolute;
+                    transform:rotate(60deg);
+                    top:22px;
+                    z-index:1;
+                }
+
+                &:before { // minute hand
+                    border-top:14px solid #000;
+                    border-bottom:12px solid transparent;
+                    content:"";
+                    display:block;
                     left:25px;
                     position:absolute;
                     top:10px;
                     width:2px;
+                    z-index:1;
+                }
+            }//hands
+
+            span.time {
+                &:before {
+                    border:1px solid #fff;
+                    border-radius:100px;
+                    content:"";
+                    display:block;
+                    font-weight:bold;
+                    position:absolute;
+                }
+
+                &[data-time="3"]:before {
+                    left:41px;
+                    top:20px;
+                }
+
+                &[data-time="6"]:before {
+                    left:25px;
+                    top:37px;
+                }
+
+                &[data-time="9"]:before {
+                    left:9px;
+                    top:20px;
+                }
+
+                &[data-time="12"]:before {
+                    left:25px;
+                    top:5px;
                 }
             }
-        }
-    }
+
+            &:hover {
+                span.hands {
+                    &:after {
+                        animation: rotateHour 12000ms infinite linear;
+                    }
+
+                    &:before {
+                        animation: rotateMinute 1000ms infinite linear;
+                    }
+
+                }
+                span.start {
+                    &:after {
+                        animation: pressStart 12000ms infinite linear;
+                    }
+                }
+            }
+
+            @keyframes pressStart {
+                0% { top:0px; }
+                .5% { top:-2px; }
+            }
+
+            @keyframes rotateHour {
+                9% { transform:rotate(90deg); }
+                17% { transform:rotate(120deg); }
+                25% { transform:rotate(150deg); }
+                33% { transform:rotate(180deg); }
+                42% { transform:rotate(210deg); }
+                50% { transform:rotate(240deg); }
+                58% { transform:rotate(270deg); }
+                67% { transform:rotate(300deg); }
+                75% { transform:rotate(330deg); }
+                83% { transform:rotate(360deg); }
+                92% { transform:rotate(390deg); }
+                100% { transform:rotate(420deg); }
+            }
+
+            @keyframes rotateMinute {
+                100% { transform:rotate(365deg); }
+            }
+        }//a
+    }//timeaway
 }//ul.viewOptions
 
 .editing ul.viewOptions {
