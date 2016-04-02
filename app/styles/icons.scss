@@ -525,16 +525,6 @@ ul.viewOptions {
 
     .timeaway {
         a {
-            /*
-            &:after { // main stop button
-                background:#000;
-                border-radius:2px;
-                height:3px;
-                top:-2px;
-                left:20px;
-                width:12px;
-            }
-            */
             &:after { // clock face
                 background:#FFF;
                 border-radius:100%;
@@ -560,7 +550,7 @@ ul.viewOptions {
                 left:0;
                 top:-0px;
 
-                &:after { // main stop button
+                &:after { // button
                     background-image: linear-gradient(to right, #000 0%, #fff 50%, #000 100%);
                     border-radius:5%;
                     content:"";
@@ -571,7 +561,7 @@ ul.viewOptions {
                     width:8px;
                 }
 
-                &:before {
+                &:before { // stem
                     background-image: linear-gradient(to right, #000 0%, #fff 50%, #000 100%);
                     content:"";
                     display:block;
