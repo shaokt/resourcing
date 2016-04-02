@@ -14,24 +14,39 @@
     </ul>
 
     <div class="buttonContainer">
-        {{#if settings.isWeeklyCalendar}}
-            <button class="changeView" {{action "toggleView" 'timeaway' on="click"}}>
-                <span class="timeOff">Time off</span>
-            </button>
-        {{/if}}
-        {{#if settings.isDailyCalendar}}
-            <button class="changeView" {{action "toggleView" 'assignment' on="click"}}>
-                <span class="assignment">Assignment</span>
-            </button>
-        {{/if}}
-
-        {{#if this.constants.draggable}}
-            <button id="dragDisable" {{action "dragDisable" on="click"}}><span>Drag Done</span></button>
-        {{else}}
-            <button id="dragEnable" {{action "dragEnable" on="click"}}><span>Drag Sort</span></button>
-        {{/if}}
-
         <ul class="viewOptions">
+            {{#if settings.isWeeklyCalendar}}
+                <li class="timeaway">
+                    <a href="/" {{action "toggleView" 'timeaway' on="click"}}>
+                        <span class="start"></span>
+                        <span class="reset"></span>
+                        <span class="hands"></span>
+                        <span class="time" data-time="3"></span>
+                        <span class="time" data-time="6"></span>
+                        <span class="time" data-time="9"></span>
+                        <span class="time" data-time="12"></span>
+                    </a>
+                </li>
+            {{/if}}
+
+            {{#if settings.isDailyCalendar}}
+                <li class="assignment">
+                    <a href="/" {{action "toggleView" 'assignment' on="click"}}>
+                        <span class="pencil"><span class="wood"></span></span>
+                    </a>
+                </li>
+            {{/if}}
+
+            {{#if this.constants.draggable}}
+                <li class="dragSort">
+                    <a href="/" {{action "dragDisable" on="click"}}><span></span></a>
+                </li>
+            {{else}}
+                <li class="dragSort">
+                    <a href="/" {{action "dragEnable" on="click"}}><span></span></a>
+                </li>
+            {{/if}}
+
             {{#if settings.hasCalendar}}
                   <li class="today">
                       <a href="/" {{action "scrollToday" on="click"}}><span>{{constants.todayDate}}</span></a>
