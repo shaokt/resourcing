@@ -237,26 +237,125 @@ ul.viewOptions {
                 }
             }
 
-            &:after { // head
-                border:4px solid #fff;
-                border-radius:100px;
-                height:20px;
-                left:13px;
-                top:0;
-                width:20px;
-            }
+            .person {
+                &:before { // blouse
+                    background:rgb(102,102,255);
+                    content: "";
+                    position: absolute;
+                    border-radius:10px 10px 0 0;
+                    content:"";
+                    display:block;
+                    height:14px;
+                    left:9px;
+                    position:relative;
+                    top:25px;
+                    width:36px;
+                    z-index:2;
+                }
 
-            &:before { // base of profile
-                border-radius:10px 10px 0 0;
-                display:block;
-                height:14px;
-                left:9px;
-                position:relative;
-                top:25px;
-                width:36px;
-            }
+                .face {
+                    left:17px;
+                    position:absolute;
+                    top:2px;
+
+                    &:after { // head
+                        background:#FFF;
+                        border-radius:100px;
+                        content:"";
+                        height:20px;
+                        position:absolute;
+                        width:20px;
+                    }
+
+                    &:before { // lips
+                        border:3px solid red;
+                        border-top-color:transparent;
+                        border-left-color:transparent;
+                        border-radius:100%;
+                        content:"";
+                        height:0;
+                        left:7px;
+                        position:absolute;
+                        top:12px;
+                        transform:rotate(45deg);
+                        width:0;
+                        z-index:5;
+                    }
+                }//face
+
+                .hair {
+                    display:block;
+                    left:12px;
+                    position:absolute;
+                    top:-2px;
+
+                    &:after { //bangs
+                        background:linear-gradient(50deg,
+                            rgba(128,65,0,1) 25%,
+                            rgba(177,40,8,1) 75%,
+                            rgba(177,40,0,1) 100%);
+                        border-radius:100%;
+                        content:"";
+                        height:8px;
+                        position:absolute;
+                        top:4px;
+                        transform:rotate(-35deg);
+                        width:20px;
+                        z-index:1;
+                    }
+
+                    &:before { // long hair
+                        border-radius:100%;
+                        background:linear-gradient(to bottom,
+                            rgba(177,40,0,1) 25%,
+                            rgba(128,66,8,1) 75%,
+                            rgba(0,0,0,.5) 100%);
+                        content:"";
+                        height:40px;
+                        position:absolute;
+                        width:30px;
+                    }
+                }//hair
+
+                .neck {
+                    &:after { //necklace
+                        border-radius:10px;
+                        box-shadow:
+                            rgba(249, 193, 21, 1) .8em 0 0 0,
+                            rgba(249, 193, 21, 1) .6em .6em 0 0,
+                            rgba(249, 193, 21, 1) 0 1em 0 0,
+                            rgba(249, 193, 21, 1) -.6em .6em 0 0,
+                            rgba(249, 193, 21, 1) -.8em 0 0 0;
+                        content:"";
+                        display:block;
+                        height:10px;
+                        left:23px;
+                        position:absolute;
+                        top:22px;
+                        transform:scale(.3);
+                        width:10px;
+                        z-index:5;
+                    }
+
+                    &:before { //neck
+                        border:8px solid #FFF;
+                        border-top-color:transparent;
+                        border-left-color:transparent;
+                        border-radius:100%;
+                        content:"";
+                        height:0;
+                        left:20px;
+                        position:absolute;
+                        top:17px;
+                        transform:rotate(45deg);
+                        width:0;
+                        z-index:5;
+                    }
+                }//neck
+            }//person
 
             span.plus {
+                display:none;
                 &:before { // + sign
                     content:"+";
                     color:#008A14;
