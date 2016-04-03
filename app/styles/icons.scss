@@ -28,10 +28,6 @@ section.resourceRow {
 // icons can appear in the header too
 ul.viewOptions {
     li {
-        &:not(:hover) {
-            //a span:after { display:none !important; }
-        }
-
         background:#fff;
         list-style:none;
         position:relative;
@@ -364,24 +360,53 @@ ul.viewOptions {
                 position:absolute;
             }
 
-            &:after { // left block
-                border-bottom:5px solid #ABC123;
-                border-top:10px solid #ABC123;
-                border-bottom-left-radius:5px;
-                padding-bottom:2px;
-                left:10px;
-                top:17px;
-                width:15px;
+            &:hover {
+                span.leftArrow {
+                    animation:moveLeftArrow 1500ms infinite alternate;
+                }
+                span.rightArrow {
+                    animation:moveRightArrow 1500ms infinite alternate;
+                }
+
+                @keyframes moveRightArrow {
+                    75%, 100% {
+                        transform:scale(1.35);
+                    }
+                }
+
+                @keyframes moveLeftArrow {
+                    75%, 100% {
+                        transform:scale(.75);
+                    }
+                }
+            }
+            span.leftArrow {
+                position:absolute;
+
+                &:after { // left block
+                    border-bottom:5px solid #ABC123;
+                    border-top:10px solid #ABC123;
+                    border-bottom-left-radius:5px;
+                    padding-bottom:2px;
+                    left:10px;
+                    top:17px;
+                    width:15px;
+                }
+
+                &:before { // left point
+                    border:17px solid #ABC123;
+                    border-top-color:transparent;
+                    border-left-color:transparent;
+                    border-right-color:transparent;
+                    display:block;
+                    top:-17px;
+                }
             }
 
-            &:before { // left point
-                border:17px solid #ABC123;
-                border-top-color:transparent;
-                display:block;
-                top:-17px;
-            }
+            span.rightArrow {
+                position:absolute;
+                left:50px;
 
-            span.arrow {
                 &:after { // right block
                     border-bottom:10px solid #FF2F1D;
                     border-top:5px solid #FF2F1D;
