@@ -120,9 +120,11 @@
     }
 
     .tileOptions:hover {
-
-            padding-right:500px;
+        li {
+            padding-right:55px !important;
+        }
     }
+
     .tileOptions li {
         position:relative;
 
