@@ -284,7 +284,7 @@ ul.viewOptions {
             &:focus { outline:none; }
 
             &:after, &:before { // hangers
-                background:#882074 !important;
+                background-image:linear-gradient(to right, #000 0%, #888 10%, #222 100%);
                 box-shadow:none;
                 border:1px solid #fff;
                 border-radius:5px;
@@ -324,7 +324,12 @@ ul.viewOptions {
 
                 &:before {
                     background:#000;
-                    border:6px solid #000;
+                    background:linear-gradient(to bottom,
+                        rgba(242,166,8,1) 0%,
+                        rgba(242,166,8,.5) 25%,
+                        rgba(245,181,0,.4) 25%,
+                        rgba(248,166,8,.5) 75%,
+                        rgba(245,197,84,1) 100%);
                     border-radius:5px;
                     content:"";
                     display:block;
@@ -333,15 +338,86 @@ ul.viewOptions {
                     position:absolute;
                     top:-9px;
                     width:1.3em;
+                    padding:6px;
                     z-index:-1;
                 }
             }//date
 
-            &:focus, &:hover {
-                span:before {
-                    background:#C55500;
+            span.page {
+                display:none;
+                width:40px;
+                height:38px;
+                position:relative;
+                overflow:hidden;
+                top:-4px;
+                transform:rotate(-30deg);
+
+                &:after {
+                    background:#eff;
+                    content:"";
+                    position:absolute;
+                    border-left:1px solid #fff;
+                    border-top-left-radius:2px;
+                    border-bottom-left-radius:10px;
+                    left:9px;
+                    height:27px;
+                    transform:rotate(45deg) skew(-15deg, 10deg);
+                    top:44px;
+                    width:27px;
                 }
             }
+
+            &:hover {
+                span.date span {
+                    display:block;
+                    animation:skewDate 1000ms infinite alternate;
+                }
+                span.page {
+                    display:block;
+                    animation:pageShadow 1000ms infinite alternate;
+
+                    &:after {
+                        animation:turnPage 1000ms infinite alternate;
+                    }
+                }
+                @keyframes skewDate {
+                    100% {
+                        color:#a1a;
+                        transform:skew(-5deg, -12deg);
+                        text-shadow:2px 1px rgba(0,0,0,.2);
+                    }
+                }
+                @keyframes pageShadow {
+                    25%{
+                        left:2px;
+                        opacity:0;
+                        top:4px;
+                    }
+                    29% {
+                        box-shadow:none;
+                        opacity:1;
+                        top:0;
+                    }
+                    30% {
+                        box-shadow:4px 20px 18px -15px rgba(255,255,255,0.5);
+                        top:-2px;
+                    }
+                    50%, 100% {
+                        box-shadow:4px 20px 18px -15px rgba(0,0,0,0.5);
+                        top:-4px;
+                    }
+                }
+                @keyframes turnPage {
+                    10% {
+                        border-left:1px solid #d9d9d9;
+                    }
+                    100% {
+                        box-shadow:-1px -1px 5px -2px rgba(0,0,0,0.5);
+                        left:9px;
+                        top:34px;
+                    }
+                }
+            }//hover
         }//a
     }//today
 

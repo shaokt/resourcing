@@ -59,7 +59,8 @@
             {{#if settings.hasCalendar}}
                 <li class="today">
                     <a href="/" {{action "scrollToday" on="click"}}>
-                        <span class="date">{{constants.todayDate}}</span>
+                        <span class="date"><span>{{constants.todayDate}}</span></span>
+                        <span class="page"></span>
                         {{#if settings.isDailyCalendar}}
                             <span class="text">Scroll to Today</span>
                         {{else}}
