@@ -83,6 +83,7 @@
                 padding:0 2px;
                 position:absolute;
                 top:0;
+                white-space:nowrap;
                 z-index: 1;
             }
         }
@@ -92,5 +93,9 @@
         &:before {
             top:147px;
         }
+    }
+
+    .tileOptions li {
+        :hover { z-index:3; }
     }
 }

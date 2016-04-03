@@ -11,7 +11,11 @@ const Storage = StorageObject.extend({
 
     hasCalendar: function(){
         return this.get('view') == 'timeaway' || this.get('view') == 'assignment';
-    }.property('view')
+    }.property('view'),
+
+    isHiddenRows: function(){
+        return this.get('showHiddenRows');
+    }.property('showHiddenRows')
 });
 
 Storage.reopenClass({

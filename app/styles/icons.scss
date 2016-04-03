@@ -43,7 +43,7 @@ ul.viewOptions {
         }
 
         a {
-            display: block;
+            display:block;
             text-decoration:none;
             &:focus {
                 outline:none;
@@ -52,37 +52,29 @@ ul.viewOptions {
             &:after, &:before {
                 background:#000;
                 content:"";
-                //margin:-8px 0 0;
                 position:absolute;
                 top:50%;
             }
 
-            &:focus, &:hover {
-                span {
-                    &:after { // hover text
-                        //display:block;
-                    }
-                }
+            &:hover {
+                z-index:9;
+                .text { display:block; }
             }
 
-            /*
-            span {
-                &:after { // hover text
-                    background:#fff;
-                    border:1px solid #000;
-                    border-radius:5px;
-                    box-shadow:5px 5px 10px 2px rgba(0,0,0,.5);
-                    color:#C55500;
-                    display:none;
-                    font-size:.5em;
-                    font-weight:bold;
-                    padding:5px;
-                    position:absolute;
-                    white-space:nowrap;
-                    z-index:9;
-                }
-            } //span
-            */
+            .text {
+                background:#fff;
+                border:1px solid #000;
+                border-radius:5px;
+                box-shadow:5px 5px 10px 2px rgba(0,0,0,.5);
+                color:#C55500;
+                display:none;
+                font-size:.5em;
+                font-weight:bold;
+                padding:5px;
+                position:absolute;
+                top:50px;
+                white-space:nowrap;
+            }
         } // a
     }// ul.viewOptions
 
@@ -212,12 +204,13 @@ ul.viewOptions {
 
     .profile {
         &:after, &:before { display:none; }
+
         a {
             &:focus, &:hover {
-                span {
+                span.plus {
                     &:before {
                         display:block;
-                        animation: growPlus 5000ms infinite linear;
+                        animation:growPlus 5000ms infinite linear;
                     }
                 }
             }
@@ -229,19 +222,19 @@ ul.viewOptions {
                     color:#99D4DE;
                 }
                 25% {
-                    transform: scale(1.5);
+                    transform:scale(1.5);
                 }
                 50% {
                     color:#008A14;
                     text-shadow:1px 1px 1px #555;
-                    transform: scale(1.5);
+                    transform:scale(1.5);
                 }
                 55% {
                     text-shadow:2px 2px 12x #999;
                 }
                 65% {
                     color:#90D4DE;
-                    transform: scale(1)
+                    transform:scale(1)
                 }
                 90% {
                     color:#008A14;
@@ -267,7 +260,7 @@ ul.viewOptions {
                 width:36px;
             }
 
-            span {
+            span.plus {
                 &:before { // + sign
                     content:"+";
                     color:#008A14;
@@ -278,14 +271,8 @@ ul.viewOptions {
                     top:-12px;
                     z-index:5;
                 }
-
-                // &:after {
-                //     content:"New Person";
-                //     left:0;
-                //     top:44px;
-                // }
             }
-        }
+        }//a
     }//profile
 
     .today {
@@ -319,7 +306,7 @@ ul.viewOptions {
 
             &:after { right:10px; }
 
-            span {
+            span.date {
                 background:#FFF;
                 border-bottom-left-radius:2px;
                 border-bottom-right-radius:2px;
@@ -334,6 +321,11 @@ ul.viewOptions {
                 top:12px;
                 width:1.3em;
 
+                &:after {
+                    left:-3px;
+                    top:30px;
+                }
+
                 &:before {
                     background:#000;
                     border:6px solid #000;
@@ -347,23 +339,18 @@ ul.viewOptions {
                     width:1.3em;
                     z-index:-1;
                 }
-                &:after {
-                    //content:"Scroll To Today";
-                    left:-3px;
-                    top:30px;
-                }
-
-            }
+            }//date
 
             &:focus, &:hover {
                 span:before {
                     background:#C55500;
                 }
             }
-        }
+        }//a
     }//today
 
     .dragSort {
+
         &:after, &:before { display:none; }
 
         a {
@@ -380,7 +367,7 @@ ul.viewOptions {
             &:after { // left block
                 border-bottom:5px solid #ABC123;
                 border-top:10px solid #ABC123;
-                border-bottom-left-radius: 5px;
+                border-bottom-left-radius:5px;
                 padding-bottom:2px;
                 left:10px;
                 top:17px;
@@ -394,7 +381,7 @@ ul.viewOptions {
                 top:-17px;
             }
 
-            span {
+            span.arrow {
                 &:after { // right block
                     border-bottom:10px solid #FF2F1D;
                     border-top:5px solid #FF2F1D;
@@ -408,6 +395,8 @@ ul.viewOptions {
                 &:before { // right point
                     border:12px solid #FF2F1D;
                     border-bottom-color:transparent;
+                    border-left-color:transparent;
+                    border-right-color:transparent;
                     display:block;
                     height:0;
                     right:0;
@@ -447,12 +436,12 @@ ul.viewOptions {
                 0% {
                     margin-left:20px;
                     top:3px;
-                    transform: rotate(45deg);
+                    transform:rotate(45deg);
                 }
                 100% {
                     margin-left:10px;
                     top:3px;
-                    transform: rotate(45deg);
+                    transform:rotate(45deg);
                 }
             }
 
@@ -473,11 +462,11 @@ ul.viewOptions {
 
         .pencil { // yellow stick
             font-size:.5em;
-            background: linear-gradient(to right, rgba(242,197,84,1) 0%, rgba(242,197,84,1) 25%, rgba(245,166,8,1) 25%, rgba(248,181,0,1) 75%, rgba(245,166,8,1) 75%, rgba(245,166,8,1) 100%);
+            background:linear-gradient(to right, rgba(242,197,84,1) 0%, rgba(242,197,84,1) 25%, rgba(245,166,8,1) 25%, rgba(248,181,0,1) 75%, rgba(245,166,8,1) 75%, rgba(245,166,8,1) 100%);
             height:2.5em;
             left:20px;
             position:absolute;
-            transform: rotate(90deg);
+            transform:rotate(90deg);
             top:8px;
             width:1.5em;
 
@@ -501,21 +490,21 @@ ul.viewOptions {
             }//eraser
 
             .wood {
-                border-left: .8em solid transparent;
-                border-right: .8em solid transparent;
-                border-top: 1em solid #FFE3B2;
-                height: 0;
+                border-left:.8em solid transparent;
+                border-right:.8em solid transparent;
+                border-top:1em solid #FFE3B2;
+                height:0;
                 margin:2em 0;
                 position:absolute;
-                width: 0;
+                width:0;
 
                 &:before { // lead
-                    border-left: .3em solid transparent;
-                    border-right: .3em solid transparent;
-                    border-top: .3em solid #212121;
+                    border-left:.3em solid transparent;
+                    border-right:.3em solid transparent;
+                    border-top:.3em solid #212121;
                     content:"";
                     display:block;
-                    height: 0;
+                    height:0;
                     margin:-.35em  -.25em;
                     width:0;
                 }
@@ -535,13 +524,12 @@ ul.viewOptions {
             }
 
             &:before { // clock border
-                background-image: linear-gradient(45deg, #000 0%, #fff 50%, #000 100%);
+                background-image:linear-gradient(45deg, #000 0%, #fff 50%, #000 100%);
                 border-radius:100%;
                 height:38px;
                 left:7px;
                 top:3px;
                 width:38px;
-
             }
 
             span.start {
@@ -551,7 +539,7 @@ ul.viewOptions {
                 top:-0px;
 
                 &:after { // button
-                    background-image: linear-gradient(to right, #000 0%, #fff 50%, #000 100%);
+                    background-image:linear-gradient(to right, #000 0%, #fff 50%, #000 100%);
                     border-radius:5%;
                     content:"";
                     height:3px;
@@ -562,7 +550,7 @@ ul.viewOptions {
                 }
 
                 &:before { // stem
-                    background-image: linear-gradient(to right, #000 0%, #fff 50%, #000 100%);
+                    background-image:linear-gradient(to right, #000 0%, #fff 50%, #000 100%);
                     content:"";
                     display:block;
                     height:2px;
@@ -571,7 +559,7 @@ ul.viewOptions {
                     top:1px;
                     width:6px;
                 }
-            }
+            }//start
 
             span.reset {
                 display:block;
@@ -581,7 +569,7 @@ ul.viewOptions {
                 transform:rotate(45deg) scale(.75);
 
                 &:after { // button
-                    background-image: linear-gradient(to left, #000 0%, #fff 50%, #000 100%);
+                    background-image:linear-gradient(to left, #000 0%, #fff 50%, #000 100%);
                     border-radius:5%;
                     content:"";
                     height:3px;
@@ -590,7 +578,7 @@ ul.viewOptions {
                 }
 
                 &:before { // stem
-                    background-image: linear-gradient(to right, #000 0%, #fff 50%, #000 100%);
+                    background-image:linear-gradient(to right, #000 0%, #fff 50%, #000 100%);
                     content:"";
                     display:block;
                     height:2px;
@@ -599,7 +587,7 @@ ul.viewOptions {
                     top:3px;
                     width:6px;
                 }
-            }
+            }//reset
 
             span.hands {
                 &:after { // hour hand
@@ -663,17 +651,17 @@ ul.viewOptions {
             &:hover {
                 span.hands {
                     &:after {
-                        animation: rotateHour 12000ms infinite linear;
+                        animation:rotateHour 12000ms infinite linear;
                     }
 
                     &:before {
-                        animation: rotateMinute 1000ms infinite linear;
+                        animation:rotateMinute 1000ms infinite linear;
                     }
 
                 }
                 span.start {
                     &:after {
-                        animation: pressStart 12000ms infinite linear;
+                        animation:pressStart 12000ms infinite linear;
                     }
                 }
             }
@@ -719,35 +707,34 @@ ul.viewOptions {
 
 //spinner from: http://codepen.io/MattIn4D/pen/LiKFC
 #saving {
-    background-color: transparent;
-    border: 0;
-    //color:#FF312C;
+    background-color:transparent;
+    border:0;
     font-size:20px;
     position:fixed;
     right:50px;
     top:25px;
 
     :before {
-        background-color: rgba(0,0,0,0.3);
-        content: '';
-        display: none;
-            height: 100%;
-        left: 0;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 9999;
+        background-color:rgba(0,0,0,0.3);
+        content:'';
+        display:none;
+        height:100%;
+        left:0;
+        position:fixed;
+        top:0;
+        width:100%;
+        z-index:9999;
     }
 
     :after {
-        border-radius: 0.5em;
-        content: '';
-        display: block;
-        font-size: 10px;
-        height: 1em;
+        border-radius:0.5em;
+        content:'';
+        display:block;
+        font-size:10px;
+        height:1em;
         margin:-1.5em 0 0 80px;
-        width: 1em;
-        animation: spinner 1500ms infinite linear;
+        width:1em;
+        animation:spinner 1500ms infinite linear;
 
         box-shadow:
             rgba(255, 49, 44, 0.1) 1.5em 0 0 0,
@@ -764,17 +751,9 @@ ul.viewOptions {
 /* Animation */
 @keyframes spinner {
     0% {
-        -webkit-transform: rotate(0deg);
-        -moz-transform: rotate(0deg);
-        -ms-transform: rotate(0deg);
-        -o-transform: rotate(0deg);
-        transform: rotate(0deg);
+        transform:rotate(0deg);
     }
     100% {
-        -webkit-transform: rotate(360deg);
-        -moz-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
-        -o-transform: rotate(360deg);
-        transform: rotate(360deg);
+        transform:rotate(360deg);
     }
 }
