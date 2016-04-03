@@ -25,6 +25,7 @@
                         <span class="time" data-time="6"></span>
                         <span class="time" data-time="9"></span>
                         <span class="time" data-time="12"></span>
+                        <span class="text">Track Out of Office</span>
                     </a>
                 </li>
             {{/if}}
@@ -33,30 +34,54 @@
                 <li class="assignment">
                     <a href="/" {{action "toggleView" 'assignment' on="click"}}>
                         <span class="pencil"><span class="wood"></span></span>
+                        <span class="text">Track Assignments</span>
                     </a>
                 </li>
             {{/if}}
 
             {{#if this.constants.draggable}}
                 <li class="dragSort">
-                    <a href="/" {{action "dragDisable" on="click"}}><span></span></a>
+                    <a href="/" {{action "dragDisable" on="click"}}>
+                        <span></span>
+                        <span class="text">Drag Sort</span>
+                    </a>
                 </li>
             {{else}}
                 <li class="dragSort">
-                    <a href="/" {{action "dragEnable" on="click"}}><span></span></a>
+                    <a href="/" {{action "dragEnable" on="click"}}>
+                        <span class="arrow"></span>
+                        <span class="text">Drag Sort</span>
+                    </a>
                 </li>
             {{/if}}
 
             {{#if settings.hasCalendar}}
-                  <li class="today">
-                      <a href="/" {{action "scrollToday" on="click"}}><span>{{constants.todayDate}}</span></a>
-                  </li>
+                <li class="today">
+                    <a href="/" {{action "scrollToday" on="click"}}>
+                        <span class="date">{{constants.todayDate}}</span>
+                        {{#if settings.isDailyCalendar}}
+                            <span class="text">Scroll to Today</span>
+                        {{else}}
+                            <span class="text">Scroll to This Week</span>
+                        {{/if}}
+                    </a>
+                </li>
             {{/if}}
             <li class="profile">
-                <a href="/" {{action "addEmployee"}}><span></span></a>
+                <a href="/" {{action "addEmployee"}}>
+                    <span class="plus"></span>
+                    <span class="text">New Employee</span>
+                </a>
             </li>
             <li class="toggle">
-                <a href="/" {{action "toggleViewHiddenRows" on="click"}}><span></span></a>
+                <a href="/" {{action "toggleViewHiddenRows" on="click"}}>
+                    <span class="eye"></span>
+                    {{#if settings.isHiddenRows}}
+                        <span class="text">Hide Hidden Rows</span>
+                    {{else}}
+                        <span class="text">Show Hidden Rows</span>
+                    {{/if}}
+                </a>
             </li>
         </ul>
     </div>
