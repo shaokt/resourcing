@@ -209,6 +209,33 @@ ul.viewOptions {
                         animation:growPlus 5000ms infinite linear;
                     }
                 }
+                .person {
+                    &.female {
+                        .face {
+                            animation:rotateFemale 700ms infinite linear;
+                        }
+                    }
+                    &.male {
+                        &:before {
+                            animation:rotateMale 1000ms infinite linear;
+                        }
+                    }
+                }
+            }
+
+            @keyframes rotateFemale {
+                50% {
+                    top:3px;
+                }
+            }
+
+            @keyframes rotateMale {
+                33% {
+                    transform:rotate(5deg);
+                }
+                66% {
+                    transform:rotate(-5deg);
+                }
             }
             @keyframes growPlus {
                 5% {
@@ -355,10 +382,11 @@ ul.viewOptions {
                 }//neck
 
                 &.female {
+                    left:-15px;
                 }
 
                 &.male {
-                    display:none;
+                    left:15px;
                     &:before { // blouse
                         background:rgb(0,0,0);
                     }
