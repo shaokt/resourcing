@@ -199,6 +199,7 @@ ul.viewOptions {
     }//remove
 
     .profile {
+        margin:0 25px 0 5px !important;
         &:after, &:before { display:none; }
 
         a {
@@ -211,6 +212,7 @@ ul.viewOptions {
                 }
                 .person {
                     &.female {
+                        z-index:2;
                         .face {
                             animation:rotateFemale 700ms infinite linear;
                         }
@@ -383,12 +385,13 @@ ul.viewOptions {
 
                 &.female {
                     left:-15px;
+                    z-index:3;
                 }
 
                 &.male {
                     left:15px;
                     &:before { // blouse
-                        background:rgb(0,0,0);
+                        background:rgb(51,51,51);
                     }
 
                     .hair {
