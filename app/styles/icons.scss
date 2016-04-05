@@ -215,11 +215,28 @@ ul.viewOptions {
                         z-index:2;
                         .face {
                             animation:rotateFemale 700ms infinite linear;
+                            &:before { // mouth
+                                border:1px solid red;
+                                border-bottom-width:2px;
+                                width:4px;
+                                height:1px;
+                                top:14px;
+                                transform:rotate(0);
+                            }
+                        }
+                        .hair:after {
+                            animation:rotateFemaleHair 700ms infinite linear;
                         }
                     }
                     &.male {
+                        .face:before { // smirk
+                            transform:rotate(-13deg);
+                        }
                         &:before {
                             animation:rotateMale 1000ms infinite linear;
+                        }
+                        .neck {
+                            animation:rotateMaleNeck 1000ms infinite linear;
                         }
                     }
                 }
@@ -231,12 +248,31 @@ ul.viewOptions {
                 }
             }
 
+            @keyframes rotateFemaleHair {
+                50% {
+                    height:11px;
+                }
+            }
+
             @keyframes rotateMale {
                 33% {
-                    transform:rotate(5deg);
+                    top:23px;
+                    transform:rotate(4deg);
                 }
                 66% {
+                    top:23px;
+                    transform:rotate(-4deg);
+                }
+            }
+
+            @keyframes rotateMaleNeck {
+                33% {
+                    top:23px;
                     transform:rotate(-5deg);
+                }
+                66% {
+                    top:23px;
+                    transform:rotate(5deg);
                 }
             }
             @keyframes growPlus {
@@ -390,6 +426,16 @@ ul.viewOptions {
 
                 &.male {
                     left:15px;
+                    &:after {
+                        background:rgb(51,51,51);
+                        content:"";
+                        height:5px;
+                        left:9px;
+                        position:absolute;
+                        top:34px;
+                        width:36px;
+                        z-index:2;
+                    }
                     &:before { // blouse
                         background:rgb(51,51,51);
                     }
@@ -443,17 +489,26 @@ ul.viewOptions {
                         }
                     }
 
-                    .neck {
+                    .neck { //white dress shirt
+                        background:#FFF;
+                        display:block;
+                        height:18px;
+                        left:22px;
+                        position:absolute;
+                        top:24px;
+                        width:10px;
+                        z-index:3;
+
                         &:after { //tie knot
                             border-radius:0;
                             box-shadow:none;
                             border-top:10px solid red;
                         	border-left:5px solid transparent;
                         	border-right:5px solid transparent;
-                        	height: 0;
-                            left:18px;
+                        	height:0;
+                            left:-5px;
                             position:absolute;
-                            top:21px;
+                            top:-2px;
                         	width: 10px;
                             z-index:5;
                         }
@@ -464,9 +519,9 @@ ul.viewOptions {
                             border-bottom:32px solid red;
                         	border-left:5px solid transparent;
                         	border-right:5px solid transparent;
-                            left:19px;
+                            left:-4px;
                             position:absolute;
-                            top:13px;
+                            top:-10px;
                             transform:rotate(0) scale(.3);
                         	width:8px;
                             z-index:5;
@@ -474,6 +529,10 @@ ul.viewOptions {
                     }//neck
                 }//male
             }//person
+
+            .text {
+                left:-10px;
+            }
 
             span.plus {
                 display:none;
