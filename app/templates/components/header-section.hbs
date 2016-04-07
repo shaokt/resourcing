@@ -49,7 +49,8 @@
             {{else}}
                 <li class="dragSort">
                     <a href="/" {{action "dragEnable" on="click"}}>
-                        <span class="arrow"></span>
+                        <span class="leftArrow"></span>
+                        <span class="rightArrow"></span>
                         <span class="text">Drag Sort</span>
                     </a>
                 </li>
@@ -58,7 +59,8 @@
             {{#if settings.hasCalendar}}
                 <li class="today">
                     <a href="/" {{action "scrollToday" on="click"}}>
-                        <span class="date">{{constants.todayDate}}</span>
+                        <span class="date"><span>{{constants.todayDate}}</span></span>
+                        <span class="page"></span>
                         {{#if settings.isDailyCalendar}}
                             <span class="text">Scroll to Today</span>
                         {{else}}
@@ -69,6 +71,17 @@
             {{/if}}
             <li class="profile">
                 <a href="/" {{action "addEmployee"}}>
+                    <span class="person female">
+                        <span class="hair"></span>
+                        <span class="face"></span>
+                        <span class="neck"></span>
+                    </span>
+
+                    <span class="person male">
+                        <span class="hair"></span>
+                        <span class="face"></span>
+                        <span class="neck"></span>
+                    </span>
                     <span class="plus"></span>
                     <span class="text">New Employee</span>
                 </a>

@@ -28,10 +28,6 @@ section.resourceRow {
 // icons can appear in the header too
 ul.viewOptions {
     li {
-        &:not(:hover) {
-            //a span:after { display:none !important; }
-        }
-
         background:#fff;
         list-style:none;
         position:relative;
@@ -203,15 +199,80 @@ ul.viewOptions {
     }//remove
 
     .profile {
+        margin:0 25px 0 5px !important;
         &:after, &:before { display:none; }
 
         a {
-            &:focus, &:hover {
+            &:hover {
                 span.plus {
                     &:before {
                         display:block;
                         animation:growPlus 5000ms infinite linear;
                     }
+                }
+                .person {
+                    &.female {
+                        z-index:2;
+                        .face {
+                            animation:rotateFemale 700ms infinite linear;
+                            &:before { // mouth
+                                border:1px solid red;
+                                border-bottom-width:2px;
+                                width:4px;
+                                height:1px;
+                                top:14px;
+                                transform:rotate(0);
+                            }
+                        }
+                        .hair:after {
+                            animation:rotateFemaleHair 700ms infinite linear;
+                        }
+                    }
+                    &.male {
+                        .face:before { // smirk
+                            transform:rotate(-13deg);
+                        }
+                        &:before {
+                            animation:rotateMale 1000ms infinite linear;
+                        }
+                        .neck {
+                            animation:rotateMaleNeck 1000ms infinite linear;
+                        }
+                    }
+                }
+            }
+
+            @keyframes rotateFemale {
+                50% {
+                    top:3px;
+                }
+            }
+
+            @keyframes rotateFemaleHair {
+                50% {
+                    height:11px;
+                }
+            }
+
+            @keyframes rotateMale {
+                33% {
+                    top:23px;
+                    transform:rotate(4deg);
+                }
+                66% {
+                    top:23px;
+                    transform:rotate(-4deg);
+                }
+            }
+
+            @keyframes rotateMaleNeck {
+                33% {
+                    top:23px;
+                    transform:rotate(-5deg);
+                }
+                66% {
+                    top:23px;
+                    transform:rotate(5deg);
                 }
             }
             @keyframes growPlus {
@@ -241,26 +302,240 @@ ul.viewOptions {
                 }
             }
 
-            &:after { // head
-                border:4px solid #fff;
-                border-radius:100px;
-                height:20px;
-                left:13px;
-                top:0;
-                width:20px;
-            }
+            .person {
+                position:absolute;
+                &:before { // blouse
+                    background:rgb(102,102,255);
+                    content: "";
+                    position: absolute;
+                    border-radius:10px 10px 0 0;
+                    content:"";
+                    display:block;
+                    height:14px;
+                    left:9px;
+                    position:relative;
+                    top:25px;
+                    width:36px;
+                    z-index:2;
+                }
 
-            &:before { // base of profile
-                border-radius:10px 10px 0 0;
-                display:block;
-                height:14px;
-                left:9px;
-                position:relative;
-                top:25px;
-                width:36px;
+                .face {
+                    left:17px;
+                    position:absolute;
+                    top:2px;
+
+                    &:after { // head
+                        background:#FFF;
+                        border-radius:100px;
+                        content:"";
+                        height:20px;
+                        position:absolute;
+                        width:20px;
+                    }
+
+                    &:before { // lips
+                        border:3px solid red;
+                        border-top-color:transparent;
+                        border-left-color:transparent;
+                        border-radius:100%;
+                        content:"";
+                        height:0;
+                        left:7px;
+                        position:absolute;
+                        top:12px;
+                        transform:rotate(45deg);
+                        width:0;
+                        z-index:5;
+                    }
+                }//face
+
+                .hair {
+                    display:block;
+                    left:12px;
+                    position:absolute;
+                    top:-2px;
+
+                    &:after { //bangs
+                        background:linear-gradient(50deg,
+                            rgba(128,65,0,1) 25%,
+                            rgba(177,40,8,1) 75%,
+                            rgba(177,40,0,1) 100%);
+                        border-radius:100%;
+                        content:"";
+                        height:8px;
+                        position:absolute;
+                        top:4px;
+                        transform:rotate(-35deg);
+                        width:20px;
+                        z-index:1;
+                    }
+
+                    &:before { // long hair
+                        border-radius:100%;
+                        background:linear-gradient(to bottom,
+                            rgba(177,40,0,1) 25%,
+                            rgba(128,66,8,1) 75%,
+                            rgba(0,0,0,.5) 100%);
+                        content:"";
+                        height:40px;
+                        position:absolute;
+                        width:30px;
+                    }
+                }//hair
+
+                .neck {
+                    &:after { //necklace
+                        border-radius:10px;
+                        box-shadow:
+                            rgba(249, 193, 21, 1) .8em 0 0 0,
+                            rgba(249, 193, 21, 1) .6em .6em 0 0,
+                            rgba(249, 193, 21, 1) 0 1em 0 0,
+                            rgba(249, 193, 21, 1) -.6em .6em 0 0,
+                            rgba(249, 193, 21, 1) -.8em 0 0 0;
+                        content:"";
+                        display:block;
+                        height:10px;
+                        left:23px;
+                        position:absolute;
+                        top:22px;
+                        transform:scale(.3);
+                        width:10px;
+                        z-index:5;
+                    }
+
+                    &:before { //neck
+                        border:8px solid #FFF;
+                        border-top-color:transparent;
+                        border-left-color:transparent;
+                        border-radius:100%;
+                        content:"";
+                        height:0;
+                        left:20px;
+                        position:absolute;
+                        top:17px;
+                        transform:rotate(45deg);
+                        width:0;
+                        z-index:5;
+                    }
+                }//neck
+
+                &.female {
+                    left:-15px;
+                    z-index:3;
+                }
+
+                &.male {
+                    left:15px;
+                    &:after {
+                        background:rgb(51,51,51);
+                        content:"";
+                        height:5px;
+                        left:9px;
+                        position:absolute;
+                        top:34px;
+                        width:36px;
+                        z-index:2;
+                    }
+                    &:before { // blouse
+                        background:rgb(51,51,51);
+                    }
+
+                    .hair {
+                        display:block;
+                        left:12px;
+                        position:absolute;
+                        top:-2px;
+
+                        &:after { // bangs
+                            background:#000;
+                            border-radius:100%;
+                            content:"";
+                            height:8px;
+                            left:5px;
+                            position:absolute;
+                            top:3px;
+                            transform:rotate(10deg);
+                            width:20px;
+                            z-index:1;
+                        }
+
+                        &:before { // long hair
+                            border-radius:100%;
+                            background:#000;
+                            content:"";
+                            height:25px;
+                            left:3px;
+                            position:absolute;
+                            width:23px;
+                        }
+                    }//hair
+
+                    .face {
+                        &:after { // head
+                            left:-1px;
+                            width:21px;
+                        }
+                        &:before { // lips
+                            border:none;
+                            border-bottom:1px solid #000;
+                            content:"";
+                            height:1px;
+                            left:6px;
+                            position:absolute;
+                            top:14px;
+                            transform:rotate(0);
+                            width:8px;
+                            z-index:5;
+                        }
+                    }
+
+                    .neck { //white dress shirt
+                        background:#FFF;
+                        display:block;
+                        height:18px;
+                        left:22px;
+                        position:absolute;
+                        top:24px;
+                        width:10px;
+                        z-index:3;
+
+                        &:after { //tie knot
+                            border-radius:0;
+                            box-shadow:none;
+                            border-top:10px solid red;
+                        	border-left:5px solid transparent;
+                        	border-right:5px solid transparent;
+                        	height:0;
+                            left:-5px;
+                            position:absolute;
+                            top:-2px;
+                        	width: 10px;
+                            z-index:5;
+                        }
+
+                        &:before { //neck
+                            border-radius:0;
+                            box-shadow:none;
+                            border-bottom:32px solid red;
+                        	border-left:5px solid transparent;
+                        	border-right:5px solid transparent;
+                            left:-4px;
+                            position:absolute;
+                            top:-10px;
+                            transform:rotate(0) scale(.3);
+                        	width:8px;
+                            z-index:5;
+                        }
+                    }//neck
+                }//male
+            }//person
+
+            .text {
+                left:-10px;
             }
 
             span.plus {
+                display:none;
                 &:before { // + sign
                     content:"+";
                     color:#008A14;
@@ -288,7 +563,7 @@ ul.viewOptions {
             &:focus { outline:none; }
 
             &:after, &:before { // hangers
-                background:#882074 !important;
+                background-image:linear-gradient(to right, #000 0%, #888 10%, #222 100%);
                 box-shadow:none;
                 border:1px solid #fff;
                 border-radius:5px;
@@ -328,7 +603,12 @@ ul.viewOptions {
 
                 &:before {
                     background:#000;
-                    border:6px solid #000;
+                    background:linear-gradient(to bottom,
+                        rgba(242,166,8,1) 0%,
+                        rgba(242,166,8,.5) 25%,
+                        rgba(245,181,0,.4) 25%,
+                        rgba(248,166,8,.5) 75%,
+                        rgba(245,197,84,1) 100%);
                     border-radius:5px;
                     content:"";
                     display:block;
@@ -337,15 +617,86 @@ ul.viewOptions {
                     position:absolute;
                     top:-9px;
                     width:1.3em;
+                    padding:6px;
                     z-index:-1;
                 }
             }//date
 
-            &:focus, &:hover {
-                span:before {
-                    background:#C55500;
+            span.page {
+                display:none;
+                width:40px;
+                height:38px;
+                position:relative;
+                overflow:hidden;
+                top:-4px;
+                transform:rotate(-30deg);
+
+                &:after {
+                    background:#eff;
+                    content:"";
+                    position:absolute;
+                    border-left:1px solid #fff;
+                    border-top-left-radius:2px;
+                    border-bottom-left-radius:10px;
+                    left:9px;
+                    height:27px;
+                    transform:rotate(45deg) skew(-15deg, 10deg);
+                    top:44px;
+                    width:27px;
                 }
             }
+
+            &:hover {
+                span.date span {
+                    display:block;
+                    animation:skewDate 1000ms infinite alternate;
+                }
+                span.page {
+                    display:block;
+                    animation:pageShadow 1000ms infinite alternate;
+
+                    &:after {
+                        animation:turnPage 1000ms infinite alternate;
+                    }
+                }
+                @keyframes skewDate {
+                    100% {
+                        color:#a1a;
+                        transform:skew(-5deg, -12deg);
+                        text-shadow:2px 1px rgba(0,0,0,.2);
+                    }
+                }
+                @keyframes pageShadow {
+                    25%{
+                        left:2px;
+                        opacity:0;
+                        top:4px;
+                    }
+                    29% {
+                        box-shadow:none;
+                        opacity:1;
+                        top:0;
+                    }
+                    30% {
+                        box-shadow:4px 20px 18px -15px rgba(255,255,255,0.5);
+                        top:-2px;
+                    }
+                    50%, 100% {
+                        box-shadow:4px 20px 18px -15px rgba(0,0,0,0.5);
+                        top:-4px;
+                    }
+                }
+                @keyframes turnPage {
+                    10% {
+                        border-left:1px solid #d9d9d9;
+                    }
+                    100% {
+                        box-shadow:-1px -1px 5px -2px rgba(0,0,0,0.5);
+                        left:9px;
+                        top:34px;
+                    }
+                }
+            }//hover
         }//a
     }//today
 
@@ -364,24 +715,53 @@ ul.viewOptions {
                 position:absolute;
             }
 
-            &:after { // left block
-                border-bottom:5px solid #ABC123;
-                border-top:10px solid #ABC123;
-                border-bottom-left-radius:5px;
-                padding-bottom:2px;
-                left:10px;
-                top:17px;
-                width:15px;
+            &:hover {
+                span.leftArrow {
+                    animation:moveLeftArrow 1500ms infinite alternate;
+                }
+                span.rightArrow {
+                    animation:moveRightArrow 1500ms infinite alternate;
+                }
+
+                @keyframes moveRightArrow {
+                    75%, 100% {
+                        transform:scale(1.35);
+                    }
+                }
+
+                @keyframes moveLeftArrow {
+                    75%, 100% {
+                        transform:scale(.75);
+                    }
+                }
+            }
+            span.leftArrow {
+                position:absolute;
+
+                &:after { // left block
+                    border-bottom:5px solid #ABC123;
+                    border-top:10px solid #ABC123;
+                    border-bottom-left-radius:5px;
+                    padding-bottom:2px;
+                    left:10px;
+                    top:17px;
+                    width:15px;
+                }
+
+                &:before { // left point
+                    border:17px solid #ABC123;
+                    border-top-color:transparent;
+                    border-left-color:transparent;
+                    border-right-color:transparent;
+                    display:block;
+                    top:-17px;
+                }
             }
 
-            &:before { // left point
-                border:17px solid #ABC123;
-                border-top-color:transparent;
-                display:block;
-                top:-17px;
-            }
+            span.rightArrow {
+                position:absolute;
+                left:50px;
 
-            span.arrow {
                 &:after { // right block
                     border-bottom:10px solid #FF2F1D;
                     border-top:5px solid #FF2F1D;
