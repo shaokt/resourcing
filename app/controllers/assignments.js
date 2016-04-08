@@ -3,11 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
     actions: {
         addAssignment(){
-            var self = this;
-            var d = new Date();
-            var newID = d.getFullYear() + "" + this.constants.padout(d.getMonth()+1) + "" + d.getDate() + "" + d.getHours() + "" + d.getMinutes() + "" + d.getMilliseconds();
             var newItem = this.get('store').createRecord('assignment', {
-              id: newID,
+              id: this.constants.createID(),
               short: '',
               long: '',
               background: ""
