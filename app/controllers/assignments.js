@@ -13,18 +13,16 @@ export default Ember.Controller.extend({
               background: ""
             });
 
-            this.set('constants.saving', true)
+            // highligh new row & focus into first editable field
             setTimeout(function(){
-                var element = $('[data-assignment-id="' + newItem.id +'"]')[0];
-                $(element).attr('tabindex', -1);
-                $(element).focus();
+                var tr = $('[data-assignment-id="' + newItem.id +'"] tr');
+                $(tr).addClass('new');
+                $(tr).find('.lock a').click();
                 setTimeout(function(){
-                    $(element).removeAttr('tabindex');
-                }, 2000)
+                    $(tr).find('.short').focus();
+                }, 0)
             }, 0)
-            //console.log(newItem.id)
-            //newItem.save()
-            setTimeout(function(){self.set('constants.saving', false)}, 500);
+            this.constants.save(newItem)
         }
     }
 });
