@@ -68,24 +68,33 @@
                         {{/if}}
                     </a>
                 </li>
-            {{/if}}
-            <li class="profile">
-                <a href="/" {{action "addEmployee"}}>
-                    <span class="person female">
-                        <span class="hair"></span>
-                        <span class="face"></span>
-                        <span class="neck"></span>
-                    </span>
+                <li class="profile">
+                    <a href="/" {{action "addEmployee"}}>
+                        <span class="person female">
+                            <span class="hair"></span>
+                            <span class="face"></span>
+                            <span class="neck"></span>
+                        </span>
 
-                    <span class="person male">
-                        <span class="hair"></span>
-                        <span class="face"></span>
-                        <span class="neck"></span>
-                    </span>
-                    <span class="plus"></span>
-                    <span class="text">New Employee</span>
-                </a>
-            </li>
+                        <span class="person male">
+                            <span class="hair"></span>
+                            <span class="face"></span>
+                            <span class="neck"></span>
+                        </span>
+                        <span class="plus"></span>
+                        <span class="text">New Employee</span>
+                    </a>
+                </li>
+            {{/if}}
+
+            {{#if constants.editAssignments}}
+                <li class="assignment">
+                    <a href="/" {{action "addAssignment" on="click"}}>
+                        <span class="pencil"><span class="wood"></span></span>
+                        <span class="text">Add Assignment</span>
+                    </a>
+                </li>
+            {{/if}}
             <li class="toggle">
                 <a href="/" {{action "toggleViewHiddenRows" on="click"}}>
                     <span class="eye"></span>

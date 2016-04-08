@@ -22,6 +22,28 @@
                     }
                 }
 
+                &:focus {
+                    outline:none;
+                    tr {
+                        animation:fadeIn 2000ms linear;
+                    }
+                    @keyframes fadeIn {
+                        0%{
+                            background:rgba(255,102,255,.5);
+                            opacity:0;
+                        }
+                        40% {
+                            background:rgba(204,255,102,.5);
+                        }
+                        50% {
+                            background:rgba(255,255,102,.5);
+                        }
+                        100% {
+                            opacity:1;
+                        }
+                    }
+                }
+
                 .hexbackground { display:none; }
             }
 
@@ -103,6 +125,16 @@
                                 margin-left:-10px;
                             }
                         }
+                    }
+
+                    .long:empty:before {
+                        content:"Long Description";
+                        font-style:italic;
+                    }
+
+                    .short:empty:before {
+                        content:"Short Description";
+                        font-style:italic;
                     }
                 }//td.value
 
