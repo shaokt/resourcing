@@ -2,9 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     tagName:'tbody',
-    classNameBindings: ['editing'],
+    classNameBindings: ['editing', 'isHidden:hidden'],
     attributeBindings: ['assignment.id:data-assignment-id'],
     editing: false,
+    isHidden: Ember.computed.alias('assignment.hidden'),
 
     // background for assignment row based on hex value assigned
     hexbackground: Ember.computed('background', function() {
@@ -13,6 +14,7 @@ export default Ember.Component.extend({
     }).property('assignment.background'),
 
     actions: {
+        // if the current assignment is being edited
         editing() {
             this.toggleProperty('editing');
             if(this.editing == true){
@@ -22,6 +24,13 @@ export default Ember.Component.extend({
                 $('body').attr('data-editing', false)
                 this.constants.save(this.get('assignment'))
             }
+        },
+
+        // show/hide current assignment row
+        toggleRow() {
+            this.$().toggleClass('hidden');
+            this.set('assignment.hidden', this.$().hasClass('hidden'));
+            this.constants.save(this.get('assignment'))
         },
 
         // only allow 0-9, a-f, A-F for hex values

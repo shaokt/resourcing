@@ -1,7 +1,8 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    short: DS.attr('string'),
-    long: DS.attr('string'),
-    background: DS.attr('string')
+    hidden: DS.attr('boolean'),     // if the row is hidden
+    short: DS.attr('string'),       // short description
+    long: DS.attr('string'),        // long description
+    background: DS.attr('string')   // hex background
 });
