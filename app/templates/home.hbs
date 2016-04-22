@@ -6,7 +6,12 @@
     {{counterCSS}}
 </style>
 
-<div id="pageContainer" data-view="{{settings.view}}" data-show-hidden={{settings.showHiddenRows}} data-dragging={{constants.draggable}}>
+<div id="pageContainer"
+    data-dragging={{constants.draggable}}
+    data-editing="{{constants.editingRow}}"
+    data-show-hidden={{settings.showHiddenRows}}
+    data-view="{{settings.view}}" 
+>
     {{header-section model=model settings=settings updateName="updateName" addEmployee="addEmployee"}}
     <main>
         <div class="dateLine" id="dateLine"></div>

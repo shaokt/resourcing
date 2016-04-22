@@ -15,10 +15,10 @@ export default ResourceRowComponent.extend({
             this.set("resource.active", this.editing);
             if(this.editing == true){
                 this.edit();
-                $('body').attr('data-editing', true)
+                this.set('constants.editingRow', true);
             }
             else {
-                $('body').attr('data-editing', false)
+                this.set('constants.editingRow', false);
                 this.save();
             }
         },
