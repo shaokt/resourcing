@@ -19,6 +19,9 @@
             <li class="lock">
                 <a href="/" {{action "editing" on="click"}}></a>
             </li>
+            <li class="toggle">
+                <a href="/" {{action "toggleRow" on="click"}}></a>
+            </li>
         </ul>
         {{#if editing}}
             {{content-editable class="short" value=assignment.short allowNewlines=false focus-in=constants.focusInContentEditable}}

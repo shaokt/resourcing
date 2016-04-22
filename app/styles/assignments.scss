@@ -7,9 +7,64 @@
     main {
         border-bottom:none;
         padding-top:80px;
+        padding-bottom:250px;
 
-        table.edit  {
+        table.edit {
             tbody {
+                &.hidden {
+                    &:hover {
+                        tr td.value .short {
+                            box-shadow:2px 2px 10px 1px rgba(255,255,255,.5);
+                            opacity:1;
+                        }
+                    }
+
+                    .arrow:before,
+                    .background,
+                    .lock,
+                    .long { display:none; }
+
+                    .viewOptions {
+                        top:-12px;
+                    }
+
+                    tr {
+                        border-width:2px;
+
+                        td {
+                            padding:2px 10px;
+
+                            &:after {
+                                background:rgba(0,0,0,.8) !important;
+                                content:"";
+                                display:block;
+                                height:100%;
+                                left:0;
+                                position:absolute;
+                                top:0;
+                                transform:none;
+                                width:100%;
+                                z-index:2;
+                            }
+
+                            &.value {
+                                .short {
+                                    background:red;
+                                    border:1px solid #fff;
+                                    border-radius:2px;
+                                    color:#FFF;
+                                    margin-top:7px;
+                                    opacity:.5;
+                                    padding:2px;
+                                    position:relative;
+                                    text-shadow:0px 1px #000;
+                                    z-index:3;
+                                }
+                            }
+                        }//td
+                    }//tr
+                }//hidden
+
                 &:before {
                     content:"";
                     height:5px;
@@ -22,8 +77,12 @@
                     }
                 }
 
+                &:focus {
+                    outline:none;
+                }
+
                 .hexbackground { display:none; }
-            }
+            }//tbody
 
             tr {
                 border-style:solid;
@@ -39,7 +98,7 @@
                     top:-6px;
 
                     li {
-                        top:10px;
+                        height:100%;
                     }
                 }
 
@@ -59,6 +118,25 @@
                         &:before { display:none; }
                     }
                 }
+
+                &.new {
+                    animation:fadeIn 2000ms linear;
+                    @keyframes fadeIn {
+                        0%{
+                            background:rgba(255,102,255,.5);
+                            opacity:0;
+                        }
+                        40% {
+                            background:rgba(204,255,102,.5);
+                        }
+                        50% {
+                            background:rgba(255,255,102,.5);
+                        }
+                        100% {
+                            opacity:1;
+                        }
+                    }
+                }//new
             }//tr
 
             td {
@@ -103,6 +181,16 @@
                                 margin-left:-10px;
                             }
                         }
+                    }
+
+                    .long:empty:before {
+                        content:"Long Description";
+                        font-style:italic;
+                    }
+
+                    .short:empty:before {
+                        content:"Short Description";
+                        font-style:italic;
                     }
                 }//td.value
 

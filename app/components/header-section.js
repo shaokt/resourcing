@@ -9,6 +9,10 @@ export default Ember.Component.extend({
             this.cal.scrollToday();
         },
 
+        addAssignment(){
+            this.sendAction('addAssignment');
+        },
+
         addEmployee(){
             this.sendAction('addEmployee');
         },
