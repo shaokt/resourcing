@@ -202,7 +202,6 @@ header {
     background:#000;
     box-shadow:1px 1px 1px 1px rgba(255,255,255,1);
     height:100%;
-    left:0;
     margin-left:6px;
     opacity:.2;
     position:absolute;
@@ -210,7 +209,7 @@ header {
     width:1px;
     z-index:3;
 
-    &#todayDateLine {
+    &.holidayLine, &#todayDateLine {
         background:none;
         box-shadow:0 5px 20px 10px rgba(255,255,255,1);
         margin-left:-1px;
@@ -223,6 +222,20 @@ header {
             position:absolute;
             top:157px;
             width:15px;
+        }
+    }
+
+    &.holidayLine {
+        background:rgba(236,108,108,1) !important;
+        box-shadow:none;
+        height:17px;
+        margin-left:0;
+        opacity:1;
+        top:-1px;
+        z-index:2;
+
+        &:before {
+            display:none;
         }
     }
 }

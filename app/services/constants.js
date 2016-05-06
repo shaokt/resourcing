@@ -7,6 +7,7 @@ export default Ember.Service.extend({
     nextYear: 0,        // next year's column
     todayDate: null,    // today's day number to show in header buttons
     todayColumn: null,  // today's column on the calendar
+    holidayColumns: [], // values of holiday column values
     draggable: false,   // if the rows are drag sortable or not
     webcel:null,        // singleton Webcel object - only one editable instance at a time
 	padout: function(number) { return (number < 10) ? '0' + number : number; }, // pad single digits to double (for date use)

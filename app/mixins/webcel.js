@@ -52,7 +52,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
 				var thisTile = $(this.row).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
 				//var holidayTile = $(this.row).find('.holidayContainer [data-x="' + x +'"][data-y="' + y + '"]');
-                var holidayTile = false;
+                var holidayTile = this.constants.holidayColumns.contains(x);
 
 				if(empty){ // remove tiles
 					thisTile.remove();
@@ -63,7 +63,7 @@ export default Ember.Mixin.create(CalendarWidget, {
                         stamp = ' data-stamp="true"';
                     }
                     thisTile.remove();
-					if(!holidayTile.length){ // tile does not exist, create new tile if not a holiday
+					if(!holidayTile){ // create tile if it is not a holiday column
                         if(x > this.constants.prevYear){ // only permit tiles on anything after the previous year
     						addTiles+='<span data-type="tile" data-x="' + x + '" data-y="' + y + '"';
 
@@ -90,7 +90,7 @@ export default Ember.Mixin.create(CalendarWidget, {
         this.constants.daily ?
             this.data.set('timeaway', addTiles) :
             this.data.set('assignment', addTiles);
-            
+
 		$(this.sizer).hide();
     },
 
