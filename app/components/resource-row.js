@@ -18,7 +18,7 @@ export default Ember.Component.extend(Webcel, {
                 $('.tileOptions [data-active="true"]')[0].click();
             }catch(e){
 
-                $('.tileOptions a')[0].click(); 
+                $('.tileOptions a')[0].click();
             }
         }
 
@@ -70,8 +70,8 @@ export default Ember.Component.extend(Webcel, {
 
         dragStart(e) {
         	this.dragSource = e.target;
-            var item = this.get('model').findBy('id', $(this.dragSource).attr('data-id'));
-            this.dragSource.index = this.dragSource.newIndex = this.get('model').indexOf(item);
+            var item = this.get('model').resource.findBy('id', $(this.dragSource).attr('data-id'));
+            this.dragSource.index = this.dragSource.newIndex = this.get('model').resource.indexOf(item);
 
         	$(this.dragSource).addClass('moving');
             $('#pageContainer').addClass('moving');
@@ -84,8 +84,8 @@ export default Ember.Component.extend(Webcel, {
             $(this.dragSource.ghost).remove()
             $('#pageContainer').removeClass('moving');
 
-            var items = this.get('model')
-            var item = this.get('model').objectAt(this.dragSource.index)
+            var items = this.get('model').resource;
+            var item = this.get('model').resource.objectAt(this.dragSource.index);
 
             items.removeAt(this.dragSource.index);
             try{
