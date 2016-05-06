@@ -226,11 +226,12 @@ header {
     }
 
     &.holidayLine {
-        background:red;
+        background:rgba(236,108,108,1) !important;
         box-shadow:none;
-        height:15px;
+        height:17px;
         margin-left:0;
-        opacity:.5;
+        opacity:1;
+        top:-1px;
         z-index:2;
 
         &:before {

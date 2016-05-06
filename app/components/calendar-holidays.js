@@ -45,7 +45,6 @@ export default Ember.Component.extend({
 			christmasLast: { name:"Christmas", date: this.getHolidayWeekday(this.year-1 + " 12 25") },
 			boxingDayLast: { name:"Boxing Day", date: this.getHolidayWeekday(this.year-1 + " 12 26") },
 
-
 			newYear: { name:"New Year", date: this.getHolidayWeekday(this.year + " 01 1") },
 			familyDay: { name:"Family Day", date: this.year + " 02 " + this.getMonday(this.year, 2, 3)}, // 3rd Monday in February
 			goodFriday: { name:"Good Friday", date: this.year + " " + ("0" + (easter.getMonth() + 1)).slice(-2) + " " + easter.getDate()},
@@ -102,16 +101,8 @@ export default Ember.Component.extend({
 		$.each(this.collection, function(key, value){
 			var thisHoliday = $("#calendarDaily").find("[data-date = '" + value.date + "']");
 			$(thisHoliday).addClass('holiday').attr("data-holiday", value.name);
-			columns.pushObject($(thisHoliday).attr("data-column"));
-            /* TODO - register holidays per resource
-			value.column = $(thisHoliday).attr("data-column")
-			var hc = $("<div>").addClass("holidayColumn").html("&nbsp;");
-			try{$(hc).css({left:$(thisHoliday).offset().left - 22});}catch(e){}
-			resourceContainer").append(hc);
-			holidays[key].column = value.column;
-            */
+			columns.pushObject(parseInt($(thisHoliday).attr("data-column")));
         });
-		this.set('constants.holidayColumns', columns)
+		this.set('constants.holidayColumns', columns.uniq())
     }
-
 });

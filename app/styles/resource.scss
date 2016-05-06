@@ -88,10 +88,16 @@ section.resourceRow {
             background:#c55500;
             text-shadow:none;
         }
+
+        .holidayLine {
+            border-bottom:1px solid #AAA;
+            height:15px;
+            top:0;
+        }
     }
 
     &[data-active="true"] {
-        z-index: 3;
+        z-index: 4;
 
         &:after {
             display:none;
@@ -118,6 +124,18 @@ section.resourceRow {
 
             .pointer {
                 display:block;
+            }
+
+            .holidayLine {
+                border:none;
+                box-shadow:0px 1px 1px 1px #fff;
+                height:15px;
+                top:0;
+
+                &:after {
+                    color:#fff;
+                    content:"H";
+                }
             }
         }
     }//data-active
