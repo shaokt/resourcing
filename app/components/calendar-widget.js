@@ -114,7 +114,7 @@ export default Ember.Component.extend(WebcelMixin, {
     // customize page after calendar loads
     didRender() {
         this.constants.webcel = this.Webcel();
-        this.constants.calWidth = ((this.constants.numDays) * this.constants.DIM);// + 3;
+        this.set('constants.calWidth', ((this.constants.numDays) * this.constants.DIM));
         $('#pageContainer').css({width:this.constants.calWidth});
         $('.calendar').css({width:this.constants.calWidth});
 

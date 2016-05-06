@@ -94,10 +94,15 @@ export default Ember.Component.extend({
 		return(date.getFullYear() + " 05 " + date.getDate());
 	},
 
+	/*	mark holidays on the calendar & save the coloumn values for highlighting/overlaying for resesource views
+	*/
     display: function(){
+		var self = this;
+		var columns = [];
 		$.each(this.collection, function(key, value){
 			var thisHoliday = $("#calendarDaily").find("[data-date = '" + value.date + "']");
 			$(thisHoliday).addClass('holiday').attr("data-holiday", value.name);
+			columns.pushObject($(thisHoliday).attr("data-column"));
             /* TODO - register holidays per resource
 			value.column = $(thisHoliday).attr("data-column")
 			var hc = $("<div>").addClass("holidayColumn").html("&nbsp;");
@@ -106,6 +111,7 @@ export default Ember.Component.extend({
 			holidays[key].column = value.column;
             */
         });
+		this.set('constants.holidayColumns', columns)
     }
 
 });
