@@ -5,15 +5,13 @@ export default Ember.Route.extend({
 
     beforeModel: function(transition){
         this.id = transition.queryParams.id
-        console.log(this.id);
     },
 
     model() {
         return Ember.RSVP.hash({
-            resource: this.get('store').findAll('resource'),
+            //resource: this.get('store').findAll('resource'),
+            resource: this.get('store').query('user', {manager: this.id}),
             assignment: this.get('store').findAll('assignment')
-            //resource: this.get('store').find('user', 'Kristin')
-            //resource: this.get('store').findAll('user', {id:'Kristin'}),
         });
     },
 
