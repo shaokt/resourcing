@@ -42,16 +42,17 @@ export default Ember.Mixin.create(CalendarWidget, {
 		}
     },
 
-    getTiles: function(){ this.setPaintableArea();
+    getTiles: function(){
+        this.setPaintableArea();
 		var addTiles = "";
 		var empty = this.currentTile.hasClass('empty');
 		var tileClass = this.currentTile.attr('class');
 		var tileAssignment = this.currentTile.attr('data-assignment');
+        var clone = $(this.row).clone(); // clone needed for removing tiles if applicable
 
 		for(var x = this.downX; x <= this.upX; x+=this.constants.DIM){
 			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
-				var thisTile = $(this.row).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
-				//var holidayTile = $(this.row).find('.holidayContainer [data-x="' + x +'"][data-y="' + y + '"]');
+				var thisTile = $(clone).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
                 var holidayTile = this.constants.holidayColumns.contains(x);
 
 				if(empty){ // remove tiles
@@ -86,7 +87,9 @@ export default Ember.Mixin.create(CalendarWidget, {
 			}
 		}
 
-		addTiles = ($(this.row).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
+
+		addTiles = ($(clone).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
+
         this.constants.daily ?
             this.data.set('timeaway', addTiles) :
             this.data.set('assignment', addTiles);
