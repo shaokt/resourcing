@@ -56,7 +56,11 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
               assignment: "",
               timeaway: "",
             });
-            this.constants.save(newEmployee)
+
+            var store = this.get('model').resource
+            newEmployee.save().then(function(){
+                store.pushObject(newEmployee._internalModel)
+            })
         }
     }
 });
