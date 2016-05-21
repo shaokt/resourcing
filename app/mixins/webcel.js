@@ -81,12 +81,11 @@ export default Ember.Mixin.create(CalendarWidget, {
                             };
 
     						addTiles+= stamp + '></span>';
-                        }
-					}
-				}
-			}
-		}
-
+                        }// if x > prevYear
+					}// if !holidayTile
+				}// else, non delete action
+			}// for y-axis
+		}// for x-axis
 
 		addTiles = ($(clone).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
 

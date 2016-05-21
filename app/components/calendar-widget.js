@@ -109,6 +109,8 @@ export default Ember.Component.extend(WebcelMixin, {
     reset:function(){
         this.constants.numDays=0;
         this.constants._DIM=-this.constants.DIM;
+        this.constants.prevYear = 0;
+        this.constants.nextYear = 0;
     },
 
     didRender: function() {
