@@ -77,7 +77,7 @@ export default Ember.Component.extend(WebcelMixin, {
     	var month = ("0" + (this.today.getMonth() + 1)).slice(-2);
     	var day = this.today.getDate();
     	var date = this.getDate(year, month, day);
-      this.set('constants.todayDate', day);
+        this.set('constants.todayDate', day);
     	date.week.addClass("selected");
     	date.month.addClass("selected");
         var self = this;
@@ -109,6 +109,8 @@ export default Ember.Component.extend(WebcelMixin, {
     reset:function(){
         this.constants.numDays=0;
         this.constants._DIM=-this.constants.DIM;
+        this.constants._prevYear = 0;
+        this.constants._nextYear = 0;
     },
 
     didRender: function() {
