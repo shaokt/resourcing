@@ -53,35 +53,35 @@ export default Ember.Mixin.create(CalendarWidget, {
 		for(var x = this.downX; x <= this.upX; x+=this.constants.DIM){
 			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
 				var thisTile = $(clone).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
-                var holidayTile = this.constants.daily ? this.constants.holidayColumns.contains(x) : false;
+				thisTile.remove();
 
-				if(empty){ // remove tiles
-					thisTile.remove();
-				}
-				else{
-                    var stamp = (thisTile.length && thisTile.attr('data-stamp')) ? ' data-stamp="true"' : "";
+				if(!empty){ // repaint area if delete tile not chosen
+                    var holidayTile = this.constants.daily ? this.constants.holidayColumns.contains(x) : false;
 
-                    thisTile.remove();
 					if(!holidayTile){ // create tile if it is not a holiday column
-                        if(x > this.constants.prevYear){ // only permit tiles on anything after the previous year
-    						addTiles+='<span data-type="tile" data-x="' + x + '" data-y="' + y + '"';
+                        var stamp = (thisTile.length && thisTile.attr('data-stamp')) ? ' data-stamp="true"' : "";
 
-    						// add year indicator for out of office tracking
-                            if(this.constants.daily){
-                                addTiles+='class="' + tileClass + '"';
-                                tileClass == "vacationCarryover" ?
-        							addTiles+=' data-year="' + (x < this.constants.nextYear ? (this.year - 1) : this.year) + '"' :
-        							addTiles+=' data-year="' + (x < this.constants.nextYear ? this.year : (this.year + 1)) + '"'
+                        if(x > this.constants.prevYear){ // permit tiles on anything after the previous year
+                            var dataAssignment = ""; // the assignment tile ID if applicable
+
+                            if(this.constants.daily){ // add year indicator for out of office tracking
+                                var dataYear = tileClass == "vacationCarryover" ?
+                                    (x < this.constants.nextYear ? (this.year - 1) : this.year) :
+                                    (x < this.constants.nextYear ? this.year : (this.year + 1))
                             } else {
-                                addTiles+=' data-assignment="' + tileAssignment + '"';
-                               addTiles+=' data-year="' + (x < this.constants.nextYear ? this.year : (this.year + 1)) + '"'
-
+                                var dataYear = x < this.constants.nextYear ? this.year : (this.year + 1)
+                                dataAssignment = ' data-assignment="' + tileAssignment + '"';
                             };
+    						addTiles+=
+                                '<span data-type="tile" data-x="' + x + '" data-y="' + y + '"' +
+                                ' class="' + tileClass + '"' +
+        						' data-year="' + dataYear + '"' +
+                                dataAssignment + stamp + '></span>';
 
-    						addTiles+= stamp + '></span>';
+    						//addTiles+= stamp + '></span>';
                         }// if x > prevYear
 					}// if !holidayTile
-				}// else, non delete action
+				}//  non delete action
 			}// for y-axis
 		}// for x-axis
 

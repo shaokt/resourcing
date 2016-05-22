@@ -3,14 +3,14 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: '',
     dayInMonth: function(){
-        if(this.constants.nextYear == 0){
+        if(this.constants._nextYear == 0){
             if(this.year == this.cal.year+1){
-                this.constants.nextYear = this.constants._DIM + this.constants.DIM
+                this.constants.nextYear = this.constants._nextYear = this.constants._DIM + this.constants.DIM
             }
         }
-        if(this.constants.prevYear == 0){
+        if(this.constants._prevYear == 0){
             if(this.year == this.cal.year){
-                this.constants.prevYear = this.constants._DIM
+                this.constants.prevYear = this.constants._prevYear = this.constants._DIM
             }
         }
 
