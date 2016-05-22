@@ -53,16 +53,14 @@ export default Ember.Mixin.create(CalendarWidget, {
 		for(var x = this.downX; x <= this.upX; x+=this.constants.DIM){
 			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
 				var thisTile = $(clone).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
-                var holidayTile = this.constants.holidayColumns.contains(x);
+                var holidayTile = this.constants.daily ? this.constants.holidayColumns.contains(x) : false;
 
 				if(empty){ // remove tiles
 					thisTile.remove();
 				}
 				else{
-                    var stamp = "";
-                    if(thisTile.length && thisTile.attr('data-stamp')){
-                        stamp = ' data-stamp="true"';
-                    }
+                    var stamp = (thisTile.length && thisTile.attr('data-stamp')) ? ' data-stamp="true"' : "";
+
                     thisTile.remove();
 					if(!holidayTile){ // create tile if it is not a holiday column
                         if(x > this.constants.prevYear){ // only permit tiles on anything after the previous year
