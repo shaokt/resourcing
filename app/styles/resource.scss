@@ -76,7 +76,6 @@ section.resourceRow {
             background:#c55500;
             color:#fff;
             font-size:120%;
-            margin-top:-5px;
             padding:2px 5px 0 5px;
             text-shadow:none;
         }
@@ -98,6 +97,7 @@ section.resourceRow {
     }
 
     &[data-active="true"] {
+        border-top:25px solid #000;
         z-index: 4;
 
         &:after {
@@ -117,7 +117,6 @@ section.resourceRow {
         						rgba(255,255,255,.3));
         	background-position: 0 0, 15px 15px;
         	background-size: 30px 30px;
-            border-top:14px solid #000;
         	cursor:none;
             outline:3px solid #fff;
         	box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5);
@@ -137,6 +136,20 @@ section.resourceRow {
                     color:#fff;
                     content:"H";
                 }
+            }
+        }// row
+
+        .info {
+            background:#fff;
+            border-radius:2px;
+            border-left-width:25px;
+            margin-left:-25px;
+            padding-right:10px;
+            top:-23px;
+
+            ul.viewOptions {
+                width:20px;
+                left:-20px;
             }
         }
     }//data-active
