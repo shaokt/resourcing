@@ -18,8 +18,14 @@ export default Ember.Mixin.create(CalendarWidget, {
     },
 
     resize: function(e){
-		$(this.sizer).css({left: this.downX > this.upX ? this.upX : this.downX, top: this.downY > this.upY ? this.upY : this.downY});
-		$(this.sizer).css({width:Math.abs(this.upX - this.downX) + this.constants.DIM, height:Math.abs(this.upY - this.downY) + this.constants.DIM});
+        $(this.sizer).css({top: this.downY > this.upY ? this.upY : this.downY});
+		$(this.sizer).css({height:Math.abs(this.upY - this.downY) + this.constants.DIM});
+
+        // only resize if not over the un-editable area
+        if(this.upX > this.constants.prevYear){
+    		$(this.sizer).css({left: this.downX > this.upX ? this.upX : this.downX });
+    		$(this.sizer).css({width:Math.abs(this.upX - this.downX) + this.constants.DIM});
+        }
     },
 
     // set tile for painting
@@ -112,7 +118,10 @@ export default Ember.Mixin.create(CalendarWidget, {
     		self.y = e.pageY  - $(this).offset().top;
     		self.y = self.y - self.y%self.constants.DIM;
             self.y > self.maxY ? self.y = self.maxY : 0;
-			$(self.pointer).css({left:self.x,top:self.y});
+
+            // only allow the pointer to move if it is not in the un-editable area
+            if(self.x > self.constants.prevYear){ $(self.pointer).css({left:self.x}); }
+            $(self.pointer).css({top:self.y});
 
             if(self.isDown){
 				self.upX = e.pageX  - $(this).offset().left;

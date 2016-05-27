@@ -125,6 +125,7 @@ section.resourceRow {
             &:before {
                 background:repeating-linear-gradient(-45deg, #222, #222 10px, #333 10px, #333 20px);
                 content:"";
+                cursor:not-allowed;
                 height:100%;
                 opacity:.8;
                 padding-right:15px;
