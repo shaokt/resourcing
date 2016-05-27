@@ -4,7 +4,9 @@ export default Ember.Service.extend({
     calWidth: 0,        // calendar width
     numDays: 0,         // number of days rendered on calendar
     prevYear: 0,        // previous year's column
+    _prevYear: 0,       // previous year's column
     nextYear: 0,        // next year's column
+    _nextYear: 0,       // next year's column
     todayDate: null,    // today's day number to show in header buttons
     todayColumn: null,  // today's column on the calendar
     holidayColumns: [], // values of holiday column values

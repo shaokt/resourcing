@@ -3,14 +3,16 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: '',
     dayInMonth: function(){
-        if(this.constants.nextYear == 0){
+        if(this.constants._nextYear == 0){
             if(this.year == this.cal.year+1){
-                this.constants.nextYear = this.constants._DIM + this.constants.DIM
+                this.constants.nextYear = this.constants._nextYear = this.constants._DIM + this.constants.DIM
             }
         }
-        if(this.constants.prevYear == 0){
+        if(this.constants._prevYear == 0){
             if(this.year == this.cal.year){
-                this.constants.prevYear = this.constants._DIM
+                //Ember.set(this.constants, 'prevYear', this.constants._DIM)
+                this.set('constants.prevYear', this.constants._DIM + this.constants.DIM)
+                this.constants._prevYear = this.constants._DIM
             }
         }
 
@@ -35,22 +37,4 @@ export default Ember.Component.extend({
             }
         }
     }.on('init')
-    /*
-    generateDays: function() {
-        this.set("lastDay", (new Date(this.year, this.months[this.month], 0).getDate()));
-    	$(this.selector).html("");
-        this.result = "";
-
-        for(var i=1; i<=this.lastDay; i++){
-			var dayName = this.dayNames[(new Date(this.year, this.months[this.month] -1 , i).getDay())]
-			var theDay = i < 10 ? "0" + i : i;
-			if(dayName != "S"){
-				var divDay = $("<div>").addClass("day").attr("data-column", this.constants._DIM+=this.constants.DIM).attr("data-date", this.year + " " + this.months[this.month] + " " + theDay).attr("data-dayname", dayName);
-				this.constants.numDays++;
-				divDay.html("<div class='dayName'>" + dayName + "</div><div class='dayNum'>" + i + "</div>");
-                this.result += divDay[0].outerHTML;
-            }
-        }
-    }.on('init'),
-    */
 });

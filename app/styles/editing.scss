@@ -7,4 +7,10 @@
     .editing .viewOptions {
         display:block !important
     }
+
+    section.resourceRow {
+        &:not([data-active=true]){
+            opacity:.3;
+        }
+    }
 }
