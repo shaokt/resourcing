@@ -10,7 +10,9 @@ export default Ember.Component.extend({
         }
         if(this.constants._prevYear == 0){
             if(this.year == this.cal.year){
-                this.constants.prevYear = this.constants._prevYear = this.constants._DIM
+                //Ember.set(this.constants, 'prevYear', this.constants._DIM)
+                this.set('constants.prevYear', this.constants._DIM)
+                this.constants._prevYear = this.constants._DIM
             }
         }
 

@@ -122,6 +122,15 @@ section.resourceRow {
         	box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5);
             height:60px;
 
+            &:before {
+                background:repeating-linear-gradient(-45deg, #222, #222 10px, #333 10px, #333 20px);
+                content:"";
+                height:100%;
+                opacity:.8;
+                padding-right:15px;
+                position:absolute;
+            }
+
             .pointer {
                 display:block;
             }
