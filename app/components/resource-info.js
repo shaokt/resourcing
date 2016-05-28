@@ -7,6 +7,14 @@ export default ResourceRowComponent.extend({
     classNames: ['info'],
     classNameBindings: ['editing'],
     editing: false,
+    hasDirects: false,
+
+    didRender: function(){
+        if (this.get('resource.name') === 'Kristin T') {
+            var blah = this.get('store').query('user', {manager: 'Kristin', exists: true})
+            this.set('hasDirects', true);
+        }
+    }.on('init'),
 
     actions: {
         // open a row up for edit by unlocking

@@ -7,9 +7,11 @@
         <a href="/" {{action "toggleRow" on="click"}}></a>
     </li>
 
-    <li class="expand">
-        <a href="#" class=""></a>
-    </li>
+    {{#if hasDirects}}
+        <li class="expand">
+            <a href="#" class=""></a>
+        </li>
+    {{/if}}
 </ul>
 
 {{#if editing}}
