@@ -6,6 +6,7 @@ export default ResourceRowComponent.extend({
     tagName: 'div',
     classNames: ['info'],
     classNameBindings: ['editing'],
+    collapse: '',
     editing: false,
 
     didRender(){
@@ -35,8 +36,14 @@ export default ResourceRowComponent.extend({
 
         // show/hide direct reports
         toggleDirects() {
-            //this.set('model.directs', this.get('store').query('direct', {manager: this.get('resource.ad')}));
-            this.set('resource.directs', this.get('store').query('direct', {manager: this.get('resource.ad')}));
+            if(this.collapse === ''){
+                this.set('resource.directs', this.get('store').query('direct', {manager: this.get('resource.ad')}));
+                this.set('collapse', 'collapse')
+            }
+            else{
+                this.set('resource.directs', null);
+                this.set('collapse', '')
+            }
         },
 
         toggleRow() {

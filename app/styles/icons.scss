@@ -180,6 +180,12 @@ ul.viewOptions {
         }
     }//expand
 
+    .collapse {
+        &:before {
+            background:none;
+        }
+    }
+
     .remove {
         a {
             &:after {

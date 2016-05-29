@@ -9,7 +9,7 @@
         </li>
 
         {{#if resource.hasDirects}}
-            <li class="expand">
+            <li class="expand {{collapse}}">
                 <a href="/" class="" {{action "toggleDirects" on="click"}}></a>
             </li>
         {{/if}}
