@@ -1,18 +1,20 @@
-<ul class="viewOptions">
-    <li class="lock">
-        <a href="/" {{action "editing" on="click"}}></a>
-    </li>
-
-    <li class="toggle">
-        <a href="/" {{action "toggleRow" on="click"}}></a>
-    </li>
-
-    {{#if resource.hasDirects}}
-        <li class="expand">
-            <a href="#" class=""></a>
+{{#unless readonly}}
+    <ul class="viewOptions">
+        <li class="lock">
+            <a href="/" {{action "editing" on="click"}}></a>
         </li>
-    {{/if}}
-</ul>
+
+        <li class="toggle">
+            <a href="/" {{action "toggleRow" on="click"}}></a>
+        </li>
+
+        {{#if resource.hasDirects}}
+            <li class="expand">
+                <a href="/" class="" {{action "toggleDirects" on="click"}}></a>
+            </li>
+        {{/if}}
+    </ul>
+{{/unless}}
 
 {{#if editing}}
     {{content-editable class="name" value=resource.name key-press="filter" focus-in=constants.focusInContentEditable}}

@@ -33,6 +33,11 @@ export default ResourceRowComponent.extend({
             }
         },
 
+        // show/hide direct reports
+        toggleDirects() {
+            this.set('model.directs', this.get('store').query('direct', {manager: this.get('resource.ad')}));
+        },
+
         toggleRow() {
             this.$().parent().toggleClass('hidden');
             this.set('resource.hidden', this.$().parent().hasClass('hidden'));
