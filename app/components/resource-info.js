@@ -6,7 +6,18 @@ export default ResourceRowComponent.extend({
     tagName: 'div',
     classNames: ['info'],
     classNameBindings: ['editing'],
+    collapse: '',
     editing: false,
+
+    didRender(){
+        this._super(...arguments);
+        var self = this;
+
+        var exists = $.getJSON('http://localhost:3000/file/' + this.get('resource.ad'), function() {})
+        .done(function() {
+            self.set('resource.hasDirects', exists.responseJSON ? true : false);
+        })
+    },
 
     actions: {
         // open a row up for edit by unlocking
@@ -20,6 +31,18 @@ export default ResourceRowComponent.extend({
             else {
                 this.set('constants.editingRow', false);
                 this.save();
+            }
+        },
+
+        // show/hide direct reports
+        toggleDirects() {
+            if(this.collapse === ''){
+                this.set('resource.directs', this.get('store').query('direct', {manager: this.get('resource.ad')}));
+                this.set('collapse', 'collapse')
+            }
+            else{
+                this.set('resource.directs', null);
+                this.set('collapse', '')
             }
         },
 
