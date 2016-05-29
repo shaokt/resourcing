@@ -28,5 +28,8 @@
             </div>
         {{/if}}
         {{resource-info index=index resource=resource updateName="updateName" updateRow="updateRow"}}
+        {{#if resource.hasDirects}}
+            Logic to show/hide directs
+        {{/if}}
     </section>
 {{/each}}
