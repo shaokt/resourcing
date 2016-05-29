@@ -13,12 +13,10 @@ export default ResourceRowComponent.extend({
         this._super(...arguments);
         var self = this;
 
-        // check if the current resource has a file of their own
-        if (this.get('resource.name') === 'Kristin T') {
-            var blah = this.get('store').peekRecord('user', {manager: 'Kristin', exists: true})
-            this.set('hasDirects', true);
-        }
-        return;
+        var exists = $.getJSON('http://localhost:3000/file/' + this.get('resource.ad'), function() {})
+        .done(function() {
+            if(exists.responseJSON) self.set('hasDirects', true);
+        })
     },
 
     actions: {
