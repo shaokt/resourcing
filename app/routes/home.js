@@ -10,7 +10,6 @@ export default Ember.Route.extend({
     model() {
         return Ember.RSVP.hash({
             resource: this.get('store').query('user', {manager: this.id}),
-            directs: null,
             assignment: this.get('store').findAll('assignment')
         });
     },
