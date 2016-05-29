@@ -9,12 +9,18 @@ export default ResourceRowComponent.extend({
     editing: false,
     hasDirects: false,
 
-    didRender: function(){
+    init(){
+        this._super(...arguments);
+        var self = this;
+
+        // check if the current resource has a file of their own
         if (this.get('resource.name') === 'Kristin T') {
-            var blah = this.get('store').query('user', {manager: 'Kristin', exists: true})
-            this.set('hasDirects', true);
+            var blah= $.getJSON( "http://localhost:3000/users?manager=Kristin", function(){})
+            .done(function() {
+                self.set('hasDirects', true);
+            });
         }
-    }.on('init'),
+    },
 
     actions: {
         // open a row up for edit by unlocking
