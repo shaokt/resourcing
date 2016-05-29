@@ -9,13 +9,13 @@ export default ResourceRowComponent.extend({
     editing: false,
     hasDirects: false,
 
-    init(){
+    didRender(){
         this._super(...arguments);
         var self = this;
 
         var exists = $.getJSON('http://localhost:3000/file/' + this.get('resource.ad'), function() {})
         .done(function() {
-            if(exists.responseJSON) self.set('hasDirects', true);
+            self.set('hasDirects', exists.responseJSON ? true : false);
         })
     },
 
