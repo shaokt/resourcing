@@ -29,30 +29,32 @@
         {{/if}}
         {{resource-info model=model index=index resource=resource updateName="updateName" updateRow="updateRow"}}
 
-        {{#if resource.hasDirects}}
-            {{#each resource.directs as |direct index|}}
-                <section class="resourceRow{{if direct.hidden ' hidden'}}" data-active="{{direct.active}}">
-                    {{#if settings.isWeeklyCalendar}}
-                    	<div class="row" data-view="assignment">
-                            <div class="pointer"></div>
-                            <div class="sizer"></div>
-                            <div class="tiles">{{{direct.assignment}}}</div>
-                        </div>
-                    {{/if}}
-
-                    {{#if settings.isDailyCalendar}}
-                    	<div class="row" data-view="timeOff">
-                            <div class="pointer"></div>
-                            <div class="sizer"></div>
-                            {{calendar-holiday-tiles}}
-                            <div class="tiles">
-                                {{{direct.timeaway}}}
+        {{#if resource.directs}}
+            <div class="directs">
+                {{#each resource.directs as |direct index|}}
+                    <section class="resourceRow{{if direct.hidden ' hidden'}}" data-active="{{direct.active}}">
+                        {{#if settings.isWeeklyCalendar}}
+                        	<div class="row" data-view="assignment">
+                                <div class="pointer"></div>
+                                <div class="sizer"></div>
+                                <div class="tiles">{{{direct.assignment}}}</div>
                             </div>
-                        </div>
-                    {{/if}}
-                    {{resource-info index=index resource=direct updateName="updateName" updateRow="updateRow" readonly=true}}
-                </section>
-            {{/each}}
+                        {{/if}}
+
+                        {{#if settings.isDailyCalendar}}
+                        	<div class="row" data-view="timeOff">
+                                <div class="pointer"></div>
+                                <div class="sizer"></div>
+                                {{calendar-holiday-tiles}}
+                                <div class="tiles">
+                                    {{{direct.timeaway}}}
+                                </div>
+                            </div>
+                        {{/if}}
+                        {{resource-info index=index resource=direct updateName="updateName" updateRow="updateRow" readonly=true}}
+                    </section>
+                {{/each}}
+            </div>
         {{/if}}
     </section>
 {{/each}}
