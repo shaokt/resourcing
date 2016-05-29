@@ -15,11 +15,10 @@ export default ResourceRowComponent.extend({
 
         // check if the current resource has a file of their own
         if (this.get('resource.name') === 'Kristin T') {
-            var blah= $.getJSON( "http://localhost:3000/users?manager=Kristin", function(){})
-            .done(function() {
-                self.set('hasDirects', true);
-            });
+            var blah = this.get('store').peekRecord('user', {manager: 'Kristin', exists: true})
+            this.set('hasDirects', true);
         }
+        return;
     },
 
     actions: {
