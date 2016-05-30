@@ -1,3 +1,38 @@
-.directs {
-    margin-left:1px;
-}
+section.resourceRow {
+    .directs {
+        margin-left:1px;
+
+        .info {
+            margin-left:-60px;
+
+            &:before {
+                background:#fff;
+                content:"";
+                height:2px;
+                left:-10px;
+                position:absolute;
+                top:7px;
+                width:10px;
+            }
+
+            &:after {
+                background:#fff;
+                content:"";
+                height:32px;
+                left:-10px;
+                position:absolute;
+                width:2px;
+                top:-25px;
+            }
+        }// info
+
+        section.resourceRow:first-child {
+            .info {
+                &:after {
+                    height:27px;
+                    top:-20px;
+                }
+            }
+        }
+    }// directs
+}// resourceRow
