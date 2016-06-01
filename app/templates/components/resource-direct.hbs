@@ -1,6 +1,11 @@
 <div class="directs">
     {{#each resource.directs as |direct index|}}
-        <section class="resourceRow{{if direct.hidden ' hidden'}}" data-active="{{direct.active}}">
+        <section class="resourceRow{{if direct.hidden ' hidden'}}"
+            data-active="{{direct.active}}"
+            data-id="{{direct.id}}"
+            data-index="{{index}}"
+            data-name="{{direct.name}}"
+        >
             {{#if settings.isWeeklyCalendar}}
             	<div class="row" data-view="assignment">
                     <div class="pointer"></div>
@@ -19,11 +24,11 @@
                     </div>
                 </div>
             {{/if}}
-            
+
             {{resource-info index=index resource=direct updateName="updateName" updateRow="updateRow" readonly=true}}
             {{#if direct.directs}}
                 {{resource-direct resource=direct settings=settings}}
-            {{/if}}
+                {{/if}}
         </section>
     {{/each}}
 </div>

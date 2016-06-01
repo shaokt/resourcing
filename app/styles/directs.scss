@@ -1,38 +1,42 @@
 section.resourceRow {
     .directs {
         margin-left:1px;
+        position:relative;
+
+        &:before {
+            background:#fff;
+            content:"";
+            height:100%;
+            margin-left:-1px;
+            position:absolute;
+            top:-24px;
+            width:2px;
+            z-index:4;
+        }
 
         .info {
-            margin-left:-60px;
+            margin-left:-50px;
 
-            &:before {
+            &:after { // horizontal tree line
                 background:#fff;
                 content:"";
                 height:2px;
-                left:-10px;
+                left:-19px;
                 position:absolute;
-                top:7px;
-                width:10px;
-            }
-
-            &:after {
-                background:#fff;
-                content:"";
-                height:32px;
-                left:-10px;
-                position:absolute;
-                width:2px;
-                top:-25px;
-            }
-        }// info
-
-        section.resourceRow:first-child {
-            .info {
-                &:after {
-                    height:27px;
-                    top:-20px;
-                }
+                top:6px;
+                width:20px;
             }
         }
+
+        .directs {
+            &:before { margin-left:19px; }
+            .info { margin-left:-30px;}
+        }
     }// directs
+
+    &[data-expanded] {
+        :not(.directs) .info {
+            //background:red;
+        }
+    }
 }// resourceRow

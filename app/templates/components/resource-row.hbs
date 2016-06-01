@@ -1,8 +1,9 @@
 {{#each model.resource as |resource index|}}
-    <section class="resourceRow{{if resource.hidden ' hidden'}}" data-active="{{resource.active}}"
-        data-name="{{resource.name}}"
+    <section class="resourceRow{{if resource.hidden ' hidden'}}"
+        data-active="{{resource.active}}"
         data-id="{{resource.id}}"
         data-index="{{index}}"
+        data-name="{{resource.name}}"
         draggable="{{if constants.draggable 'true'}}"
         ondragenter={{action "dragEnter"}}
         ondragstart={{action "dragStart"}}
@@ -27,9 +28,8 @@
                 </div>
             </div>
         {{/if}}
-        
-        {{resource-info model=model index=index resource=resource updateName="updateName" updateRow="updateRow"}}
 
+        {{resource-info model=model index=index resource=resource updateName="updateName" updateRow="updateRow"}}
         {{#if resource.directs}}
             {{resource-direct resource=resource settings=settings}}
         {{/if}}
