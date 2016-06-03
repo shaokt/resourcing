@@ -1,6 +1,7 @@
 {{#each model.resource as |resource index|}}
     <section class="resourceRow{{if resource.hidden ' hidden'}}"
         data-active="{{resource.active}}"
+        data-expanded="{{resource.expanded}}"
         data-id="{{resource.id}}"
         data-index="{{index}}"
         data-name="{{resource.name}}"

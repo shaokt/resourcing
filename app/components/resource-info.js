@@ -38,10 +38,12 @@ export default ResourceRowComponent.extend({
         toggleDirects() {
             if(this.collapse === ''){
                 this.set('resource.directs', this.get('store').query('direct', {manager: this.get('resource.ad')}));
+                this.set('resource.expanded', true);
                 this.set('collapse', 'collapse')
             }
             else{
                 this.set('resource.directs', null);
+                this.set('resource.expanded', false);
                 this.set('collapse', '')
             }
         },

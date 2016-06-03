@@ -3,6 +3,7 @@ section.resourceRow {
         margin-left:1px;
         position:relative;
 
+        /*
         &:before {
             background:#fff;
             content:"";
@@ -12,6 +13,20 @@ section.resourceRow {
             top:-24px;
             width:2px;
             z-index:4;
+        }
+        /**/
+
+        .resourceRow {
+            &:before {
+                background:#fff;
+                content:"";
+                height:100%;
+                padding-top:1px;
+                position:absolute;
+                top:-25px;
+                width:2px;
+                z-index:4;
+            }
         }
 
         .info {
@@ -29,13 +44,39 @@ section.resourceRow {
         }
 
         .directs { // 2nd level down
-            &:before { margin-left:19px; }
+            .resourceRow:before { margin-left:20px; }
             .info { margin-left:-30px;}
+                .resourceRow {
+                    &[data-expanded="true"]:last-child {
+                        > .row {
+                            &:before {
+                                margin-left:20px;
+                            }
+                        }
+                    }
+                }
 
             .directs { // 3rd level down
-                &:before { margin-left:39px; }
+                .resourceRow:before { margin-left:40px; }
                 .info { margin-left:-10px;}
             }
         }
+
     }// directs
+
+    &[data-expanded="true"]:last-child {
+        &:before { display:none; }
+        > .row {
+            &:before {
+                background:#fff;
+                content:"";
+                height:100%;
+                padding-top:1px;
+                position:absolute;
+                top:-25px;
+                width:2px;
+                z-index:4;
+            }
+        }
+    }// last child in the tree structure that has directs showing
 }// resourceRow

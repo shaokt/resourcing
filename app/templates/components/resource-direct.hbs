@@ -2,6 +2,7 @@
     {{#each resource.directs as |direct index|}}
         <section class="resourceRow{{if direct.hidden ' hidden'}}"
             data-active="{{direct.active}}"
+            data-expanded="{{direct.expanded}}"
             data-id="{{direct.id}}"
             data-index="{{index}}"
             data-name="{{direct.name}}"
@@ -28,7 +29,7 @@
             {{resource-info index=index resource=direct updateName="updateName" updateRow="updateRow" readonly=true}}
             {{#if direct.directs}}
                 {{resource-direct resource=direct settings=settings}}
-                {{/if}}
+            {{/if}}
         </section>
     {{/each}}
 </div>
