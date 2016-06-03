@@ -32,26 +32,26 @@ section.resourceRow {
             width:12px;
             z-index:1;
          }
-    }
 
-    &:hover:after {
-        background:none;
-    }
+        &:after {
+            background:#100;
+            content:"";
+            display:block;
+            height:100%;
+            opacity:.1;
+            position:absolute;
+            top:0;
+            width:100%;
 
-    &:after {
-        background:#100;
-        content:"";
-        display:block;
-        height:100%;
-        opacity:.1;
-        position:absolute;
-        top:0;
-        width:100%;
+            &:hover {
+                background:none;
+            }
+        }
 
-        &:hover {
+        &:hover:after {
             background:none;
         }
-    }
+    }// row
 
     .info {
         border-left:70px solid transparent;
