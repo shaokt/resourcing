@@ -32,6 +32,10 @@ section.resourceRow {
             width:12px;
             z-index:1;
          }
+
+         &:hover {
+            z-index:3;
+         }
     }// row
 
     // only add row shadow if it is not already active
@@ -57,7 +61,7 @@ section.resourceRow {
             }
         }
     }
-    
+
     .info {
         border-left:70px solid transparent;
         cursor:default;
@@ -90,8 +94,6 @@ section.resourceRow {
     }
 
     &:hover {
-        z-index:3;
-
         .info .name {
             background:#c55500;
             text-shadow:none;
