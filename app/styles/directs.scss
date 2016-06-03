@@ -1,5 +1,5 @@
 section.resourceRow {
-    .directs {
+    .directs { // 1 level down
         margin-left:1px;
         position:relative;
 
@@ -28,15 +28,14 @@ section.resourceRow {
             }
         }
 
-        .directs {
+        .directs { // 2nd level down
             &:before { margin-left:19px; }
             .info { margin-left:-30px;}
+
+            .directs { // 3rd level down
+                &:before { margin-left:39px; }
+                .info { margin-left:-10px;}
+            }
         }
     }// directs
-
-    &[data-expanded] {
-        :not(.directs) .info {
-            //background:red;
-        }
-    }
 }// resourceRow
