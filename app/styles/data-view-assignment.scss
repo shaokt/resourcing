@@ -70,7 +70,10 @@
     section.resourceRow {
         &[data-active="true"],
         &:hover {
-            box-shadow:1px 5px 10px rgba(0,0,0,.5);
+            .row:hover {
+                box-shadow:1px 5px 10px rgba(0,0,0,.5);
+                z-index:1;
+            }
         }
 
         &[data-active="true"]{
