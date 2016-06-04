@@ -6,8 +6,9 @@ section.resourceRow {
         .resourceRow {
             border-right:0;
 
-            &:before {
+            &:before { // vertical tree line
                 background:#fff;
+                box-shadow:-1px 1px 0px 0px rgba(0,0,0,.1);
                 content:"";
                 height:100%;
                 padding-top:1px;
@@ -23,12 +24,13 @@ section.resourceRow {
 
             &:after { // horizontal tree line
                 background:#fff;
+                box-shadow:0px 1px 0px 0px rgba(0,0,0,.1);
                 content:"";
                 height:2px;
                 left:-19px;
                 position:absolute;
                 top:6px;
-                width:20px;
+                width:19px;
             }
         }
 
@@ -57,6 +59,7 @@ section.resourceRow {
         > .row {
             &:before {
                 background:#fff;
+                box-shadow:-1px 1px 0px 0px rgba(0,0,0,.1);
                 content:"";
                 height:100%;
                 padding-top:1px;
