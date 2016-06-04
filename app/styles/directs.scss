@@ -68,3 +68,23 @@ section.resourceRow {
         }
     }// last child in the tree structure that has directs showing
 }// resourceRow
+
+[data-view="timeaway"] {
+    section.resourceRow {
+        .directs {
+            .resourceRow {
+                &:before {
+                    top:-8px;
+                }
+            }
+        }
+
+        &[data-expanded="true"]:last-child {
+            > .row {
+                &:before {
+                    top:-8px;
+                }
+            }
+        }// last child in the tree structure that has directs showing
+    }// resourceRow
+}// timeaway overrides
