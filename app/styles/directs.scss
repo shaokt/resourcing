@@ -3,20 +3,9 @@ section.resourceRow {
         margin-left:1px;
         position:relative;
 
-        /*
-        &:before {
-            background:#fff;
-            content:"";
-            height:100%;
-            margin-left:-1px;
-            position:absolute;
-            top:-24px;
-            width:2px;
-            z-index:4;
-        }
-        /**/
-
         .resourceRow {
+            border-right:0;
+
             &:before {
                 background:#fff;
                 content:"";
@@ -61,7 +50,6 @@ section.resourceRow {
                 .info { margin-left:-10px;}
             }
         }
-
     }// directs
 
     &[data-expanded="true"]:last-child {
