@@ -94,7 +94,7 @@ section.resourceRow {
     }
 
     &:hover {
-        .info .name {
+        > .info .name {
             background:#c55500;
             text-shadow:none;
         }
