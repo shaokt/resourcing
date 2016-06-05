@@ -76,17 +76,19 @@
         }
 
         &[data-active="true"]{
-            [data-type="tile"] {
-                height:15px;
-                &[data-y="15"]{ top:15px; }
-                &[data-y="30"]{ top:30px; }
-                &[data-y="45"]{ top:45px; }
-            }
+            > .row {
+                [data-type="tile"] {
+                    height:15px;
+                    &[data-y="15"]{ top:15px; }
+                    &[data-y="30"]{ top:30px; }
+                    &[data-y="45"]{ top:45px; }
+                }
 
-            [data-stamp="true"]{
-                &:hover:before {
-                    background:none;
-                    content:"";
+                [data-stamp="true"]{
+                    &:hover:before {
+                        background:none;
+                        content:"";
+                    }
                 }
             }
         }
