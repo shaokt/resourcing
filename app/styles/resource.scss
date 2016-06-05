@@ -108,7 +108,6 @@ section.resourceRow {
 
     &[data-active="true"] {
         border-top:25px solid #000;
-        z-index: 4;
 
         &:after {
             display:none;
@@ -131,6 +130,7 @@ section.resourceRow {
             outline:3px solid #fff;
         	box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5);
             height:60px;
+            z-index:4;
 
             &:before {
                 background:repeating-linear-gradient(-45deg, #222, #222 10px, #333 10px, #333 20px);
@@ -162,13 +162,29 @@ section.resourceRow {
             background:#fff;
             border-radius:2px;
             border-left-width:25px;
+            box-shadow:none;
             margin-left:-25px;
             padding-right:10px;
             top:-23px;
+            z-index:4;
 
             ul.viewOptions {
                 width:20px;
                 left:-20px;
+            }
+
+            .name {
+                box-shadow:none;
+            }
+        }
+
+        &[data-expanded="true"] {
+            .directs {
+                .resourceRow:first-of-type {
+                    &:before {
+                        z-index:3;
+                    }
+                }
             }
         }
     }//data-active
