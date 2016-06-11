@@ -35,6 +35,13 @@ section.resourceRow {
 
          &:hover {
             z-index:3;
+
+            .holidayLine {
+                border-bottom:1px solid #AAA;
+                border-top:1px solid #AAA;
+                height:15px;
+                top:-1px;
+            }
          }
     }// row
 
@@ -97,12 +104,6 @@ section.resourceRow {
         > .info .name {
             background:#c55500;
             text-shadow:none;
-        }
-
-        .holidayLine {
-            border-bottom:1px solid #AAA;
-            height:15px;
-            top:0;
         }
     }
 
