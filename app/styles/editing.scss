@@ -8,9 +8,16 @@
         display:block !important
     }
 
-    section.resourceRow {
-        &:not([data-active=true]){
-            opacity:.3;
+    *:not(.directs){
+        section.resourceRow {
+            &:not([data-active=true]){
+                .info {
+                    opacity:.8;
+                }
+                .row {
+                    opacity:.3;
+                }
+            }
         }
     }
 }

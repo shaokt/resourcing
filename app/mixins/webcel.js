@@ -52,7 +52,7 @@ export default Ember.Mixin.create(CalendarWidget, {
         this.setPaintableArea();
 		var addTiles = "";
 		var empty = this.currentTile.hasClass('empty');
-		var tileClass = this.currentTile.attr('class');
+		var tileClass = "";
 		var tileAssignment = this.currentTile.attr('data-assignment');
         var clone = $(this.row).clone(); // clone needed for removing tiles if applicable
 
@@ -72,16 +72,18 @@ export default Ember.Mixin.create(CalendarWidget, {
                                 var dataAssignment = ""; // the assignment tile ID if applicable
 
                                 if(this.constants.daily){ // add year indicator for out of office tracking
+                            		tileClass = this.currentTile.attr('class');
                                     var dataYear = tileClass == "vacationCarryover" ?
                                         (x < this.constants.nextYear ? (this.year - 1) : this.year) :
                                         (x < this.constants.nextYear ? this.year : (this.year + 1))
+                                    tileClass = ' class="' + tileClass + '"';
                                 } else {
                                     var dataYear = x < this.constants.nextYear ? this.year : (this.year + 1)
                                     dataAssignment = ' data-assignment="' + tileAssignment + '"';
                                 };
         						addTiles+=
                                     '<span data-type="tile" data-x="' + x + '" data-y="' + y + '"' +
-                                    ' class="' + tileClass + '"' +
+                                    tileClass + 
             						' data-year="' + dataYear + '"' +
                                     dataAssignment + stamp + '></span>';
 

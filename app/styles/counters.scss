@@ -28,7 +28,7 @@
 }
 
 [data-view="timeaway"] {
-    [data-active="true"] .counters {
+    [data-active="true"] > .info .counters {
         display:inline-block;
         margin-top:2px;
     }
