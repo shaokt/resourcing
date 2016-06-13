@@ -1,4 +1,6 @@
+import { storageFor } from 'ember-local-storage';
 export default Ember.Service.extend({
+    settings: storageFor("settings"),
     DIM: 15,            // width of each day
     _DIM: -15,
     calWidth: 0,        // calendar width
@@ -10,6 +12,7 @@ export default Ember.Service.extend({
     todayDate: null,    // today's day number to show in header buttons
     todayColumn: null,  // today's column on the calendar
     holidayColumns: [], // values of holiday column values
+    leftScroll: 0,      //
     draggable: false,   // if the rows are drag sortable or not
     webcel:null,        // singleton Webcel object - only one editable instance at a time
 	padout: function(number) { return (number < 10) ? '0' + number : number; }, // pad single digits to double (for date use)
@@ -38,9 +41,9 @@ export default Ember.Service.extend({
         selection.addRange(range);
     },
 
-    scrolled: function(){
+    scrolled: function(minLeft){
         var left = $(window).scrollLeft()
-        this.set('leftScroll', left == 0 && this.get('settings.view') == 'timeaway' ? this.minLeft : left)
+        this.set('leftScroll', left == 0 && this.get('settings.view') == 'timeaway' ? minLeft : left)
         $('.calendar').css({left:-left})
     },
 

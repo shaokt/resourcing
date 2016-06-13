@@ -5,7 +5,6 @@ import { storageFor } from 'ember-local-storage';
 
 export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     counterCSS: '',
-    leftScroll: 0,
     minLeft: 0, // the minimum left position to show names when scrolling
 
     settings: storageFor("settings"),
@@ -32,11 +31,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         });
     },
 
-    scrolled: function(){
-        var left = $(window).scrollLeft()
-        this.set('leftScroll', left == 0 && this.get('settings.view') == 'timeaway' ? this.minLeft : left)
-        $('.calendar').css({left:-left})
-    },
+    scrolled: function(){ this.constants.scrolled(this.minLeft); },
 
     mouseMoved: function(event){
     	var pos = event.pageX - 75; // 75 determined via css margin/padding page offset
