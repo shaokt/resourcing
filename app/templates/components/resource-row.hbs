@@ -1,8 +1,10 @@
 {{#each model.resource as |resource index|}}
-    <section class="resourceRow{{if resource.hidden ' hidden'}}" data-active="{{resource.active}}"
-        data-name="{{resource.name}}"
+    <section class="resourceRow{{if resource.hidden ' hidden'}}"
+        data-active="{{resource.active}}"
+        data-expanded="{{resource.expanded}}"
         data-id="{{resource.id}}"
         data-index="{{index}}"
+        data-name="{{resource.name}}"
         draggable="{{if constants.draggable 'true'}}"
         ondragenter={{action "dragEnter"}}
         ondragstart={{action "dragStart"}}
@@ -27,32 +29,10 @@
                 </div>
             </div>
         {{/if}}
+
         {{resource-info model=model index=index resource=resource updateName="updateName" updateRow="updateRow"}}
-
-        {{#if resource.hasDirects}}
-            {{#each resource.directs as |direct index|}}
-                <section class="resourceRow{{if direct.hidden ' hidden'}}" data-active="{{direct.active}}">
-                    {{#if settings.isWeeklyCalendar}}
-                    	<div class="row" data-view="assignment">
-                            <div class="pointer"></div>
-                            <div class="sizer"></div>
-                            <div class="tiles">{{{direct.assignment}}}</div>
-                        </div>
-                    {{/if}}
-
-                    {{#if settings.isDailyCalendar}}
-                    	<div class="row" data-view="timeOff">
-                            <div class="pointer"></div>
-                            <div class="sizer"></div>
-                            {{calendar-holiday-tiles}}
-                            <div class="tiles">
-                                {{{direct.timeaway}}}
-                            </div>
-                        </div>
-                    {{/if}}
-                    {{resource-info index=index resource=direct updateName="updateName" updateRow="updateRow" readonly=true}}
-                </section>
-            {{/each}}
+        {{#if resource.directs}}
+            {{resource-direct resource=resource settings=settings}}
         {{/if}}
     </section>
 {{/each}}

@@ -1,5 +1,5 @@
-{{#unless readonly}}
-    <ul class="viewOptions">
+<ul class="viewOptions">
+    {{#unless readonly}}
         <li class="lock">
             <a href="/" {{action "editing" on="click"}}></a>
         </li>
@@ -7,19 +7,19 @@
         <li class="toggle">
             <a href="/" {{action "toggleRow" on="click"}}></a>
         </li>
+    {{/unless}}
 
-        {{#if resource.hasDirects}}
-            <li class="expand {{collapse}}">
-                <a href="/" class="" {{action "toggleDirects" on="click"}}></a>
-            </li>
-        {{/if}}
-    </ul>
-{{/unless}}
+    {{#if resource.hasDirects}}
+        <li class="expand {{collapse}}">
+            <a href="/" class="" {{action "toggleDirects" on="click"}}></a>
+        </li>
+    {{/if}}
+</ul>
 
 {{#if editing}}
     {{content-editable class="name" value=resource.name key-press="filter" focus-in=constants.focusInContentEditable}}
-    {{content-editable class="name" value=resource.ad key-press="filter" focus-in=constants.focusInContentEditable}}
+    {{content-editable class="name ad" value=resource.ad key-press="filter" focus-in=constants.focusInContentEditable}}
 {{else}}
-	<div class="name">{{index}} {{resource.name}}</div>
+	<div class="name">{{resource.name}}</div>
 {{/if}}
 {{resource-counters}}
