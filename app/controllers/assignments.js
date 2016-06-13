@@ -10,36 +10,24 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     settings: storageFor("settings"),
 
     init: function () {
-        this._super();
-        Ember.run.schedule("afterRender",this,function() {
+        Ember.run.scheduleOnce("afterRender",this,function() {
             var route = this.get('router.currentPath');
             if(route === 'assignments.index'){
-                document.title = "View Assignments"
-                this.get('settings').set('view', 'assignment')
-            this.bindScrolling();
-            this.bindMouseMove();
+                document.title = "View Assignments";
+                this.get('settings').set('view', 'assignment');
+                this.bindScrolling();
+                this.bindMouseMove();
             }
             else{
-                document.title = "Edit Assignments"
+                document.title = "Edit Assignments";
                 this.get('settings').set('view', '')
             }
-    });
-},
-
-    scrolled: function(){
-        var left = $(window).scrollLeft()
-        this.set('leftScroll', left == 0 && this.get('settings.view') == 'timeaway' ? this.minLeft : left)
-        $('.calendar').css({left:-left})
+        });
     },
 
-    mouseMoved: function(event){
-    	var pos = event.pageX - 75; // 75 determined via css margin/padding page offset
-        var max = this.constants.calWidth - this.constants.DIM;
-    	pos = pos - pos%this.constants.DIM;
-    	pos <= 0 ? pos = 0 : 0;
-		pos = pos >= max ? max : pos;
-        this.set('mousePos', pos)
-    },
+    scrolled: function(){ this.constants.scrolled(); },
+
+    mouseMoved: function(event){ this.constants.mouseMoved(event); },
 
     actions: {
         addAssignment(){

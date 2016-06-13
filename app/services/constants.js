@@ -36,5 +36,20 @@ export default Ember.Service.extend({
         range.selectNodeContents(currentValue.element);
         selection.removeAllRanges();
         selection.addRange(range);
-    }
+    },
+
+    scrolled: function(){
+        var left = $(window).scrollLeft()
+        this.set('leftScroll', left == 0 && this.get('settings.view') == 'timeaway' ? this.minLeft : left)
+        $('.calendar').css({left:-left})
+    },
+
+    mouseMoved: function(event){
+    	var pos = event.pageX - 75; // 75 determined via css margin/padding page offset
+        var max = this.calWidth - this.DIM;
+    	pos = pos - pos%this.DIM;
+    	pos <= 0 ? pos = 0 : 0;
+		pos = pos >= max ? max : pos;
+        this.set('mousePos', pos)
+    },
 });
