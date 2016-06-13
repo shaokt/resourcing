@@ -8,20 +8,19 @@ const { computed } = Ember;
 export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     needs:['application'],
     settings: storageFor("settings"),
-    action:'hi',
 
     init: function () {
         this._super();
         Ember.run.schedule("afterRender",this,function() {
             var route = this.get('router.currentPath');
             if(route === 'assignments.index'){
-                document.title = "sView Assignments"
+                document.title = "View Assignments"
                 this.get('settings').set('view', 'assignment')
             this.bindScrolling();
             this.bindMouseMove();
             }
             else{
-                document.title = "sEdit Assignments"
+                document.title = "Edit Assignments"
                 this.get('settings').set('view', '')
             }
     });
