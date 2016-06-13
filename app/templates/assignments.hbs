@@ -1,11 +1,11 @@
 <div id="pageContainer"
-    data-action="edit"
+    data-route={{router.currentRouteName}}
     data-dragging={{constants.draggable}}
     data-editing="{{constants.editingRow}}"
     data-show-hidden={{settings.showHiddenRows}}
     data-view="assignment"
 >
-    {{header-section addAssignment="addAssignment"}}
+    {{header-section addAssignment="addAssignment" settings=settings}}
     <main>
         {{outlet}}
     </main>
