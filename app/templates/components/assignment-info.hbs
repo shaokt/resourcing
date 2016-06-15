@@ -10,8 +10,8 @@
 {{#if editing}}
     <ul class="tileOptions">
         <li class="assignments">
-            <a href="#" data-assignment="{{assignment.id}}" data-stamp="true" {{action "select" on="click" event=event}} data-active="true"><span></span></a>
-            <a href="#" data-assignment="empty" data-stamp="true" class="empty" data-active="false" {{action "select" on="click" event=event}}><span></span></a>
+            <a href="#" data-assignment="{{assignment.id}}" data-stamp="true" {{action "select" on="click" event=event}} data-active="{{assignment.isActive}}"><span></span></a>
+            <a href="#" data-assignment="empty" data-stamp="true" class="empty" data-active="{{if assignment.isActive false true}}" {{action "select" on="click" event=event}}><span></span></a>
         </li>
     </ul>
     {{else}}

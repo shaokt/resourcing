@@ -29,9 +29,13 @@ export default ResourceRowComponent.extend({
                 this.set('constants.editingRow', true);
                 var self = this;
 
-                setTimeout(function(){
-                    self.constants.webcel.setTile($(self.element).find('.tileOptions li a[data-assignment="' + self.get('resource.id') + '"]'));
-                }, 0)
+                // resource === assignment in this block due to shared code
+                if(this.get('router.currentRouteName') === 'assignments.index'){
+                    this.set('resource.isActive', true)
+                    setTimeout(function(){
+                        self.constants.webcel.setTile($(self.element).find('.tileOptions li a[data-assignment="' + self.get('resource.id') + '"]'));
+                    }, 0)
+                }
             }
             else {
                 this.set('constants.editingRow', false);
