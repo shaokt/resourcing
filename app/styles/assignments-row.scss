@@ -1,0 +1,16 @@
+[data-route="assignments.index"]{
+    .long { display:none; }
+
+    * :not([data-active="true"]) .info {
+        &:hover {
+            .short {display:none;}
+            .long {display:block; }
+        }
+    }
+
+    [data-active="true"] {
+        .long {
+            display:block;
+        }
+    }
+}
