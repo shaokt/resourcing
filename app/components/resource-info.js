@@ -30,7 +30,7 @@ export default ResourceRowComponent.extend({
                 var self = this;
 
                 setTimeout(function(){
-                    self.constants.webcel.setTile($(self.element).find('.tileOptions li a'));
+                    self.constants.webcel.setTile($(self.element).find('.tileOptions li a[data-assignment="' + self.get('resource.id') + '"]'));
                 }, 0)
             }
             else {
