@@ -109,8 +109,11 @@ export default Ember.Mixin.create(CalendarWidget, {
         this.row = params.row;
         this.data = params.data;
 
-        this.pointer = $(this.row).find('.pointer')[0]
-        this.sizer = $(this.row).find('.sizer')[0]
+        var self = this;
+        setTimeout(function(){
+            self.pointer = $(self.row).find('.pointer')[0];
+            self.sizer = $(self.row).find('.sizer')[0];
+        }, 0)
         this.maxY = this.constants.daily ? 0 : 45;
         var self = this;
 

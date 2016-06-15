@@ -34,7 +34,7 @@ export default ResourceRowComponent.extend({
                     this.set('resource.isActive', true)
                     setTimeout(function(){
                         self.constants.webcel.setTile($(self.element).find('.tileOptions li a[data-assignment="' + self.get('resource.id') + '"]'));
-                    }, 0)
+                    }, 0);
                 }
             }
             else {

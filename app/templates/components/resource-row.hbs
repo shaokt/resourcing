@@ -13,20 +13,22 @@
     >
         {{#if settings.isWeeklyCalendar}}
         	<div class="row" data-view="assignment">
-                <div class="pointer"></div>
-                <div class="sizer"></div>
+                {{#if resource.active}}
+                    <div class="pointer"></div>
+                    <div class="sizer"></div>
+                {{/if}}
                 <div class="tiles">{{{resource.assignment}}}</div>
             </div>
         {{/if}}
 
         {{#if settings.isDailyCalendar}}
         	<div class="row" data-view="timeOff">
-                <div class="pointer"></div>
-                <div class="sizer"></div>
+                {{#if resource.active}}
+                    <div class="pointer"></div>
+                    <div class="sizer"></div>
+                {{/if}}
                 {{calendar-holiday-tiles}}
-                <div class="tiles">
-                    {{{resource.timeaway}}}
-                </div>
+                <div class="tiles">{{{resource.timeaway}}}</div>
             </div>
         {{/if}}
 
