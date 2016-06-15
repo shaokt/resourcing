@@ -68,6 +68,6 @@ export default ResourceRowComponent.extend({
         // TODO:  send the name back up for saving
         editName() {
             this.send('editing')
-       }
-    }
+        }
+    }//actions
 });
