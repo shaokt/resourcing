@@ -3,6 +3,17 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: '',
 
+    /*
+    * in resource view, the model is the assignment
+    * in assignment view, it is already the model
+    */
+    init: function(){
+        this._super();
+        if(this.get('model.assignment')){
+            this.set('model', this.get('model.assignment'))
+        }
+    },
+
     isEmpty: function(){
         return this.get('settings.assignmentTile') == "empty"
     }.property('settings.assignmentTile'),

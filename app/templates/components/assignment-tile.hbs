@@ -3,7 +3,7 @@
 {{else}}
     <a href="#" data-assignment="empty" data-stamp="true" class="empty" data-active="false" {{action "select" on="click" event=event}}><span></span></a>
 {{/if}}
-{{#each model.assignment as |item|}}
+{{#each model as |item|}}
     {{#unless item.hidden}}
         <a href="#" data-assignment="{{item.id}}" data-stamp="true" {{action "select" on="click" event=event}} data-active="{{settings-default-tile 'assignment' item.id}}"><span></span></a>
     {{/unless}}
