@@ -68,7 +68,6 @@ export default Ember.Mixin.create(CalendarWidget, {
 
     					if(!holidayTile){ // create tile if it is not a holiday column
                             var stamp = (thisTile.length && thisTile.attr('data-stamp')) ? ' data-stamp="true"' : "";
-
                             var dataAssignment = ""; // the assignment tile ID if applicable
 
                             if(this.constants.daily){ // add year indicator for out of office tracking
