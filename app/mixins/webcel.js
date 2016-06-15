@@ -22,7 +22,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 		$(this.sizer).css({height:Math.abs(this.upY - this.downY) + this.constants.DIM});
 
         // only resize if not over the un-editable area
-        if(this.upX >= this.constants.prevYear){
+        if(this.upX >= this.constants.prevYear || this.get('router.currentRouteName') != 'home'){
     		$(this.sizer).css({left: this.downX > this.upX ? this.upX : this.downX });
     		$(this.sizer).css({width:Math.abs(this.upX - this.downX) + this.constants.DIM});
         }
@@ -57,7 +57,8 @@ export default Ember.Mixin.create(CalendarWidget, {
         var clone = $(this.row).clone(); // clone needed for removing tiles if applicable
 
 		for(var x = this.downX; x <= this.upX; x+=this.constants.DIM){
-            if(x >= this.constants.prevYear){
+            // permit tiles on anything after the previous year, on the home screen (editing resources)
+            if(x >= this.constants.prevYear || this.get('router.currentRouteName') != 'home'){
     			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
     				var thisTile = $(clone).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
     				thisTile.remove();
@@ -68,27 +69,23 @@ export default Ember.Mixin.create(CalendarWidget, {
     					if(!holidayTile){ // create tile if it is not a holiday column
                             var stamp = (thisTile.length && thisTile.attr('data-stamp')) ? ' data-stamp="true"' : "";
 
-                            if(x >= this.constants.prevYear){ // permit tiles on anything after the previous year
-                                var dataAssignment = ""; // the assignment tile ID if applicable
+                            var dataAssignment = ""; // the assignment tile ID if applicable
 
-                                if(this.constants.daily){ // add year indicator for out of office tracking
-                            		tileClass = this.currentTile.attr('class');
-                                    var dataYear = tileClass == "vacationCarryover" ?
-                                        (x < this.constants.nextYear ? (this.year - 1) : this.year) :
-                                        (x < this.constants.nextYear ? this.year : (this.year + 1))
-                                    tileClass = ' class="' + tileClass + '"';
-                                } else {
-                                    var dataYear = x < this.constants.nextYear ? this.year : (this.year + 1)
-                                    dataAssignment = ' data-assignment="' + tileAssignment + '"';
-                                };
-        						addTiles+=
-                                    '<span data-type="tile" data-x="' + x + '" data-y="' + y + '"' +
-                                    tileClass + 
-            						' data-year="' + dataYear + '"' +
-                                    dataAssignment + stamp + '></span>';
-
-        						//addTiles+= stamp + '></span>';
-                            }// if x > prevYear
+                            if(this.constants.daily){ // add year indicator for out of office tracking
+                        		tileClass = this.currentTile.attr('class');
+                                var dataYear = tileClass == "vacationCarryover" ?
+                                    (x < this.constants.nextYear ? (this.year - 1) : this.year) :
+                                    (x < this.constants.nextYear ? this.year : (this.year + 1))
+                                tileClass = ' class="' + tileClass + '"';
+                            } else {
+                                var dataYear = x < this.constants.nextYear ? this.year : (this.year + 1)
+                                dataAssignment = ' data-assignment="' + tileAssignment + '"';
+                            };
+    						addTiles+=
+                                '<span data-type="tile" data-x="' + x + '" data-y="' + y + '"' +
+                                tileClass +
+        						' data-year="' + dataYear + '"' +
+                                dataAssignment + stamp + '></span>';
     					}// if !holidayTile
     				}//  non delete action
     			}// for y-axis
@@ -125,7 +122,7 @@ export default Ember.Mixin.create(CalendarWidget, {
             self.y > self.maxY ? self.y = self.maxY : 0;
 
             // only allow the pointer to move if it is not in the un-editable area
-            if(self.x >= self.constants.prevYear){ $(self.pointer).css({left:self.x}); }
+            if(self.x >= self.constants.prevYear || self.get('router.currentRouteName') != 'home'){ $(self.pointer).css({left:self.x}); }
             $(self.pointer).css({top:self.y});
 
             if(self.isDown){
@@ -143,7 +140,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 		mouseDown = function(e){
 			self.downX = e.pageX - $(this).offset().left;
-            if(self.downX < self.constants.prevYear) return;
+            if(self.downX < self.constants.prevYear && self.get('router.currentRouteName') === 'home') return;
 			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
 			self.downY = e.pageY  - $(this).offset().top
 			self.downY = self.downY - self.downY%self.constants.DIM;
@@ -176,7 +173,6 @@ export default Ember.Mixin.create(CalendarWidget, {
                 }
             }//switch
         }//mouseDOwn
-
 
 		mouseUp = function(e){
 			switch (e.which){
