@@ -12,5 +12,16 @@
         .long {
             display:block;
         }
-    }
-}
+        .tileOptions {
+            float:left;
+            margin-top:-20px;
+            li {
+                padding-top:0;
+                a {
+                    display:block;
+                    opacity:1;
+                }
+            }
+        }
+    }//data-active
+}//assignments.index
