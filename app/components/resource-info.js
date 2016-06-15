@@ -27,6 +27,11 @@ export default ResourceRowComponent.extend({
             if(this.editing == true){
                 this.edit();
                 this.set('constants.editingRow', true);
+                var self = this;
+
+                setTimeout(function(){
+                    self.constants.webcel.setTile($(self.element).find('.tileOptions li a'));
+                }, 0)
             }
             else {
                 this.set('constants.editingRow', false);
