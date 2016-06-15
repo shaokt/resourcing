@@ -14,14 +14,17 @@
         }
         .tileOptions {
             float:left;
-            margin-top:-20px;
+            margin-top:-14px;
+
             li {
+                border:0;
+                margin:0;
                 padding-top:0;
                 a {
                     display:block;
                     opacity:1;
                 }
             }
-        }
+        }//tileOptions
     }//data-active
 }//assignments.index
