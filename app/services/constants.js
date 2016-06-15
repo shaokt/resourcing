@@ -12,7 +12,8 @@ export default Ember.Service.extend({
     todayDate: null,    // today's day number to show in header buttons
     todayColumn: null,  // today's column on the calendar
     holidayColumns: [], // values of holiday column values
-    leftScroll: 0,      //
+    leftScroll: 0,      // how far left the page is scrolled from the left
+    mousePos:0,         // mouse position while hovering over tracker app
     draggable: false,   // if the rows are drag sortable or not
     webcel:null,        // singleton Webcel object - only one editable instance at a time
 	padout: function(number) { return (number < 10) ? '0' + number : number; }, // pad single digits to double (for date use)

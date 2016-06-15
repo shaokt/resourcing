@@ -33,14 +33,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
 
     scrolled: function(){ this.constants.scrolled(this.minLeft); },
 
-    mouseMoved: function(event){
-    	var pos = event.pageX - 75; // 75 determined via css margin/padding page offset
-        var max = this.constants.calWidth - this.constants.DIM;
-    	pos = pos - pos%this.constants.DIM;
-    	pos <= 0 ? pos = 0 : 0;
-		pos = pos >= max ? max : pos;
-        this.set('mousePos', pos)
-    },
+    mouseMoved: function(event){ this.constants.mouseMoved(event); },
 
     actions: {
         addEmployee(){
