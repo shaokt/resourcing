@@ -90,14 +90,6 @@ section.resourceRow {
             letter-spacing:1px;
             padding:0 4px;
         }
-
-        .name[contenteditable] {
-            background:#c55500;
-            color:#fff;
-            font-size:120%;
-            padding:2px 5px 0 5px;
-            text-shadow:none;
-        }
     }
 
     &:hover {
@@ -175,7 +167,12 @@ section.resourceRow {
             }
 
             .name {
+                background:#c55500;
                 box-shadow:none;
+                color:#fff;
+                font-size:120%;
+                padding:2px 5px 0 5px;
+                text-shadow:none;
             }
         }
 
