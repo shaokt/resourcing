@@ -13,11 +13,10 @@ export default Ember.Component.extend(Webcel, {
     // row available for editing/painting
     edit: function(){
         // if a tile wasn't chosen, register the default loaded tile for painting
-        if(!this.constants.webcel.currentTile){
+        if(this.get('router.currentRouteName') === 'home' && !this.constants.webcel.currentTile){
             try{
                 $('.tileOptions [data-active="true"]')[0].click();
             }catch(e){
-
                 $('.tileOptions a')[0].click();
             }
         }

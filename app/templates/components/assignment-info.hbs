@@ -4,12 +4,6 @@
             <a href="/" {{action "editing" on="click"}}></a>
         </li>
     {{/unless}}
-
-    {{#if resource.hasDirects}}
-        <li class="expand {{collapse}}">
-            <a href="/" class="" {{action "toggleDirects" on="click"}}></a>
-        </li>
-    {{/if}}
 </ul>
 
 <div class="name long" data-type="value">{{assignment.long}}</div>

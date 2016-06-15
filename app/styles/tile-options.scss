@@ -108,3 +108,11 @@ header {
         }
     }
 }
+
+.resourceRow {
+    .tileOptions li [data-stamp="true"] {
+        &:hover:before {
+            display:none;
+        }
+    }
+}
