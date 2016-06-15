@@ -1,0 +1,16 @@
+<ul class="viewOptions">
+    {{#unless readonly}}
+        <li class="lock">
+            <a href="/" {{action "editing" on="click"}}></a>
+        </li>
+    {{/unless}}
+
+    {{#if resource.hasDirects}}
+        <li class="expand {{collapse}}">
+            <a href="/" class="" {{action "toggleDirects" on="click"}}></a>
+        </li>
+    {{/if}}
+</ul>
+
+<div class="name short" data-type="value">{{assignment.short}}</div>
+<div class="long" data-type="value">{{assignment.long}}</div>
