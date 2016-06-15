@@ -1,0 +1,19 @@
+<ul class="viewOptions">
+    {{#unless readonly}}
+        <li class="lock">
+            <a href="/" {{action "editing" on="click"}}></a>
+        </li>
+    {{/unless}}
+</ul>
+
+<div class="name long" data-type="value">{{assignment.long}}</div>
+{{#if editing}}
+    <ul class="tileOptions">
+        <li class="assignments">
+            <a href="#" data-assignment="{{assignment.id}}" data-stamp="true" {{action "select" on="click" event=event}} data-active="{{assignment.paint}}"><span></span></a>
+            <a href="#" data-assignment="empty" data-stamp="true" class="empty" data-active="{{if assignment.paint false true}}" {{action "select" on="click" event=event}}><span></span></a>
+        </li>
+    </ul>
+{{else}}
+    <div class="name short" data-type="value">{{assignment.short}}</div>
+{{/if}}

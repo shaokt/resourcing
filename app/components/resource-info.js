@@ -27,6 +27,15 @@ export default ResourceRowComponent.extend({
             if(this.editing == true){
                 this.edit();
                 this.set('constants.editingRow', true);
+                var self = this;
+
+                // resource === assignment in this block due to shared code
+                if(this.get('router.currentRouteName') === 'assignments.index'){
+                    this.set('resource.paint', true)
+                    setTimeout(function(){
+                        self.constants.webcel.setTile($(self.element).find('.tileOptions li a[data-assignment="' + self.get('resource.id') + '"]'));
+                    }, 0);
+                }
             }
             else {
                 this.set('constants.editingRow', false);
@@ -63,6 +72,6 @@ export default ResourceRowComponent.extend({
         // TODO:  send the name back up for saving
         editName() {
             this.send('editing')
-       }
-    }
+        }
+    }//actions
 });

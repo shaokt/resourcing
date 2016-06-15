@@ -1,0 +1,17 @@
+{{date-line}}
+{{#each model as |assignment|}}
+    <section class="resourceRow{{if assignment.hidden ' hidden'}}"
+        data-active="{{assignment.active}}"
+        data-name="{{assignment.short}}"
+        data-id="{{assignment.id}}"
+    >
+    	<div class="row" data-view="assignment">
+            {{#if assignment.active}}
+                <div class="pointer"></div>
+                <div class="sizer"></div>
+            {{/if}}
+            <div class="tiles">{{{assignment.assignment}}}</div>
+        </div>
+        {{assignment-info resource=assignment assignment=assignment}}
+    </section>
+{{/each}}

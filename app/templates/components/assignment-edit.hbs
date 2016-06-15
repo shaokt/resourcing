@@ -10,7 +10,7 @@
             [data-assignment="{{assignment.id}}"] { background:#{{assignment.background}} !important; }
 
             [data-assignment="{{assignment.id}}"][data-stamp="true"]:after { content:'{{assignment.short}}' }
-            [data-assignment="{{assignment.id}}"]:before { content:'{{assignment.long}}' }
+            [data-assignment="{{assignment.id}}"]:before { content:'{{assignment.long}}' !important; }
         </style>
 
         <div class="hexbackground"></div>
@@ -54,7 +54,7 @@
     </td>
     <td class="rowPreview">
         <section class="resourceRow">
-            <div data-type="tile" data-stamp="true" data-assignment="{{assignment.id}}"></div>
+            <div class="tiles"><div data-type="tile" data-stamp="true" data-assignment="{{assignment.id}}"></div></div>
         </section>
     </td>
 </tr>

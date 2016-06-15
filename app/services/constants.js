@@ -1,4 +1,6 @@
+import { storageFor } from 'ember-local-storage';
 export default Ember.Service.extend({
+    settings: storageFor("settings"),
     DIM: 15,            // width of each day
     _DIM: -15,
     calWidth: 0,        // calendar width
@@ -10,6 +12,8 @@ export default Ember.Service.extend({
     todayDate: null,    // today's day number to show in header buttons
     todayColumn: null,  // today's column on the calendar
     holidayColumns: [], // values of holiday column values
+    leftScroll: 0,      // how far left the page is scrolled from the left
+    mousePos:0,         // mouse position while hovering over tracker app
     draggable: false,   // if the rows are drag sortable or not
     webcel:null,        // singleton Webcel object - only one editable instance at a time
 	padout: function(number) { return (number < 10) ? '0' + number : number; }, // pad single digits to double (for date use)
@@ -36,5 +40,20 @@ export default Ember.Service.extend({
         range.selectNodeContents(currentValue.element);
         selection.removeAllRanges();
         selection.addRange(range);
-    }
+    },
+
+    scrolled: function(minLeft){
+        var left = $(window).scrollLeft()
+        this.set('leftScroll', left == 0 && this.get('settings.view') == 'timeaway' ? minLeft : left)
+        $('.calendar').css({left:-left})
+    },
+
+    mouseMoved: function(event){
+    	var pos = event.pageX - 75; // 75 determined via css margin/padding page offset
+        var max = this.calWidth - this.DIM;
+    	pos = pos - pos%this.DIM;
+    	pos <= 0 ? pos = 0 : 0;
+		pos = pos >= max ? max : pos;
+        this.set('mousePos', pos)
+    },
 });

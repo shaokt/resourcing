@@ -1,10 +1,10 @@
 {{! do not move styles to component as it will cause multiple view renders}}
 <style>
-    .info { left:{{leftScroll}}px; }
-    .directs .resourceRow:before { left:{{leftScroll}}px; }
-    .directs .resourceRow[data-expanded="true"]:last-child .row:before { left:{{leftScroll}}px; }
-    .dateMarker { left:{{mousePos}}px; }
-    #dateLine { left:{{mousePos}}px; }
+    .info { left:{{constants.leftScroll}}px; }
+    .directs .resourceRow:before { left:{{constants.leftScroll}}px; }
+    .directs .resourceRow[data-expanded="true"]:last-child .row:before { left:{{constants.leftScroll}}px; }
+    .dateMarker { left:{{constants.mousePos}}px; }
+    #dateLine { left:{{constants.mousePos}}px; }
     {{counterCSS}}
 </style>
 
@@ -16,8 +16,7 @@
 >
     {{header-section model=model settings=settings updateName="updateName" addEmployee="addEmployee"}}
     <main>
-        <div class="dateLine" id="dateLine"></div>
-        <div class="dateLine" id="todayDateLine"></div>
+        {{date-line}}
         {{resource-row model=model settings=settings updateName="updateName"}}
     </main>
 </div>
