@@ -1,3 +1,6 @@
+body{
+    float:none;
+}
 #pageContainer {
     border:1px solid #000;
     margin:10px auto;
@@ -42,7 +45,35 @@
                     font-size:1.8em;
                     text-align:center;
                 }
-            }
+
+                .custom {
+                    position:absolute;
+                    top:10px;
+
+                    [data-element]{
+                        position:absolute;
+
+                        a {
+                            display:block;
+                            height:10px;
+                            margin-bottom:5px;
+                            width:10px;
+                        }
+                    }
+
+                    [data-element="dress"]{
+                        left:160px;
+                    }
+
+                    [data-element="hair"]{
+                        left:300px;
+                    }
+
+                    .label {
+                        margin-bottom:5px;
+                    }
+                }
+            }//buttonContainer
         }
     }//header
     main {
@@ -63,10 +94,12 @@
                     text-align:right;
                 }
                 .input {
+                    background:none;
                     border:none;
                     padding:2px;
 
                     &:focus {
+                        background:#fff;
                     }
                 }
             }

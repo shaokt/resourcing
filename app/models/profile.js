@@ -5,5 +5,9 @@ export default DS.Model.extend({
     lastname: DS.attr('string'),
     email: DS.attr('string'),
     mobile: DS.attr('string'),
-    mailingaddress: DS.attr('string')
+    mailingaddress: DS.attr('string'),
+    highlight: DS.attr('string'),
+    lowlight: DS.attr('string'),
+    dress: DS.attr('string'),
+    lipstick: DS.attr('string')
 });
