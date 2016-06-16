@@ -1,0 +1,40 @@
+<div id="pageContainer" data-page="profile">
+{{#each model as |item|}}
+<header>
+    <div class="menu">
+        <div class="buttonContainer">
+            <ul class="viewOptions">
+                <li class="profile">
+                    <a href="/" {{action "addEmployee"}}>
+                        <span class="person female">
+                            <span class="hair"></span>
+                            <span class="face"></span>
+                            <span class="neck"></span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <div class="name">{{item.firstname}} {{item.lastname}}</div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div id="form">
+        <div class="item">
+            <label>Email:</label>
+            {{input class="input" value=item.email focus-out="save"}}
+        </div>
+        <div class="item">
+            <label>Mobile #:</label>
+            {{input class="input" value=item.mobile focus-out="save"}}
+        </div>
+        <div class="item">
+            <label>Mailing Address:</label>
+            {{input class="input" value=item.mailingaddress focus-out="save"}}
+        </div>
+        <button id="ok">OK</button>
+    </div>
+</main>
+{{/each}}
+</div>

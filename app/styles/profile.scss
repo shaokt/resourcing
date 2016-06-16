@@ -1,0 +1,89 @@
+#pageContainer {
+    border:1px solid #000;
+    margin:10px auto;
+    padding:10px;
+    position:relative;
+    width:500px;
+
+    header {
+        border:0;
+        position:relative;
+        .menu {
+            position:relative;
+            .buttonContainer {
+                position:relative;
+
+                .viewOptions {
+                    margin:0 auto;
+                    width:100%;
+
+                    .profile {
+                        display:block;
+                        left:10px;
+                        margin:0 auto !important;
+
+                        &:before {
+                            border:3px solid #000;
+                            border-radius:100%;
+                            content:"";
+                            display:block;
+                            left:-18px;
+                            height:55px;
+                            position:absolute;
+                            top:-10px;
+                            width:55px;
+                        }
+                    }
+                } // viewOptions
+
+                .name {
+                    padding:20px 0 0 0;
+                    font-weight:bold;
+                    font-size:1.8em;
+                    text-align:center;
+                }
+            }
+        }
+    }//header
+    main {
+        border:0;
+        margin-top:10px;
+        #form {
+            //border:1px solid red;
+            padding:10px 0;
+            margin:0 auto;
+            width:80%;
+
+            .item {
+                margin-bottom:10px;
+                label {
+                    display:inline-block;
+                    font-weight:bold;
+                    width:45%;
+                    text-align:right;
+                }
+                .input {
+                    border:none;
+                    padding:2px;
+
+                    &:focus {
+                    }
+                }
+            }
+            button {
+                cursor:pointer;
+                display:block;
+                margin:0 auto;
+                &#ok {
+                    background:#ABC;
+                    color:#fff;
+                    border-radius:100%;
+                    font-size:1.5em;
+                    font-weight:bold;
+                    height:2em;
+                    width:2em;
+                }
+            }//button
+        }//form
+    }//main
+}// pageContainer

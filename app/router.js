@@ -10,6 +10,7 @@ Router.map(function() {
     this.route('edit');
   });
   this.route('home');
+  this.route('profile');
 });
 
 export default Router;
