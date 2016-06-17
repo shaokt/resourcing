@@ -2,11 +2,25 @@ body{
     float:none;
 }
 #pageContainer {
-    border:1px solid #000;
+    border:1px solid red;
     margin:10px auto;
     padding:10px;
     position:relative;
     width:500px;
+
+    #header {
+        margin-bottom:10px;
+
+        #logo {
+            display:block;
+            margin:0 auto;
+        }
+        #hamburger {
+            left:10px;
+            position:absolute;
+            top:20px;
+        }
+    }
 
     header {
         border:0;
@@ -32,11 +46,16 @@ body{
                             border-radius:100%;
                             content:"";
                             display:block;
-                            left:-18px;
+                            left:-16px;
                             height:55px;
                             position:absolute;
                             top:-10px;
                             width:55px;
+                        }
+                        .person {
+                            &.female {
+                                left:-12px;
+                            }
                         }
 
                     }//profile
@@ -120,7 +139,6 @@ body{
                 }
                 .input {
                     background:none;
-                    border:none;
                     padding:2px;
 
                     &:focus {

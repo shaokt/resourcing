@@ -2,6 +2,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
     editing: false,
 
+    // convert to hex colour
     hexc(colorval) {
         var parts = colorval.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
         delete(parts[0]);
@@ -13,47 +14,29 @@ export default Ember.Controller.extend({
         return color;
     },
 
+    // update future colour
+    updateColor(item, event, property){
+        var color = $(event.target).css('backgroundColor');
+        color = this.hexc(color);
+        item.set(property, color);
+    },
+
     actions: {
         edit() {
             this.toggleProperty('editing');
-
+            if(this.editing === false) { this.send('save'); }
         },
 
-        save() {
-            this.get('model').save()
-        },
+        save() { this.get('model').save() },
 
-        dress(item) {
-            var color = $(event.target).css('backgroundColor');
-            item.set('dress', color);
-            this.send('save');
-        },
+        dress(item) { this.updateColor(item, event, 'dress'); },
 
-        highlight(item) {
-            var color = $(event.target).css('backgroundColor');
-            color = this.hexc(color);
-            item.set('highlight', color);
-            this.send('save');
-        },
+        highlight(item) { this.updateColor(item, event, 'highlight'); },
 
-        lowlight(item) {
-            var color = $(event.target).css('backgroundColor');
-            color = this.hexc(color);
-            item.set('lowlight', color);
-            this.send('save');
-        },
+        lowlight(item) { this.updateColor(item, event, 'lowlight'); },
 
-        lipstick(item) {
-            var color = $(event.target).css('backgroundColor');
-            item.set('lipstick', color);
-            this.send('save');
-        },
+        lipstick(item) { this.updateColor(item, event, 'lipstick'); },
 
-        necklace(item) {
-            var color = $(event.target).css('backgroundColor');
-            color = this.hexc(color);
-            item.set('necklace', color);
-            this.send('save');
-        },
+        necklace(item) { this.updateColor(item, event, 'necklace'); }
     }
 });

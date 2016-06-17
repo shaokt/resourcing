@@ -1,4 +1,8 @@
 <div id="pageContainer" data-page="profile" data-edit="{{editing}}">
+<div id="header">
+    <img id="hamburger" src="/assets/img/hamburger.png" swidth="60" />
+    <img id="logo" src="/assets/img/CIBC.png" width="60" />
+</div>
 {{#each model as |item|}}
 <style>
     /*blouse*/
@@ -98,15 +102,27 @@
     <div id="form">
         <div class="item">
             <label>Email:</label>
-            {{input class="input" value=item.email focus-out="save"}}
+            {{#if editing}}
+                {{input class="input" value=item.email}}
+            {{else}}
+                {{item.email}}
+            {{/if}}
         </div>
         <div class="item">
             <label>Mobile #:</label>
-            {{input class="input" value=item.mobile focus-out="save"}}
+            {{#if editing}}
+                {{input class="input" value=item.mobile}}
+            {{else}}
+                {{item.mobile}}
+            {{/if}}
         </div>
         <div class="item">
             <label>Mailing Address:</label>
-            {{input class="input" value=item.mailingaddress focus-out="save"}}
+            {{#if editing}}
+                {{input class="input" value=item.mailingaddress}}
+            {{else}}
+                {{item.mailingaddress}}
+            {{/if}}
         </div>
         {{#if editing}}
             <button id="ok" {{action 'edit' on='click'}}>OK</button>
