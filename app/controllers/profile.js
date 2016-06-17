@@ -1,5 +1,6 @@
 import Ember from 'ember';
 export default Ember.Controller.extend({
+    editing: false,
 
     hexc(colorval) {
         var parts = colorval.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
@@ -13,6 +14,11 @@ export default Ember.Controller.extend({
     },
 
     actions: {
+        edit() {
+            this.toggleProperty('editing');
+
+        },
+
         save() {
             this.get('model').save()
         },

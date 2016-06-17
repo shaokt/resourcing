@@ -1,4 +1,4 @@
-<div id="pageContainer" data-page="profile">
+<div id="pageContainer" data-page="profile" data-edit="{{editing}}">
 {{#each model as |item|}}
 <style>
     /*blouse*/
@@ -23,6 +23,8 @@
     }
 
     /*lipstick animation*/
+
+    [data-edit="true"] ul.viewOptions .profile a .person.female .face:before,
     ul.viewOptions .profile a:hover .person.female .face:before {
         border:1px solid {{item.lipstick}};
         border-bottom-width:2px;
@@ -47,36 +49,46 @@
                         </span>
                     </a>
                 </li>
+                {{#unless editing}}
+                    <li class="assignment">
+                        <a href="javascript:void(0)" {{action "edit" on="click"}}>
+                            <span class="pencil"><span class="wood"></span></span>
+                            <span class="text">Edit</span>
+                        </a>
+                    </li>
+                {{/unless}}
             </ul>
-            <div class="custom">
-                <div data-element="hair">
-                    <div class="label">Highlights</div>
-                    <a href="javascript:void(0)" style="background:#b12800;" {{action 'highlight' item}}></a>
-                    <a href="javascript:void(0)" style="background:#abc;" {{action 'highlight' item}}></a>
+            {{#if editing}}
+                <div class="custom">
+                    <div data-element="hair">
+                        <div class="label">Highlights</div>
+                        <a href="javascript:void(0)" style="background:#b12800;" {{action 'highlight' item}}></a>
+                        <a href="javascript:void(0)" style="background:#abc;" {{action 'highlight' item}}></a>
 
-                    <div style="position:absolute;top:0;left:70px;">
-                        <div class="label">Lowlights</div>
-                        <a href="javascript:void(0)" style="background:#804208;" {{action 'lowlight' item}}></a>
-                        <a href="javascript:void(0)" style="background:#ff9caa;" {{action 'lowlight' item}}></a>
+                        <div style="position:absolute;top:0;left:70px;">
+                            <div class="label">Lowlights</div>
+                            <a href="javascript:void(0)" style="background:#804208;" {{action 'lowlight' item}}></a>
+                            <a href="javascript:void(0)" style="background:#ff9caa;" {{action 'lowlight' item}}></a>
+                        </div>
+                    </div>
+                    <div data-element="dress">
+                        <div class="label">Blouse</div>
+                        <a href="javascript:void(0)" style="background:#6666ff;" {{action 'dress' item}}></a>
+                        <a href="javascript:void(0)" style="background:red" {{action 'dress' item}}></a>
+                        <div style="position:absolute;top:0;left:60px;">
+                            <div class="label">Lipstick</div>
+                            <a href="javascript:void(0)" style="background:red" {{action 'lipstick' item}}></a>
+                            <a href="javascript:void(0)" style="background:#c1a" {{action 'lipstick' item}}></a>
+                        </div>
+                    </div>
+
+                    <div data-element="necklace">
+                        <div class="label">Necklace</div>
+                        <a href="javascript:void(0)" style="background:#f9c115;" {{action 'necklace' item}}></a>
+                        <a href="javascript:void(0)" style="background:#80FF00;" {{action 'necklace' item}}></a>
                     </div>
                 </div>
-                <div data-element="dress">
-                    <div class="label">Blouse</div>
-                    <a href="javascript:void(0)" style="background:#6666ff;" {{action 'dress' item}}></a>
-                    <a href="javascript:void(0)" style="background:red" {{action 'dress' item}}></a>
-                    <div style="position:absolute;top:0;left:60px;">
-                        <div class="label">Lipstick</div>
-                        <a href="javascript:void(0)" style="background:red" {{action 'lipstick' item}}></a>
-                        <a href="javascript:void(0)" style="background:#c1a" {{action 'lipstick' item}}></a>
-                    </div>
-                </div>
-
-                <div data-element="necklace">
-                    <div class="label">Necklace</div>
-                    <a href="javascript:void(0)" style="background:#f9c115;" {{action 'necklace' item}}></a>
-                    <a href="javascript:void(0)" style="background:#80FF00;" {{action 'necklace' item}}></a>
-                </div>
-            </div>
+            {{/if}}
             <div class="name">{{item.firstname}} {{item.lastname}}</div>
         </div>
     </div>
@@ -96,7 +108,9 @@
             <label>Mailing Address:</label>
             {{input class="input" value=item.mailingaddress focus-out="save"}}
         </div>
-        <button id="ok">OK</button>
+        {{#if editing}}
+            <button id="ok" {{action 'edit' on='click'}}>OK</button>
+        {{/if}}
     </div>
 </main>
 {{/each}}

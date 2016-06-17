@@ -20,12 +20,12 @@ body{
                 .viewOptions {
                     margin:0 auto;
                     width:100%;
-                    zoom:2;
 
                     .profile {
                         display:block;
                         left:10px;
                         margin:0 auto !important;
+                        zoom:2;
 
                         &:before {
                             border:3px solid #000;
@@ -37,6 +37,23 @@ body{
                             position:absolute;
                             top:-10px;
                             width:55px;
+                        }
+
+                    }//profile
+
+                    .assignment {
+                        background:transparent;
+                        left:50%;
+                        margin:-10px 0 0 50px;
+                        position:absolute;
+
+                        a {
+                            &:hover {
+                                .text {
+                                    left:50px;
+                                    top:40px;
+                                }
+                            }
                         }
                     }
                 } // viewOptions
@@ -128,3 +145,25 @@ body{
         }//form
     }//main
 }// pageContainer
+
+[data-edit="true"] {
+    ul.viewOptions .profile {
+        a .person {
+            &.female {
+                z-index:2;
+                .face {
+                    animation:rotateFemale 700ms infinite linear;
+                    &:before { // mouth
+                        width:4px;
+                        height:1px;
+                        top:14px;
+                        transform:rotate(0);
+                    }
+                }
+                .hair:after {
+                    animation:rotateFemaleHair 700ms infinite linear;
+                }
+            }
+        }
+    }
+}
