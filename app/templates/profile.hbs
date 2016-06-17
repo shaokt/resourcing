@@ -1,4 +1,4 @@
-<div id="pageContainer" data-page="profile" data-edit="{{editing}}">
+<div id="pageContainer" data-page="profile" data-edit="{{customUnlocked}}">
 {{#each model as |item|}}
 <div id="header">
     <img id="hamburger" src="/assets/img/hamburger.png" swidth="60" />
@@ -146,7 +146,7 @@
         {{/if}}
         {{#if firstLoad}}
             {{#unless editing}}
-            <button id="ok" {{action 'okayed' on='click'}}>OK</button>
+            <button id="ok" {{action 'step1OK' on='click'}}>OK</button>
             {{/unless}}
         {{/if}}
         {{#if editing}}
@@ -159,7 +159,6 @@
     <li {{action "step" 1}}>1</li>
     <li {{action "step" 2}}>2</li>
     <li {{action "step" 3}}>3</li>
-    <li {{action "step" 4}}>4</li>
 </ul>
 {{counter}}
 </div>

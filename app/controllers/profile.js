@@ -2,6 +2,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
     firstLoad: true,
     editing: false,
+    customUnlocked: false,
     digidollars: 0,
     rrsp: false,
 
@@ -28,13 +29,18 @@ export default Ember.Controller.extend({
         edit() {
             this.toggleProperty('editing');
             if(this.editing === false) {
-                this.send('okayed');
+                this.set('customUnlocked', false);
+                this.send('step1OK');
                 this.send('save');
+            }
+            else if(!this.firstLoad){
+                this.set('customUnlocked', true);
             }
         },
 
-        okayed() {
+        step1OK() {
             this.set('firstLoad', false);
+            this.set('digidollars', 3);
         },
 
         save() { this.get('model').save() },
@@ -51,18 +57,15 @@ export default Ember.Controller.extend({
 
         step(num) {
             if(num === 1) {
+                this.set('firstLoad', true)
                 this.set('rrsp', false);
                 this.set('digidollars', 0);
             }
             if(num === 2) {
-                this.set('rrsp', false);
-                this.set('digidollars', 3);
-            }
-            if(num === 3) {
                 this.set('rrsp', true);
                 this.set('digidollars', 3);
             }
-            if(num === 4) {
+            if(num === 3) {
                 this.set('rrsp', true);
                 this.set('digidollars', 4);
             }
