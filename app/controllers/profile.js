@@ -3,7 +3,7 @@ export default Ember.Controller.extend({
     firstLoad: true,
     editing: false,
     customUnlocked: false,
-    digidollars: 0,
+    digidollars: 1,
     rrsp: false,
     stepNum: 0,
     today: new Date().getDate(),
@@ -36,7 +36,7 @@ export default Ember.Controller.extend({
                 this.send('save');
 
                 if(this.stepNum == 2) {
-                    this.set('digidollars', 4);
+                    this.set('digidollars', 5);
                 }
             }
             else if(!this.firstLoad){
@@ -46,7 +46,7 @@ export default Ember.Controller.extend({
 
         step1OK() {
             this.set('firstLoad', false);
-            this.set('digidollars', 3);
+            this.set('digidollars', 4);
         },
 
         rrsp(item, value, radio) {
@@ -72,12 +72,12 @@ export default Ember.Controller.extend({
             if(num === 1) {
                 this.set('firstLoad', true)
                 this.set('rrsp', false);
-                this.set('digidollars', 0);
+                this.set('digidollars', 1);
             }
             if(num === 2) {
                 this.set('rrsp', true);
                 this.send('step1OK');
-                this.set('digidollars', 3);
+                this.set('digidollars', 4);
             }
         }
     }
