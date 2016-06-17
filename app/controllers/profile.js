@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
     customUnlocked: false,
     digidollars: 0,
     rrsp: false,
+    stepNum: 0,
 
     // convert to hex colour
     hexc(colorval) {
@@ -32,6 +33,10 @@ export default Ember.Controller.extend({
                 this.set('customUnlocked', false);
                 this.send('step1OK');
                 this.send('save');
+
+                if(this.stepNum == 2) {
+                    this.set('digidollars', 4);
+                }
             }
             else if(!this.firstLoad){
                 this.set('customUnlocked', true);
@@ -41,6 +46,10 @@ export default Ember.Controller.extend({
         step1OK() {
             this.set('firstLoad', false);
             this.set('digidollars', 3);
+        },
+
+        rrsp(item, value, radio) {
+            item.set('rrsp', value);
         },
 
         save() { this.get('model').save() },
@@ -56,6 +65,7 @@ export default Ember.Controller.extend({
         necklace(item) { this.updateColor(item, event, 'necklace'); },
 
         step(num) {
+            this.stepNum = num;
             if(num === 1) {
                 this.set('firstLoad', true)
                 this.set('rrsp', false);
@@ -63,11 +73,8 @@ export default Ember.Controller.extend({
             }
             if(num === 2) {
                 this.set('rrsp', true);
+                this.send('step1OK');
                 this.set('digidollars', 3);
-            }
-            if(num === 3) {
-                this.set('rrsp', true);
-                this.set('digidollars', 4);
             }
         }
     }

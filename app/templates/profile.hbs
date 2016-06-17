@@ -1,8 +1,7 @@
 <div id="pageContainer" data-page="profile" data-edit="{{customUnlocked}}">
 {{#each model as |item|}}
 <div id="header">
-    <img id="hamburger" src="/assets/img/hamburger.png" swidth="60" />
-    <img id="logo" src="/assets/img/CIBC.png" width="60" />
+    <img id="headerLogo" src="/assets/img/header.png" />
     <div id="digidollars">
         <div class="star small"></div>
         <div class="star large">
@@ -93,13 +92,11 @@
                         </div>
                     </div>
 
-                    {{#if rrsp}}
-                        <div data-element="necklace">
-                            <div class="label">Necklace</div>
-                            <a href="javascript:void(0)" style="background:#f9c115;" {{action 'necklace' item}}></a>
-                            <a href="javascript:void(0)" style="background:#80FF00;" {{action 'necklace' item}}></a>
-                        </div>
-                    {{/if}}
+                    <div data-element="necklace">
+                        <div class="label">Necklace</div>
+                        <a href="javascript:void(0)" style="background:#f9c115;" {{action 'necklace' item}}></a>
+                        <a href="javascript:void(0)" style="background:#80FF00;" {{action 'necklace' item}}></a>
+                    </div>
                 </div>
             {{/if}}
             {{/unless}}
@@ -138,9 +135,20 @@
             <div class="item">
                 <label>RRSP?:</label>
                 {{#if editing}}
-                    {{input class="input" value=item.rrsp}}
+                    <label class="radio" for="rrspYes">Yes</label>
+                    {{#if item.rrsp}}
+                        <input type="radio" name="rrsp" for="rrspYes" checked="checked" {{action "rrsp" item true this on="click"}}/>
+                    {{else}}
+                        <input type="radio" name="rrsp" for="rrspYes" {{action "rrsp" item true this on="click"}}/>
+                    {{/if}}
+                    <label class="radio" for="rrspNo">No</label>
+                    {{#unless item.rrsp}}
+                        <input type="radio" name="rrsp" for="rrspNo" checked="checked" {{action "rrsp" item false this}}/>
+                    {{else}}
+                        <input type="radio" name="rrsp" for="rrspNo" {{action "rrsp" item false this}}/>
+                    {{/unless}}
                 {{else}}
-                    {{item.rrsp}}
+                    &nbsp;______
                 {{/if}}
             </div>
         {{/if}}
@@ -158,7 +166,6 @@
 <ul class="steps">
     <li {{action "step" 1}}>1</li>
     <li {{action "step" 2}}>2</li>
-    <li {{action "step" 3}}>3</li>
 </ul>
 {{counter}}
 </div>

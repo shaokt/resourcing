@@ -2,14 +2,15 @@ body{
     float:none;
 }
 #pageContainer {
+    border:1px solid #000;
+    box-shadow:1px 1px 10px 5px rgba(0,0,0,.5);
     margin:10px auto;
     padding:10px;
     position:relative;
-    width:500px;
+    width:405px;
 
     #header {
-        height:60px;
-        margin-bottom:10px;
+        margin-bottom:20px;
 
         #logo {
             display:block;
@@ -29,7 +30,7 @@ body{
             line-height:1.5em;
             margin-left:30px;
             position:absolute;
-            top:-10px;
+            top:120px;
             transform:rotate(35deg);
             z-index:11;
         }//digidollars
@@ -75,9 +76,9 @@ body{
 
                     .assignment {
                         background:transparent;
-                        left:50%;
-                        margin:-10px 0 0 50px;
+                        left:345px;
                         position:absolute;
+                        top:-30px;
 
                         a {
                             &:hover {
@@ -98,8 +99,9 @@ body{
                 }
 
                 .custom {
+                    left:-50px;
                     position:absolute;
-                    top:30px;
+                    top:0;
 
                     [data-element]{
                         position:absolute;
@@ -114,7 +116,7 @@ body{
                     }
 
                     [data-element="dress"]{
-                        left:315px;
+                        left:330px;
                     }
 
                     [data-element="hair"]{
@@ -149,6 +151,9 @@ body{
                     font-weight:bold;
                     width:45%;
                     text-align:right;
+                    &.radio {
+                        width:auto;
+                    }
                 }
                 .input {
                     background:none;
@@ -227,9 +232,9 @@ ul.steps {
    transform:rotate(35deg);
 
    &.small {
-       left:-16px;
+       left:-31px;
        transform:scale(.1, .1) rotate(15deg);
-       top:40px;
+       top:-4px;
    }
 
    &.large {
