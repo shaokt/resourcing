@@ -46,7 +46,7 @@
 
     /*circle*/
     #pageContainer header .menu .buttonContainer .viewOptions .profile:before {
-        border:3px solid {{item.circle}};
+        border:3px solid {{item.circle}}
     }
 </style>
 
@@ -106,7 +106,7 @@
                     <div data-element="circle">
                         <div class="label">Border</div>
                         <a href="javascript:void(0)" style="background:#000;" {{action 'circle' item}}></a>
-                        <a href="javascript:void(0)" style="background:#BBDDD1;" {{action 'circle' item}}></a>
+                        <a href="javascript:void(0)" style="background:#80FF00;" {{action 'circle' item}}></a>
                     </div>
                 </div>
             {{/if}}
@@ -172,6 +172,25 @@
             <button id="ok" {{action 'edit' on='click'}}>OK</button>
         {{/if}}
     </div>
+
+<header>
+    <div class="menu">
+        <div class="buttonContainer">
+            <ul class="viewOptions">
+                <li class="today">
+                    <a href="/" {{action "scrollToday" on="click"}}>
+                        <span class="date"><span>{{today}}</span></span>
+                        <span class="page"></span>
+                    </a>
+                    <div class="text">
+                        <div><a href="javascript:void(0)">Upcoming ROGERS Bill in 5 days</a></div>
+                        <div><a href="javascript:void(0)">Pre-approved Credit Limit Increase - Offer expires in 7 days</a></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
 </main>
 {{/each}}
 <ul class="steps">

@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
     digidollars: 0,
     rrsp: false,
     stepNum: 0,
+    today: new Date().getDate(),
 
     // convert to hex colour
     hexc(colorval) {

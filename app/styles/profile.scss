@@ -71,8 +71,33 @@ body{
                                 left:-12px;
                             }
                         }
-
                     }//profile
+
+                    .today {
+                        left:15px;
+                        width:auto;
+
+                        .text {
+                            margin-left:60px;
+
+                            div {
+                                margin:5px 0;
+
+                                a {
+                                    color:#af0b1c;
+                                    font-size:1em;
+                                    height:auto;
+                                    position:relative;
+                                    width:100%;
+
+                                    &:after,
+                                    &:before {
+                                        display:none;
+                                    }
+                                }
+                            }
+                        }
+                    }
 
                     .assignment {
                         background:transparent;
