@@ -1,6 +1,9 @@
 import Ember from 'ember';
 export default Ember.Controller.extend({
+    firstLoad: true,
     editing: false,
+    digidollars: 0,
+    rrsp: false,
 
     // convert to hex colour
     hexc(colorval) {
@@ -24,7 +27,14 @@ export default Ember.Controller.extend({
     actions: {
         edit() {
             this.toggleProperty('editing');
-            if(this.editing === false) { this.send('save'); }
+            if(this.editing === false) {
+                this.send('okayed');
+                this.send('save');
+            }
+        },
+
+        okayed() {
+            this.set('firstLoad', false);
         },
 
         save() { this.get('model').save() },
@@ -37,6 +47,25 @@ export default Ember.Controller.extend({
 
         lipstick(item) { this.updateColor(item, event, 'lipstick'); },
 
-        necklace(item) { this.updateColor(item, event, 'necklace'); }
+        necklace(item) { this.updateColor(item, event, 'necklace'); },
+
+        step(num) {
+            if(num === 1) {
+                this.set('rrsp', false);
+                this.set('digidollars', 0);
+            }
+            if(num === 2) {
+                this.set('rrsp', false);
+                this.set('digidollars', 3);
+            }
+            if(num === 3) {
+                this.set('rrsp', true);
+                this.set('digidollars', 3);
+            }
+            if(num === 4) {
+                this.set('rrsp', true);
+                this.set('digidollars', 4);
+            }
+        }
     }
 });

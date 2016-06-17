@@ -1,9 +1,15 @@
 <div id="pageContainer" data-page="profile" data-edit="{{editing}}">
+{{#each model as |item|}}
 <div id="header">
     <img id="hamburger" src="/assets/img/hamburger.png" swidth="60" />
     <img id="logo" src="/assets/img/CIBC.png" width="60" />
+    <div id="digidollars">
+        <div class="star small"></div>
+        <div class="star large">
+            <div>{{digidollars}}</div>
+        </div>
+    </div>
 </div>
-{{#each model as |item|}}
 <style>
     /*blouse*/
     ul.viewOptions .profile a .person:before {
@@ -62,6 +68,7 @@
                     </li>
                 {{/unless}}
             </ul>
+            {{#unless firstLoad}}
             {{#if editing}}
                 <div class="custom">
                     <div data-element="hair">
@@ -86,13 +93,16 @@
                         </div>
                     </div>
 
-                    <div data-element="necklace">
-                        <div class="label">Necklace</div>
-                        <a href="javascript:void(0)" style="background:#f9c115;" {{action 'necklace' item}}></a>
-                        <a href="javascript:void(0)" style="background:#80FF00;" {{action 'necklace' item}}></a>
-                    </div>
+                    {{#if rrsp}}
+                        <div data-element="necklace">
+                            <div class="label">Necklace</div>
+                            <a href="javascript:void(0)" style="background:#f9c115;" {{action 'necklace' item}}></a>
+                            <a href="javascript:void(0)" style="background:#80FF00;" {{action 'necklace' item}}></a>
+                        </div>
+                    {{/if}}
                 </div>
             {{/if}}
+            {{/unless}}
             <div class="name">{{item.firstname}} {{item.lastname}}</div>
         </div>
     </div>
@@ -124,10 +134,32 @@
                 {{item.mailingaddress}}
             {{/if}}
         </div>
+        {{#if rrsp}}
+            <div class="item">
+                <label>RRSP?:</label>
+                {{#if editing}}
+                    {{input class="input" value=item.rrsp}}
+                {{else}}
+                    {{item.rrsp}}
+                {{/if}}
+            </div>
+        {{/if}}
+        {{#if firstLoad}}
+            {{#unless editing}}
+            <button id="ok" {{action 'okayed' on='click'}}>OK</button>
+            {{/unless}}
+        {{/if}}
         {{#if editing}}
             <button id="ok" {{action 'edit' on='click'}}>OK</button>
         {{/if}}
     </div>
 </main>
 {{/each}}
+<ul class="steps">
+    <li {{action "step" 1}}>1</li>
+    <li {{action "step" 2}}>2</li>
+    <li {{action "step" 3}}>3</li>
+    <li {{action "step" 4}}>4</li>
+</ul>
+{{counter}}
 </div>

@@ -2,25 +2,38 @@ body{
     float:none;
 }
 #pageContainer {
-    border:1px solid red;
     margin:10px auto;
     padding:10px;
     position:relative;
     width:500px;
 
     #header {
+        height:60px;
         margin-bottom:10px;
 
         #logo {
             display:block;
-            margin:0 auto;
+            float:right;
+            top:20px;
         }
+
         #hamburger {
             left:10px;
             position:absolute;
             top:20px;
         }
-    }
+
+        #digidollars {
+            font-size:1.5em;
+            left:50%;
+            line-height:1.5em;
+            margin-left:30px;
+            position:absolute;
+            top:-10px;
+            transform:rotate(35deg);
+            z-index:11;
+        }//digidollars
+    }//#header
 
     header {
         border:0;
@@ -86,7 +99,7 @@ body{
 
                 .custom {
                     position:absolute;
-                    top:0;
+                    top:30px;
 
                     [data-element]{
                         position:absolute;
@@ -184,4 +197,78 @@ body{
             }
         }
     }
+}
+
+ul.steps {
+    margin-top:30px;
+
+    li {
+        background:#eee;
+        border:1px solid #000;
+        border-radius:100%;
+        line-height:1.5em;
+        margin:0 5px 0 0;
+        float:left;
+        height:20px;
+        width:20px;
+        text-align:center;
+    }
+}
+.star {
+   position: absolute;
+   display: block;
+   color: #fff;
+   font-size:2em;
+   width: 0px;
+   height: 0px;
+   border-right:  100px solid transparent;
+   border-bottom: 70px  solid #ff6100;
+   border-left:   100px solid transparent;
+   transform:rotate(35deg);
+
+   &.small {
+       left:-16px;
+       transform:scale(.1, .1) rotate(15deg);
+       top:40px;
+   }
+
+   &.large {
+       transform:scale(.3, .3);
+   }
+}
+.star:before {
+   border-bottom: 80px solid #ff6100;
+   border-left: 30px solid transparent;
+   border-right: 30px solid transparent;
+   position: absolute;
+   height: 0;
+   width: 0;
+   top: -45px;
+   left: -65px;
+   display: block;
+   content: '';
+   transform:rotate(-35deg);
+   z-index:-1;
+
+}
+.star:after {
+   position: absolute;
+   display: block;
+   color: #ff6100;
+   top: 3px;
+   left: -105px;
+   width: 0px;
+   height: 0px;
+   border-right: 100px solid transparent;
+   border-bottom: 70px solid #ff6100;
+   border-left: 100px solid transparent;
+   transform:rotate(-70deg);
+   content: '';
+   z-index:-1;
+}
+
+.star div {
+    font-size:2em;
+    margin:.44em 0 0 -.25em;
+    transform:rotate(-35deg);
 }
