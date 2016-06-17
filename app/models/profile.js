@@ -11,5 +11,6 @@ export default DS.Model.extend({
     lowlight: DS.attr('string'),
     dress: DS.attr('string'),
     lipstick: DS.attr('string'),
-    necklace: DS.attr('string')
+    necklace: DS.attr('string'),
+    circle: DS.attr('string')
 });

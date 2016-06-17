@@ -43,6 +43,11 @@
     ul.viewOptions .profile a .person .neck:after {
         box-shadow:{{item.necklace}} 0.8em 0 0 0, {{item.necklace}} 0.6em 0.6em 0 0, {{item.necklace}} 0 1em 0 0, {{item.necklace}} -0.6em 0.6em 0 0, {{item.necklace}} -0.8em 0 0 0;
     }
+
+    /*circle*/
+    #pageContainer header .menu .buttonContainer .viewOptions .profile:before {
+        border:3px solid {{item.circle}};
+    }
 </style>
 
 <header>
@@ -96,6 +101,12 @@
                         <div class="label">Necklace</div>
                         <a href="javascript:void(0)" style="background:#f9c115;" {{action 'necklace' item}}></a>
                         <a href="javascript:void(0)" style="background:#80FF00;" {{action 'necklace' item}}></a>
+                    </div>
+
+                    <div data-element="circle">
+                        <div class="label">Border</div>
+                        <a href="javascript:void(0)" style="background:#000;" {{action 'circle' item}}></a>
+                        <a href="javascript:void(0)" style="background:#BBDDD1;" {{action 'circle' item}}></a>
                     </div>
                 </div>
             {{/if}}

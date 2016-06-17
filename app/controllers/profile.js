@@ -64,6 +64,8 @@ export default Ember.Controller.extend({
 
         necklace(item) { this.updateColor(item, event, 'necklace'); },
 
+        circle(item) { this.updateColor(item, event, 'circle'); },
+
         step(num) {
             this.stepNum = num;
             if(num === 1) {

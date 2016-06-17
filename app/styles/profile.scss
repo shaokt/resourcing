@@ -2,7 +2,7 @@ body{
     float:none;
 }
 #pageContainer {
-    border:1px solid #000;
+    border:1px solid #eee;
     box-shadow:1px 1px 10px 5px rgba(0,0,0,.5);
     margin:10px auto;
     padding:10px;
@@ -126,6 +126,11 @@ body{
                     [data-element="necklace"]{
                         top:65px;
                         left:60px;
+                    }
+
+                    [data-element="circle"]{
+                        top:65px;
+                        left:137px;
                     }
 
                     .label {
