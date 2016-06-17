@@ -39,8 +39,14 @@ export default Ember.Controller.extend({
 
         lipstick(item) {
             var color = $(event.target).css('backgroundColor');
-            //color = this.hexc(color);
             item.set('lipstick', color);
+            this.send('save');
+        },
+
+        necklace(item) {
+            var color = $(event.target).css('backgroundColor');
+            color = this.hexc(color);
+            item.set('necklace', color);
             this.send('save');
         },
     }

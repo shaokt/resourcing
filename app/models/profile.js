@@ -9,5 +9,6 @@ export default DS.Model.extend({
     highlight: DS.attr('string'),
     lowlight: DS.attr('string'),
     dress: DS.attr('string'),
-    lipstick: DS.attr('string')
+    lipstick: DS.attr('string'),
+    necklace: DS.attr('string')
 });

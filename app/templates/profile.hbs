@@ -1,25 +1,36 @@
 <div id="pageContainer" data-page="profile">
 {{#each model as |item|}}
 <style>
+    /*blouse*/
     ul.viewOptions .profile a .person:before {
         background:{{item.dress}};
     }
+
+    /*hair*/
     ul.viewOptions .profile a .person .hair:before {
         background:linear-gradient(to bottom, {{item.highlight}} 25%, {{item.lowlight}} 75%, rgba(0, 0, 0, 0.5) 100%) !important;
     }
 
+    /*bangs*/
     ul.viewOptions .profile a .person .hair:after {
         background:linear-gradient(50deg, {{item.lowlight}} 25%, {{item.highlight}} 75%, {{item.highlight}} 100%);
     }
 
+    /*lipstick*/
     ul.viewOptions .profile a .person .face:before {
         border-bottom-color:{{item.lipstick}};
         border-right-color:{{item.lipstick}};
     }
 
+    /*lipstick animation*/
     ul.viewOptions .profile a:hover .person.female .face:before {
         border:1px solid {{item.lipstick}};
         border-bottom-width:2px;
+    }
+
+    /*necklace*/
+    ul.viewOptions .profile a .person .neck:after {
+        box-shadow:{{item.necklace}} 0.8em 0 0 0, {{item.necklace}} 0.6em 0.6em 0 0, {{item.necklace}} 0 1em 0 0, {{item.necklace}} -0.6em 0.6em 0 0, {{item.necklace}} -0.8em 0 0 0;
     }
 </style>
 
@@ -50,14 +61,20 @@
                     </div>
                 </div>
                 <div data-element="dress">
-                    <div style="position:absolute;top:0;left:-70px;">
-                        <div class="label">Lipstick</div>
-                        <a href="javascript:void(0)" style="background:red" {{action 'lipstick' item}}></a>
-                        <a href="javascript:void(0)" style="background:purple" {{action 'lipstick' item}}></a>
-                    </div>
-                    <div class="label">Dress</div>
+                    <div class="label">Blouse</div>
                     <a href="javascript:void(0)" style="background:#6666ff;" {{action 'dress' item}}></a>
                     <a href="javascript:void(0)" style="background:red" {{action 'dress' item}}></a>
+                    <div style="position:absolute;top:0;left:60px;">
+                        <div class="label">Lipstick</div>
+                        <a href="javascript:void(0)" style="background:red" {{action 'lipstick' item}}></a>
+                        <a href="javascript:void(0)" style="background:#c1a" {{action 'lipstick' item}}></a>
+                    </div>
+                </div>
+
+                <div data-element="necklace">
+                    <div class="label">Necklace</div>
+                    <a href="javascript:void(0)" style="background:#f9c115;" {{action 'necklace' item}}></a>
+                    <a href="javascript:void(0)" style="background:#80FF00;" {{action 'necklace' item}}></a>
                 </div>
             </div>
             <div class="name">{{item.firstname}} {{item.lastname}}</div>
