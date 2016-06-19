@@ -12,12 +12,10 @@
         }
 
         [data-active="true"] {
-            .long {
-                //display:block;
-            }
             .tileOptions {
                 background:#fff;
                 border-radius:5px;
+                border-top-right-radius:0;
                 float:left;
                 margin-top:-14px;
 
@@ -31,6 +29,42 @@
                     }
                 }
             }//tileOptions
+
+            .phases {
+                background:#FFF;
+                border-radius:2px;
+                border-top-left-radius:0;
+                float:left;
+                margin-top:-14px;
+
+                li {
+                    float:left;
+                    margin-left:8px;
+
+                    label {
+                        font-weight:bold;
+                        font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+                        margin-left:-3px;
+                        padding:0 5px;
+                    }
+
+                    input {
+                        height:10px;
+
+                        &:checked {
+                            + label {
+                                background:#000;
+                                border-radius:2px;
+                                color:#fff;
+                            }
+                        }
+                    }
+
+                    &.phasePLT {
+                        clear:left;
+                    }
+                }//li
+            }/phases
         }//data-active
     }//main
 }//assignments.index
