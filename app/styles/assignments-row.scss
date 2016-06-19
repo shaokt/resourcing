@@ -15,6 +15,7 @@
             .tileOptions {
                 background:#fff;
                 border-radius:5px;
+                border-top:1px solid #000;
                 border-top-right-radius:0;
                 float:left;
                 margin-top:-14px;
@@ -33,9 +34,12 @@
             .phases {
                 background:#FFF;
                 border-radius:2px;
+                border-top:1px solid #000;
+                border-right:1px solid #000;
                 border-top-left-radius:0;
                 float:left;
                 margin-top:-14px;
+                padding-right:2px;
 
                 li {
                     float:left;
@@ -64,7 +68,12 @@
                         clear:left;
                     }
                 }//li
-            }/phases
+            }//phases
         }//data-active
     }//main
+    #todayDateLine {
+        &:before {
+            height:20px;
+        }
+    }
 }//assignments.index
