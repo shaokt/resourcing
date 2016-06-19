@@ -10,13 +10,15 @@ export default ResourceRowComponent.extend({
     editing: false,
 
     didRender(){
-        this._super(...arguments);
-        var self = this;
+        if(this.get('router.currentRouteName') === 'home'){
+            this._super(...arguments);
+            var self = this;
 
-        var exists = $.getJSON('http://localhost:3000/file/' + this.get('resource.ad'), function() {})
-        .done(function() {
-            self.set('resource.hasDirects', exists.responseJSON ? true : false);
-        })
+            var exists = $.getJSON('http://localhost:3000/file/' + this.get('resource.ad'), function() {})
+            .done(function() {
+                self.set('resource.hasDirects', exists.responseJSON ? true : false);
+            })
+        }
     },
 
     actions: {
