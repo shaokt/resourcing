@@ -1,32 +1,36 @@
-[data-route="assignments.index"]{
-    .long { display:none; }
+[data-view="assignment"][data-route="assignments.index"]{
+    main {
+        padding-top:165px;
 
-    * :not([data-active="true"]) .info {
-        &:hover {
-            .short {display:none;}
-            .long {display:block; }
-        }
-    }
+        .long { display:none; }
 
-    [data-active="true"] {
-        .long {
-            display:block;
-        }
-        .tileOptions {
-            background:#fff;
-            border-radius:5px;
-            float:left;
-            margin-top:-14px;
-
-            li {
-                border:0;
-                margin:0;
-                padding-top:0;
-                
-                a {
-                    display:block;
-                }
+        :not([data-active="true"]) .info {
+            &:hover {
+                .short {display:none;}
+                .long { display:block; }
             }
-        }//tileOptions
-    }//data-active
+        }
+
+        [data-active="true"] {
+            .long {
+                //display:block;
+            }
+            .tileOptions {
+                background:#fff;
+                border-radius:5px;
+                float:left;
+                margin-top:-14px;
+
+                li {
+                    border:0;
+                    margin:0;
+                    padding-top:0;
+
+                    a {
+                        display:block;
+                    }
+                }
+            }//tileOptions
+        }//data-active
+    }//main
 }//assignments.index
