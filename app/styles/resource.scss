@@ -192,8 +192,12 @@ section.resourceRow {
         .name { background:red; }
         &:after {
             background:#000;
+            content:"";
             display:block;
+            height:32px;
             opacity:.8;
+            position:absolute;
+            top:0;
             width:100%;
             z-index: 2;
         }
