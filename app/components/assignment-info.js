@@ -2,7 +2,6 @@ import Ember from 'ember';
 import ResourceInfoComponent from "./resource-info";
 
 export default ResourceInfoComponent.extend({
-    editType:'paint',
     actions: {
         select() {
             var obj;

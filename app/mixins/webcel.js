@@ -162,15 +162,23 @@ export default Ember.Mixin.create(CalendarWidget, {
                     break;
                 }
 				case 3: { // right click: stamp
-					var thisTile = $(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
-                    if(thisTile.attr('data-stamp') == "true"){ thisTile.removeAttr('data-stamp') }
-                    else{ thisTile.attr('data-stamp', true) }
+
+                    // stamps limited to phases of the project defined in the assignment-phases component
+                    if(self.get('router.currentRouteName') === 'assignments.index') {
+                        //console.log(self.data.get('stampPhase'))
+                    }
+                    // stamps  the short name of the project on the project tile
+                    else {
+    					var thisTile = $(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
+                        if(thisTile.attr('data-stamp') == "true"){ thisTile.removeAttr('data-stamp') }
+                        else{ thisTile.attr('data-stamp', true) }
 
 
-            		var addTiles = ($(self.row).find(".tiles")[0].innerHTML.replace(/<!---->/gi, '').trim()).htmlSafe();
-                    self.constants.daily ?
-                        self.data.set('timeaway', addTiles) :
-                        self.data.set('assignment', addTiles);
+                		var addTiles = ($(self.row).find(".tiles")[0].innerHTML.replace(/<!---->/gi, '').trim()).htmlSafe();
+                        self.constants.daily ?
+                            self.data.set('timeaway', addTiles) :
+                            self.data.set('assignment', addTiles);
+                    }
                     break;
                 }
             }//switch

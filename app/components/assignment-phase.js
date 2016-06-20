@@ -10,6 +10,7 @@ export default Ember.Component.extend({
         // assigns the phase of the project to stamp on the tile
         setStamp() {
             this.set('editType', 'stamp');
+            this.set('assignment.stampPhase', this.get('label'))
         }
     }
 });

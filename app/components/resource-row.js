@@ -7,6 +7,7 @@ const{
 const { service }=inject;
 
 export default Ember.Component.extend(Webcel, {
+    editType:'paint',
     dragSource: null,
     store: service(),
 
