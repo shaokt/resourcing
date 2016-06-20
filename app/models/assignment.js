@@ -5,5 +5,6 @@ export default DS.Model.extend({
     short: DS.attr('string'),       // short description
     long: DS.attr('string'),        // long description
     assignment: DS.attr('string'),  // tiles showing assignment
+    phases: DS.attr('string'),      // phases of the project
     background: DS.attr('string')   // hex background
 });
