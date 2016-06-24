@@ -157,7 +157,6 @@ section.resourceRow {
             border-left-width:25px;
             box-shadow:none;
             margin-left:-25px;
-            padding-right:10px;
             top:-23px;
             z-index:4;
 
@@ -193,8 +192,12 @@ section.resourceRow {
         .name { background:red; }
         &:after {
             background:#000;
+            content:"";
             display:block;
+            height:32px;
             opacity:.8;
+            position:absolute;
+            top:0;
             width:100%;
             z-index: 2;
         }

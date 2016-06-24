@@ -14,6 +14,7 @@
             <a href="#" data-assignment="empty" data-stamp="true" class="empty" data-active="{{if assignment.paint false true}}" {{action "select" on="click" event=event}}><span></span></a>
         </li>
     </ul>
+    {{assignment-phases editType=editType assignment=assignment}}
 {{else}}
     <div class="name short" data-type="value">{{assignment.short}}</div>
 {{/if}}

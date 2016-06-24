@@ -79,6 +79,7 @@
             > .row {
                 [data-type="tile"] {
                     height:15px;
+                    &[data-y="0"]{ top:0; }
                     &[data-y="15"]{ top:15px; }
                     &[data-y="30"]{ top:30px; }
                     &[data-y="45"]{ top:45px; }

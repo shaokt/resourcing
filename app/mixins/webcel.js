@@ -101,6 +101,21 @@ export default Ember.Mixin.create(CalendarWidget, {
         this.downX = this.upX = 0;
     },
 
+    setPhase: function(){
+        // only create the phase stamp if a phase is selected
+        if(this.data.get('stampPhase')) {
+            var clone = $(this.row).clone(); // clone needed for removing tiles if applicable
+            var stamp = "";
+            var phase = 'data-phase="' + this.data.get('stampPhase') + '"';
+    		stamp+=
+                '<span data-type="tile" data-stamp="true"' + phase + ' data-x="' + this.downX + '" data-y="' + this.downY + '"' +
+                '"></span>';
+
+    		stamp = ($(clone).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim() + stamp).htmlSafe();
+            this.data.set('phases', stamp);
+        }
+    },
+
     //setup: function(obj, emData){
     setup: function(params){
         var movePointer, mouseDown, mouseUp;
@@ -162,15 +177,24 @@ export default Ember.Mixin.create(CalendarWidget, {
                     break;
                 }
 				case 3: { // right click: stamp
-					var thisTile = $(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
-                    if(thisTile.attr('data-stamp') == "true"){ thisTile.removeAttr('data-stamp') }
-                    else{ thisTile.attr('data-stamp', true) }
+
+                    // stamps limited to phases of the project defined in the assignment-phases component
+                    if(self.get('router.currentRouteName') === 'assignments.index') {
+                        //console.log(self.data.get('stampPhase'))
+                        self.setPhase(e);
+                    }
+                    // stamps  the short name of the project on the project tile
+                    else {
+    					var thisTile = $(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
+                        if(thisTile.attr('data-stamp') == "true"){ thisTile.removeAttr('data-stamp') }
+                        else{ thisTile.attr('data-stamp', true) }
 
 
-            		var addTiles = ($(self.row).find(".tiles")[0].innerHTML.replace(/<!---->/gi, '').trim()).htmlSafe();
-                    self.constants.daily ?
-                        self.data.set('timeaway', addTiles) :
-                        self.data.set('assignment', addTiles);
+                		var addTiles = ($(self.row).find(".tiles")[0].innerHTML.replace(/<!---->/gi, '').trim()).htmlSafe();
+                        self.constants.daily ?
+                            self.data.set('timeaway', addTiles) :
+                            self.data.set('assignment', addTiles);
+                    }
                     break;
                 }
             }//switch
