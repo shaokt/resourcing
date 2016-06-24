@@ -5,9 +5,8 @@ import { storageFor } from 'ember-local-storage';
 export default ResourceInfoComponent.extend({
     column: 495,    // starting column to check against - remove hard coding later
     counter: 0,
-    currentAssignment: 0,   // current assignment we want to view specifically
     peopleAssigned: 0,  // if there are people assigned to the assignment from the specified date
-    persons: 0, // any person who is working on the project
+    findPeople: {},
     settings: storageFor("settings"),
 
     getPeople(org) {
@@ -18,9 +17,9 @@ export default ResourceInfoComponent.extend({
             .done(function() {
                 var ad = person.get('ad');
                 if(exists.responseJSON) { // has direct reports
-                    self.set('persons.' + ad, self.get('store').query('direct', {manager: ad})).then(function(){
+                    self.set('findPeople.' + ad, self.get('store').query('direct', {manager: ad})).then(function(){
                         --self.counter;
-                        self.getPeople(self.get('persons.' + ad));
+                        self.getPeople(self.get('findPeople.' + ad));
                         self.hasAssignment(person);
                         if(self.counter===0){ self.done(); }
                     });
@@ -38,6 +37,7 @@ export default ResourceInfoComponent.extend({
 
     done() {
         if(this.peopleAssigned){
+            console.log(this.peopleAssigned)
             this.set('settings.view', 'timeaway');
         }
         this.set('peopleAssigned', 0);
@@ -54,20 +54,22 @@ export default ResourceInfoComponent.extend({
 
         if(assignment.length){
             this.set('peopleAssigned', ++this.peopleAssigned);
+            this.get('persons').pushObject(person);
         }
     },
 
     actions: {
         // get vacation of those who are on the project
         viewVacation() {
+            this.set('persons', []);
             if(this.get('settings.view') === 'timeaway') {
                 this.set('settings.view', 'assignment')
             }
             else {
                 var self = this;
                 this.set('currentAssignment', this.get('assignment.id'));
-                this.set('persons', this.get('store').query('direct', {manager: 'PL145'})).then(function(){
-                    self.getPeople(self.persons);
+                this.set('findPeople', this.get('store').query('direct', {manager: 'PL145'})).then(function(){
+                    self.getPeople(self.findPeople);
                 })
             }
         },
