@@ -13,7 +13,7 @@
     }
 
     section.resourceRow {
-        .row {
+        .row[data-view="timeOff"] {
             height:15px;
         }
 
