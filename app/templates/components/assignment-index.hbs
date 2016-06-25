@@ -7,6 +7,9 @@
         data-id="{{assignment.id}}"
     >
     	<div class="row" data-view="assignment">
+            {{#if settings.isDailyCalendar}}
+                {{calendar-holiday-tiles}}
+            {{/if}}
             {{#if assignment.active}}
                 <div class="pointer"></div>
                 <div class="sizer"></div>
