@@ -39,6 +39,7 @@ export default ResourceInfoComponent.extend({
         if(this.peopleAssigned){
             console.log(this.peopleAssigned)
             this.set('settings.view', 'timeaway');
+            this.set('constants.dataView', 'timeaway')
         }
         this.set('peopleAssigned', 0);
     },
@@ -64,6 +65,7 @@ export default ResourceInfoComponent.extend({
             this.set('persons', []);
             if(this.get('settings.view') === 'timeaway') {
                 this.set('settings.view', 'assignment')
+                this.set('constants.dataView', 'assignment')
             }
             else {
                 var self = this;

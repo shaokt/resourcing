@@ -3,6 +3,7 @@ export default Ember.Service.extend({
     settings: storageFor("settings"),
     DIM: 15,            // width of each day
     _DIM: -15,
+    dataView: '',       // a way to set the view based on user actions
     calWidth: 0,        // calendar width
     numDays: 0,         // number of days rendered on calendar
     prevYear: 0,        // previous year's column

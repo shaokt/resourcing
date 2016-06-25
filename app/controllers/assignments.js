@@ -11,6 +11,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
 
     init: function () {
         Ember.run.scheduleOnce("afterRender",this,function() {
+            this.set('constants.dataView', 'assignment')
             var route = this.get('router.currentPath');
             if(route === 'assignments.index'){
                 document.title = "View Assignments";

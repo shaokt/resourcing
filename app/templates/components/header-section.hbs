@@ -1,7 +1,7 @@
 <div id="year">2016</div>
 <div class="menu">
     <ul class="tileOptions">
-        {{#if settings.isWeeklyCalendar}}
+        {{#if (assignment-show-tiles settings.isWeeklyCalendar constants)}}
             <li class="assignments">
                 {{assignment-tile model=model settings=settings}}
             </li>
