@@ -64,11 +64,13 @@ export default ResourceInfoComponent.extend({
         viewVacation() {
             this.set('persons', []);
             if(this.get('settings.view') === 'timeaway') {
+                this.set('readonly', false);
                 this.set('settings.view', 'assignment')
                 this.set('constants.dataView', 'assignment')
             }
             else {
                 var self = this;
+                this.set('readonly', true);
                 this.set('currentAssignment', this.get('assignment.id'));
                 this.set('findPeople', this.get('store').query('direct', {manager: 'PL145'})).then(function(){
                     self.getPeople(self.findPeople);

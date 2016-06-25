@@ -1,4 +1,6 @@
-[data-route="assignments.index"]{
+[data-view='assignment'],
+[data-view='timeaway'] {
+&[data-route="assignments.index"] {
     main {
         padding-top:165px;
 
@@ -71,9 +73,33 @@
             }//phases
         }//data-active
     }//main
+
     #todayDateLine {
         &:before {
             height:20px;
         }
     }
 }//assignments.index
+}//data-view
+
+[data-view='timeaway'][data-route="assignments.index"] {
+    main {
+        padding-top:175px;
+
+        [data-view="assignment"] {
+            + .info {
+                top:-27px;
+                margin-left:-100px;
+                z-index:10;
+
+                .name {
+                    border:none;
+                    border-radius:0;
+                    box-shadow:none;
+                    font-size:1.6em;
+                    padding:5px 5px 2px 5px;
+                }
+            }
+        }
+    }
+}
