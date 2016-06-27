@@ -1,0 +1,141 @@
+ul.viewOptions {
+    .team a {
+        .member {
+            &:after, &:before { // arms
+                background:none;
+                content:"";
+                display:block;
+                height:5px;
+                left:-7px;
+                position:absolute;
+                top:18px;
+                border-left:6px solid #000;
+                border-right:6px solid #abc;
+                //width:12px;
+                transform:rotate(-45deg);
+                z-index:0;
+            }
+
+            &:before { // right arm
+                border-right:6px solid #000;
+                border-left:6px solid #abc;
+                left:8px;
+                transform:rotate(45deg);
+            }
+
+            .body {
+                //background:#abc;
+                border-top:14px solid #abc;
+                border-radius:2px;
+                border-top-left-radius:3px;
+                border-top-right-radius:3px;
+                //height:25px;
+                border-bottom:11px solid #99a;
+                display:block;
+                margin-top:14px;
+                width:13px;
+                z-index:2;
+
+                &:after { // leg line
+                    background:#fff;
+                    content:"";
+                    display:block;
+                    height:10px;
+                    left:6px;
+                    position:absolute;
+                    bottom:0;
+                    width:1px;
+                }
+
+                &:before { // head
+                    background:#000;
+                    border-radius:100%;
+                    content:"";
+                    display:block;
+                    height:12px;
+                    position:absolute;
+                    top:0;
+                    width:12px;
+                }
+            }
+
+            &.female {
+                left:25px;
+                position:absolute;
+                top:0;
+
+                &:after { border-right-color:#f9a; }
+                &:before { border-left-color:#f9a; }
+
+                .body {
+                    border-top-color:#f9a;
+                }
+            }
+        }//member
+
+        &:hover {
+            .member {
+                &.male {
+                    &:before {
+                        animation:raiseArmR 2000ms infinite linear;
+                    }
+
+                    .body {
+                        &:before {
+                            animation:tiltHeadL 2000ms infinite linear;
+                        }
+                    }
+                }
+
+                &.female {
+                    &:after {
+                        animation:raiseArmL 2000ms infinite linear;
+                    }
+
+                    .body {
+                        &:before {
+                            animation:tiltHeadR 2000ms infinite linear;
+                        }
+                    }
+                }
+            }
+
+            @keyframes tiltHeadL {
+                30%, 50% { left:-2px; }
+                65% { left:0; }
+            }
+
+            @keyframes tiltHeadR {
+                30%, 50% { left:2px; }
+                65% { left:0; }
+            }
+
+            @keyframes raiseArmL {
+                30%, 50% {
+                    transform:rotate(45deg);
+                    top:10px;
+                }
+
+                65% {
+                    transform:rotate(-45deg);
+                    top:18px;
+                }
+            }
+
+            @keyframes raiseArmR {
+                30%, 50% {
+                    transform:rotate(-45deg);
+                    top:10px;
+                }
+
+                65% {
+                    transform:rotate(45deg);
+                    top:18px;
+                }
+            }
+        }//hover
+        .text {
+            left:-15px;
+        }
+    }//team
+}//viewOptions

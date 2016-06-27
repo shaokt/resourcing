@@ -95,6 +95,7 @@
                     </a>
                 </li>
             {{/if}}
+
             <li class="toggle">
                 <a href="/" {{action "toggleViewHiddenRows" on="click"}}>
                     <span class="eye"></span>
@@ -105,6 +106,16 @@
                     {{/if}}
                 </a>
             </li>
+
+            {{#if showTeam}}
+                <li class="team">
+                    <a href="/" {{action "viewTeam" on="click"}}>
+                        <span class="member male"><span class="body"></span></span>
+                        <span class="member female"><span class="body"></span></span>
+                        <span class="text">View Team</span>
+                    </a>
+                </li>
+            {{/if}}
         </ul>
     </div>
 

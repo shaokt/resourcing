@@ -2,6 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     tagName: 'header',
+    showTeam: false,
+
+    init() {
+        this._super();
+        console.log(this.get('router.currentRouteName'))
+        if(this.get('router.currentRouteName') === 'assignments.index')
+        this.set('showTeam', true)
+    },
 
     actions: {
         // scroll today's column into view

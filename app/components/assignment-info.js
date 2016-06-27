@@ -46,11 +46,12 @@ export default ResourceInfoComponent.extend({
 
     // checks if the person has a specific assignment from a specific date
     hasAssignment(person) {
+        var self = this;
         var assignment = $('<div></div>')
             .append(person.get('assignment'))
             .find('[data-assignment="' + this.currentAssignment + '"]')
             .filter(function(){
-                return $(this).attr('data-x') >= 465
+                return $(this).attr('data-x') >= self.column;
             })
 
         if(assignment.length){
