@@ -6,12 +6,16 @@ export default Ember.Component.extend({
 
     init() {
         this._super();
-        console.log(this.get('router.currentRouteName'))
         if(this.get('router.currentRouteName') === 'assignments.index')
         this.set('showTeam', true)
     },
 
     actions: {
+        //
+        viewTeam() {
+
+        },
+
         // scroll today's column into view
         scrollToday() {
             this.cal.scrollToday();

@@ -3,7 +3,6 @@ import ResourceInfoComponent from "./resource-info";
 import { storageFor } from 'ember-local-storage';
 
 export default ResourceInfoComponent.extend({
-    column: 495,    // starting column to check against - remove hard coding later
     counter: 0,
     peopleAssigned: 0,  // if there are people assigned to the assignment from the specified date
     findPeople: {},
@@ -37,7 +36,6 @@ export default ResourceInfoComponent.extend({
 
     done() {
         if(this.peopleAssigned){
-            console.log(this.peopleAssigned)
             this.set('settings.view', 'timeaway');
             this.set('constants.dataView', 'timeaway')
         }
@@ -51,7 +49,7 @@ export default ResourceInfoComponent.extend({
             .append(person.get('assignment'))
             .find('[data-assignment="' + this.currentAssignment + '"]')
             .filter(function(){
-                return $(this).attr('data-x') >= self.column;
+                return $(this).attr('data-x') >= self.get('constants.teamAsOf');
             })
 
         if(assignment.length){

@@ -36,5 +36,14 @@ export default Ember.Component.extend({
                 })
             }
         }
-    }.on('init')
+    }.on('init'),
+
+    actions: {
+        setDate() {
+            var obj;
+            if($(event.target)[0].className !== 'day') { obj= $(event.target.parentNode); }
+            else { obj = $(event.target) }
+            this.set('constants.teamAsOf',obj.attr('data-column'));
+        }
+    }
 });
