@@ -60,7 +60,7 @@ export default ResourceInfoComponent.extend({
 
     actions: {
         // get vacation of those who are on the project
-        viewVacation() {
+        viewTeam() {
             this.set('persons', []);
             if(this.get('settings.view') === 'timeaway') {
                 this.set('readonly', false);

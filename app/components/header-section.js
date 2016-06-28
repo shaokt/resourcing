@@ -8,7 +8,6 @@ export default Ember.Component.extend({
     showOrg: false,
     showTeam: false,
     showToggleRows: false,
-    teamDate: false,
 
     init() {
         this._super();
@@ -43,7 +42,7 @@ export default Ember.Component.extend({
     actions: {
         //
         viewTeam() {
-            this.set('teamDate', true);
+            this.set('constants.teamAssignmentView', true);
         },
 
         // scroll today's column into view

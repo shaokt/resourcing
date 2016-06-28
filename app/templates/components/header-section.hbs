@@ -134,27 +134,25 @@
                         <span class="member"><span class="body"></span></span>
                         <span class="text">View Team</span>
                     </a>
-                    {{#if teamDate}}
+                    {{#if constants.teamAssignmentView}}
                         <div class="specs">
                             <div class="date">
                                 <div><span class="asof">{{constants.teamAsOfDate}}</span></div>
                             </div>
-                            {{#if constants.teamAsOfDate}}
-                                <div class="assignmentInfo">
-                                    <style>
-                                        .assignmentInfo .short {
-                                            background:#{{constants.teamAssignment.background}};
-                                        }
-                                    </style>
-                                    {{#unless constants.teamAssignment}}
-                                        Click an Assignment
-                                    {{else}}
-                                        <span class="short">
-                                            <span>{{constants.teamAssignment.short}}</span>
-                                        </span>
-                                    {{/unless}}
-                                </div>
-                            {{/if}}
+                            <div class="assignmentInfo">
+                                <style>
+                                    .assignmentInfo .short {
+                                        background:#{{constants.teamAssignment.background}};
+                                    }
+                                </style>
+                                {{#unless constants.teamAssignment}}
+                                    Click an Assignment
+                                {{else}}
+                                    <span class="short">
+                                        <span>{{constants.teamAssignment.short}}</span>
+                                    </span>
+                                {{/unless}}
+                            </div>
                         </div>
                     {{/if}}
                 </li>

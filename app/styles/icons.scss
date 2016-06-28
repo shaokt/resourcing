@@ -123,6 +123,37 @@ ul.viewOptions {
         }
     }//locks
 
+    .viewTeam {
+        a {
+            height:14px;
+
+            &:after { // arrow tip
+                background:transparent;
+                border:5px solid #000;
+                border-top-color:transparent;
+                border-left-color:transparent;
+                left:3px;
+                transform:rotate(-45deg);
+                top:2px;
+            }
+
+            &:before {
+                background:#000;
+                height:4px;
+                left:3px;
+                top:5px;
+                width:5px;
+            }
+
+            &:hover {
+                &:after {
+                    border-right-color:#C55500;
+                    border-bottom-color:#C55500;
+                }
+            }
+        }
+    }//viewTeam
+
     .toggle {
         &:hover {
             a:after {

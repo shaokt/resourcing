@@ -1,12 +1,13 @@
 <ul class="viewOptions">
-    {{#unless readonly}}
+    {{#unless constants.teamAssignmentView}}
         <li class="lock">
             <a href="/" {{action "editing" on="click"}}></a>
         </li>
+    {{else}}
+        <li class="viewTeam">
+            <a href="/" {{action "viewTeam" on="click"}}></a>
+        </li>
     {{/unless}}
-    <li class="viewVacation">
-        <a href="/" {{action "viewVacation" on="click"}}>hi</a>
-    </li>
 </ul>
 
 <div class="name long" data-type="value">{{assignment.long}}</div>
