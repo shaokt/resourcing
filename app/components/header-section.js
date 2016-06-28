@@ -2,12 +2,41 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     tagName: 'header',
+    showAddEmployee: false,
+    showEmployeeTracking: false,
+    showSort: false,
+    showOrg: false,
     showTeam: false,
+    showToggleRows: false,
 
     init() {
         this._super();
-        if(this.get('router.currentRouteName') === 'assignments.index')
-        this.set('showTeam', true)
+        var route = this.get('router.currentRouteName');
+        if(route === 'assignments.index'){
+            this.set('showAddEmployee', false);
+            this.set('showEmployeeTracking', false);
+            this.set('showSort', false);
+            this.set('showOrg', true);
+            this.set('showTeam', true);
+            this.set('showToggleRows', false);
+        }
+        else if(route === 'assignments.edit') {
+            this.set('showAddEmployee', false);
+            this.set('showEmployeeTracking', false);
+            this.set('showSort', true);
+            this.set('showOrg', true);
+            this.set('showTeam', false);
+            this.set('showToggleRows', true);
+
+        }
+        else if(route === 'home') {
+            this.set('showAddEmployee', true);
+            this.set('showEmployeeTracking', true);
+            this.set('showSort', true);
+            this.set('showOrg', false); 
+            this.set('showTeam', false);
+            this.set('showToggleRows', true);
+        }
     },
 
     actions: {

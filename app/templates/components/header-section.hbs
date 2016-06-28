@@ -15,45 +15,57 @@
 
     <div class="buttonContainer">
         <ul class="viewOptions">
-            {{#if settings.isWeeklyCalendar}}
-                <li class="timeaway">
-                    <a href="/" {{action "toggleView" 'timeaway' on="click"}}>
-                        <span class="start"></span>
-                        <span class="reset"></span>
-                        <span class="hands"></span>
-                        <span class="time" data-time="3"></span>
-                        <span class="time" data-time="6"></span>
-                        <span class="time" data-time="9"></span>
-                        <span class="time" data-time="12"></span>
-                        <span class="text">Track Out of Office</span>
+            {{#if showEmployeeTracking}}
+                {{#if settings.isWeeklyCalendar}}
+                    <li class="timeaway">
+                        <a href="/" {{action "toggleView" 'timeaway' on="click"}}>
+                            <span class="start"></span>
+                            <span class="reset"></span>
+                            <span class="hands"></span>
+                            <span class="time" data-time="3"></span>
+                            <span class="time" data-time="6"></span>
+                            <span class="time" data-time="9"></span>
+                            <span class="time" data-time="12"></span>
+                            <span class="text">Track Out of Office</span>
+                        </a>
+                    </li>
+                {{/if}}
+
+                {{#if settings.isDailyCalendar}}
+                    <li class="assignment">
+                        <a href="/" {{action "toggleView" 'assignment' on="click"}}>
+                            <span class="pencil"><span class="wood"></span></span>
+                            <span class="text">Track Assignments</span>
+                        </a>
+                    </li>
+                {{/if}}
+            {{/if}}
+
+            {{#if showOrg}}
+                <li class="org">
+                    <a href="/home?id={{settings.lastManager}}">
+                        ORG
                     </a>
                 </li>
             {{/if}}
 
-            {{#if settings.isDailyCalendar}}
-                <li class="assignment">
-                    <a href="/" {{action "toggleView" 'assignment' on="click"}}>
-                        <span class="pencil"><span class="wood"></span></span>
-                        <span class="text">Track Assignments</span>
-                    </a>
-                </li>
-            {{/if}}
-
-            {{#if this.constants.draggable}}
-                <li class="dragSort">
-                    <a href="/" {{action "dragDisable" on="click"}}>
-                        <span></span>
-                        <span class="text">Drag Sort</span>
-                    </a>
-                </li>
-            {{else}}
-                <li class="dragSort">
-                    <a href="/" {{action "dragEnable" on="click"}}>
-                        <span class="leftArrow"></span>
-                        <span class="rightArrow"></span>
-                        <span class="text">Drag Sort</span>
-                    </a>
-                </li>
+            {{#if showSort}}
+                {{#if this.constants.draggable}}
+                    <li class="dragSort">
+                        <a href="/" {{action "dragDisable" on="click"}}>
+                            <span></span>
+                            <span class="text">Drag Sort</span>
+                        </a>
+                    </li>
+                {{else}}
+                    <li class="dragSort">
+                        <a href="/" {{action "dragEnable" on="click"}}>
+                            <span class="leftArrow"></span>
+                            <span class="rightArrow"></span>
+                            <span class="text">Drag Sort</span>
+                        </a>
+                    </li>
+                {{/if}}
             {{/if}}
 
             {{#if settings.hasCalendar}}
@@ -68,23 +80,25 @@
                         {{/if}}
                     </a>
                 </li>
-                <li class="profile">
-                    <a href="/" {{action "addEmployee"}}>
-                        <span class="person female">
-                            <span class="hair"></span>
-                            <span class="face"></span>
-                            <span class="neck"></span>
-                        </span>
+                {{#if showAddEmployee}}
+                    <li class="profile">
+                        <a href="/" {{action "addEmployee"}}>
+                            <span class="person female">
+                                <span class="hair"></span>
+                                <span class="face"></span>
+                                <span class="neck"></span>
+                            </span>
 
-                        <span class="person male">
-                            <span class="hair"></span>
-                            <span class="face"></span>
-                            <span class="neck"></span>
-                        </span>
-                        <span class="plus"></span>
-                        <span class="text">New Employee</span>
-                    </a>
-                </li>
+                            <span class="person male">
+                                <span class="hair"></span>
+                                <span class="face"></span>
+                                <span class="neck"></span>
+                            </span>
+                            <span class="plus"></span>
+                            <span class="text">New Employee</span>
+                        </a>
+                    </li>
+                {{/if}}
             {{/if}}
 
             {{#if constants.editAssignments}}
@@ -96,16 +110,18 @@
                 </li>
             {{/if}}
 
-            <li class="toggle">
-                <a href="/" {{action "toggleViewHiddenRows" on="click"}}>
-                    <span class="eye"></span>
-                    {{#if settings.isHiddenRows}}
-                        <span class="text">Hide Hidden Rows</span>
-                    {{else}}
-                        <span class="text">Show Hidden Rows</span>
-                    {{/if}}
-                </a>
-            </li>
+            {{#if showToggleRows}}
+                <li class="toggle">
+                    <a href="/" {{action "toggleViewHiddenRows" on="click"}}>
+                        <span class="eye"></span>
+                        {{#if settings.isHiddenRows}}
+                            <span class="text">Hide Hidden Rows</span>
+                        {{else}}
+                            <span class="text">Show Hidden Rows</span>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/if}}
 
             {{#if showTeam}}
                 <li class="team">
