@@ -5,13 +5,20 @@
         a {
             .member {
                 position:absolute;
-                top:0;
+                top:-1px;
 
-                &:nth-of-type(2) { left:25px; }
-                &:nth-of-type(3) { left:50px; }
+                &:nth-of-type(2) { left:26px; }
+                &:nth-of-type(3) {
+                    left:50px;
+
+                    .body { border-top-color:#8ee877; }
+                    &:after { border-right-color:#8ee877; }
+                    &:before { border-left-color:#8ee877; }
+                }
 
                 &:after, &:before { // arms
                     background:none;
+                    border-radius:10px;
                     content:"";
                     display:block;
                     height:5px;
@@ -36,9 +43,10 @@
                     border-radius:2px;
                     border-top-left-radius:3px;
                     border-top-right-radius:3px;
-                    border-bottom:11px solid #99a;
+                    border-bottom:12px solid #99a;
                     display:block;
-                    margin-top:14px;
+                    margin-top:15px;
+                    position:relative;
                     width:13px;
                     z-index:2;
 
@@ -46,10 +54,10 @@
                         background:#fff;
                         content:"";
                         display:block;
-                        height:10px;
+                        height:11px;
                         left:6px;
                         position:absolute;
-                        bottom:0;
+                        bottom:-12px;
                         width:1px;
                     }
 
@@ -60,22 +68,56 @@
                         display:block;
                         height:12px;
                         position:absolute;
-                        top:0;
+                        top:-27px;
                         width:12px;
                     }
                 }
 
                 &.female {
-                    /*
-                    left:25px;
-                    top:0;
-                    */
-
-                    &:after { border-right-color:#f9a; }
-                    &:before { border-left-color:#f9a; }
+                    &:after, &:before { height:4px;margin-top:1px; }
+                    &:after { border-right-color:#000;left:-9px; }
+                    &:before { border-left-color:#000; }
 
                     .body {
-                        border-top-color:#f9a;
+                         border-top-color:#f9a;
+                         width:11px;
+
+                         &:after {
+                             height:8px;
+                             left:5px;
+                         }
+
+                         &:before {
+                             height:11px;
+                             margin-top:1px;
+                             width:11px;
+                         }
+                     }
+
+                    .dress {
+                        border:14px solid #f9a;
+                        border-left-color:transparent;
+                        border-right-color:transparent;
+                        border-top-color:transparent;
+                        border-radius:100%;
+                        display:block;
+                        left:-8px;
+                        position:absolute;
+                        transform:rotate(2deg);
+                        top:-26px;
+
+                        &:before {
+                            background:#ff0000;
+                            border-left:2px solid #fff;
+                            border-right:2px solid #fff;
+                            content:"";
+                            display:block;
+                            height:1px;
+                            left:-6px;
+                            position:absolute;
+                            top:6px;
+                            width:8px;
+                        }
                     }
                 }
             }//member
@@ -129,7 +171,7 @@
                 @keyframes raiseArmL {
                     30%, 50% {
                         transform:rotate(45deg);
-                        top:10px;
+                        top:12px;
                     }
 
                     65% {
@@ -141,7 +183,7 @@
                 @keyframes raiseArmR {
                     30%, 50% {
                         transform:rotate(-45deg);
-                        top:10px;
+                        top:12px;
                     }
 
                     65% {
