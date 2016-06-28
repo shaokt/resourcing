@@ -134,6 +134,22 @@
                         <span class="member"><span class="body"></span></span>
                         <span class="text">View Team</span>
                     </a>
+                    {{#if teamDate}}
+                        <div class="specs">
+                            <div class="date">
+                                <div>Team as of <span class="asof">{{constants.teamAsOfDate}}</span></div>
+                                    {{#if settings.isWeeklyCalendar}}
+                                    <div class="note">click calendar to choose another date</div>
+                                    {{/if}}
+                            </div>
+                            {{#if constants.teamAsOfDate}}
+                                <div>Assignment
+                                    <span class="assignment">XXX</span>
+                                    hi
+                                </div>
+                            {{/if}}
+                        </div>
+                    {{/if}}
                 </li>
             {{/if}}
         </ul>

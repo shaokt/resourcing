@@ -83,6 +83,11 @@ export default Ember.Component.extend(WebcelMixin, {
         var self = this;
         date.week.attr("tabindex", 0)
         this.set('constants.todayColumn', date.week.attr("data-column"));
+        
+        if(this.get('constants.teamAsOfDate') === '') {
+            this.set('constants.teamAsOf', date.week.attr("data-column"));
+            this.set('constants.teamAsOfDate', date.month.find('pre').html().replace(/<.*>/, '') + " " + date.week.find('.dayNum').html())
+        }
 
         this.scrollToday(500);
         $('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))})

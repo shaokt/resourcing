@@ -44,6 +44,9 @@ export default Ember.Component.extend({
             if($(event.target)[0].className !== 'day') { obj= $(event.target.parentNode); }
             else { obj = $(event.target) }
             this.set('constants.teamAsOf',obj.attr('data-column'));
+            var month =  obj.parent().find('pre').html().replace(/<.*>/, '');
+            var day =  obj.find('.dayNum').html();
+            this.set('constants.teamAsOfDate', month + " " + day);
         }
     }
 });
