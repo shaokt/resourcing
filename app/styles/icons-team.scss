@@ -1,6 +1,6 @@
 #pageContainer header .viewOptions {
     .team {
-        width:75px;
+        width:65px;
 
         a {
             .member {
@@ -11,9 +11,9 @@
                 &:nth-of-type(3) {
                     left:50px;
 
-                    .body { border-top-color:#8ee877; }
-                    &:after { border-right-color:#8ee877; }
-                    &:before { border-left-color:#8ee877; }
+                    .body { border-top-color:#ABC123; }
+                    &:after { border-right-color:#ABC123; }
+                    &:before { border-left-color:#ABC123; }
                 }
 
                 &:after, &:before { // arms

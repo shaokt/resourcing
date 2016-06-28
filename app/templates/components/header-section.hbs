@@ -41,17 +41,6 @@
                 {{/if}}
             {{/if}}
 
-            {{#if showOrg}}
-                <li class="org">
-                    <a href="/home?id={{settings.lastManager}}">
-                        <span class="member"></span>
-                        <span class="member"></span>
-                        <span class="member"></span>
-                        <span class="text">View Org</span>
-                    </a>
-                </li>
-            {{/if}}
-
             {{#if showSort}}
                 {{#if this.constants.draggable}}
                     <li class="dragSort">
@@ -122,6 +111,17 @@
                         {{else}}
                             <span class="text">Show Hidden Rows</span>
                         {{/if}}
+                    </a>
+                </li>
+            {{/if}}
+
+            {{#if showOrg}}
+                <li class="org">
+                    <a href="/home?id={{settings.lastManager}}">
+                        <span class="member"></span>
+                        <span class="member"></span>
+                        <span class="member"></span>
+                        <span class="text">View Org</span>
                     </a>
                 </li>
             {{/if}}
