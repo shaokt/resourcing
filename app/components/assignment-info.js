@@ -71,6 +71,7 @@ export default ResourceInfoComponent.extend({
                 var self = this;
                 this.set('readonly', true);
                 this.set('currentAssignment', this.get('assignment.id'));
+                this.set('constants.teamAssignment', this.get('assignment'));
                 this.set('findPeople', this.get('store').query('direct', {manager: 'PL145'})).then(function(){
                     self.getPeople(self.findPeople);
                 })

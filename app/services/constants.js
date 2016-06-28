@@ -15,6 +15,7 @@ export default Ember.Service.extend({
     holidayColumns: [], // values of holiday column values
     teamAsOf: 0,        // view team members of a project from this date
     teamAsOfDate: '',   // human readable date for team view
+    teamAssignment: '', // assignment being viewed by team
     leftScroll: 0,      // how far left the page is scrolled from the left
     mousePos:0,         // mouse position while hovering over tracker app
     draggable: false,   // if the rows are drag sortable or not
