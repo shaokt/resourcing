@@ -1,9 +1,11 @@
 import Ember from 'ember';
 import WebcelMixin from "../mixins/webcel";
+import { storageFor } from 'ember-local-storage';
 
 export default Ember.Component.extend(WebcelMixin, {
     tagName:'div',
     classNames: ['calendar'],
+    settings: storageFor("settings"),
     year: 2016,
     today: new Date(),
 	dayNames: ["S", "M", "T", "W", "R", "F", "S"],
@@ -80,11 +82,11 @@ export default Ember.Component.extend(WebcelMixin, {
         this.set('constants.todayDate', day);
     	date.week.addClass("selected");
     	date.month.addClass("selected");
-        var self = this;
         date.week.attr("tabindex", 0)
         this.set('constants.todayColumn', date.week.attr("data-column"));
-        
-        if(this.get('constants.teamAsOfDate') === '') {
+
+        // only track team assignment info in the proper route + setting
+        if(this.get('settings.view') === 'assignment' && this.get('router.currentRouteName') === 'assignments.index') {
             this.set('constants.teamAsOf', date.week.attr("data-column"));
             this.set('constants.teamAsOfDate', date.month.find('pre').html().replace(/<.*>/, '') + " " + date.week.find('.dayNum').html())
         }
