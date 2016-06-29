@@ -66,6 +66,7 @@ export default ResourceInfoComponent.extend({
                 this.set('readonly', false);
                 this.set('settings.view', 'assignment')
                 this.set('constants.dataView', 'assignment')
+                this.set('constants.teamAssignment', '');
             }
             else {
                 var self = this;

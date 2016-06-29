@@ -86,7 +86,7 @@ export default Ember.Component.extend(WebcelMixin, {
         this.set('constants.todayColumn', date.week.attr("data-column"));
 
         // only track team assignment info in the proper route + setting
-        if(this.get('settings.view') === 'assignment' && this.get('router.currentRouteName') === 'assignments.index') {
+        if(this.get('settings.view') === 'assignment' && this.get('router.currentRouteName') === 'assignments.index' && this.constants.teamAsOfDate === '') {
             this.set('constants.teamAsOf', date.week.attr("data-column"));
             this.set('constants.teamAsOfDate', date.month.find('pre').html().replace(/<.*>/, '') + " " + date.week.find('.dayNum').html())
         }

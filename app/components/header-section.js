@@ -40,9 +40,10 @@ export default Ember.Component.extend({
     },
 
     actions: {
-        //
+        // allows user to view all team members assigned to a project
         viewTeam() {
-            this.set('constants.teamAssignmentView', true);
+            if(this.get('constants.dataView') === 'timeaway') return;
+            this.toggleProperty('constants.teamAssignmentView')
         },
 
         // scroll today's column into view

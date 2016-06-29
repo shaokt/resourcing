@@ -79,10 +79,6 @@
 [data-view='timeaway'][data-route="assignments.index"] {
     main {
         [data-view="assignment"] {
-            + .info {
-                display:none;
-            }
-
             &:hover {
                 .dateLine {
                     height:32px;
