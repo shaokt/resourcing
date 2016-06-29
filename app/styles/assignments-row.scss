@@ -73,6 +73,13 @@
             }//phases
         }//data-active
     }//main
+
+    #todayDateLine {
+        &:before {
+            height:20px;
+        }
+    }
+
 }//assignments.index
 }//data-view
 
@@ -86,7 +93,7 @@
             }
 
             .dateLine {
-                height:33px;
+                height:43px;
 
                 &:after {
                     display:none;
@@ -99,5 +106,11 @@
                 }
             }
         }//data-view
+    }
+
+    header:hover {
+        .dateMarker {
+            top:77px;
+        }
     }
 }

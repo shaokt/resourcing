@@ -40,6 +40,7 @@ export default Ember.Component.extend({
 
     actions: {
         setDate() {
+            if(this.get('constants.dataView') === 'timeaway' || !this.constants.teamAssignmentView) return;
             var obj;
             if($(event.target)[0].className !== 'day') { obj= $(event.target.parentNode); }
             else { obj = $(event.target) }
