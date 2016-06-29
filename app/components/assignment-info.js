@@ -49,7 +49,7 @@ export default ResourceInfoComponent.extend({
             .append(person.get('assignment'))
             .find('[data-assignment="' + this.currentAssignment + '"]')
             .filter(function(){
-                return $(this).attr('data-x') >= self.get('constants.teamAsOf');
+                return parseInt($(this).attr('data-x')) >= parseInt(self.get('constants.teamAsOf'));
             })
 
         if(assignment.length){
