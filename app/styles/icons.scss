@@ -159,6 +159,10 @@ ul.viewOptions {
             a:after {
                 background:#C55500;
             }
+
+            .text {
+                left:-18px;
+            }
         }
 
         a:after {
@@ -696,6 +700,16 @@ ul.viewOptions {
                         animation:turnPage 1000ms infinite alternate;
                     }
                 }
+
+                .text {
+                    left:-19px;
+
+                    &.daily {
+                        left:-12px;
+                    }
+                }
+
+
                 @keyframes skewDate {
                     100% {
                         color:#a1a;
@@ -757,6 +771,10 @@ ul.viewOptions {
                 }
                 span.rightArrow {
                     animation:moveRightArrow 1500ms infinite alternate;
+                }
+
+                .text {
+                    left:-3px;
                 }
 
                 @keyframes moveRightArrow {
@@ -839,22 +857,25 @@ ul.viewOptions {
                 display:block;
                 height:2px;
                 position:absolute;
-                right:17px;
-                top:37px;
+                right:41px;
+                top:47px;
                 width:0;
             }
             .pencil {
                 animation:write 1000ms infinite alternate;
             }
+            .text {
+                left:-27px;
+            }
 
             @keyframes write {
                 0% {
-                    margin-left:20px;
+                    margin-left:5px;
                     top:3px;
                     transform:rotate(45deg);
                 }
                 100% {
-                    margin-left:10px;
+                    margin-left:-5px;
                     top:3px;
                     transform:rotate(45deg);
                 }
@@ -869,8 +890,8 @@ ul.viewOptions {
                 90% { background:#ABC123; }
                 100% {
                     background:#C1A;
-                    right:4px;
-                    width:26px;
+                    right:8px;
+                    width:46px;
                 }
             }
         }// hover
@@ -1078,6 +1099,9 @@ ul.viewOptions {
                     &:after {
                         animation:pressStart 12000ms infinite linear;
                     }
+                }
+                .text {
+                    left:-19px;
                 }
             }
 
