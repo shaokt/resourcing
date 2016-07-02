@@ -1,6 +1,6 @@
 #pageContainer header .viewOptions {
     .team {
-            width:65px;
+        width:65px;
 
         a {
             width:65px;
@@ -194,6 +194,10 @@
                     }
                 }
             }//hover
+
+            &[data-active="true"] {
+                transform:scale(1.5);
+            }
         }//team
     }// a
 
@@ -215,6 +219,42 @@
 
         .assignmentInfo {
             margin-top:10px;
+            position:relative;
+
+            span {
+                border-radius:2px;
+                color:#fff;
+                display:inline-block;
+                padding:5px;
+
+                &.choose {
+                    background:#ff0000;
+                    font-weight:bold;
+                    padding-left:18px;
+
+                    &:after, &:before {
+                        content:"";
+                        display:block;
+                        left:3px;
+                        position:absolute;
+                        top:6px;
+                    }
+                    &:after { // arrow tip
+                        background:transparent;
+                        border:5px solid #fff;
+                        border-top-color:transparent;
+                        border-left-color:transparent;
+                        transform:rotate(-45deg);
+                    }
+
+                    &:before {
+                        background:#fff;
+                        height:4px;
+                        margin-top:3px;
+                        width:5px;
+                    }
+                }//choose
+            }//span
 
             .short {
                 border-radius:2px;
@@ -225,6 +265,7 @@
                     background:rgba(0,0,0,.3);
                     border-radius:2px;
                     color:#fff;
+                    margin-top:0;
                     padding:2px 5px;
                 }
             }

@@ -13,7 +13,7 @@
     data-view="{{constants.dataView}}"
 >
     {{header-section model=model addAssignment="addAssignment" settings=settings}}
-    <main>
+    <main data-view-team={{constants.teamAssignmentView}}>
         {{outlet}}
     </main>
 </div>

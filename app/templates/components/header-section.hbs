@@ -128,7 +128,7 @@
 
             {{#if showTeam}}
                 <li class="team">
-                    <a href="/" {{action "viewTeam" on="click"}}>
+                    <a href="/" {{action "viewTeam" on="click"}} data-active="{{constants.teamAssignmentView}}">
                         <span class="member"><span class="body"></span></span>
                         <span class="member female"><span class="body"><span class="dress"></span></span></span>
                         <span class="member"><span class="body"></span></span>
@@ -146,7 +146,9 @@
                                     }
                                 </style>
                                 {{#unless constants.teamAssignment}}
-                                    Click an Assignment
+                                    <span class="choose">
+                                        Choose Assignment
+                                    </span>
                                 {{else}}
                                     <span class="short">
                                         <span>{{constants.teamAssignment.short}}</span>

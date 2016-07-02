@@ -25,6 +25,48 @@ section.resourceRow {
     }
 }//section.resourceRow
 
+[data-view-team="true"] {
+    section.resourceRow {
+        ul.viewOptions {
+            display:block;
+            li {
+                background:#ff0000;
+                border-radius:2px;
+            }
+        }
+
+    }
+}
+
+[data-view="assignment"] {
+[data-view-team="true"] {
+    section.resourceRow {
+        .row[data-view="assignment"]:after {
+            background:#fff0d3;
+            opacity:.8;
+        }
+    }
+}
+}
+
+[data-view="timeaway"] {
+    section.resourceRow {
+        ul.viewOptions {
+            .viewTeam {
+                a {
+                    &:after {
+                        left:5px;
+                        transform:rotate(135deg);
+                    }
+                    &:before {
+                        left:10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 // icons can appear in the header too
 ul.viewOptions {
     li {
@@ -134,7 +176,7 @@ ul.viewOptions {
 
             &:after { // arrow tip
                 background:transparent;
-                border:5px solid #000;
+                border:5px solid #fff;
                 border-top-color:transparent;
                 border-left-color:transparent;
                 left:3px;
@@ -143,17 +185,17 @@ ul.viewOptions {
             }
 
             &:before {
-                background:#000;
+                background:#fff;
                 height:4px;
                 left:3px;
                 top:5px;
                 width:5px;
             }
 
+            &:focus,
             &:hover {
-                &:after {
-                    border-right-color:#C55500;
-                    border-bottom-color:#C55500;
+                &:before {
+                    background:#fff !important;
                 }
             }
         }
