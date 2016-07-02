@@ -66,8 +66,13 @@ ul.viewOptions {
                 display:none;
                 font-size:.3em;
                 font-weight:bold;
+                left:-33%;
+                line-height:150%;
+                max-width:300%;
+                min-width:150%;
                 padding:5px;
                 position:absolute;
+                text-align:center;
                 top:50px;
                 white-space:nowrap;
             }
@@ -158,10 +163,6 @@ ul.viewOptions {
         &:hover {
             a:after {
                 background:#C55500;
-            }
-
-            .text {
-                left:-18px;
             }
         }
 
@@ -571,10 +572,6 @@ ul.viewOptions {
                 }//male
             }//person
 
-            .text {
-                left:-10px;
-            }
-
             span.plus {
                 display:none;
                 &:before { // + sign
@@ -701,15 +698,6 @@ ul.viewOptions {
                     }
                 }
 
-                .text {
-                    left:-19px;
-
-                    &.daily {
-                        left:-12px;
-                    }
-                }
-
-
                 @keyframes skewDate {
                     100% {
                         color:#a1a;
@@ -771,10 +759,6 @@ ul.viewOptions {
                 }
                 span.rightArrow {
                     animation:moveRightArrow 1500ms infinite alternate;
-                }
-
-                .text {
-                    left:-3px;
                 }
 
                 @keyframes moveRightArrow {
@@ -863,9 +847,6 @@ ul.viewOptions {
             }
             .pencil {
                 animation:write 1000ms infinite alternate;
-            }
-            .text {
-                left:-27px;
             }
 
             @keyframes write {
@@ -1099,9 +1080,6 @@ ul.viewOptions {
                     &:after {
                         animation:pressStart 12000ms infinite linear;
                     }
-                }
-                .text {
-                    left:-19px;
                 }
             }
 

@@ -1,8 +1,10 @@
 #pageContainer header .viewOptions {
     .team {
-        width:65px;
+            width:65px;
 
         a {
+            width:65px;
+
             .member {
                 position:absolute;
                 top:-1px;
@@ -192,9 +194,6 @@
                     }
                 }
             }//hover
-            .text {
-                left:4px;
-            }
         }//team
     }// a
 
