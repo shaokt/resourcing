@@ -29,14 +29,34 @@ section.resourceRow {
     section.resourceRow {
         ul.viewOptions {
             display:block;
-            li {
-                background:#ff0000;
-                border-radius:2px;
-            }
-        }
 
-    }
-}
+            li {
+                border-radius:2px;
+                left:-15px;
+                top:9px;
+                transform:scale(2);
+
+                a:hover {
+                    background:#000;
+
+                    span {
+                        left:7px;
+                        position:relative;
+
+                        &:before {
+                            left:-4px;
+                            width:12px;
+                        }
+                    }
+                }//hover
+            }//li
+        }//viewOptions
+
+        [data-view="assignment"] + .info {
+            .name { margin-top:7px; }
+        }
+    }//resourceRow
+}//data-view-team
 
 [data-view="assignment"] {
 [data-view-team="true"] {
@@ -52,17 +72,32 @@ section.resourceRow {
 [data-view="timeaway"] {
     section.resourceRow {
         ul.viewOptions {
-            .viewTeam {
-                a {
-                    &:after {
-                        left:5px;
-                        transform:rotate(135deg);
-                    }
-                    &:before {
-                        left:10px;
+            li {
+                &:hover {
+                    a {
+                        left:0;
                     }
                 }
-            }
+                &.viewTeam {
+                    a {
+                        span {
+                            left:-6px;
+
+                            &:after {
+                                left:5px;
+                                transform:rotate(135deg);
+                            }
+                            &:before {
+                                left:10px;
+                            }
+                        }
+                    }//a
+                }//viewTeam
+            }//li
+        }//viewOptions
+
+        [data-view="assignment"] + .info {
+            s.name { margin-top:0; }
         }
     }
 }
@@ -172,33 +207,47 @@ ul.viewOptions {
 
     .viewTeam {
         a {
+            border-radius:2px;
+            background:#ff0000;
             height:14px;
 
-            &:after { // arrow tip
-                background:transparent;
-                border:5px solid #fff;
-                border-top-color:transparent;
-                border-left-color:transparent;
-                left:3px;
-                transform:rotate(-45deg);
-                top:2px;
-            }
+            span {
+                display:inline-block;
+                height:100%;
+                width:100%;
 
-            &:before {
-                background:#fff;
-                height:4px;
-                left:3px;
-                top:5px;
-                width:5px;
-            }
-
-            &:focus,
-            &:hover {
-                &:before {
-                    background:#fff !important;
+                &:after, &:before {
+                    content:"";
+                    display:block;
+                    position:absolute;
                 }
-            }
-        }
+
+                &:after { // arrow tip
+                    background:transparent;
+                    border:5px solid #fff;
+                    border-top-color:transparent;
+                    border-left-color:transparent;
+                    left:3px;
+                    transform:rotate(-45deg);
+                    top:2px;
+                }
+
+                &:before {
+                    background:#fff;
+                    height:4px;
+                    left:3px;
+                    top:5px;
+                    width:5px;
+                }
+
+                &:focus,
+                &:hover {
+                    &:before {
+                        background:#fff !important;
+                    }
+                }
+            }//span
+        }//a
     }//viewTeam
 
     .toggle {
