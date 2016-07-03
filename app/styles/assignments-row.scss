@@ -86,6 +86,14 @@
 [data-view='timeaway'][data-route="assignments.index"] {
     main {
         [data-view="assignment"] {
+            background: repeating-linear-gradient(
+                -50deg,
+                rgba(255,255,255,.2),
+                rgba(255,255,255,.2) 10px,
+                #d9d9d9 10px,
+                #d9d9d9 20px
+            );
+
             &:hover {
                 .dateLine {
                     height:32px;
