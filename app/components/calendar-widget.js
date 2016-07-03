@@ -24,6 +24,7 @@ export default Ember.Component.extend(WebcelMixin, {
         "Nov" : "11",
         "Dec" : "12"
     },
+    monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     weekdays: ["M", "T", "W", "R", "F"],
     quarters: [
         {

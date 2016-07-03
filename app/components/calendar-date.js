@@ -51,9 +51,10 @@ export default Ember.Component.extend({
             this.set('constants.todayColumnDate', obj);
 
             this.set('constants.teamAsOf',obj.attr('data-column'));
-            var month =  obj.parent().find('pre').html().replace(/<.*>/, '');
-            var day =  obj.find('.dayNum').html();
-            var year = obj.attr('data-date').match(/\d{4}/);
+            obj.attr('data-date').match(/(\d+[^\s])*\s(\d+[^\s])*\s(.*)/);
+            var year = RegExp.$1;
+            var month = this.cal.monthNames[parseInt(RegExp.$2)-1];
+            var day = RegExp.$3;
             this.set('constants.teamAsOfDate', month + " " + day + " " + year);
             try{ this.cal.teamDate.removeClass('teamDate'); }
             catch(e){} // no team date set, do nothing
