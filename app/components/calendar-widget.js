@@ -105,13 +105,8 @@ export default Ember.Component.extend(WebcelMixin, {
 
         this.teamDateSelect(date);
 
-        // only track team assignment info in the proper route + setting
-        if(this.get('settings.view') === 'assignment' && this.get('router.currentRouteName') === 'assignments.index' && this.constants.teamAsOfDate === '') {
-            this.set('constants.teamAsOf', date.week.attr("data-column"));
-            this.set('constants.teamAsOfDate', date.month.find('pre').html().replace(/<.*>/, '') + " " + date.week.find('.dayNum').html())
-        }
         // in the timeaway view, add the teamDate class one level lower
-        else if(this.get('settings.view') === 'timeaway' && this.get('router.currentRouteName') === 'assignments.index'){
+        if(this.get('settings.view') === 'timeaway' && this.get('router.currentRouteName') === 'assignments.index'){
             //console.log(this.get('constants.todayColumnDate').find('.dayNum'))
             $(this.get('constants.todayColumnDate').find('.dayNum')).addClass('teamDate')
         }

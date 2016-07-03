@@ -53,7 +53,8 @@ export default Ember.Component.extend({
             this.set('constants.teamAsOf',obj.attr('data-column'));
             var month =  obj.parent().find('pre').html().replace(/<.*>/, '');
             var day =  obj.find('.dayNum').html();
-            this.set('constants.teamAsOfDate', month + " " + day);
+            var year = obj.attr('data-date').match(/\d{4}/);
+            this.set('constants.teamAsOfDate', month + " " + day + " " + year);
             try{ this.cal.teamDate.removeClass('teamDate'); }
             catch(e){} // no team date set, do nothing
             obj.addClass('teamDate');
