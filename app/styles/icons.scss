@@ -59,7 +59,7 @@ section.resourceRow {
 }//data-view-team
 
 [data-view="assignment"] {
-[data-view-team="true"] {
+&[data-view-team="true"] {
     section.resourceRow {
         .row[data-view="assignment"]:after {
             background:#fff0d3;

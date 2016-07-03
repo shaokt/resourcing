@@ -11,9 +11,10 @@
     data-editing="{{constants.editingRow}}"
     data-show-hidden={{settings.showHiddenRows}}
     data-view="{{constants.dataView}}"
+    data-view-team={{constants.teamAssignmentView}}
 >
     {{header-section model=model addAssignment="addAssignment" settings=settings}}
-    <main data-view-team={{constants.teamAssignmentView}}>
+    <main>
         {{outlet}}
     </main>
 </div>

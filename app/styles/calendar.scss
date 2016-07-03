@@ -94,7 +94,7 @@
             }
 
             &:hover {
-                cursor:none;
+                cursor:default;
                 box-shadow:0 5px 10px 0 rgba(0,0,0,.3);
             }
 
@@ -107,7 +107,7 @@
                 text-shadow:none;
             }
 
-            & .day {
+            .day {
                 border-top:5px solid #f6ceef;
                 box-sizing:border-box;
                 float:left;
@@ -117,7 +117,7 @@
                 text-align:center;
                 width:15px;
 
-                &:hover { cursor:none; }
+                &:hover { cursor:default; }
                 &[data-day-name="M"] { border-left:1px solid #f6ceef; }
                 &[data-day-name="F"] { border-right:1px solid #f6ceef; }
                 &.selected {
@@ -126,6 +126,7 @@
                     color:#c1a !important;
                     font-size:1em;
                     margin-top:-.2em;
+                    outline:0;
                     text-shadow:none !important;
 
                     &:after {
@@ -140,6 +141,19 @@
                         width:15px;
                     }
                 }
+                &.teamDate, .teamDate {
+                    &:before {
+                        border:6px solid #000;
+                        border-bottom-color:transparent;
+                        border-left-color:transparent;
+                        content:"";
+                        left:1px;
+                        position:absolute;
+                        top:20px;
+                        transform:rotate(-45deg);
+                        z-index:3;
+                    }
+                } // teamDate
             } //day
         } //month
     } //quarter
@@ -198,6 +212,12 @@ header {
             left:-1px;
         }
     }
+
+    .teamDate {
+        &:before {
+            top:28px;
+        }
+    }
 }
 
 .dateLine {
@@ -236,6 +256,13 @@ header {
         top:-1px;
         z-index:2;
 
+        &:before {
+            display:none;
+        }
+    }
+}
+[data-view-team="false"]{
+    .teamDate {
         &:before {
             display:none;
         }

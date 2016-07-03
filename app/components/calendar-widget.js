@@ -8,6 +8,7 @@ export default Ember.Component.extend(WebcelMixin, {
     settings: storageFor("settings"),
     year: 2016,
     today: new Date(),
+    teamDate:null,  //column in calendar indicating day/week the team view starts for given assignment
 	dayNames: ["S", "M", "T", "W", "R", "F", "S"],
     months: {
         "Jan" : "01",
@@ -84,15 +85,47 @@ export default Ember.Component.extend(WebcelMixin, {
     	date.month.addClass("selected");
         date.week.attr("tabindex", 0)
         this.set('constants.todayColumn', date.week.attr("data-column"));
+        this.setTeamDate(date);
+        this.scrollToday(500);
+        $('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))})
+    },
+
+    // set the team date indicator
+    // shows from which date the user wants to see the team working on an assignment
+    setTeamDate(date) {
+        //if not set, set default column date to this week on load
+        if(this.get('constants.todayColumnDate') === null) {
+            this.set('constants.todayColumnDate', date.week);
+        }
+        else { // if user selected another date, find the date in the calendar as the views change
+            this.set('constants.todayColumnDate',
+                this.calendar.find("[data-date='" +
+                this.get('constants.todayColumnDate').attr('data-date')+ "']"));
+        }
+
+        this.teamDateSelect(date);
 
         // only track team assignment info in the proper route + setting
         if(this.get('settings.view') === 'assignment' && this.get('router.currentRouteName') === 'assignments.index' && this.constants.teamAsOfDate === '') {
             this.set('constants.teamAsOf', date.week.attr("data-column"));
             this.set('constants.teamAsOfDate', date.month.find('pre').html().replace(/<.*>/, '') + " " + date.week.find('.dayNum').html())
         }
+        // in the timeaway view, add the teamDate class one level lower
+        else if(this.get('settings.view') === 'timeaway' && this.get('router.currentRouteName') === 'assignments.index'){
+            //console.log(this.get('constants.todayColumnDate').find('.dayNum'))
+            $(this.get('constants.todayColumnDate').find('.dayNum')).addClass('teamDate')
+        }
+    },
 
-        this.scrollToday(500);
-        $('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))})
+    teamDateSelect(date) {
+        // if the user refreshes in the dailyview, there is a bug where we need to reset the column
+        // somehow this function is being called twice if refreshing form assignmentview
+        // TODO: fix bug where calendar loads twice and we can remove this try/catch block
+        try{ this.get('constants.todayColumnDate')[0].click(); }
+        catch(e){
+            this.set('constants.todayColumnDate', date.week);
+            this.get('constants.todayColumnDate')[0].click();
+        }
     },
 
     // scroll to today

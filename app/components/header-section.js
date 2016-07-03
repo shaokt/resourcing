@@ -47,6 +47,7 @@ export default Ember.Component.extend({
             if(!this.get('constants.teamAssignmentView')){
                 this.set('constants.teamAssignment', '');
             }
+            this.constants.todayColumnDate[0].click();
         },
 
         // scroll today's column into view

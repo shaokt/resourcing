@@ -12,6 +12,7 @@ export default Ember.Service.extend({
     _nextYear: 0,       // next year's column
     todayDate: null,    // today's day number to show in header buttons
     todayColumn: null,  // today's column on the calendar
+    todayColumnDate: null,  // today's column's date in the calendar
     holidayColumns: [], // values of holiday column values
     teamAsOf: 0,        // view team members of a project from this date
     teamAsOfDate: '',   // human readable date for team view

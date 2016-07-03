@@ -41,13 +41,23 @@ export default Ember.Component.extend({
     actions: {
         setDate() {
             if(this.get('constants.dataView') === 'timeaway' || !this.constants.teamAssignmentView) return;
+
             var obj;
-            if($(event.target)[0].className !== 'day') { obj= $(event.target.parentNode); }
+            if(!$(event.target).hasClass('day')) { obj= $(event.target.parentNode); }
             else { obj = $(event.target) }
+
+            if(this.cal.teamDate == obj) return;
+
+            this.set('constants.todayColumnDate', obj);
+
             this.set('constants.teamAsOf',obj.attr('data-column'));
             var month =  obj.parent().find('pre').html().replace(/<.*>/, '');
             var day =  obj.find('.dayNum').html();
             this.set('constants.teamAsOfDate', month + " " + day);
-        }
+            try{ this.cal.teamDate.removeClass('teamDate'); }
+            catch(e){} // no team date set, do nothing
+            obj.addClass('teamDate');
+            this.cal.teamDate = obj;
+        }// setDate
     }
 });
