@@ -1,0 +1,101 @@
+.roadmap {
+    .item {
+        display:block;
+        height:12px;
+        position:absolute;
+
+        &:before {
+            background:rgba(0,0,0,.3);
+            border-radius:2px;
+            color:#fff;
+            content:"";
+            opacity:0;
+            margin:1px 0 0 1px;
+            padding:2px 2px 0 2px;
+            position:absolute;
+            font-size:8px;
+        }
+
+        &:nth-of-type(1) {
+            background:#ABC123;
+            width:50%;
+        }
+        &:nth-of-type(2) {
+            background:#F9A;
+            margin-left:25%;
+            top:14px;
+            width:75%;
+        }
+        &:nth-of-type(3) {
+            background:#899AFF;
+            margin-left:-10%;
+            top:28px;
+            width:75%;
+        }
+    }
+
+    &:hover {
+        .item {
+            &:nth-of-type(1){
+                animation:roadmap1 1500ms infinite alternate;
+                &:before {
+                    animation:roadmap1Text 3000ms infinite linear;
+                }
+            }
+
+            &:nth-of-type(2){
+                animation:roadmap2 1500ms infinite alternate;
+            }
+
+            &:nth-of-type(3){
+                animation:roadmap3 1500ms infinite alternate;
+            }
+
+            &:before {
+                display:inline-block;
+            }
+        }
+    } //hover
+
+    @keyframes roadmap1 {
+        50%, 100% {
+            width:95%;
+        }
+    }
+
+    @keyframes roadmap1Text {
+        10% {
+            content:"D";
+            opacity:.2;
+        }
+        20% {
+            content:"DI";
+            opacity:.6;
+        }
+
+        30%, 80% {
+            content:"DIT";
+            opacity:1;
+        }
+        81%, 100% {
+            content:"";
+            opacity:0;
+        }
+    }
+
+    @keyframes roadmap2 {
+        50%, 80% {
+            top:28px;
+        }
+        100% {
+            top:28px;
+        }
+    }
+
+    @keyframes roadmap3 {
+        50%, 100% {
+            margin-left:3px;
+            top:14px;
+        }
+    }
+}

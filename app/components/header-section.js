@@ -8,6 +8,7 @@ export default Ember.Component.extend({
     showOrg: false,
     showTeam: false,
     showToggleRows: false,
+    showRoadmap: false,
 
     init() {
         this._super();
@@ -35,6 +36,7 @@ export default Ember.Component.extend({
             this.set('showSort', true);
             this.set('showOrg', false);
             this.set('showTeam', false);
+            this.set('showRoadmap', true);
             this.set('showToggleRows', true);
         }
     },
