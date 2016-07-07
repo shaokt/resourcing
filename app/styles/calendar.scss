@@ -215,7 +215,15 @@ header {
 
     .teamDate {
         &:before {
-            top:34px;
+            top:28px;
+        }
+    }
+
+    &.selected {
+        .teamDate {
+            &:before {
+                top:34px;
+            }
         }
     }
 }
