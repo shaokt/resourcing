@@ -18,11 +18,11 @@
 
         &:nth-of-type(1) {
             background:#ABC123;
-            width:50%;
+            width:55%;
         }
         &:nth-of-type(2) {
             background:#F9A;
-            margin-left:25%;
+            right:0;
             top:14px;
             width:75%;
         }
@@ -30,25 +30,29 @@
             background:#899AFF;
             margin-left:-10%;
             top:28px;
-            width:75%;
+            width:90%;
         }
-    }
+    } //item
 
     &:hover {
         .item {
             &:nth-of-type(1){
-                animation:roadmap1 1500ms infinite alternate;
                 &:before {
                     animation:roadmap1Text 3000ms infinite linear;
                 }
             }
 
             &:nth-of-type(2){
-                animation:roadmap2 1500ms infinite alternate;
+                animation:roadmap2 2000ms infinite linear;
             }
 
             &:nth-of-type(3){
-                animation:roadmap3 1500ms infinite alternate;
+                animation:roadmap3 3500ms infinite alternate;
+
+            &:before {
+                content:"Req";
+                opacity:1;
+            }
             }
 
             &:before {
@@ -57,24 +61,18 @@
         }
     } //hover
 
-    @keyframes roadmap1 {
-        50%, 100% {
-            width:95%;
-        }
-    }
-
     @keyframes roadmap1Text {
         10% {
-            content:"D";
+            content:"W";
             opacity:.2;
         }
         20% {
-            content:"DI";
+            content:"WT";
             opacity:.6;
         }
 
         30%, 80% {
-            content:"DIT";
+            content:"WTY";
             opacity:1;
         }
         81%, 100% {
@@ -84,18 +82,14 @@
     }
 
     @keyframes roadmap2 {
-        50%, 80% {
-            top:28px;
-        }
-        100% {
-            top:28px;
+        50%, 70% {
+            width:100%;
         }
     }
 
     @keyframes roadmap3 {
-        50%, 100% {
-            margin-left:3px;
-            top:14px;
+        50%, 60% {
+            margin-left:8px;
         }
     }
-}
+} //roadmap

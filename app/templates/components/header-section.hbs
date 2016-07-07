@@ -41,23 +41,15 @@
                 {{/if}}
             {{/if}}
 
-            {{#if showSort}}
-                {{#if this.constants.draggable}}
-                    <li class="dragSort">
-                        <a href="/" {{action "dragDisable" on="click"}}>
-                            <span></span>
-                            <span class="text">Drag Sort</span>
-                        </a>
-                    </li>
-                {{else}}
-                    <li class="dragSort">
-                        <a href="/" {{action "dragEnable" on="click"}}>
-                            <span class="leftArrow"></span>
-                            <span class="rightArrow"></span>
-                            <span class="text">Drag Sort</span>
-                        </a>
-                    </li>
-                {{/if}}
+            {{#if showRoadmap}}
+                <li class="roadmap">
+                    <a href="/assignments">
+                        <span class="item"></span>
+                        <span class="item"></span>
+                        <span class="item"></span>
+                        <span class="text">Roadmap</span>
+                    </a>
+                </li>
             {{/if}}
 
             {{#if settings.hasCalendar}}
@@ -93,6 +85,25 @@
                 {{/if}}
             {{/if}}
 
+            {{#if showSort}}
+                {{#if this.constants.draggable}}
+                    <li class="dragSort">
+                        <a href="/" {{action "dragDisable" on="click"}}>
+                            <span></span>
+                            <span class="text">Drag Sort</span>
+                        </a>
+                    </li>
+                {{else}}
+                    <li class="dragSort">
+                        <a href="/" {{action "dragEnable" on="click"}}>
+                            <span class="leftArrow"></span>
+                            <span class="rightArrow"></span>
+                            <span class="text">Drag Sort</span>
+                        </a>
+                    </li>
+                {{/if}}
+            {{/if}}
+
             {{#if constants.editAssignments}}
                 <li class="assignment">
                     <a href="/" {{action "addAssignment" on="click"}}>
@@ -111,17 +122,6 @@
                         {{else}}
                             <span class="text">Show Hidden Rows</span>
                         {{/if}}
-                    </a>
-                </li>
-            {{/if}}
-
-            {{#if showRoadmap}}
-                <li class="roadmap">
-                    <a href="/assignments">
-                        <span class="item"></span>
-                        <span class="item"></span>
-                        <span class="item"></span>
-                        <span class="text">Roadmap</span>
                     </a>
                 </li>
             {{/if}}
