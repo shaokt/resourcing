@@ -25,6 +25,83 @@ section.resourceRow {
     }
 }//section.resourceRow
 
+[data-view-team="true"] {
+    section.resourceRow {
+        ul.viewOptions {
+            display:block;
+
+            li {
+                border-radius:2px;
+                left:-15px;
+                top:9px;
+                transform:scale(2);
+
+                a:hover {
+                    background:#000;
+
+                    span {
+                        left:7px;
+                        position:relative;
+
+                        &:before {
+                            left:-4px;
+                            width:12px;
+                        }
+                    }
+                }//hover
+            }//li
+        }//viewOptions
+
+        [data-view="assignment"] + .info {
+            .name { margin-top:7px; }
+        }
+    }//resourceRow
+}//data-view-team
+
+[data-view="assignment"] {
+&[data-view-team="true"] {
+    section.resourceRow {
+        .row[data-view="assignment"]:after {
+            background:#fff0d3;
+            opacity:.8;
+        }
+    }
+}
+}
+
+[data-view="timeaway"] {
+    section.resourceRow {
+        ul.viewOptions {
+            li {
+                &:hover {
+                    a {
+                        left:0;
+                    }
+                }
+                &.viewTeam {
+                    a {
+                        span {
+                            left:-6px;
+
+                            &:after {
+                                left:5px;
+                                transform:rotate(135deg);
+                            }
+                            &:before {
+                                left:10px;
+                            }
+                        }
+                    }//a
+                }//viewTeam
+            }//li
+        }//viewOptions
+
+        [data-view="assignment"] + .info {
+            s.name { margin-top:0; }
+        }
+    }
+}
+
 // icons can appear in the header too
 ul.viewOptions {
     li {
@@ -64,15 +141,22 @@ ul.viewOptions {
                 box-shadow:5px 5px 10px 2px rgba(0,0,0,.5);
                 color:#C55500;
                 display:none;
-                font-size:.5em;
+                font-size:.3em;
                 font-weight:bold;
+                left:-33%;
+                line-height:150%;
+                max-width:300%;
+                min-width:150%;
                 padding:5px;
                 position:absolute;
+                text-align:center;
                 top:50px;
                 white-space:nowrap;
             }
         } // a
     }// ul.viewOptions
+
+    @import "icons-roadmap";
 
     .lock {
         &:after,
@@ -122,6 +206,51 @@ ul.viewOptions {
             box-shadow:-1px 3px 1px 1px rgba(0, 0, 0, .3);
         }
     }//locks
+
+    .viewTeam {
+        a {
+            border-radius:2px;
+            background:#ff0000;
+            height:14px;
+
+            span {
+                display:inline-block;
+                height:100%;
+                width:100%;
+
+                &:after, &:before {
+                    content:"";
+                    display:block;
+                    position:absolute;
+                }
+
+                &:after { // arrow tip
+                    background:transparent;
+                    border:5px solid #fff;
+                    border-top-color:transparent;
+                    border-left-color:transparent;
+                    left:3px;
+                    transform:rotate(-45deg);
+                    top:2px;
+                }
+
+                &:before {
+                    background:#fff;
+                    height:4px;
+                    left:3px;
+                    top:5px;
+                    width:5px;
+                }
+
+                &:focus,
+                &:hover {
+                    &:before {
+                        background:#fff !important;
+                    }
+                }
+            }//span
+        }//a
+    }//viewTeam
 
     .toggle {
         &:hover {
@@ -536,10 +665,6 @@ ul.viewOptions {
                 }//male
             }//person
 
-            .text {
-                left:-10px;
-            }
-
             span.plus {
                 display:none;
                 &:before { // + sign
@@ -665,6 +790,7 @@ ul.viewOptions {
                         animation:turnPage 1000ms infinite alternate;
                     }
                 }
+
                 @keyframes skewDate {
                     100% {
                         color:#a1a;
@@ -715,7 +841,6 @@ ul.viewOptions {
             width:40px;
 
             &:after, :after { // shared block properties
-                background:#FFF;
                 content:"";
                 display:block;
                 position:absolute;
@@ -760,7 +885,7 @@ ul.viewOptions {
                     border-left-color:transparent;
                     border-right-color:transparent;
                     display:block;
-                    top:-17px;
+                    top:-.6em;
                 }
             }
 
@@ -786,12 +911,11 @@ ul.viewOptions {
                     display:block;
                     height:0;
                     right:0;
-                    top:25px;
+                    top:1em;
                 }
             }
 
             &:before, span:before { // shared point properties
-                background:#FFF;
                 border-left-color:transparent;
                 border-right-color:transparent;
                 content:"";
@@ -810,8 +934,8 @@ ul.viewOptions {
                 display:block;
                 height:2px;
                 position:absolute;
-                right:17px;
-                top:37px;
+                right:41px;
+                top:47px;
                 width:0;
             }
             .pencil {
@@ -820,12 +944,12 @@ ul.viewOptions {
 
             @keyframes write {
                 0% {
-                    margin-left:20px;
+                    margin-left:5px;
                     top:3px;
                     transform:rotate(45deg);
                 }
                 100% {
-                    margin-left:10px;
+                    margin-left:-5px;
                     top:3px;
                     transform:rotate(45deg);
                 }
@@ -840,8 +964,8 @@ ul.viewOptions {
                 90% { background:#ABC123; }
                 100% {
                     background:#C1A;
-                    right:4px;
-                    width:26px;
+                    right:8px;
+                    width:46px;
                 }
             }
         }// hover

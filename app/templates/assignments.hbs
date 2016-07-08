@@ -10,7 +10,8 @@
     data-dragging={{constants.draggable}}
     data-editing="{{constants.editingRow}}"
     data-show-hidden={{settings.showHiddenRows}}
-    data-view="assignment"
+    data-view="{{constants.dataView}}"
+    data-view-team={{constants.teamAssignmentView}}
 >
     {{header-section model=model addAssignment="addAssignment" settings=settings}}
     <main>

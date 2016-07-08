@@ -1,7 +1,7 @@
 header {
     background:#fff;
     border-left:69px solid #fff;
-    border-top:10px solid #fff;
+    border-top:15px solid #fff;
     left:0;
     position:fixed;
     width:100%;
@@ -62,7 +62,12 @@ header {
                 float:none;
 
                 a {
+                    cursor:none;
                     font-size:2em;
+
+                    &:hover {
+                        transform:scale(1.5);
+                    }
                 }
             }
         }
@@ -106,7 +111,7 @@ header {
                         }
                     }
                     .text {
-                        font-size:.4em;
+                        font-size:.3em;
                     }
 
                     @keyframes lookAround {

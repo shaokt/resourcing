@@ -36,5 +36,30 @@ export default Ember.Component.extend({
                 })
             }
         }
-    }.on('init')
+    }.on('init'),
+
+    actions: {
+        setDate() {
+            if(this.get('constants.dataView') === 'timeaway' || !this.constants.teamAssignmentView) return;
+
+            var obj;
+            if(!$(event.target).hasClass('day')) { obj= $(event.target.parentNode); }
+            else { obj = $(event.target) }
+
+            if(this.cal.teamDate == obj) return;
+
+            this.set('constants.todayColumnDate', obj);
+
+            this.set('constants.teamAsOf',obj.attr('data-column'));
+            obj.attr('data-date').match(/(\d+[^\s])*\s(\d+[^\s])*\s(.*)/);
+            var year = RegExp.$1;
+            var month = this.cal.monthNames[parseInt(RegExp.$2)-1];
+            var day = RegExp.$3;
+            this.set('constants.teamAsOfDate', month + " " + day + " " + year);
+            try{ this.cal.teamDate.removeClass('teamDate'); }
+            catch(e){} // no team date set, do nothing
+            obj.addClass('teamDate');
+            this.cal.teamDate = obj;
+        }// setDate
+    }
 });

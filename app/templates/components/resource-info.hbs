@@ -22,4 +22,6 @@
 {{else}}
 	<div class="name">{{resource.name}}</div>
 {{/if}}
-{{resource-counters}}
+{{#unless readonly}}
+    {{resource-counters}}
+{{/unless}}

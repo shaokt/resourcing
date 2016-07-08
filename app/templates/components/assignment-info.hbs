@@ -1,7 +1,11 @@
 <ul class="viewOptions">
-    {{#unless readonly}}
+    {{#unless constants.teamAssignmentView}}
         <li class="lock">
             <a href="/" {{action "editing" on="click"}}></a>
+        </li>
+    {{else}}
+        <li class="viewTeam">
+            <a href="/" {{action "viewTeam" on="click"}}><span></span></a>
         </li>
     {{/unless}}
 </ul>
