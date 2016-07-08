@@ -103,7 +103,7 @@
             .dateLine {
                 height:43px;
 
-                &:after {
+                &:after, &:before {
                     display:none;
                 }
             }
