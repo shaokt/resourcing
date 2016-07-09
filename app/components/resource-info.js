@@ -40,6 +40,7 @@ export default ResourceRowComponent.extend({
                 }
             }
             else {
+                this.set('shiftPhase', false); // reset so that the row doesn't go opaque on edit of next row
                 this.set('constants.editingRow', false);
                 this.save();
             }

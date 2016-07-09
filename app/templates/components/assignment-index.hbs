@@ -6,7 +6,7 @@
         data-name="{{assignment.short}}"
         data-id="{{assignment.id}}"
     >
-    	<div class="row" data-view="assignment">
+    	<div class="row" data-view="assignment" data-shift="{{shiftPhase}}">
             {{#if settings.isDailyCalendar}}
                 {{calendar-holiday-tiles}}
             {{/if}}
@@ -17,7 +17,7 @@
             <div class="tiles">{{{assignment.assignment}}}</div>
             <div class="phases">{{{assignment.phases}}}</div>
         </div>
-        {{assignment-info resource=assignment assignment=assignment currentAssignment=currentAssignment viewPeopleAssigned=viewPeopleAssigned persons=persons}}
+        {{assignment-info resource=assignment assignment=assignment currentAssignment=currentAssignment viewPeopleAssigned=viewPeopleAssigned persons=persons shiftPhase=shiftPhase}}
     </section>
     {{/if}}
 {{/each}}
