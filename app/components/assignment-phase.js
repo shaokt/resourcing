@@ -17,7 +17,6 @@ export default Ember.Component.extend({
 
         shift() {
             this.set('shiftPhase', true);
-            console.log(4);
         }
     }
 });

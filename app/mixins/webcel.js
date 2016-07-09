@@ -105,6 +105,11 @@ export default Ember.Mixin.create(CalendarWidget, {
         // only create the phase stamp if a phase is selected
         if(this.data.get('stampPhase')) {
             var clone = $(this.row).clone(); // clone needed for removing tiles if applicable
+            var exists = $(clone).find('.phases [data-x="' + this.downX + '"][data-y="' + this.downY + '"]');
+
+            // remove any existing phases so that they do not overlap
+            if(exists.length){ $(exists)[0].remove(); }
+
             var stamp = "";
             var phase = 'data-phase="' + this.data.get('stampPhase') + '"';
     		stamp+=
