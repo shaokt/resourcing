@@ -37,13 +37,15 @@
 
             .phases {
                 background:#FFF;
-                border-radius:2px;
                 border-top:1px solid #000;
-                border-right:1px solid #000;
-                border-top-left-radius:0;
                 float:left;
-                margin-top:-14px;
+                margin:-14px -1px 0 0;
                 padding-right:2px;
+
+                &:last-child {
+                    border-top-right-radius:2px;
+                    border-right:1px solid #000;
+                }
 
                 li {
                     float:left;

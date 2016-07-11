@@ -1,6 +1,12 @@
 {{#if shift}}
     {{input type="radio" id=id name="phase" action="shift" on="focus-in"}}
+    <label for="phase{{label}}">{{label}}</label>
+
+    {{#if shiftPhase}}
+        <br />
+        OK
+    {{/if}}
 {{else}}
     {{input type="radio" id=id name="phase" action="setStamp" on="focus-in"}}
+    <label for="phase{{label}}">{{label}}</label>
 {{/if}}
-<label for="phase{{label}}">{{label}}</label>

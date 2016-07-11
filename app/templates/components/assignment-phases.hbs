@@ -1,11 +1,15 @@
-{{assignment-phase label="REQ" editType=editType assignment=assignment shiftPhase=shiftPhase}}
-{{assignment-phase label="SPR" editType=editType assignment=assignment shiftPhase=shiftPhase}}
-{{assignment-phase label="DIT" editType=editType assignment=assignment shiftPhase=shiftPhase}}
-{{assignment-phase label="SIT" editType=editType assignment=assignment shiftPhase=shiftPhase}}
-{{assignment-phase label="UAT" editType=editType assignment=assignment shiftPhase=shiftPhase}}
-{{assignment-phase label="PLT" editType=editType assignment=assignment shiftPhase=shiftPhase}}
-{{assignment-phase label="BAT" editType=editType assignment=assignment shiftPhase=shiftPhase}}
-{{assignment-phase label="FRZ" editType=editType assignment=assignment shiftPhase=shiftPhase}}
-{{assignment-phase label="PRD" editType=editType assignment=assignment shiftPhase=shiftPhase}}
-{{assignment-phase label="WTY" editType=editType assignment=assignment shiftPhase=shiftPhase}}
-{{assignment-phase label="Shift" editType=editType assignment=assignment shift=true shiftPhase=shiftPhase}}
+
+{{#if shift}}
+    {{assignment-phase label="Shift" editType=editType assignment=assignment shift=true shiftPhase=shiftPhase}}
+{{else}}
+    {{assignment-phase label="REQ" editType=editType assignment=assignment shiftPhase=shiftPhase}}
+    {{assignment-phase label="SPR" editType=editType assignment=assignment shiftPhase=shiftPhase}}
+    {{assignment-phase label="DIT" editType=editType assignment=assignment shiftPhase=shiftPhase}}
+    {{assignment-phase label="SIT" editType=editType assignment=assignment shiftPhase=shiftPhase}}
+    {{assignment-phase label="UAT" editType=editType assignment=assignment shiftPhase=shiftPhase}}
+    {{assignment-phase label="PLT" editType=editType assignment=assignment shiftPhase=shiftPhase}}
+    {{assignment-phase label="BAT" editType=editType assignment=assignment shiftPhase=shiftPhase}}
+    {{assignment-phase label="FRZ" editType=editType assignment=assignment shiftPhase=shiftPhase}}
+    {{assignment-phase label="PRD" editType=editType assignment=assignment shiftPhase=shiftPhase}}
+    {{assignment-phase label="WTY" editType=editType assignment=assignment shiftPhase=shiftPhase}}
+{{/if}}
