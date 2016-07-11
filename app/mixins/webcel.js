@@ -127,6 +127,7 @@ export default Ember.Mixin.create(CalendarWidget, {
         this.constants.webcel = this;
         this.row = params.row;
         this.data = params.data;
+        this.rowComponent = params.rowComponent;
 
         var self = this;
         setTimeout(function(){
@@ -161,6 +162,7 @@ export default Ember.Mixin.create(CalendarWidget, {
         }
 
 		mouseDown = function(e){
+            if(self.rowComponent.get('shiftPhase')) return; // do not paint if the user wants to shift the phases around
 			self.downX = e.pageX - $(this).offset().left;
             if(self.downX < self.constants.prevYear && self.get('router.currentRouteName') === 'home') return;
 			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
