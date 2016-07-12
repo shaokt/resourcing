@@ -33,12 +33,79 @@
             }
         }
 
-        &.phasePLT {
-            clear:left;
-        }
+        &.phasePLT { clear:left; }
 
         &.phaseShift {
-            margin-top:7px;
-        }
+            margin-top:8px;
+            position:relative;
+
+            input {
+                float:left;
+                margin-right:6px;
+            }
+            label {
+                float:left;
+                padding:3px 0 0 5px;
+            }
+
+            span {
+                &:after, &:before {
+                    border:5px solid #000;
+                    content:"";
+                    display:inline-block;
+                }
+
+                &.horizontalArrow {
+                    margin:2px -1px 0 -6px;
+
+                    &:after { // right arrow
+                        border-bottom-color:transparent;
+                        border-right-color:transparent;
+                        border-top-color:transparent;
+                        margin-left:16px;
+                    }
+
+                    &:before { // left arrow
+                        border-bottom-color:transparent;
+                        border-left-color:transparent;
+                        border-top-color:transparent;
+                    }
+                }
+
+                &.verticalArrow {
+                    left:30px;
+                    position:absolute;
+                    top:3px;
+
+                    &:after, &:before { position:absolute; }
+
+                    &:after { // down arrow
+                        border-bottom-color:transparent;
+                        border-left-color:transparent;
+                        border-right-color:transparent;
+                        top:6px;
+                    }
+
+                    &:before { // up arrow
+                        border-left-color:transparent;
+                        border-right-color:transparent;
+                        border-top-color:transparent;
+                        top:-6px;
+                    }
+                }
+            }//span
+
+            input:checked + label span {
+                &.horizontalArrow {
+                    &:after { border-left-color:#fff; }
+                    &:before { border-right-color:#fff; }
+                }
+
+                &.verticalArrow {
+                    &:after { border-top-color:#fff; }
+                    &:before { border-bottom-color:#fff; }
+                }
+            }
+        }//phaseShift
     }//li
 }//phases
