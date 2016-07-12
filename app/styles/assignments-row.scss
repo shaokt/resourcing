@@ -13,6 +13,8 @@
             }
         }
 
+        @import "assignments-phase-stamps.scss";
+
         [data-active="true"] {
             .tileOptions {
                 background:#fff;
@@ -33,48 +35,8 @@
                 }
             }//tileOptions
 
+            @import "assignments-phase-list.scss";
             @import "assignments-phase-edit.scss";
-
-            .phases {
-                background:#FFF;
-                border-top:1px solid #000;
-                float:left;
-                margin:-14px -1px 0 0;
-                padding-right:2px;
-
-                &:last-child {
-                    border-top-right-radius:2px;
-                    border-right:1px solid #000;
-                }
-
-                li {
-                    float:left;
-                    margin-left:8px;
-
-                    label {
-                        font-weight:bold;
-                        font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
-                        margin-left:-3px;
-                        padding:0 5px;
-                    }
-
-                    input {
-                        height:10px;
-
-                        &:checked {
-                            + label {
-                                background:#000;
-                                border-radius:2px;
-                                color:#fff;
-                            }
-                        }
-                    }
-
-                    &.phasePLT {
-                        clear:left;
-                    }
-                }//li
-            }//phases
         }//data-active
     }//main
 
