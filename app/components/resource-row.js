@@ -21,7 +21,6 @@ export default Ember.Component.extend(Webcel, {
             }
         }
 
-        console.log(this.get('shiftPhase'))
         this.constants.webcel.setup({
             row: this.$().parent().find('.row')[0], // the row being edited
             data: this.get('resource'), // the data in store

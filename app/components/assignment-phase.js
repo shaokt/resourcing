@@ -1,12 +1,20 @@
 import Ember from 'ember';
+import KeyDownMixin from "../mixins/keydown";
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(KeyDownMixin, {
     tagName: 'li',
     currentRadio: null,
     classNameBindings: ['id'],
     id: Ember.computed('label', function() {
         return 'phase' + this.get('label');
     }),
+
+    keyDown: function(event) {
+        // do not allow scrolling when pressing arrow keys
+        if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+            event.preventDefault();
+        }
+    },
 
     actions: {
         // assigns the phase of the project to stamp on the tile
@@ -20,6 +28,7 @@ export default Ember.Component.extend({
         shift() {
             this.set('shiftPhase', true);
             this.set('currentRadio', event.target);
+            this.bindKeyDown();
         },
 
         // done shifting, reset stamps to nothing
@@ -27,6 +36,7 @@ export default Ember.Component.extend({
             $(this.get('currentRadio')).prop('checked', false);
             this.set('assignment.stampPhase', null);
             this.set('shiftPhase', false);
+            this.unbindKeyDown();
         }
     }
 });
