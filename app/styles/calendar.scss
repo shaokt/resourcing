@@ -205,7 +205,9 @@ header {
 #calendarWeekly .day { border-left:0; }
 #calendarDaily .day {
     &.selected {
-        margin-top:-.3em;
+        border-top:0;
+        padding-top:0;
+        margin-top:4px;
     }
     &.selected[data-day-name="M"] {
         &:after {
