@@ -8,6 +8,8 @@ export default Ember.Component.extend(KeyDownMixin, {
     id: Ember.computed('label', function() {
         return 'phase' + this.get('label');
     }),
+    ox: null, // original x axis of the phase to shift
+    oy: null, // original y axis of the phase to shift
 
     keyDown: function(event) {
         // do not allow scrolling when pressing arrow keys
@@ -15,25 +17,41 @@ export default Ember.Component.extend(KeyDownMixin, {
             event.preventDefault();
             if(this.get('phaseToShift').length){
                 var ph = this.get('phaseToShift')[0];
+                var x = parseInt($(ph).attr('data-x'));
+                var y = parseInt($(ph).attr('data-y'));
+
+                if(!this.ox){
+                    this.ox = x;
+                    this.oy = y;
+                }
 
     			switch (event.keyCode){
-                    case 37: {
-                        console.log('L')
+                    case 37: { // left
+                        if(x > 0){
+                            $(ph).attr('data-x', x -= this.constants.DIM);
+                        }
                         break;
                     }
-                    case 38: {
-                        console.log('U')
+                    case 38: { // up
+                        if(y > 0){
+                            $(ph).attr('data-y', y -= this.constants.DIM);
+                        }
                         break;
                     }
-                    case 39: {
-                        console.log('R')
+                    case 39: { // right
+                        console.log(this.constants.calWidth);
+                        if(x < this.constants.calWidth - this.constants.DIM){
+                            $(ph).attr('data-x', x += this.constants.DIM);
+                        }
                         break;
                     }
-                    case 40: {
-                        console.log('D')
+                    case 40: { // down
+                        if(y < this.constants.DIM*3){
+                            $(ph).attr('data-y', y += this.constants.DIM);
+                        }
                         break;
                     }
-                }
+                }// switch
             }// if length
         }// if arrow keys
     },
