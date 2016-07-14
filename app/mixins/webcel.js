@@ -116,6 +116,9 @@ export default Ember.Mixin.create(CalendarWidget, {
         var y = this.upY;
         var phaseToShift = $(this.row).find('.phases [data-x="' + x +'"][data-y="' + y + '"]')
 		this.rowComponent.set('phaseToShift', phaseToShift);
+        if(phaseToShift.length){
+            $(phaseToShift[0]).addClass('active');
+        }
     },
 
     setPhase: function(){
