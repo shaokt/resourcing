@@ -19,7 +19,9 @@
         </li>
     </ul>
     {{assignment-phases assignment=assignment shiftPhase=shiftPhase}}
-    {{assignment-phases assignment=assignment shiftPhase=shiftPhase shift=true}}
+    {{#if assignment.phases}}
+        {{assignment-phases assignment=assignment shiftPhase=shiftPhase shift=true}}
+    {{/if}}
 {{else}}
     <div class="name short" data-type="value">{{assignment.short}}</div>
 {{/if}}
