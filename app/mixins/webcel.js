@@ -62,6 +62,10 @@ export default Ember.Mixin.create(CalendarWidget, {
     			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
     				var thisTile = $(clone).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
     				thisTile.remove();
+                    if(this.get('router.currentRouteName') === 'assignments.index' && empty) {
+        				var thisPhase = $(clone).find('.phases [data-x="' + x +'"][data-y="' + y + '"]');
+        				thisPhase.remove();
+                    }
 
     				if(!empty){ // repaint area if delete tile not chosen
                         var holidayTile = this.constants.daily ? this.constants.holidayColumns.contains(x) : false;
@@ -92,10 +96,16 @@ export default Ember.Mixin.create(CalendarWidget, {
 		}// for x-axis
 
 		addTiles = ($(clone).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
+		//phases = ($(clone).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim() + phases).htmlSafe();
 
         this.constants.daily ?
             this.data.set('timeaway', addTiles) :
             this.data.set('assignment', addTiles);
+
+        // update the phaes in case they were shifted, deleted etc
+        if(this.get('router.currentRouteName') === 'assignments.index') {
+            this.data.set('phases', ($(clone).find('.phases')[0].innerHTML).htmlSafe());
+        }
 
 		$(this.sizer).hide();
         this.downX = this.upX = 0;
