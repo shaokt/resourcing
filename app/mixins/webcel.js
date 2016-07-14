@@ -109,6 +109,13 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 		$(this.sizer).hide();
         this.downX = this.upX = 0;
+    },//getTiles
+
+    getPhase: function (){
+        var x = this.upX;
+        var y = this.upY;
+        var phaseToShift = $(this.row).find('.phases [data-x="' + x +'"][data-y="' + y + '"]')
+		this.rowComponent.set('phaseToShift', phaseToShift);
     },
 
     setPhase: function(){
@@ -172,7 +179,6 @@ export default Ember.Mixin.create(CalendarWidget, {
         }
 
 		mouseDown = function(e){
-            if(self.rowComponent.get('shiftPhase')) return; // do not paint if the user wants to shift the phases around
 			self.downX = e.pageX - $(this).offset().left;
             if(self.downX < self.constants.prevYear && self.get('router.currentRouteName') === 'home') return;
 			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
@@ -184,6 +190,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 			switch (e.which){
 				case 1: { // left mouse button
+                    if(self.rowComponent.get('shiftPhase')) break;; // do not paint if the user wants to shift the phases around
                     if(!self.isDown){
             			self.isDown = 1;
                         /*
@@ -220,9 +227,15 @@ export default Ember.Mixin.create(CalendarWidget, {
 		mouseUp = function(e){
 			switch (e.which){
 				case 1: { // left mouse
-                    self.resize(e);
-                    self.getTiles(e);
-					self.isDown = 0;
+
+                    if(self.rowComponent.get('shiftPhase')){
+                        self.getPhase(e);
+                    }
+                    else{
+                        self.resize(e);
+                        self.getTiles(e);
+                        self.isDown = 0;
+                    }
                 }
             }
         }
