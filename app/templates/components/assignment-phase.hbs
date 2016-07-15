@@ -6,7 +6,8 @@
     </label>
 
     {{#if shiftPhase}}
-        <a href="/" {{action "shiftDone"}}>OK</a>
+        <a href="/" class="link"><span></span></a>
+        <a href="/" class="ok" {{action "shiftDone"}}>OK</a>
     {{/if}}
 {{else}}
     {{input type="radio" id=id name="phase" action="setStamp" on="focus-in"}}
