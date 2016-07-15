@@ -15,7 +15,7 @@ export default Ember.Component.extend(KeyDownMixin, {
         // do not allow scrolling when pressing arrow keys
         if(!event.target.type && [32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
             event.preventDefault();
-            if(this.get('phaseToShift').length){
+            if(this.get('phaseToShift')){
                 var ph = this.get('phaseToShift')[0];
                 var x = parseInt($(ph).attr('data-x'));
                 var y = parseInt($(ph).attr('data-y'));
@@ -39,7 +39,6 @@ export default Ember.Component.extend(KeyDownMixin, {
                         break;
                     }
                     case 39: { // right
-                        console.log(this.constants.calWidth);
                         if(x < this.constants.calWidth - this.constants.DIM){
                             $(ph).attr('data-x', x += this.constants.DIM);
                         }
