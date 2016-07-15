@@ -53,15 +53,25 @@ export default Ember.Component.extend(KeyDownMixin, {
                 }// switch
             }// if length
         }// if arrow keys
+    },// keyDown
+
+    // update the edited phases so they are in the store upon save
+    updatePhases: function(){
+        this.set('shiftPhase', false);
+        try{
+            $(this.get('phaseToShift')).removeClass('active')
+            var editedPhases = ($(this.get('row')).find('.phases')[0].innerHTML).htmlSafe();
+            this.set('assignment.phases', editedPhases);
+        }catch(e){} // no action taken, nothing to update
     },
 
     actions: {
         // assigns the phase of the project to stamp on the tile
         setStamp() {
-            this.set('shiftPhase', false);
             this.set('assignment.stampPhase', this.get('label'))
             this.set('currentRadio', event.target);
             this.unbindKeyDown();
+            this.updatePhases(); // need to update in case of switching out of the shift radio option
         },
 
         // user wants to shift phases around
@@ -75,8 +85,8 @@ export default Ember.Component.extend(KeyDownMixin, {
         shiftDone() {
             $(this.get('currentRadio')).prop('checked', false);
             this.set('assignment.stampPhase', null);
-            this.set('shiftPhase', false);
             this.unbindKeyDown();
+            this.updatePhases();
         }
-    }
+    }// actions
 });

@@ -20,9 +20,10 @@ export default Ember.Component.extend(Webcel, {
                 $('.tileOptions a')[0].click();
             }
         }
+        this.set('row', this.$().parent().find('.row')[0]);
 
         this.constants.webcel.setup({
-            row: this.$().parent().find('.row')[0], // the row being edited
+            row: this.get('row'), // the row being edited
             data: this.get('resource'), // the data in store
             rowComponent: this
         });

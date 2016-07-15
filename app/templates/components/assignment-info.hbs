@@ -1,8 +1,10 @@
 <ul class="viewOptions">
     {{#unless constants.teamAssignmentView}}
-        <li class="lock">
-            <a href="/" {{action "editing" on="click"}}></a>
-        </li>
+        {{#unless shiftPhase}}
+            <li class="lock">
+                <a href="/" {{action "editing" on="click"}}></a>
+            </li>
+        {{/unless}}
     {{else}}
         <li class="viewTeam">
             <a href="/" {{action "viewTeam" on="click"}}><span></span></a>
@@ -18,9 +20,9 @@
             <a href="#" data-assignment="empty" data-stamp="true" class="empty" data-active="{{if assignment.paint false true}}" {{action "select" on="click" event=event}}><span></span></a>
         </li>
     </ul>
-    {{assignment-phases assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift}}
+    {{assignment-phases assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift row=row}}
     {{#if assignment.phases}}
-        {{assignment-phases assignment=assignment shiftPhase=shiftPhase shift=true phaseToShift=phaseToShift}}
+        {{assignment-phases assignment=assignment shiftPhase=shiftPhase shift=true phaseToShift=phaseToShift row=row}}
     {{/if}}
 {{else}}
     <div class="name short" data-type="value">{{assignment.short}}</div>
