@@ -182,14 +182,21 @@ export default Ember.Mixin.create(CalendarWidget, {
         }
 
 		mouseDown = function(e){
-			self.downX = e.pageX - $(this).offset().left;
-            if(self.downX < self.constants.prevYear && self.get('router.currentRouteName') === 'home') return;
-			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
-			self.downY = e.pageY  - $(this).offset().top
-			self.downY = self.downY - self.downY%self.constants.DIM;
+            // clicking on the stamp that you want to move around
+            if(self.rowComponent.get('shiftPhase')){
+                self.downX = self.upX = $(e.target).attr('data-x');
+                self.downY = self.upY = $(e.target).attr('data-y');
+            }
+            else {
+    			self.downX = e.pageX - $(this).offset().left;
+                if(self.downX < self.constants.prevYear && self.get('router.currentRouteName') === 'home') return;
+    			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
+    			self.downY = e.pageY  - $(this).offset().top
+    			self.downY = self.downY - self.downY%self.constants.DIM;
 
-            self.downY > self.maxY ? self.downY = self.maxY : 0;
-            self.upY = self.downY;
+                self.downY > self.maxY ? self.downY = self.maxY : 0;
+                self.upY = self.downY;
+            }
 
 			switch (e.which){
 				case 1: { // left mouse button
@@ -204,10 +211,8 @@ export default Ember.Mixin.create(CalendarWidget, {
                     break;
                 }
 				case 3: { // right click: stamp
-
                     // stamps limited to phases of the project defined in the assignment-phases component
                     if(self.get('router.currentRouteName') === 'assignments.index') {
-                        //console.log(self.data.get('stampPhase'))
                         self.setPhase(e);
                     }
                     // stamps  the short name of the project on the project tile
@@ -215,7 +220,6 @@ export default Ember.Mixin.create(CalendarWidget, {
     					var thisTile = $(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
                         if(thisTile.attr('data-stamp') == "true"){ thisTile.removeAttr('data-stamp') }
                         else{ thisTile.attr('data-stamp', true) }
-
 
                 		var addTiles = ($(self.row).find(".tiles")[0].innerHTML.replace(/<!---->/gi, '').trim()).htmlSafe();
                         self.constants.daily ?
