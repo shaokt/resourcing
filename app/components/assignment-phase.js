@@ -8,6 +8,7 @@ export default Ember.Component.extend(KeyDownMixin, {
     id: Ember.computed('label', function() {
         return 'phase' + this.get('label');
     }),
+    breakLink:false, // if true, do not move the phase in sync
     ox: null, // original x axis of the phase to shift
     oy: null, // original y axis of the phase to shift
 
@@ -87,6 +88,11 @@ export default Ember.Component.extend(KeyDownMixin, {
             this.set('assignment.stampPhase', null);
             this.unbindKeyDown();
             this.updatePhases();
+        },
+
+        // toggle between linking the phases together vs separate while moving them around
+        toggleLink() {
+            this.toggleProperty('breakLink');
         }
     }// actions
 });

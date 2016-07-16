@@ -136,31 +136,104 @@
                         width:10px;
                     }
 
-                    &:after {
+                    &:after { // right chain
                         left:17px;
                         position:relative;
                     }
 
-                    &:before {
+                    &:before { // left chain
                         position:absolute;
                     }
 
-                    span {
-                        background:#000;
-                        border:1px solid #fff;
-                        border-radius:5px;
-                        display:block;
-                        height:3px;
+                    span.middleLink {
                         left:8px;
                         position:absolute;
-                        top:3px;
-                        width:15px;
-                        z-index:1;
 
-                        &:after, &:before { display:none; }
+                        &:after, &:before {
+                            border:1px solid #fff;
+                            background:#000;
+                            display:block;
+                            height:3px;
+                            position:absolute;
+                            top:3px;
+                            width:8px;
+                            z-index:1;
+                        }
+
+                        &:after { // right link
+                            border-left:0;
+                            border-top-right-radius:5px;
+                            border-bottom-right-radius:5px;
+                            left:8px;
+                        }
+
+                        &:before { // left link
+                            border-right:0;
+                            border-top-left-radius:5px;
+                            border-bottom-left-radius:5px;
+                        }
+
+                        span { display:none; }
                     }
-                }
-            }
+                    &[data-break="true"] {
+                        &:after, &:before {
+                        }
+                        &:after { // right chain
+                            left:20px;
+                            transform:rotate(25deg);
+                        }
+                        &:before { // left chain
+                            transform:rotate(-25deg);
+                        }
+
+                        span.middleLink {
+                            &:after, &:before {
+                                background:#cc0000;
+                            }
+
+                            &:after { // right link
+                                left:11px;
+                                margin-top:-2px;
+                                transform:rotate(25deg);
+                            }
+
+                            &:before { // left link
+                                margin-top:-2px;
+                                transform:rotate(-25deg);
+                            }
+
+                            span {
+                                background:#cc0000;
+                                display:block;
+                                height:6px;
+                                left:10px;
+                                position:absolute;
+                                top:-11px;
+                                width:1px;
+
+                                &:after, &:before {
+                                    background:#cc0000;
+                                    border:none;
+                                    height:6px;
+                                    position:absolute;
+                                    top:2px;
+                                    width:1px;
+                                }
+
+                                &:after {
+                                    left:-4px;
+                                    transform:rotate(-35deg);
+                                }
+
+                                &:before {
+                                    left:4px;
+                                    transform:rotate(35deg);
+                                }
+                            }
+                        }//middleLink
+                    }//data-break
+                }//link
+            }//a
         }//phaseShift
     }//li
 }//phases

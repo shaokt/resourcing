@@ -6,7 +6,7 @@
     </label>
 
     {{#if shiftPhase}}
-        <a href="/" class="link"><span></span></a>
+        <a href="/" class="link" data-break="{{breakLink}}" {{action "toggleLink"}}><span class="middleLink"><span></span></span></a>
         <a href="/" class="ok" {{action "shiftDone"}}>OK</a>
     {{/if}}
 {{else}}
