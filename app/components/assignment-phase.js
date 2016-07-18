@@ -12,12 +12,16 @@ export default Ember.Component.extend(KeyDownMixin, {
     ox: null, // original x axis of the phase to shift
     oy: null, // original y axis of the phase to shift
 
-    keyDown: function(event) {
+    /* move the phases around when active
+     * @event   the event
+     * @fromBinding     checks if this is being trigged from the keydown mixin
+     */
+    keyDown: function(event, fromBinding) {
         // do not allow scrolling when pressing arrow keys
-        if(!event.target.type && [32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+        if(fromBinding && !event.target.type && [32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
             event.preventDefault();
             if(this.get('phaseToShift')){
-                var ph = this.get('phaseToShift')[0];
+                var ph = this.get('phaseToShift');
                 var x = parseInt($(ph).attr('data-x'));
                 var y = parseInt($(ph).attr('data-y'));
 

@@ -119,9 +119,9 @@ export default Ember.Mixin.create(CalendarWidget, {
         if(phaseToShift.length){
             try { $(this.rowComponent.get('phaseToShift')).removeClass('active'); }
             catch(e){} // nothing was initially set, do nothing
-    		this.rowComponent.set('phaseToShift', phaseToShift);
+    		this.rowComponent.set('phaseToShift', phaseToShift[0]);
 
-            $(phaseToShift[0]).addClass('active');
+            $(phaseToShift).addClass('active');
         }
     },
 

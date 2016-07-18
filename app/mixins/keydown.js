@@ -6,7 +6,7 @@ export default Ember.Mixin.create({
         var onKeyDown, _this = this;
 
         onKeyDown = function(event){
-            return _this.keyDown(event);
+            return _this.keyDown(event, true);
         };
 
         $(window).bind('keydown', onKeyDown);
