@@ -56,6 +56,9 @@ export default Ember.Component.extend(Webcel, {
     },
 
     actions:{
+        togglePhaseLink(){
+        },
+
         dragEnter(e) {
             try{
             	var drop = $(e.target).parents('section')[0];

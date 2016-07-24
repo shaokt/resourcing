@@ -2,5 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     tagName: 'ul',
-    classNames: ['phases']
+    classNames: ['phases'],
+    actions: {
+        togglePhaseLink(){
+            this.sendAction('togglePhaseLink'); // resource-row component
+        }
+    }
 });

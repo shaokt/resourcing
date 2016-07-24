@@ -95,8 +95,9 @@ export default Ember.Component.extend(KeyDownMixin, {
         },
 
         // toggle between linking the phases together vs separate while moving them around
-        toggleLink() {
+        togglePhaseLink(){
             this.toggleProperty('breakLink');
-        }
+            this.sendAction('togglePhaseLink'); // assignment-phases component
+        },
     }// actions
 });
