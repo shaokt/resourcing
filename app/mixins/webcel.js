@@ -111,20 +111,6 @@ export default Ember.Mixin.create(CalendarWidget, {
         this.downX = this.upX = 0;
     },//getTiles
 
-    getPhase: function (){
-        var x = this.upX;
-        var y = this.upY;
-        var phaseToShift = $(this.row).find('.phases [data-x="' + x +'"][data-y="' + y + '"]')
-
-        if(phaseToShift.length){
-            try { $(this.rowComponent.get('phaseToShift')).removeClass('active'); }
-            catch(e){} // nothing was initially set, do nothing
-    		this.rowComponent.set('phaseToShift', phaseToShift[0]);
-
-            $(phaseToShift).addClass('active');
-        }
-    },
-
     setPhase: function(){
         // only create the phase stamp if a phase is selected
         if(this.data.get('stampPhase')) {
@@ -238,9 +224,8 @@ export default Ember.Mixin.create(CalendarWidget, {
 		mouseUp = function(e){
 			switch (e.which){
 				case 1: { // left mouse
-
                     if(self.rowComponent.get('shiftPhase')){
-                        self.getPhase(e);
+                        self.rowComponent.getPhase(self.upX, self.upY);
                     }
                     else{
                         self.resize(e);
@@ -249,14 +234,14 @@ export default Ember.Mixin.create(CalendarWidget, {
                     }
                 }
             }
-        }
+        }// mouseUp
 
         $(this.row).bind('mousemove', movePointer);
         $(this.row).bind('mousedown', mouseDown).bind('contextmenu', function(e){e.preventDefault();});
         $(this.row).bind('mouseup', mouseUp);
 
         return this;
-    },
+    },// setup
 
     done: function(){
         $(this.row).unbind('mousemove');

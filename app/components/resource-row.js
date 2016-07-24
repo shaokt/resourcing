@@ -43,6 +43,18 @@ export default Ember.Component.extend(Webcel, {
     	return false;
     },
 
+    getPhase: function(x, y){
+        var phaseToShift = $(this.row).find('.phases [data-x="' + x +'"][data-y="' + y + '"]')
+
+        if(phaseToShift.length){
+            try { $(this.get('phaseToShift')).removeClass('active'); }
+            catch(e){} // nothing was initially set, do nothing
+    		this.set('phaseToShift', phaseToShift[0]);
+
+            $(phaseToShift).addClass('active');
+        }
+    },
+
     actions:{
         dragEnter(e) {
             try{
