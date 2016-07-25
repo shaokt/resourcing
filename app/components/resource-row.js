@@ -47,7 +47,7 @@ export default Ember.Component.extend(Webcel, {
         var phaseToShift = $(this.row).find('.phases [data-x="' + x +'"][data-y="' + y + '"]')
 
         if(phaseToShift.length){
-            try { $(this.get('phaseToShift')).removeClass('active'); }
+            try { $(this.get('phaseToShift')).removeAttr('class'); }
             catch(e){} // nothing was initially set, do nothing
     		this.set('phaseToShift', phaseToShift[0]);
 
@@ -57,6 +57,23 @@ export default Ember.Component.extend(Webcel, {
 
     actions:{
         togglePhaseLink(){
+            var pts = this.get('phaseToShift');
+            var x = parseInt($(pts).attr('data-x'));
+
+            // link all phases together if they are to the right of current phase
+            if(pts){
+                var links = $(pts).parent().find('[data-x]').filter(function(){
+                    console.log(x + " : " + $(this).attr('data-x'))
+                    if(parseInt($(this).attr('data-x')) > x){
+                        $(this).attr('data-phaseLink', true)
+                        return true;
+                    }
+                })
+                console.log(links)
+            }
+            else { // unlink phases
+            }
+
         },
 
         dragEnter(e) {

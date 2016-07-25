@@ -123,8 +123,7 @@ export default Ember.Mixin.create(CalendarWidget, {
             var stamp = "";
             var phase = 'data-phase="' + this.data.get('stampPhase') + '"';
     		stamp+=
-                '<span data-type="tile" data-stamp="true"' + phase + ' data-x="' + this.downX + '" data-y="' + this.downY + '"' +
-                '"></span>';
+                '<span data-type="tile" data-stamp="true"' + phase + ' data-x="' + this.downX + '" data-y="' + this.downY + '"></span>';
 
     		stamp = ($(clone).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim() + stamp).htmlSafe();
             this.data.set('phases', stamp);
