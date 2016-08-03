@@ -8,6 +8,10 @@
     {{#if shiftPhase}}
         <a href="/" class="link" data-break="{{breakLink}}" {{action "togglePhaseLink"}}><span class="middleLink"><span></span></span></a>
         <a href="/" class="ok" {{action "shiftDone"}}>OK</a>
+            <style>
+                [data-phaselink]{ margin-left:{{shiftHorizontal}}px; }
+                [data-phaselink].active{ margin-top:{{shiftVertical}}px; }
+            </style>
     {{/if}}
 {{else}}
     {{input type="radio" id=id name="phase" action="setStamp" on="focus-in"}}

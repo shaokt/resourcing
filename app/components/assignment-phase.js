@@ -9,8 +9,8 @@ export default Ember.Component.extend(KeyDownMixin, {
         return 'phase' + this.get('label');
     }),
     breakLink:false, // if true, do not move the phase in sync
-    ox: null, // original x axis of the phase to shift
-    oy: null, // original y axis of the phase to shift
+    shiftHorizontal: 0, // how many pixels left or right to move the related phases during shifting
+    shiftVertical: 0, // how many pixels up or down to move the related phases during shifting
 
     /* move the phases around when active
      * @event   the event
@@ -21,37 +21,35 @@ export default Ember.Component.extend(KeyDownMixin, {
         if(fromBinding && !event.target.type && [32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
             event.preventDefault();
             if(this.get('phaseToShift')){
-                var ph = this.get('phaseToShift');
-                var x = parseInt($(ph).attr('data-x'));
-                var y = parseInt($(ph).attr('data-y'));
-
-                if(!this.ox){
-                    this.ox = x;
-                    this.oy = y;
-                }
+                var x = parseInt($(this.get('phaseToShift')).attr('data-x')) + this.get('shiftHorizontal');
+                var y = parseInt($(this.get('phaseToShift')).attr('data-y')) + this.get('shiftVertical');
 
     			switch (event.keyCode){
                     case 37: { // left
                         if(x > 0){
-                            $(ph).attr('data-x', x -= this.constants.DIM);
+                            this.set('shiftHorizontal', this.get('shiftHorizontal') - this.constants.DIM);
+                            //$(ph).attr('data-x', x -= this.constants.DIM);
                         }
                         break;
                     }
                     case 38: { // up
                         if(y > 0){
-                            $(ph).attr('data-y', y -= this.constants.DIM);
+                            this.set('shiftVertical', this.get('shiftVertical') - this.constants.DIM);
+                            //$(ph).attr('data-y', y -= this.constants.DIM);
                         }
                         break;
                     }
                     case 39: { // right
                         if(x < this.constants.calWidth - this.constants.DIM){
-                            $(ph).attr('data-x', x += this.constants.DIM);
+                            this.set('shiftHorizontal', this.get('shiftHorizontal') + this.constants.DIM);
+                            //$(ph).attr('data-x', x += this.constants.DIM);
                         }
                         break;
                     }
                     case 40: { // down
                         if(y < this.constants.DIM*3){
-                            $(ph).attr('data-y', y += this.constants.DIM);
+                            this.set('shiftVertical', this.get('shiftVertical') + this.constants.DIM);
+                            //$(ph).attr('data-y', y += this.constants.DIM);
                         }
                         break;
                     }
@@ -63,8 +61,16 @@ export default Ember.Component.extend(KeyDownMixin, {
     // update the edited phases so they are in the store upon save
     updatePhases: function(){
         this.set('shiftPhase', false);
+        this.set('shiftHorizontal', 0);
+        this.set('shiftVertical', 0);
+
         try{
-            $(this.get('phaseToShift')).removeClass('active')
+            $(this.get('phaseToShift'))
+                .removeClass('active')
+                .parent().find('[data-phaselink]').filter(function(){
+                    $(this).removeAttr('data-phaselink');
+                })
+
             var editedPhases = ($(this.get('row')).find('.phases')[0].innerHTML).htmlSafe();
             this.set('assignment.phases', editedPhases);
         }catch(e){} // no action taken, nothing to update
@@ -97,7 +103,16 @@ export default Ember.Component.extend(KeyDownMixin, {
         // toggle between linking the phases together vs separate while moving them around
         togglePhaseLink(){
             this.toggleProperty('breakLink');
-            this.sendAction('togglePhaseLink'); // assignment-phases component
+            // link all phases together if they are to the right of current phase
+            if(this.get('shiftPhase')){
+                var x = parseInt($(this.get('phaseToShift')).attr('data-x'));
+                var links = $(this.get('phaseToShift')).parent().find('[data-x]').filter(function(){
+                    if(parseInt($(this).attr('data-x')) > x){
+                        $(this).attr('data-phaselink', true)
+                        return true;
+                    }
+                })
+            }
         },
     }// actions
 });
