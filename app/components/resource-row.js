@@ -69,6 +69,7 @@ export default Ember.Component.extend(Webcel, {
     getRelatedPhases: function(){
         // link all phases together if they are to the right of current phase
         if(!this.breakLink){
+            this.resetPhaseToShiftPosition();
             var x = parseInt($(this.get('phaseToShift')).attr('data-x'));
             var links = $(this.get('phaseToShift')).parent().find('[data-x]').filter(function(){
                 if(parseInt($(this).attr('data-x')) > x){
@@ -82,13 +83,24 @@ export default Ember.Component.extend(Webcel, {
         }
     },
 
+    // update the x positions of the related phases being moved
     updateRelatedPhasesPosition: function(){
         var self = this;
         var links = $(this.get('phaseToShift')).parent().find('[data-phaselink]').filter(function(){
-            if(this != self.get('phaseToShift'))
+            if(this != self.get('phaseToShift')){
                 $(this).removeAttr('data-phaselink')
+                var x = parseInt($(this).attr('data-x'));
+                $(this).attr('data-x', x + self.get('shiftHorizontal'));
+            }
             return true;
         })
+        this.resetPhaseToShiftPosition();
+    },
+
+    // when breaking and unbreaking the link, reset the phase being shift's position for proper calculations
+    resetPhaseToShiftPosition: function(){
+        $(this.get('phaseToShift')).attr('data-x', parseInt($(this.get('phaseToShift')).attr('data-x')) + this.get('shiftHorizontal'));
+        this.set('shiftHorizontal', 0);
     },
 
     actions:{
