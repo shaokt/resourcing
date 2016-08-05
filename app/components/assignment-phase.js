@@ -89,6 +89,7 @@ export default Ember.Component.extend(KeyDownMixin, {
         shift() {
             this.set('shiftPhase', true);
             this.set('currentRadio', event.target);
+            this.set('rowComponent.breakLink', this.breakLink);
             this.bindKeyDown();
         },
 
@@ -102,17 +103,8 @@ export default Ember.Component.extend(KeyDownMixin, {
 
         // toggle between linking the phases together vs separate while moving them around
         togglePhaseLink(){
-            this.toggleProperty('breakLink');
-            // link all phases together if they are to the right of current phase
-            if(this.get('shiftPhase')){
-                var x = parseInt($(this.get('phaseToShift')).attr('data-x'));
-                var links = $(this.get('phaseToShift')).parent().find('[data-x]').filter(function(){
-                    if(parseInt($(this).attr('data-x')) > x){
-                        $(this).attr('data-phaselink', true)
-                        return true;
-                    }
-                })
-            }
+            this.set('rowComponent.breakLink', this.toggleProperty('breakLink'));
+            this.get('rowComponent').getRelatedPhases();
         },
     }// actions
 });

@@ -21,6 +21,7 @@ export default Ember.Component.extend(Webcel, {
             }
         }
         this.set('row', this.$().parent().find('.row')[0]);
+        this.set('rowComponent', this);
 
         this.constants.webcel.setup({
             row: this.get('row'), // the row being edited
@@ -59,6 +60,28 @@ export default Ember.Component.extend(Webcel, {
                 .addClass('active')
                 .attr('data-phaselink', true);
 
+            this.getRelatedPhases();
+        }
+    },
+
+    getRelatedPhases: function(){
+        // link all phases together if they are to the right of current phase
+        if(!this.breakLink){
+            var x = parseInt($(this.get('phaseToShift')).attr('data-x'));
+            var links = $(this.get('phaseToShift')).parent().find('[data-x]').filter(function(){
+                if(parseInt($(this).attr('data-x')) > x){
+                    $(this).attr('data-phaselink', true)
+                    return true;
+                }
+            })
+        }
+        else { // remove the links & update their new positions
+            var self = this;
+            var links = $(this.get('phaseToShift')).parent().find('[data-phaselink]').filter(function(){
+                if(this != self.get('phaseToShift'))
+                    $(this).removeAttr('data-phaselink')
+                return true;
+            })
         }
     },
 
