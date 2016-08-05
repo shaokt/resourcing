@@ -101,6 +101,7 @@ export default Ember.Component.extend(Webcel, {
     resetPhaseToShiftPosition: function(){
         $(this.get('phaseToShift')).attr('data-x', parseInt($(this.get('phaseToShift')).attr('data-x')) + this.get('shiftHorizontal'));
         this.set('shiftHorizontal', 0);
+        this.set('shiftVertical', 0);
     },
 
     actions:{

@@ -59,8 +59,6 @@ export default Ember.Component.extend(KeyDownMixin, {
     // update the edited phases so they are in the store upon save
     updatePhases: function(){
         this.set('shiftPhase', false);
-        this.set('rowComponent.shiftHorizontal', 0);
-        this.set('rowComponent.shiftVertical', 0);
 
         try{
             $(this.get('phaseToShift'))
@@ -96,6 +94,7 @@ export default Ember.Component.extend(KeyDownMixin, {
             $(this.get('currentRadio')).prop('checked', false);
             this.set('assignment.stampPhase', null);
             this.unbindKeyDown();
+            this.get('rowComponent').updateRelatedPhasesPosition();
             this.updatePhases();
         },
 
