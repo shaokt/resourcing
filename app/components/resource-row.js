@@ -9,6 +9,8 @@ const { service }=inject;
 export default Ember.Component.extend(Webcel, {
     dragSource: null,
     store: service(),
+    shiftHorizontal: 0, // how many pixels left or right to move the related phases during shifting
+    shiftVertical: 0, // how many pixels up or down to move the related phases during shifting
 
     // row available for editing/painting
     edit: function(){
@@ -76,13 +78,17 @@ export default Ember.Component.extend(Webcel, {
             })
         }
         else { // remove the links & update their new positions
-            var self = this;
-            var links = $(this.get('phaseToShift')).parent().find('[data-phaselink]').filter(function(){
-                if(this != self.get('phaseToShift'))
-                    $(this).removeAttr('data-phaselink')
-                return true;
-            })
+            this.updateRelatedPhasesPosition();
         }
+    },
+
+    updateRelatedPhasesPosition: function(){
+        var self = this;
+        var links = $(this.get('phaseToShift')).parent().find('[data-phaselink]').filter(function(){
+            if(this != self.get('phaseToShift'))
+                $(this).removeAttr('data-phaselink')
+            return true;
+        })
     },
 
     actions:{

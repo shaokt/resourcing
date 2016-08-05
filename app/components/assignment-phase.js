@@ -9,8 +9,6 @@ export default Ember.Component.extend(KeyDownMixin, {
         return 'phase' + this.get('label');
     }),
     breakLink:false, // if true, do not move the phase in sync
-    shiftHorizontal: 0, // how many pixels left or right to move the related phases during shifting
-    shiftVertical: 0, // how many pixels up or down to move the related phases during shifting
 
     /* move the phases around when active
      * @event   the event
@@ -21,34 +19,34 @@ export default Ember.Component.extend(KeyDownMixin, {
         if(fromBinding && !event.target.type && [32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
             event.preventDefault();
             if(this.get('phaseToShift')){
-                var x = parseInt($(this.get('phaseToShift')).attr('data-x')) + this.get('shiftHorizontal');
-                var y = parseInt($(this.get('phaseToShift')).attr('data-y')) + this.get('shiftVertical');
+                var x = parseInt($(this.get('phaseToShift')).attr('data-x')) + this.get('rowComponent.shiftHorizontal');
+                var y = parseInt($(this.get('phaseToShift')).attr('data-y')) + this.get('rowComponent.shiftVertical');
 
     			switch (event.keyCode){
                     case 37: { // left
                         if(x > 0){
-                            this.set('shiftHorizontal', this.get('shiftHorizontal') - this.constants.DIM);
+                            this.set('rowComponent.shiftHorizontal', this.get('rowComponent.shiftHorizontal') - this.constants.DIM);
                             //$(ph).attr('data-x', x -= this.constants.DIM);
                         }
                         break;
                     }
                     case 38: { // up
                         if(y > 0){
-                            this.set('shiftVertical', this.get('shiftVertical') - this.constants.DIM);
+                            this.set('rowComponent.shiftVertical', this.get('rowComponent.shiftVertical') - this.constants.DIM);
                             //$(ph).attr('data-y', y -= this.constants.DIM);
                         }
                         break;
                     }
                     case 39: { // right
                         if(x < this.constants.calWidth - this.constants.DIM){
-                            this.set('shiftHorizontal', this.get('shiftHorizontal') + this.constants.DIM);
+                            this.set('rowComponent.shiftHorizontal', this.get('rowComponent.shiftHorizontal') + this.constants.DIM);
                             //$(ph).attr('data-x', x += this.constants.DIM);
                         }
                         break;
                     }
                     case 40: { // down
                         if(y < this.constants.DIM*3){
-                            this.set('shiftVertical', this.get('shiftVertical') + this.constants.DIM);
+                            this.set('rowComponent.shiftVertical', this.get('rowComponent.shiftVertical') + this.constants.DIM);
                             //$(ph).attr('data-y', y += this.constants.DIM);
                         }
                         break;
@@ -61,8 +59,8 @@ export default Ember.Component.extend(KeyDownMixin, {
     // update the edited phases so they are in the store upon save
     updatePhases: function(){
         this.set('shiftPhase', false);
-        this.set('shiftHorizontal', 0);
-        this.set('shiftVertical', 0);
+        this.set('rowComponent.shiftHorizontal', 0);
+        this.set('rowComponent.shiftVertical', 0);
 
         try{
             $(this.get('phaseToShift'))

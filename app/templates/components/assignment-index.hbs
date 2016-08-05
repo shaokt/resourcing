@@ -29,6 +29,10 @@
             row=row
             rowComponent=rowComponent
         }}
+        <style>
+            [data-phaselink]{ margin-left:{{rowComponent.shiftHorizontal}}px; }
+            [data-phaselink].active{ margin-top:{{rowComponent.shiftVertical}}px; }
+        </style>
     </section>
     {{/if}}
 {{/each}}
