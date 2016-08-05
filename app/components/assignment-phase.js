@@ -83,6 +83,7 @@ export default Ember.Component.extend(KeyDownMixin, {
 
         // user wants to shift phases around
         shift() {
+            if(this.get('shiftPhase')) return; // prevents bindKeyDown multiple times
             this.set('shiftPhase', true);
             this.set('currentRadio', event.target);
             this.set('rowComponent.breakLink', this.breakLink);

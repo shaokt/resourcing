@@ -48,6 +48,7 @@ export default Ember.Component.extend(Webcel, {
 
     getPhase: function(x, y){
         var phaseToShift = $(this.row).find('.phases [data-x="' + x +'"][data-y="' + y + '"]')
+        if(phaseToShift[0] === this.get('phaseToShift')) return; // do nothing if clicking the same phase to move around
 
         if(phaseToShift.length){
             try {

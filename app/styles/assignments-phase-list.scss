@@ -31,6 +31,13 @@
                     color:#fff;
                 }
             }
+            &[disabled]{
+                visibility:hidden;
+                + label {
+                    color:red;
+                    opacity:.5;
+                }
+            }
         }
 
         &.phasePLT { clear:left; }
@@ -111,7 +118,7 @@
                 display:inline-block;
 
                 &.ok {
-                    background:#000;
+                    background:#2BB217;
                     border-radius:2px;
                     color:#fff;
                     margin:0 5px;
