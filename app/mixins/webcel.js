@@ -62,6 +62,10 @@ export default Ember.Mixin.create(CalendarWidget, {
     			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
     				var thisTile = $(clone).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
     				thisTile.remove();
+                    if(this.get('router.currentRouteName') === 'assignments.index' && empty) {
+        				var thisPhase = $(clone).find('.phases [data-x="' + x +'"][data-y="' + y + '"]');
+        				thisPhase.remove();
+                    }
 
     				if(!empty){ // repaint area if delete tile not chosen
                         var holidayTile = this.constants.daily ? this.constants.holidayColumns.contains(x) : false;
@@ -92,24 +96,34 @@ export default Ember.Mixin.create(CalendarWidget, {
 		}// for x-axis
 
 		addTiles = ($(clone).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
+		//phases = ($(clone).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim() + phases).htmlSafe();
 
         this.constants.daily ?
             this.data.set('timeaway', addTiles) :
             this.data.set('assignment', addTiles);
 
+        // update the phaes in case they were shifted, deleted etc
+        if(this.get('router.currentRouteName') === 'assignments.index') {
+            this.data.set('phases', ($(clone).find('.phases')[0].innerHTML).htmlSafe());
+        }
+
 		$(this.sizer).hide();
         this.downX = this.upX = 0;
-    },
+    },//getTiles
 
     setPhase: function(){
         // only create the phase stamp if a phase is selected
         if(this.data.get('stampPhase')) {
             var clone = $(this.row).clone(); // clone needed for removing tiles if applicable
+            var exists = $(clone).find('.phases [data-x="' + this.downX + '"][data-y="' + this.downY + '"]');
+
+            // remove any existing phases so that they do not overlap
+            if(exists.length){ $(exists)[0].remove(); }
+
             var stamp = "";
             var phase = 'data-phase="' + this.data.get('stampPhase') + '"';
     		stamp+=
-                '<span data-type="tile" data-stamp="true"' + phase + ' data-x="' + this.downX + '" data-y="' + this.downY + '"' +
-                '"></span>';
+                '<span data-type="tile" data-stamp="true"' + phase + ' data-x="' + this.downX + '" data-y="' + this.downY + '"></span>';
 
     		stamp = ($(clone).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim() + stamp).htmlSafe();
             this.data.set('phases', stamp);
@@ -122,6 +136,7 @@ export default Ember.Mixin.create(CalendarWidget, {
         this.constants.webcel = this;
         this.row = params.row;
         this.data = params.data;
+        this.rowComponent = params.rowComponent;
 
         var self = this;
         setTimeout(function(){
@@ -156,17 +171,25 @@ export default Ember.Mixin.create(CalendarWidget, {
         }
 
 		mouseDown = function(e){
-			self.downX = e.pageX - $(this).offset().left;
-            if(self.downX < self.constants.prevYear && self.get('router.currentRouteName') === 'home') return;
-			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
-			self.downY = e.pageY  - $(this).offset().top
-			self.downY = self.downY - self.downY%self.constants.DIM;
+            // clicking on the stamp that you want to move around
+            if(self.rowComponent.get('shiftPhase')){
+                self.downX = self.upX = $(e.target).attr('data-x');
+                self.downY = self.upY = $(e.target).attr('data-y');
+            }
+            else {
+    			self.downX = e.pageX - $(this).offset().left;
+                if(self.downX < self.constants.prevYear && self.get('router.currentRouteName') === 'home') return;
+    			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
+    			self.downY = e.pageY  - $(this).offset().top
+    			self.downY = self.downY - self.downY%self.constants.DIM;
 
-            self.downY > self.maxY ? self.downY = self.maxY : 0;
-            self.upY = self.downY;
+                self.downY > self.maxY ? self.downY = self.maxY : 0;
+                self.upY = self.downY;
+            }
 
 			switch (e.which){
 				case 1: { // left mouse button
+                    if(self.rowComponent.get('shiftPhase')) break;; // do not paint if the user wants to shift the phases around
                     if(!self.isDown){
             			self.isDown = 1;
                         /*
@@ -177,10 +200,8 @@ export default Ember.Mixin.create(CalendarWidget, {
                     break;
                 }
 				case 3: { // right click: stamp
-
                     // stamps limited to phases of the project defined in the assignment-phases component
                     if(self.get('router.currentRouteName') === 'assignments.index') {
-                        //console.log(self.data.get('stampPhase'))
                         self.setPhase(e);
                     }
                     // stamps  the short name of the project on the project tile
@@ -188,7 +209,6 @@ export default Ember.Mixin.create(CalendarWidget, {
     					var thisTile = $(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
                         if(thisTile.attr('data-stamp') == "true"){ thisTile.removeAttr('data-stamp') }
                         else{ thisTile.attr('data-stamp', true) }
-
 
                 		var addTiles = ($(self.row).find(".tiles")[0].innerHTML.replace(/<!---->/gi, '').trim()).htmlSafe();
                         self.constants.daily ?
@@ -203,19 +223,24 @@ export default Ember.Mixin.create(CalendarWidget, {
 		mouseUp = function(e){
 			switch (e.which){
 				case 1: { // left mouse
-                    self.resize(e);
-                    self.getTiles(e);
-					self.isDown = 0;
+                    if(self.rowComponent.get('shiftPhase')){
+                        self.rowComponent.getPhase(self.upX, self.upY);
+                    }
+                    else{
+                        self.resize(e);
+                        self.getTiles(e);
+                        self.isDown = 0;
+                    }
                 }
             }
-        }
+        }// mouseUp
 
         $(this.row).bind('mousemove', movePointer);
         $(this.row).bind('mousedown', mouseDown).bind('contextmenu', function(e){e.preventDefault();});
         $(this.row).bind('mouseup', mouseUp);
 
         return this;
-    },
+    },// setup
 
     done: function(){
         $(this.row).unbind('mousemove');

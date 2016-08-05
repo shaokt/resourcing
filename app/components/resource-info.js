@@ -26,6 +26,8 @@ export default ResourceRowComponent.extend({
         editing() {
             this.toggleProperty('editing');
             this.set("resource.active", this.editing);
+            this.set('shiftPhase', false); // reset so that the row doesn't go opaque on edit of next row
+            
             if(this.editing == true){
                 this.edit();
                 this.set('constants.editingRow', true);

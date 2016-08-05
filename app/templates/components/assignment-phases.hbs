@@ -1,10 +1,15 @@
-{{assignment-phase label="REQ" editType=editType assignment=assignment}}
-{{assignment-phase label="SPR" editType=editType assignment=assignment}}
-{{assignment-phase label="DIT" editType=editType assignment=assignment}}
-{{assignment-phase label="SIT" editType=editType assignment=assignment}}
-{{assignment-phase label="UAT" editType=editType assignment=assignment}}
-{{assignment-phase label="PLT" editType=editType assignment=assignment}}
-{{assignment-phase label="BAT" editType=editType assignment=assignment}}
-{{assignment-phase label="FRZ" editType=editType assignment=assignment}}
-{{assignment-phase label="PRD" editType=editType assignment=assignment}}
-{{assignment-phase label="WTY" editType=editType assignment=assignment}}
+
+{{#if shift}}
+    {{assignment-phase label="Shift" assignment=assignment shift=true shiftPhase=shiftPhase phaseToShift=phaseToShift row=row rowComponent=rowComponent}}
+{{else}}
+    {{assignment-phase label="REQ" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift row=row}}
+    {{assignment-phase label="SPR" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift row=row}}
+    {{assignment-phase label="DIT" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift row=row}}
+    {{assignment-phase label="SIT" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift row=row}}
+    {{assignment-phase label="UAT" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift row=row}}
+    {{assignment-phase label="PLT" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift row=row}}
+    {{assignment-phase label="BAT" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift row=row}}
+    {{assignment-phase label="FRZ" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift row=row}}
+    {{assignment-phase label="PRD" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift row=row}}
+    {{assignment-phase label="WTY" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift row=row}}
+{{/if}}

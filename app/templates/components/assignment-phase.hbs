@@ -1,2 +1,19 @@
-{{input type="radio" id=id name="phase" action="setStamp" on="focus-in"}}
-<label for="phase{{label}}">{{label}}</label>
+{{#if shift}}
+    {{input type="radio" id=id name="phase" action="shift" on="focus-in"}}
+    <label for="phase{{label}}">
+        <span class="verticalArrow"></span>
+        <span class="horizontalArrow"></span>
+    </label>
+
+    {{#if shiftPhase}}
+        <a href="/" class="link" data-break="{{breakLink}}" {{action "togglePhaseLink"}}><span class="middleLink"><span></span></span></a>
+        <a href="/" class="ok" {{action "shiftDone"}}>OK</a>
+    {{/if}}
+{{else}}
+    {{#if shiftPhase}}
+        {{input type="radio" id=id name="phase" action="setStamp" on="focus-in" disabled="disabled"}}
+    {{else}}
+        {{input type="radio" id=id name="phase" action="setStamp" on="focus-in"}}
+    {{/if}}
+    <label for="phase{{label}}">{{label}}</label>
+{{/if}}

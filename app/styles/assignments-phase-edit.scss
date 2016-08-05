@@ -1,0 +1,43 @@
+// the view when choosing to edit the phase stamps
+[data-shift="true"] {
+    cursor:default;
+
+    .tiles {
+        opacity:.4;
+    }
+
+    .phases {
+        [data-type="tile"] {
+            &:after {
+                border:1px solid rgba(255,255,255,.7);
+                border-radius:2px;
+                cursor:pointer;
+                padding-top:2px;
+            }
+
+            &[data-phaselink="true"] {
+                &:after {
+                    border:2px solid rgba(0,0,0,.7);
+                    background:#fff;
+                    color:#000;
+                }
+
+                &.active {
+                    &:after {
+                        box-shadow:0 0 2px 2px #fffc00;
+                    }
+                }
+            }
+
+            &:hover {
+                &:after {
+                    border-color:#fff;
+                }
+            }
+        }
+    }// phases
+
+    .pointer {
+        display:none;
+    }
+}
