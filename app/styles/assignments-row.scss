@@ -37,6 +37,16 @@
 
             @import "assignments-phase-list.scss";
             @import "assignments-phase-edit.scss";
+
+            > .row {
+                background: repeating-linear-gradient(
+                    90deg,
+                    #d3d3d3,
+                    #d3d3d3 15px,
+                    #c1c1c1 15px,
+                    #c1c1c1 30px
+                );
+            }
         }//data-active
     }//main
 
