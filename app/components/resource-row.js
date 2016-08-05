@@ -51,6 +51,7 @@ export default Ember.Component.extend(Webcel, {
         if(phaseToShift[0] === this.get('phaseToShift')) return; // do nothing if clicking the same phase to move around
 
         if(phaseToShift.length){
+            this.updateRelatedPhasesPosition(); // choosing another phase, udpate all related phase positions first
             try {
                 $(this.get('phaseToShift'))
                     .removeAttr('class')
@@ -100,7 +101,9 @@ export default Ember.Component.extend(Webcel, {
 
     // when breaking and unbreaking the link, reset the phase being shift's position for proper calculations
     resetPhaseToShiftPosition: function(){
-        $(this.get('phaseToShift')).attr('data-x', parseInt($(this.get('phaseToShift')).attr('data-x')) + this.get('shiftHorizontal'));
+        var pts = $(this.get('phaseToShift'));
+        pts.attr('data-x', parseInt(pts.attr('data-x')) + this.get('shiftHorizontal'));
+        pts.attr('data-y', parseInt(pts.attr('data-y')) + this.get('shiftVertical'));
         this.set('shiftHorizontal', 0);
         this.set('shiftVertical', 0);
     },
