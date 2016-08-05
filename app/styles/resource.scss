@@ -138,6 +138,13 @@ section.resourceRow {
                 display:block;
             }
 
+            &[data-stamping="false"] {
+                cursor:default;
+                .pointer {
+                    display:none;
+                }
+            }
+
             .holidayLine {
                 border:none;
                 box-shadow:0px 1px 1px 1px #fff;

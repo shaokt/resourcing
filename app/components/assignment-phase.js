@@ -77,6 +77,7 @@ export default Ember.Component.extend(KeyDownMixin, {
         setStamp() {
             this.set('assignment.stampPhase', this.get('label'))
             this.set('currentRadio', event.target);
+            this.set('stampPhase', true);
             this.unbindKeyDown();
             this.updatePhases(); // need to update in case of switching out of the shift radio option
         },

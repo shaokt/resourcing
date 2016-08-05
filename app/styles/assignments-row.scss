@@ -38,7 +38,7 @@
             @import "assignments-phase-list.scss";
             @import "assignments-phase-edit.scss";
 
-            > .row {
+            > [data-stamping="false"].row {
                 background: repeating-linear-gradient(
                     90deg,
                     #d3d3d3,

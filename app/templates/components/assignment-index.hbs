@@ -6,7 +6,7 @@
         data-name="{{assignment.short}}"
         data-id="{{assignment.id}}"
     >
-    	<div class="row" data-view="assignment" data-shift="{{shiftPhase}}">
+    	<div class="row" data-view="assignment" data-shift="{{shiftPhase}}" data-stamping="{{stampPhase}}">
             {{#if settings.isDailyCalendar}}
                 {{calendar-holiday-tiles}}
             {{/if}}
@@ -25,6 +25,7 @@
             viewPeopleAssigned=viewPeopleAssigned
             persons=persons
             shiftPhase=shiftPhase
+            stampPhase=stampPhase
             phaseToShift=phaseToShift
             row=row
             rowComponent=rowComponent

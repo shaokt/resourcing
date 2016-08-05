@@ -86,6 +86,23 @@
                     &[data-y="15"]{ top:15px; }
                     &[data-y="30"]{ top:30px; }
                     &[data-y="45"]{ top:45px; }
+
+                    &[data-assignment] {
+                        &:after, &:before {
+                            background:#fff;
+                            content:"";
+                            cursor:ew-resize;
+                            display:block;
+                            height:100%;
+                            opacity:.5;
+                            position:absolute;
+                            width:5px;
+                        }
+                        &:after { right:0; }
+                        &:before { left:0; }
+                    }
+
+
                 }
 
                 [data-stamp="true"]{
