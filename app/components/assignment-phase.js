@@ -69,7 +69,7 @@ export default Ember.Component.extend(KeyDownMixin, {
                     $(this).removeAttr('data-phaselink');
                 })
 
-            var editedPhases = ($(this.get('row')).find('.phases')[0].innerHTML).htmlSafe();
+            var editedPhases = ($(this.get('row')).find('.phases')[0].innerHTML.replace(/<!---->/g, '')).htmlSafe()
             this.set('assignment.phases', editedPhases);
         }catch(e){} // no action taken, nothing to update
     },

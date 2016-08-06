@@ -8,4 +8,7 @@
 {{assignment-phase label="FRZ" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
 {{assignment-phase label="PRD" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
 {{assignment-phase label="WTY" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
-{{assignment-phase label="Shift" assignment=assignment shift=true shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row rowComponent=rowComponent current=current}}
+{{#if hasPhases}}
+    {{assignment-phase label="DEL" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
+    {{assignment-phase label="Shift" assignment=assignment shift=true shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row rowComponent=rowComponent current=current}}
+{{/if}}
