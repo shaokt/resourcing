@@ -22,21 +22,22 @@ export default Ember.Component.extend(Webcel, {
                 $('.tileOptions a')[0].click();
             }
         }
+        else if(this.get('router.currentRouteName') === 'assignments.index') {
+            //if empty, place a block 3 columns wide centering on today's marker
+            if(!this.get('assignment.w')){
+                var col = this.constants.todayColumn;
+                col -= col > 0 ? this.constants.DIM : 0;
+
+                var width = this.constants.DIM * (this.constants.todayColumn == this.constants.calWidth - this.constants.DIM ? 2 : 3);
+
+                this.set('assignment.w', width);
+                this.set('assignment.x', col);
+            }
+            this.set('assignment.minWidth', this.constants.DIM * 3);
+        }
+
         this.set('row', this.$().parent().find('.row')[0]);
         this.set('rowComponent', this);
-
-        // if empty
-        if(!this.get('assignment.w')){
-            var col = this.constants.todayColumn;
-            col -= col > 0 ? this.constants.DIM : 0;
-
-            var width = this.constants.DIM * (this.constants.todayColumn == this.constants.calWidth - this.constants.DIM ? 2 : 3);
-
-            //var initTile = '<span data-assignment="' + this.get('assignment.id')+ '" data-type="tile" data-x="' + col + '" data-y="0" style="width:' + width + 'px"></span>'
-            //this.set('assignment.assignment', initTile);
-            this.set('assignment.w', width);
-            this.set('assignment.x', col);
-        }
 
         this.constants.webcel.setup({
             row: this.get('row'), // the row being edited

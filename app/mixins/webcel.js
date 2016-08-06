@@ -130,6 +130,25 @@ export default Ember.Mixin.create(CalendarWidget, {
         }
     },
 
+    dragAssignmentHandle:function(){
+        if(this.handle) {
+            var newWidth = this.get('rowComponent.assignment.originalWidth');
+
+            if(this.handle === "left"){
+                newWidth += this.downX - this.upX;
+                newWidth >= this.get('rowComponent.assignment.minWidth') ? this.set('rowComponent.assignment.x', this.upX) : 0;
+            }
+            else if(this.handle === "right") {
+                newWidth += this.upX - this.downX;
+            }
+
+            newWidth = Math.max(this.get('rowComponent.assignment.minWidth'), newWidth); // minimum width
+            if(this.get('rowComponent.assignment.x') + newWidth <= this.constants.calWidth){ // maximum width
+                this.set('rowComponent.assignment.w', newWidth);
+            }
+        }
+    },
+
     //setup: function(obj, emData){
     setup: function(params){
         var movePointer, mouseDown, mouseUp;
@@ -148,7 +167,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 
         movePointer = function(e){
     		self.x = e.pageX - $(this).offset().left;
-    		self.x = self.x - self.x%self.constants.DIM ;
+    		self.x = self.x - self.x%self.constants.DIM;
     		self.y = e.pageY  - $(this).offset().top;
     		self.y = self.y - self.y%self.constants.DIM;
             self.y > self.maxY ? self.y = self.maxY : 0;
@@ -166,20 +185,7 @@ export default Ember.Mixin.create(CalendarWidget, {
                 self.upY > self.maxY ? self.upY = self.maxY : 0;
 
                 if(self.get('router.currentRouteName') === 'assignments.index'){
-                    if(self.handle) {
-                        if(self.handle === "left"){
-                            self.set('rowComponent.assignment.x', self.upX);
-                            var newWidth = self.get('rowComponent.assignment.originalWidth') - self.upX + self.downX;
-                            newWidth = newWidth < (self.constants.DIM * 2) ? (self.constants.DIM * 2) : newWidth;
-                        }
-                        else if(self.handle === "right") {
-                            var newWidth = self.get('rowComponent.assignment.originalWidth') + self.upX - self.downX;
-                            newWidth = newWidth < (self.constants.DIM * 2) ? (self.constants.DIM * 2) : newWidth; // minimum width
-                        }
-                        if(self.get('rowComponent.assignment.x') + newWidth <= self.constants.calWidth){
-                            self.set('rowComponent.assignment.w', newWidth);
-                        }
-                    }
+                    self.dragAssignmentHandle();
                 }
                 else{
     				self.resize(e);
