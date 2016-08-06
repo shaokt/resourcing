@@ -147,27 +147,43 @@ export default Ember.Mixin.create(CalendarWidget, {
         var self = this;
 
         movePointer = function(e){
-    		self.x = e.pageX - $(this).offset().left;
-    		self.x = self.x - self.x%self.constants.DIM ;
-    		self.y = e.pageY  - $(this).offset().top;
-    		self.y = self.y - self.y%self.constants.DIM;
-            self.y > self.maxY ? self.y = self.maxY : 0;
+        		self.x = e.pageX - $(this).offset().left;
+        		self.x = self.x - self.x%self.constants.DIM ;
+        		self.y = e.pageY  - $(this).offset().top;
+        		self.y = self.y - self.y%self.constants.DIM;
+                self.y > self.maxY ? self.y = self.maxY : 0;
 
-            // only allow the pointer to move if it is not in the un-editable area
-            if(self.x >= self.constants.prevYear || self.get('router.currentRouteName') != 'home'){ $(self.pointer).css({left:self.x}); }
-            $(self.pointer).css({top:self.y});
+                // only allow the pointer to move if it is not in the un-editable area
+                if(self.x >= self.constants.prevYear || self.get('router.currentRouteName') != 'home'){ $(self.pointer).css({left:self.x}); }
+                $(self.pointer).css({top:self.y});
 
-            if(self.isDown){
-				self.upX = e.pageX  - $(this).offset().left;
-				self.upX = self.upX - self.upX%self.constants.DIM;
+                if(self.isDown){
+    				self.upX = e.pageX  - $(this).offset().left;
+    				self.upX = self.upX - self.upX%self.constants.DIM;
 
-				self.upY = e.pageY  - $(this).offset().top;
-				self.upY = self.upY - self.upY%self.constants.DIM;
-                self.upY > self.maxY ? self.upY = self.maxY : 0;
+    				self.upY = e.pageY  - $(this).offset().top;
+    				self.upY = self.upY - self.upY%self.constants.DIM;
+                    self.upY > self.maxY ? self.upY = self.maxY : 0;
 
-				self.resize(e);
-				$(self.sizer).show();
-			}
+                    if(self.get('router.currentRouteName') === 'assignments.index'){
+                        if(self.handle) {
+                            if(self.handle === "left"){
+                                self.set('rowComponent.assignment.x', self.upX);
+                                var newWidth = self.get('rowComponent.assignment.originalWidth') - self.upX + self.downX;
+                                newWidth = newWidth < (self.constants.DIM * 2) ? (self.constants.DIM * 2) : newWidth;
+                            }
+                            else if(self.handle === "right") {
+                                var newWidth = self.get('rowComponent.assignment.originalWidth') + self.upX - self.downX;
+                                newWidth = newWidth < (self.constants.DIM * 2) ? (self.constants.DIM * 2) : newWidth;
+                            }
+                            self.set('rowComponent.assignment.w', newWidth);
+                        }
+                    }
+                    else{
+        				self.resize(e);
+        				$(self.sizer).show();
+                    }
+    			}
         }
 
 		mouseDown = function(e){
@@ -190,13 +206,11 @@ export default Ember.Mixin.create(CalendarWidget, {
 			switch (e.which){
 				case 1: { // left mouse button
                     if(self.rowComponent.get('shiftPhase')) break;; // do not paint if the user wants to shift the phases around
-                    if(!self.isDown){
-            			self.isDown = 1;
-                        /*
-                        //self.resize(e);
-						sizer.show();
-                        */
+                    if(self.get('router.currentRouteName') === 'assignments.index'){
+                        self.handle = $(e.target).hasClass('handle') ? $(e.target).hasClass('left') ? "left" : "right" : false;
+                        self.set('rowComponent.assignment.originalWidth', self.get('rowComponent.assignment.w'));
                     }
+                    if(!self.isDown){ self.isDown = 1; }
                     break;
                 }
 				case 3: { // right click: stamp
@@ -227,8 +241,10 @@ export default Ember.Mixin.create(CalendarWidget, {
                         self.rowComponent.getPhase(self.upX, self.upY);
                     }
                     else{
-                        self.resize(e);
-                        self.getTiles(e);
+                        if(self.get('router.currentRouteName') !== 'assignments.index'){
+                            self.resize(e);
+                            self.getTiles(e);
+                        }
                         self.isDown = 0;
                     }
                 }

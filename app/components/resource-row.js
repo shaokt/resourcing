@@ -25,14 +25,17 @@ export default Ember.Component.extend(Webcel, {
         this.set('row', this.$().parent().find('.row')[0]);
         this.set('rowComponent', this);
 
-        if(this.get('assignment.assignment') === ''){
+        // if empty
+        if(!this.get('assignment.w')){
             var col = this.constants.todayColumn;
             col -= col > 0 ? this.constants.DIM : 0;
 
             var width = this.constants.DIM * (this.constants.todayColumn == this.constants.calWidth - this.constants.DIM ? 2 : 3);
 
-            var initTile = '<span data-assignment="' + this.get('assignment.id')+ '" data-type="tile" data-x="' + col + '" data-y="0" style="width:' + width + 'px"></span>'
-            this.set('assignment.assignment', initTile);
+            //var initTile = '<span data-assignment="' + this.get('assignment.id')+ '" data-type="tile" data-x="' + col + '" data-y="0" style="width:' + width + 'px"></span>'
+            //this.set('assignment.assignment', initTile);
+            this.set('assignment.w', width);
+            this.set('assignment.x', col);
         }
 
         this.constants.webcel.setup({

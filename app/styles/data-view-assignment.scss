@@ -88,22 +88,51 @@
                     &[data-y="45"]{ top:45px; }
 
                     &[data-assignment] {
-                        &:after, &:before {
-                            background:#fff;
+                        .handle {
+                            background:transparent;
                             content:"";
+                            display:table;
                             cursor:ew-resize;
-                            display:block;
                             height:100%;
                             opacity:.5;
                             position:absolute;
-                            width:5px;
-                        }
-                        &:after { right:0; }
-                        &:before { left:0; }
-                    }
+                            width:15px;
 
+                            &:hover {
+                                background:rgba(0,0,0,.3);
+                                opacity:.8;
 
-                }
+                                &:before {
+                                    display:table-cell;
+                                    text-align:center;
+                                    vertical-align:middle;
+                                }
+                            }
+
+                            &:first-child {
+                                border-left:5px solid #fff;
+                                left:0;
+
+                                &:hover {
+                                    &:before {
+                                        content:"\25C0";
+                                    }
+                                }
+                            }
+                            
+                            &:last-child {
+                                border-right:5px solid #fff;
+                                right:0;
+
+                                &:hover {
+                                    &:before {
+                                        content:"\25B6";
+                                    }
+                                }
+                            }
+                        }// handle
+                    }// data-assignment
+                }// data-type tile
 
                 [data-stamp="true"]{
                     &:hover:before {
