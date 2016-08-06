@@ -3,12 +3,14 @@ import KeyDownMixin from "../mixins/keydown";
 
 export default Ember.Component.extend(KeyDownMixin, {
     tagName: 'li',
-    currentRadio: null,
     classNameBindings: ['id'],
     id: Ember.computed('label', function() {
         return 'phase' + this.get('label');
     }),
     breakLink:false, // if true, do not move the phase in sync
+    nonResizable: Ember.computed('stampPhase', 'shiftPhase', function(){ // determine when the assignment block is not resizeable
+        return this.stampPhase || this.shiftPhase;
+    }),
 
     /* move the phases around when active
      * @event   the event
@@ -76,7 +78,7 @@ export default Ember.Component.extend(KeyDownMixin, {
         // assigns the phase of the project to stamp on the tile
         setStamp() {
             this.set('assignment.stampPhase', this.get('label'))
-            this.set('currentRadio', event.target);
+            this.set('current', event.target);
             this.set('stampPhase', true);
             this.unbindKeyDown();
             this.updatePhases(); // need to update in case of switching out of the shift radio option
@@ -86,14 +88,14 @@ export default Ember.Component.extend(KeyDownMixin, {
         shift() {
             if(this.get('shiftPhase')) return; // prevents bindKeyDown multiple times
             this.set('shiftPhase', true);
-            this.set('currentRadio', event.target);
+            this.set('current', event.target);
             this.set('rowComponent.breakLink', this.breakLink);
             this.bindKeyDown();
         },
 
         // done shifting, reset stamps to nothing
         shiftDone() {
-            $(this.get('currentRadio')).prop('checked', false);
+            $(this.get('current')).prop('checked', false);
             this.set('assignment.stampPhase', null);
             this.set('stampPhase', false);
             this.unbindKeyDown();
