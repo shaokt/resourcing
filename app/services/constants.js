@@ -55,7 +55,7 @@ export default Ember.Service.extend({
     },
 
     mouseMoved: function(event){
-    	var pos = event.pageX - 75; // 75 determined via css margin/padding page offset
+    	var pos = event.pageX - 70; // 70 determined via css margin/padding page offset
         var max = this.calWidth - this.DIM;
     	pos = pos - pos%this.DIM;
     	pos <= 0 ? pos = 0 : 0;
