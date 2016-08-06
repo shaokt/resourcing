@@ -95,6 +95,7 @@ export default Ember.Component.extend(KeyDownMixin, {
         shiftDone() {
             $(this.get('currentRadio')).prop('checked', false);
             this.set('assignment.stampPhase', null);
+            this.set('stampPhase', false);
             this.unbindKeyDown();
             this.get('rowComponent').updateRelatedPhasesPosition();
             this.updatePhases();
