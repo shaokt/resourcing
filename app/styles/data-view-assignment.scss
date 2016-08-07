@@ -31,7 +31,7 @@
         &[data-y="45"]{ top:24px; }
 
         &[data-assignment] {
-            height:100%; // for assignments take up the full height of the row
+            height:8px;
         }
     }
 
@@ -86,6 +86,8 @@
                     &[data-y="15"]{ top:15px; }
                     &[data-y="30"]{ top:30px; }
                     &[data-y="45"]{ top:45px; }
+
+                    height:15px;
 
                     &[data-assignment] {
                         .handle {

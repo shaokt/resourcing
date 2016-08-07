@@ -41,3 +41,9 @@
         display:none;
     }
 }
+
+[data-stamping="true"] {
+    .tiles {
+        opacity:.4;
+    }
+}

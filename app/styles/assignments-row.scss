@@ -48,6 +48,12 @@
                 );
             }
         }//data-active
+
+        section.resourceRow [data-type="tile"] {
+            &[data-assignment] {
+                height:100%;
+            }
+        }
     }//main
 
     #todayDateLine {
