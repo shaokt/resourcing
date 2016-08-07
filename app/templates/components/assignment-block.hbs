@@ -1,6 +1,9 @@
 {{#if assignment.w}}
     <style>
         [data-assignment="{{assignment.id}}"] { width:{{widthCalc}}px; }
+        {{#if settings.isDailyCalendar}}
+            [data-assignment="{{assignment.id}}"] { width:{{widthCalcTeamView}}px; }
+        {{/if}}
     </style>
     <div data-assignment="{{assignment.id}}" data-type="tile" data-x="{{assignment.x}}" data-y="0" data-width="{{assignment.w}}">
         {{#if assignment.active}}

@@ -3,10 +3,3 @@
     position:absolute;
     width:15px;
 }
-
-// when viewing an assignment against employees on vacation, change width to accommodate daily view
-[data-view="timeaway"][data-route="assignments.index"] [data-view="assignment"]{
-    [data-type="tile"] {
-        width:75px;
-    }
-}
