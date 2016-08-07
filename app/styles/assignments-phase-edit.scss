@@ -1,6 +1,7 @@
 // the view when choosing to edit the phase stamps
 [data-phase-action="delete"],
-[data-phase-action="shift"] {
+[data-phase-action="shift"],
+[data-phase-action="stamp"] {
     cursor:default;
 
     .tiles {
@@ -44,7 +45,17 @@
 }
 
 [data-phase-action="stamp"] {
-    .tiles {
-        opacity:.4;
+    cursor:none;
+    .phases {
+        [data-type="tile"] {
+            &:after {
+                cursor:none;
+            }
+        }
+    }
+
+    .pointer {
+        display:block;
+        z-index:0;
     }
 }
