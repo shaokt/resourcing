@@ -51,9 +51,22 @@
             }
         }//data-active
 
-        section.resourceRow [data-type="tile"] {
-            &[data-assignment] {
-                height:100%;
+        section.resourceRow[data-type="assignment"] {
+            [data-type="tile"] {
+                &[data-assignment] {
+                    height:100%;
+                }
+            }
+            &:not([data-active="true"]) {
+                .row {
+                    height:40px;
+
+                    [data-type="tile"] {
+                        &[data-y="15"]{ top:10px; }
+                        &[data-y="30"]{ top:20px; }
+                        &[data-y="45"]{ top:30px; }
+                    }
+                }
             }
         }
     }//main
@@ -80,7 +93,7 @@
 
             &:hover {
                 .dateLine {
-                    height:32px;
+                    height:40px;
                 }
             }
 

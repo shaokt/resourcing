@@ -4,6 +4,7 @@
     <section class="resourceRow{{if assignment.hidden ' hidden'}}"
         data-active="{{assignment.active}}"
         data-name="{{assignment.short}}"
+        data-type="assignment"
         data-id="{{assignment.id}}"
     >
     	<div class="row" data-view="assignment" data-phase-action="{{phaseAction}}">
@@ -38,7 +39,7 @@
 {{/each}}
 {{#if settings.isDailyCalendar}}
     {{#each persons as |resource|}}
-        <section class="resourceRow">
+        <section class="resourceRow" data-type="person">
         	<div class="row" data-view="timeOff">
                 {{calendar-holiday-tiles}}
                 <div class="tiles">{{{resource.timeaway}}}</div>
