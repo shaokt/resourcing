@@ -76,17 +76,22 @@ export default Ember.Component.extend(KeyDownMixin, {
     },
 
     actions: {
-        // assigns the phase of the project to stamp on the tile
+        // readies the row for stamping phases onto the project
         setStamp() {
-            this.set('assignment.stampPhase', this.get('label'))
+            this.send('donePhaseAction')
+            this.set('assignment.stampPhase', this.get('label')) // the label to stamp onto the project
             this.set('current', event.target);
-            //this.set('stampPhase', true);
             this.set('phaseAction', "stamp");
-            this.unbindKeyDown();
-            this.updatePhases(); // need to update in case of switching out of the shift radio option
         },
 
-        // user wants to shift phases around
+        // readies the row for deleting individual phases
+        delete(){
+            this.send('donePhaseAction');
+            this.set('current', event.target);
+            this.set('phaseAction', "delete");
+        },
+
+        // readies the row for shifting phases around
         shift() {
             if(this.get('phaseAction') === 'shift') return; // prevents bindKeyDown multiple times
             this.set('phaseAction', "shift");
@@ -95,31 +100,21 @@ export default Ember.Component.extend(KeyDownMixin, {
             this.bindKeyDown();
         },
 
-        // done shifting, reset stamps to nothing
-        shiftDone() {
-            $(this.get('current')).prop('checked', false);
-            this.set('assignment.stampPhase', null);
-            //this.set('stampPhase', false);
-            this.set('phaseAction', "");
-            this.unbindKeyDown();
-            this.get('rowComponent').updateRelatedPhasesPosition();
-            this.updatePhases();
-        },
-
-        delete(){
-            this.updatePhases();
-            /*
-            this.set('stampPhase', false);
-            this.set('deletePhase', true);
-            */
-            this.set('phaseAction', "delete");
-            this.set('current', event.target);
-        },
-
         // toggle between linking the phases together vs separate while moving them around
         togglePhaseLink(){
             this.set('rowComponent.breakLink', this.toggleProperty('breakLink'));
             this.get('rowComponent').getRelatedPhases();
         },
+
+        // done current action, reset states
+        donePhaseAction(endAll) {
+            $(this.get('current')).prop('checked', false);
+            this.get('rowComponent').updateRelatedPhasesPosition();
+            this.updatePhases();
+            this.unbindKeyDown();
+            this.set('phaseToShift', null);
+            this.set('assignment.stampPhase', null);
+            endAll ? this.set('phaseAction', "") : 0;
+        }
     }// actions
 });
