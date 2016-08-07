@@ -29,8 +29,8 @@
                     margin:0;
                     padding-top:0;
 
-                    a {
-                        display:block;
+                    [data-assignment] {
+                        cursor:default;
                     }
                 }
             }//tileOptions
