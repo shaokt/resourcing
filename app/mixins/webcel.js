@@ -96,7 +96,6 @@ export default Ember.Mixin.create(CalendarWidget, {
 		}// for x-axis
 
 		addTiles = ($(clone).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
-		//phases = ($(clone).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim() + phases).htmlSafe();
 
         this.constants.daily ?
             this.data.set('timeaway', addTiles) :
@@ -196,7 +195,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 		mouseDown = function(e){
             // clicking on the stamp that you want to move around
-            if(self.rowComponent.get('phaseAction') === 'shift'){
+            if(self.rowComponent.get('phaseAction').match(/shift|delete/)){
                 self.downX = self.upX = $(e.target).attr('data-x');
                 self.downY = self.upY = $(e.target).attr('data-y');
             }
@@ -248,7 +247,10 @@ export default Ember.Mixin.create(CalendarWidget, {
 			switch (e.which){
 				case 1: { // left mouse
                     if(self.rowComponent.get('phaseAction') === 'shift'){
-                        self.rowComponent.getPhase(self.upX, self.upY);
+                        self.rowComponent.getPhaseShift(self.upX, self.upY);
+                    }
+                    else if(self.rowComponent.get('phaseAction') === 'delete'){
+                        self.rowComponent.getPhaseDelete(self.upX, self.upY);
                     }
                     else{
                         if(self.get('router.currentRouteName') !== 'assignments.index'){

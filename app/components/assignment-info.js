@@ -7,6 +7,9 @@ export default ResourceInfoComponent.extend({
     peopleAssigned: 0,  // if there are people assigned to the assignment from the specified date
     findPeople: {},
     settings: storageFor("settings"),
+    shiftPhase: function(){
+        return this.get('phaseAction') == 'shift';
+    }.property('phaseAction'),
 
     getPeople(org) {
         var self = this;

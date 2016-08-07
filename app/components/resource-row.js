@@ -60,7 +60,8 @@ export default Ember.Component.extend(Webcel, {
     	return false;
     },
 
-    getPhase: function(x, y){
+    // get the phase clicked on for shifting
+    getPhaseShift: function(x, y){
         var phaseToShift = $(this.row).find('.phases [data-x="' + x +'"][data-y="' + y + '"]')
         if(phaseToShift[0] === this.get('phaseToShift')) return; // do nothing if clicking the same phase to move around
 
@@ -96,6 +97,18 @@ export default Ember.Component.extend(Webcel, {
         }
         else { // remove the links & update their new positions
             this.updateRelatedPhasesPosition();
+        }
+    },
+
+    // delete the phase as chosen by user
+    getPhaseDelete: function(x, y){
+        var clone = $(this.row).clone(); // clone needed for removing tiles if applicable
+        var phaseToDelete = $(clone).find('.phases [data-x="' + x +'"][data-y="' + y + '"]')
+        if(phaseToDelete.length){
+            //var phaseContainer = $(phaseToDelete)[0].parentNode;
+            $(phaseToDelete[0]).remove();
+    		var test = ($(clone).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim()).htmlSafe();
+            this.set('assignment.phases', test)
         }
     },
 
