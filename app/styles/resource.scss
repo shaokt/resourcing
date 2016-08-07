@@ -139,7 +139,10 @@ section.resourceRow {
                 display:block;
             }
 
-            &[data-stamping="false"] {
+            &[data-phase-action=""],
+            &[data-phase-action="delete"],
+            &[data-phase-action="shift"]
+             {
                 cursor:default;
                 .pointer {
                     display:none;

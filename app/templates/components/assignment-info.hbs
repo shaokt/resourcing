@@ -20,7 +20,7 @@
             <a href="#" data-assignment="empty" data-stamp="true" class="empty" data-active="{{if assignment.paint false true}}" {{action "select" on="click" event=event}}><span></span></a>
         </li>
     </ul>
-    {{assignment-phases assignment=assignment shift="assignment.phases" shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row rowComponent=rowComponent}}
+    {{assignment-phases assignment=assignment shift="assignment.phases" phaseAction=phaseAction phaseToShift=phaseToShift row=row rowComponent=rowComponent}}
 {{else}}
     <div class="name short" data-type="value">{{assignment.short}}</div>
 {{/if}}

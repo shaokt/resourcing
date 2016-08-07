@@ -196,7 +196,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 		mouseDown = function(e){
             // clicking on the stamp that you want to move around
-            if(self.rowComponent.get('shiftPhase')){
+            if(self.rowComponent.get('phaseAction') === 'shift'){
                 self.downX = self.upX = $(e.target).attr('data-x');
                 self.downY = self.upY = $(e.target).attr('data-y');
             }
@@ -213,7 +213,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 			switch (e.which){
 				case 1: { // left mouse button
-                    if(self.rowComponent.get('shiftPhase')) break;; // do not paint if the user wants to shift the phases around
+                    if(self.rowComponent.get('phaseAction') === 'shift') break;; // do not paint if the user wants to shift the phases around
                     if(self.get('router.currentRouteName') === 'assignments.index'){
                         self.handle = $(e.target).hasClass('handle') ? $(e.target).hasClass('left') ? "left" : "right" : false;
                         self.downX = self.get('rowComponent.assignment.x');
@@ -247,7 +247,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 		mouseUp = function(e){
 			switch (e.which){
 				case 1: { // left mouse
-                    if(self.rowComponent.get('shiftPhase')){
+                    if(self.rowComponent.get('phaseAction') === 'shift'){
                         self.rowComponent.getPhase(self.upX, self.upY);
                     }
                     else{

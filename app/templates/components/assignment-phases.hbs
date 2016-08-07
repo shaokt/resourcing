@@ -1,14 +1,14 @@
-{{assignment-phase label="REQ" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
-{{assignment-phase label="SPR" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
-{{assignment-phase label="DIT" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
-{{assignment-phase label="SIT" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
-{{assignment-phase label="UAT" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
-{{assignment-phase label="PLT" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
-{{assignment-phase label="BAT" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
-{{assignment-phase label="FRZ" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
-{{assignment-phase label="PRD" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
-{{assignment-phase label="WTY" assignment=assignment shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
+{{assignment-phase label="REQ" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current}}
+{{assignment-phase label="SPR" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current}}
+{{assignment-phase label="DIT" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current}}
+{{assignment-phase label="SIT" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current}}
+{{assignment-phase label="UAT" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current}}
+{{assignment-phase label="PLT" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current}}
+{{assignment-phase label="BAT" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current}}
+{{assignment-phase label="FRZ" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current}}
+{{assignment-phase label="PRD" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current}}
+{{assignment-phase label="WTY" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current}}
 {{#if hasPhases}}
-    {{assignment-phase label="DEL" assignment=assignment labelText="X" shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current}}
-    {{assignment-phase label="Shift" assignment=assignment shift=true shiftPhase=shiftPhase phaseToShift=phaseToShift stampPhase=stampPhase row=row current=current rowComponent=rowComponent}}
+    {{assignment-phase label="DEL" assignment=assignment delete=true labelText="X" phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current}}
+    {{assignment-phase label="Shift" assignment=assignment shift=true phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
 {{/if}}

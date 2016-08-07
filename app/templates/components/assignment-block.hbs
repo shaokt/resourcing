@@ -4,12 +4,10 @@
     </style>
     <div data-assignment="{{assignment.id}}" data-type="tile" data-x="{{assignment.x}}" data-y="0" data-width="{{assignment.w}}">
         {{#if assignment.active}}
-            {{#unless stampPhase}}
-                {{#unless shiftPhase}}
-                    <div class="handle left"></div>
-                    <div class="handle right"></div>
-                {{/unless}}
-            {{/unless}}
+            {{#if showHandles}}
+                <div class="handle left"></div>
+                <div class="handle right"></div>
+            {{/if}}
         {{/if}}
     </div>
 {{/if}}
