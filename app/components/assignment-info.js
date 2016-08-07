@@ -41,6 +41,10 @@ export default ResourceInfoComponent.extend({
         if(this.peopleAssigned){
             this.set('settings.view', 'timeaway');
             this.set('constants.dataView', 'timeaway')
+            this.set('constants.teamAsOfEmpty', false);
+        }
+        else {
+            this.set('constants.teamAsOfEmpty', true);
         }
         this.set('peopleAssigned', 0);
     },
@@ -65,6 +69,7 @@ export default ResourceInfoComponent.extend({
         // get vacation of those who are on the project
         viewTeam() {
             this.set('persons', []);
+            this.set('constants.teamAsOfEmpty', false);
             if(this.get('settings.view') === 'timeaway') {
                 this.set('readonly', false);
                 this.set('settings.view', 'assignment')

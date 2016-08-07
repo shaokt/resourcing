@@ -56,6 +56,7 @@ export default Ember.Component.extend({
             var month = this.cal.monthNames[parseInt(RegExp.$2)-1];
             var day = RegExp.$3;
             this.set('constants.teamAsOfDate', month + " " + day + " " + year);
+            this.set('constants.teamAsOfEmpty', false);
             try{ this.cal.teamDate.removeClass('teamDate'); }
             catch(e){} // no team date set, do nothing
             obj.addClass('teamDate');

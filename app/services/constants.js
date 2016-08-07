@@ -16,6 +16,7 @@ export default Ember.Service.extend({
     holidayColumns: [], // values of holiday column values
     teamAsOf: 0,        // view team members of a project from this date
     teamAsOfDate: '',   // human readable date for team view
+    teamAsOfEmpty: '',  // true if there are no team members set for assignment on given date
     teamAssignment: '', // assignment being viewed by team
     teamAssignmentView:false, // initiate flow to customize view for teams within an assignment
     leftScroll: 0,      // how far left the page is scrolled from the left

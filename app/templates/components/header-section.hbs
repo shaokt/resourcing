@@ -167,6 +167,19 @@
                                 {{/unless}}
                             </div>
                         </div>
+                        {{#if constants.teamAsOfEmpty}}
+                            <div class="specs emptyTeam">
+                                <div>
+                                    <p>No one assigned to
+                                        <span class="assignmentInfo"><span class="short"><span>{{constants.teamAssignment.short}}</span></span></span>
+                                        from
+                                        <span class="date"><span><span class="asof">{{constants.teamAsOfDate}}</span></span></span>
+                                        onward.
+                                    </p>
+                                    <p>Choose another date and/or assignment</p>
+                                </div>
+                            </div>
+                        {{/if}}
                     {{/if}}
                 </li>
             {{/if}}
