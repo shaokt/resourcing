@@ -3,12 +3,17 @@ import KeyDownMixin from "../mixins/keydown";
 
 export default Ember.Component.extend(KeyDownMixin, {
     tagName: 'li',
-    currentRadio: null,
     classNameBindings: ['id'],
     id: Ember.computed('label', function() {
         return 'phase' + this.get('label');
     }),
     breakLink:false, // if true, do not move the phase in sync
+    showHandles: Ember.computed('phaseAction', function(){
+        return this.get('phaseAction') === '';
+    }),
+    shiftPhase: function(){
+        return this.get('phaseAction') == 'shift';
+    }.property('phaseAction'),
 
     /* move the phases around when active
      * @event   the event
@@ -58,8 +63,6 @@ export default Ember.Component.extend(KeyDownMixin, {
 
     // update the edited phases so they are in the store upon save
     updatePhases: function(){
-        this.set('shiftPhase', false);
-
         try{
             $(this.get('phaseToShift'))
                 .removeClass('active')
@@ -67,36 +70,34 @@ export default Ember.Component.extend(KeyDownMixin, {
                     $(this).removeAttr('data-phaselink');
                 })
 
-            var editedPhases = ($(this.get('row')).find('.phases')[0].innerHTML).htmlSafe();
+            var editedPhases = ($(this.get('row')).find('.phases')[0].innerHTML.replace(/<!---->/g, '')).htmlSafe()
             this.set('assignment.phases', editedPhases);
         }catch(e){} // no action taken, nothing to update
     },
 
     actions: {
-        // assigns the phase of the project to stamp on the tile
+        // readies the row for stamping phases onto the project
         setStamp() {
-            this.set('assignment.stampPhase', this.get('label'))
-            this.set('currentRadio', event.target);
-            this.unbindKeyDown();
-            this.updatePhases(); // need to update in case of switching out of the shift radio option
+            this.send('donePhaseAction')
+            this.set('assignment.stampPhase', this.get('label')) // the label to stamp onto the project
+            this.set('current', event.target);
+            this.set('phaseAction', "stamp");
         },
 
-        // user wants to shift phases around
+        // readies the row for deleting individual phases
+        delete(){
+            this.send('donePhaseAction');
+            this.set('current', event.target);
+            this.set('phaseAction', "delete");
+        },
+
+        // readies the row for shifting phases around
         shift() {
-            if(this.get('shiftPhase')) return; // prevents bindKeyDown multiple times
-            this.set('shiftPhase', true);
-            this.set('currentRadio', event.target);
+            if(this.get('phaseAction') === 'shift') return; // prevents bindKeyDown multiple times
+            this.set('phaseAction', "shift");
+            this.set('current', event.target);
             this.set('rowComponent.breakLink', this.breakLink);
             this.bindKeyDown();
-        },
-
-        // done shifting, reset stamps to nothing
-        shiftDone() {
-            $(this.get('currentRadio')).prop('checked', false);
-            this.set('assignment.stampPhase', null);
-            this.unbindKeyDown();
-            this.get('rowComponent').updateRelatedPhasesPosition();
-            this.updatePhases();
         },
 
         // toggle between linking the phases together vs separate while moving them around
@@ -104,5 +105,16 @@ export default Ember.Component.extend(KeyDownMixin, {
             this.set('rowComponent.breakLink', this.toggleProperty('breakLink'));
             this.get('rowComponent').getRelatedPhases();
         },
+
+        // done current action, reset states
+        donePhaseAction(endAll) {
+            $(this.get('current')).prop('checked', false);
+            this.get('rowComponent').updateRelatedPhasesPosition();
+            this.updatePhases();
+            this.unbindKeyDown();
+            this.set('phaseToShift', null);
+            this.set('assignment.stampPhase', null);
+            endAll ? this.set('phaseAction', "") : 0;
+        }
     }// actions
 });

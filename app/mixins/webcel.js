@@ -96,7 +96,6 @@ export default Ember.Mixin.create(CalendarWidget, {
 		}// for x-axis
 
 		addTiles = ($(clone).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
-		//phases = ($(clone).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim() + phases).htmlSafe();
 
         this.constants.daily ?
             this.data.set('timeaway', addTiles) :
@@ -130,6 +129,25 @@ export default Ember.Mixin.create(CalendarWidget, {
         }
     },
 
+    dragAssignmentHandle:function(){
+        if(this.handle) {
+            var newWidth = this.get('rowComponent.assignment.originalWidth');
+
+            if(this.handle === "left"){
+                newWidth += this.downX - this.upX;
+                newWidth >= this.get('rowComponent.assignment.minWidth') ? this.set('rowComponent.assignment.x', this.upX) : 0;
+            }
+            else if(this.handle === "right") {
+                newWidth += this.upX - this.downX;
+            }
+
+            newWidth = Math.max(this.get('rowComponent.assignment.minWidth'), newWidth); // minimum width
+            if(this.get('rowComponent.assignment.x') + newWidth <= this.constants.calWidth){ // maximum width
+                this.set('rowComponent.assignment.w', newWidth);
+            }
+        }
+    },
+
     //setup: function(obj, emData){
     setup: function(params){
         var movePointer, mouseDown, mouseUp;
@@ -148,7 +166,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 
         movePointer = function(e){
     		self.x = e.pageX - $(this).offset().left;
-    		self.x = self.x - self.x%self.constants.DIM ;
+    		self.x = self.x - self.x%self.constants.DIM;
     		self.y = e.pageY  - $(this).offset().top;
     		self.y = self.y - self.y%self.constants.DIM;
             self.y > self.maxY ? self.y = self.maxY : 0;
@@ -165,14 +183,19 @@ export default Ember.Mixin.create(CalendarWidget, {
 				self.upY = self.upY - self.upY%self.constants.DIM;
                 self.upY > self.maxY ? self.upY = self.maxY : 0;
 
-				self.resize(e);
-				$(self.sizer).show();
+                if(self.get('router.currentRouteName') === 'assignments.index'){
+                    self.dragAssignmentHandle();
+                }
+                else{
+    				self.resize(e);
+    				$(self.sizer).show();
+                }
 			}
         }
 
 		mouseDown = function(e){
             // clicking on the stamp that you want to move around
-            if(self.rowComponent.get('shiftPhase')){
+            if(self.rowComponent.get('phaseAction').match(/shift|delete/)){
                 self.downX = self.upX = $(e.target).attr('data-x');
                 self.downY = self.upY = $(e.target).attr('data-y');
             }
@@ -189,14 +212,14 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 			switch (e.which){
 				case 1: { // left mouse button
-                    if(self.rowComponent.get('shiftPhase')) break;; // do not paint if the user wants to shift the phases around
-                    if(!self.isDown){
-            			self.isDown = 1;
-                        /*
-                        //self.resize(e);
-						sizer.show();
-                        */
+                    if(self.rowComponent.get('phaseAction') === 'shift') break;; // do not paint if the user wants to shift the phases around
+                    if(self.get('router.currentRouteName') === 'assignments.index'){
+                        self.handle = $(e.target).hasClass('handle') ? $(e.target).hasClass('left') ? "left" : "right" : false;
+                        self.downX = self.get('rowComponent.assignment.x');
+                        if(self.handle === "right") self.downX += self.get('rowComponent.assignment.w') - self.constants.DIM;
+                        self.set('rowComponent.assignment.originalWidth', self.get('rowComponent.assignment.w'));
                     }
+                    if(!self.isDown){ self.isDown = 1; }
                     break;
                 }
 				case 3: { // right click: stamp
@@ -223,12 +246,17 @@ export default Ember.Mixin.create(CalendarWidget, {
 		mouseUp = function(e){
 			switch (e.which){
 				case 1: { // left mouse
-                    if(self.rowComponent.get('shiftPhase')){
-                        self.rowComponent.getPhase(self.upX, self.upY);
+                    if(self.rowComponent.get('phaseAction') === 'shift'){
+                        self.rowComponent.getPhaseShift(self.upX, self.upY);
+                    }
+                    else if(self.rowComponent.get('phaseAction') === 'delete'){
+                        self.rowComponent.getPhaseDelete(self.upX, self.upY);
                     }
                     else{
-                        self.resize(e);
-                        self.getTiles(e);
+                        if(self.get('router.currentRouteName') !== 'assignments.index'){
+                            self.resize(e);
+                            self.getTiles(e);
+                        }
                         self.isDown = 0;
                     }
                 }

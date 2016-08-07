@@ -37,7 +37,25 @@
 
             @import "assignments-phase-list.scss";
             @import "assignments-phase-edit.scss";
+
+            > [data-phase-action=""].row,
+            > [data-phase-action="delete"].row,
+            > [data-phase-action="shift"].row {
+                background: repeating-linear-gradient(
+                    90deg,
+                    #d3d3d3,
+                    #d3d3d3 15px,
+                    #c1c1c1 15px,
+                    #c1c1c1 30px
+                );
+            }
         }//data-active
+
+        section.resourceRow [data-type="tile"] {
+            &[data-assignment] {
+                height:100%;
+            }
+        }
     }//main
 
     #todayDateLine {

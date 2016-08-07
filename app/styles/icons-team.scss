@@ -1,6 +1,8 @@
 #pageContainer header .viewOptions {
     .team {
-        width:65px;
+        margin-left:10px;
+        min-width:65px;
+        width:auto;
 
         a {
             width:65px;
@@ -202,8 +204,9 @@
     }// a
 
     .specs {
-        left:95px;
-        position:absolute;
+        float:left;
+        margin-left:95px;
+        position:relative;
 
         div {
             white-space:nowrap;
@@ -271,4 +274,26 @@
             }
         }//assignmentInfo
     }//specs
+
+    .emptyTeam {
+        background:rgb(255,0,0);
+        border-radius:5px;
+        float:left;
+        padding:3px;
+        margin:-6px 0 0 15px;
+
+        div {
+            background:#fff;
+            border-radius:2px;
+            padding:4px 5px;
+            p {
+                line-height:110%;
+                margin-top:2px;
+
+                &:first-child {
+                    margin-top:0;
+                }
+            }
+        }
+    }
 }//viewOptions

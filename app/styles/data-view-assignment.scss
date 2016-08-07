@@ -29,6 +29,10 @@
         &[data-y="15"]{ top:8px; }
         &[data-y="30"]{ top:16px; }
         &[data-y="45"]{ top:24px; }
+
+        &[data-assignment] {
+            height:8px;
+        }
     }
 
     [data-stamp="true"] {
@@ -78,12 +82,62 @@
         &[data-active="true"]{
             > .row {
                 [data-type="tile"] {
-                    height:15px;
                     &[data-y="0"]{ top:0; }
                     &[data-y="15"]{ top:15px; }
                     &[data-y="30"]{ top:30px; }
                     &[data-y="45"]{ top:45px; }
-                }
+
+                    height:15px;
+
+                    &[data-assignment] {
+                        .handle {
+                            background:transparent;
+                            content:"";
+                            display:table;
+                            cursor:ew-resize;
+                            height:100%;
+                            opacity:.5;
+                            position:absolute;
+                            width:15px;
+
+                            &:hover {
+                                background:rgba(0,0,0,.3);
+                                opacity:.8;
+
+                                &:before {
+                                    display:table-cell;
+                                    text-align:center;
+                                    vertical-align:middle;
+                                }
+                            }
+
+                            &:first-child {
+                                border-left:5px solid #fff;
+
+                                &:hover {
+                                    margin-left:-5px;
+
+                                    &:before {
+                                        content:"\25C0";
+                                    }
+                                }
+                            }
+
+                            &:last-child {
+                                border-right:5px solid #fff;
+                                right:0;
+
+                                &:hover {
+                                    margin-right:-5px;
+
+                                    &:before {
+                                        content:"\25B6";
+                                    }
+                                }
+                            }
+                        }// handle
+                    }// data-assignment
+                }// data-type tile
 
                 [data-stamp="true"]{
                     &:hover:before {
