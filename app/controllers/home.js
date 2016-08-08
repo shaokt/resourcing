@@ -8,6 +8,16 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     minLeft: 0, // the minimum left position to show names when scrolling
 
     settings: storageFor("settings"),
+    showAssignment: Ember.computed('settings.assignmentTile', function(){
+        console.log(this.get('settings.assignmentTile'));
+        //this.set('model.assignment')
+        /*
+        this.set('findAssignment', this.get('store').query('direct', {manager: 'PL145'})).then(function(){
+            self.getPeople(self.findPeople);
+        })
+        */
+        return this.get('settings.assignmentTile') !== "empty";
+    }),
 
     init() {
         this._super();
