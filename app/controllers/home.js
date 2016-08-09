@@ -10,12 +10,8 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     settings: storageFor("settings"),
     showAssignment: Ember.computed('settings.assignmentTile', function(){
         console.log(this.get('settings.assignmentTile'));
-        //this.set('model.assignment')
-        /*
-        this.set('findAssignment', this.get('store').query('direct', {manager: 'PL145'})).then(function(){
-            self.getPeople(self.findPeople);
-        })
-        */
+        //this.set('findAssignment', this.get('store').query('assignment', {id:this.get('settings.assignmentTile')}));
+        this.set('findAssignment', this.get('store').find('assignment', this.get('settings.assignmentTile')));
         return this.get('settings.assignmentTile') !== "empty";
     }),
 
