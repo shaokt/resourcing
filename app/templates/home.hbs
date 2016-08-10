@@ -18,11 +18,7 @@
     <main>
         {{date-line}}
         {{#if showAssignment}}
-            {{!assignment-index model=findAssignment nodate=true readOnly=true}}
-
-            {{#each findAssignment as |assignment|}}
-            i
-            {{/each}}
+            {{assignment-index model=viewAssignment nodate=true readOnly=true}}
         {{/if}}
         {{resource-row model=model settings=settings updateName="updateName"}}
     </main>
