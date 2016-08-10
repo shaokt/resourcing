@@ -14,7 +14,8 @@
     data-show-hidden={{settings.showHiddenRows}}
     data-view="{{settings.view}}"
 >
-    {{header-section model=model settings=settings updateName="updateName" addEmployee="addEmployee" showAssignment=showAssignment}}
+    {{header-section model=model settings=settings updateName="updateName" addEmployee="addEmployee"}}
+
     <main>
         {{date-line}}
         {{#if showAssignment}}
