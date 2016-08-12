@@ -41,6 +41,11 @@ export default Ember.Component.extend({
         }
     },
 
+    // determine whether to show assignment tiles or not
+    showAssignmentTiles: Ember.computed(function(){
+        return this.get('settings.isWeeklyCalendar') || this.get('constants.teamAssignmentView') ? true : false;
+    }).property('settings.isWeeklyCalendar'),
+
     actions: {
         // allows user to view all team members assigned to a project
         viewTeam() {
