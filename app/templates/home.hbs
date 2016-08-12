@@ -5,6 +5,10 @@
     .directs .resourceRow[data-expanded="true"]:last-child .row:before { left:{{constants.leftScroll}}px; }
     .dateMarker,
     #dateLine { left:{{constants.mousePos}}px; }
+    .assignmentViewContainer { width:{{constants.calWidth}}px; }
+    {{#if showAssignment}}
+        .rowContainer { padding-top:{{numAssignmentsViewing}}px;}
+    {{/if}}
     {{counterCSS}}
 </style>
 
@@ -14,14 +18,18 @@
     data-show-hidden={{settings.showHiddenRows}}
     data-view="{{settings.view}}"
 >
-    {{header-section model=model settings=settings updateName="updateName" addEmployee="addEmployee"}}
+    {{header-section model=model settings=settings updateName="updateName" addEmployee="addEmployee" showAssignment=showAssignment viewAssignment=viewAssignment}}
 
     <main>
         {{date-line}}
+        <div class="rowContainer">
+            {{resource-row model=model settings=settings updateName="updateName"}}
+        </div>
         {{#if showAssignment}}
-            {{assignment-index model=viewAssignment nodate=true readOnly=true}}
+            <div class="assignmentViewContainer">
+                {{assignment-index model=viewAssignment nodate=true readOnly=true}}
+            </div>
         {{/if}}
-        {{resource-row model=model settings=settings updateName="updateName"}}
     </main>
 </div>
 

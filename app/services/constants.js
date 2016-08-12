@@ -50,9 +50,10 @@ export default Ember.Service.extend({
     },
 
     scrolled: function(minLeft){
-        var left = $(window).scrollLeft()
+        var left = $(window).scrollLeft();
         this.set('leftScroll', left == 0 && this.get('settings.view') == 'timeaway' ? minLeft : left);
         $('.calendar').css({left:-left});
+        $('.assignmentViewContainer').css({left:-left});
     },
 
     mouseMoved: function(event){

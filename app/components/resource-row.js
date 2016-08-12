@@ -7,6 +7,7 @@ const{
 const { service }=inject;
 
 export default Ember.Component.extend(Webcel, {
+    tagName:'',
     dragSource: null,
     store: service(),
     shiftHorizontal: 0, // how many pixels left or right to move the related phases during shifting

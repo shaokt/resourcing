@@ -14,6 +14,8 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         this.get('model.assignment').forEach(function(item){
             if(item.id === self.get('settings.assignmentTile')) self.viewAssignment.push(item);
         })
+
+        this.set('numAssignmentsViewing', this.get('viewAssignment').length * 40); // 40=height of each assignment row
         return this.get('settings.assignmentTile') !== "empty";
     }),
 
