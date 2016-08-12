@@ -28,8 +28,8 @@ export default Ember.Service.extend({
     // save newly added data to store & display saving indicator
     save: function(data){
         var self = this;
-        this.set('saving', true)
-        data.save()
+        this.set('saving', true);
+        data.save();
         setTimeout(function(){self.set('saving', false)}, 500);
     },
 
@@ -51,8 +51,8 @@ export default Ember.Service.extend({
 
     scrolled: function(minLeft){
         var left = $(window).scrollLeft()
-        this.set('leftScroll', left == 0 && this.get('settings.view') == 'timeaway' ? minLeft : left)
-        $('.calendar').css({left:-left})
+        this.set('leftScroll', left == 0 && this.get('settings.view') == 'timeaway' ? minLeft : left);
+        $('.calendar').css({left:-left});
     },
 
     mouseMoved: function(event){
