@@ -26,12 +26,10 @@
             <div class="assignmentViewContainer">
                 {{assignment-index model=viewAssignment nodate=true readOnly=true}}
             </div>
-            <div class="rowContainer">
-                {{resource-row model=model settings=settings updateName="updateName"}}
-            </div>
-        {{else}}
-            {{resource-row model=model settings=settings updateName="updateName"}}
         {{/if}}
+        <div class="rowContainer">
+            {{resource-row model=model settings=settings updateName="updateName"}}
+        </div>
     </main>
 </div>
 

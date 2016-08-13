@@ -8,29 +8,25 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     minLeft: 0, // the minimum left position to show names when scrolling
 
     settings: storageFor("settings"),
+
+    // determines which assignment to show while viewing employees
     showAssignment: function(){
         var self = this;
-        if(this.get('constants.editingRow')){
-            this.set('viewAssignment',[]);
-            this.get('model.assignment').forEach(function(item){
-                if(item.id === self.get('settings.assignmentTile')) self.viewAssignment.push(item);
-            })
+        this.set('viewAssignment',[]);
 
-            this.set('numAssignmentsViewing', this.get('viewAssignment').length * 40); // 40=height of each assignment row
-            return this.get('settings.isWeeklyCalendar') && this.get('settings.assignmentTile') !== "empty";
+        if(this.get('constants.editingRow')){
+            this.get('model.assignment').forEach(function(item){
+                item.id === self.get('settings.assignmentTile') ? self.viewAssignment.push(item) : 0;
+            });
         }
         else {
-            this.set('viewAssignment',[]);
             this.get('model.assignment').forEach(function(item){
-                if($.inArray(item.id, self.get('constants.assArray')) !== -1){
-                    self.viewAssignment.push(item);
-                }
-            })
-
-            this.set('numAssignmentsViewing', this.get('viewAssignment').length * 40); // 40=height of each assignment row
-
-            return this.get('settings.isWeeklyCalendar') && this.get('viewAssignment').length > 0;
+                $.inArray(item.id, self.get('constants.assArray')) !== -1 ? self.viewAssignment.push(item) : 0;
+            });
         }
+
+        this.set('numAssignmentsViewing', this.get('viewAssignment').length * 40); // 40=height of each assignment row
+        return this.get('settings.isWeeklyCalendar') && this.get('viewAssignment').length > 0;
 
     }.property('settings.isWeeklyCalendar', 'settings.assignmentTile', 'constants.editingRow', 'constants.assArray'),
 

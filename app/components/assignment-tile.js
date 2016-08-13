@@ -42,25 +42,23 @@ export default Ember.Component.extend({
 
         selectForView() {
             var self = this;
+            var newList = this.get('constants.assArray');
             this.active = $(event.target);
-            this.active.parent().click();
+            this.active.parent().click(); // ensures the label activates the checkbox
+
             if(this.active.attr('data-active') === 'true'){ // remove from list of projects to view
                 this.active.attr('data-active', false);
-
-                var blah = this.get('constants.assArray');
                 this.set('constants.assArray',
-                    blah.filter(function(i) {
+                    newList.filter(function(i) {
                     	return i != self.active.attr('data-assignment');
                     })
                 )
             }
             else { // add to list of projects to view
                 this.active.attr('data-active', true);
-                var blah = this.get('constants.assArray');
-                blah.push(this.active.attr('data-assignment'))
-                this.set('constants.assArray', Array.from(blah));
+                newList.push(this.active.attr('data-assignment'));
+                this.set('constants.assArray', Array.from(newList));
             }
-            console.log(this.get('constants.assArray'))
-        }
-    }
+        }// selectForView
+    }// actions
 });
