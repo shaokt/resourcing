@@ -22,11 +22,11 @@
 
     <main>
         {{date-line}}
-        {{#if showAssignment}}
             <div class="assignmentViewContainer">
-                {{assignment-index model=viewAssignment nodate=true readOnly=true}}
+                {{#if showAssignment}}
+                    {{assignment-index model=viewAssignment nodate=true readOnly=true}}
+                {{/if}}
             </div>
-        {{/if}}
         <div class="rowContainer">
             {{resource-row model=model settings=settings updateName="updateName"}}
         </div>
