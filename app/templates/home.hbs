@@ -10,7 +10,24 @@
         .rowContainer { padding-top:{{numAssignmentsViewing}}px;}
     {{/if}}
     {{counterCSS}}
+
+    {{#if constants.scrollingH}}
+        section.resourceRow .info {
+            position:fixed;
+            margin-top:{{constants.fromV}}px;
+            the:{{constants.the}}px;
+            z-index:3;
+        }
+    {{else}}
+        section.resourceRow .info {
+            position:absolute;
+            margin-left:-70px;
+            left:{{constants.fromH}}px;
+            top:0;
+        }
+    {{/if}}
 </style>
+<style id="vert"></style>
 
 <div id="pageContainer"
     data-dragging={{constants.draggable}}
