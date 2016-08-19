@@ -7,6 +7,8 @@
             data-index="{{index}}"
             data-name="{{direct.name}}"
         >
+            {{resource-info index=index resource=direct updateName="updateName" updateRow="updateRow" readonly=true}}
+            
             {{#if settings.isWeeklyCalendar}}
             	<div class="row" data-view="assignment">
                     <div class="pointer"></div>
@@ -26,7 +28,6 @@
                 </div>
             {{/if}}
 
-            {{resource-info index=index resource=direct updateName="updateName" updateRow="updateRow" readonly=true}}
             {{#if direct.directs}}
                 {{resource-direct resource=direct settings=settings}}
             {{/if}}

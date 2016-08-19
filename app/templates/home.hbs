@@ -12,16 +12,12 @@
     {{counterCSS}}
 
     {{#if constants.scrollingH}}
-        section.resourceRow .info {
-            position:fixed;
-            margin-top:{{constants.fromV}}px;
-            the:{{constants.the}}px;
-            z-index:3;
-        }
+        section.resourceRow .info { position:fixed; }
+        .rowContainer section.resourceRow .info{ margin-top:{{constants.fromV}}px; }
     {{else}}
         section.resourceRow .info {
             position:absolute;
-            margin-left:-70px;
+            margin-left:-69px;
             left:{{constants.fromH}}px;
             top:0;
         }

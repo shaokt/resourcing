@@ -59,40 +59,28 @@ export default Ember.Service.extend({
         var self = this;
         var left = $(window).scrollLeft();
 
-        //this.set('leftScroll', left == 0 && this.get('settings.view') == 'timeaway' ? minLeft : left);
-
         $('.calendar').css({left:-left});
         $('.assignmentViewContainer').css({left:-left});
 
-
         if(this.get('fromH') === null && this.get('fromV') === null) {
-            console.log('default: ' + $(window).scrollTop())
             this.set('scrollingH', true);
-            //this.set('fromV', parseInt($(window).scrollTop() - 32));
-            this.set('fromH', $(window).scrollLeft())
+            this.set('fromH', left)
         }
-        else if(this.get('fromH') === $(window).scrollLeft()){ // vertical scrolling
-            console.log('v')
+        else if(this.get('fromH') === left){ // vertical scrolling
             this.set('scrollingV', true);
             this.set('scrollingH', false);
         }
         else { // horizontal scrolling
-            //console.log('h: ' + this.get('fromH') + " : " + $(window).scrollLeft())
-            this.set('fromH', $(window).scrollLeft())
+            this.set('fromH', left)
             this.set('scrollingH', true);
             this.set('scrollingV', false);
         }
 
         clearTimeout($.data(this, 'scrollTimer'));
         $.data(this, 'scrollTimer', setTimeout(function() {
-            console.log('stopped')
-            //self.set('fromH', null);
             self.set('scrollingV', false);
             self.set('scrollingH', true);
-            var newTop = $(window).scrollTop();
-            newTop = (newTop == 0 ? 32 : (newTop + (newTop > 0 ? 32 : -32)));
-            self.set('fromV', -newTop);
-            self.set('the', $(window).scrollTop())
+            self.set('fromV', -$(window).scrollTop());
         }, 250));
     },
 

@@ -11,6 +11,7 @@
         ondragend={{action "dragEnd"}}
         ondragover={{action "dragOver"}}
     >
+        {{resource-info model=model index=index resource=resource updateName="updateName" updateRow="updateRow"}}
         {{#if settings.isWeeklyCalendar}}
         	<div class="row" data-view="assignment">
                 {{#if resource.active}}
@@ -32,7 +33,6 @@
             </div>
         {{/if}}
 
-        {{resource-info model=model index=index resource=resource updateName="updateName" updateRow="updateRow"}}
         {{#if resource.directs}}
             {{resource-direct resource=resource settings=settings}}
         {{/if}}
