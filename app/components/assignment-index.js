@@ -5,5 +5,11 @@ export default Ember.Component.extend({
     tagName:'',
     currentAssignment:0,
     persons: [],
-    settings: storageFor("settings")
+    settings: storageFor("settings"),
+    assignmentViewContainer: function(){
+        if(this.get('settings.isDailyCalendar')){
+            return 'assignmentViewContainer'
+        }
+        return '';
+    }.property('settings.isDailyCalendar')
 });

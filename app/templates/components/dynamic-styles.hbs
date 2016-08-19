@@ -1,0 +1,28 @@
+<style>
+    .info,
+    .directs .resourceRow:before,
+    .directs .resourceRow[data-expanded="true"]:last-child .row:before { left:{{constants.leftScroll}}px; }
+    .dateMarker,
+    #dateLine { left:{{constants.mousePos}}px; }
+    .assignmentViewContainer { width:{{constants.calWidth}}px; }
+
+    {{#if showAssignment}}
+        .rowContainer { padding-top:{{numAssignmentsViewing}}px;}
+    {{/if}}
+
+    {{counterCSS}}
+
+    {{#if constants.scrollingH}}
+        section.resourceRow .info { position:fixed; }
+        [data-route="assignments.index"] .rowContainer section.resourceRow .info,
+        [data-route="home"] .rowContainer section.resourceRow .info,
+        [data-route="assignments.index"][data-view="assignment"] section.resourceRow .info { margin-top:{{constants.fromV}}px; }
+    {{else}}
+        section.resourceRow .info {
+            position:absolute;
+            margin-left:-69px;
+            left:{{constants.fromH}}px;
+            top:0;
+        }
+    {{/if}}
+</style>

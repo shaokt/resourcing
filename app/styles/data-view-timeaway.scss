@@ -164,4 +164,9 @@
         .firstDay:hover:before { content:"First Day"; }
         .lastDay:hover:before { content:"Last Day"; }
     }
+
+    &[data-route="assignments.index"] {
+        .assignmentViewContainer { position:fixed;top:163px; }
+        .rowContainer { padding-top:40px; }
+    }
 }//data-view=timeaway

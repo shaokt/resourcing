@@ -1,31 +1,7 @@
-{{! do not move styles to component as it will cause multiple view renders}}
-<style>
-    .info,
-    .directs .resourceRow:before,
-    .directs .resourceRow[data-expanded="true"]:last-child .row:before { left:{{constants.leftScroll}}px; }
-    .dateMarker,
-    #dateLine { left:{{constants.mousePos}}px; }
-    .assignmentViewContainer { width:{{constants.calWidth}}px; }
-    {{#if showAssignment}}
-        .rowContainer { padding-top:{{numAssignmentsViewing}}px;}
-    {{/if}}
-    {{counterCSS}}
-
-    {{#if constants.scrollingH}}
-        section.resourceRow .info { position:fixed; }
-        .rowContainer section.resourceRow .info{ margin-top:{{constants.fromV}}px; }
-    {{else}}
-        section.resourceRow .info {
-            position:absolute;
-            margin-left:-69px;
-            left:{{constants.fromH}}px;
-            top:0;
-        }
-    {{/if}}
-</style>
-<style id="vert"></style>
+{{dynamic-styles showAssignment=showAssignment numAssignmentsViewing=numAssignmentsViewing}}
 
 <div id="pageContainer"
+    data-route={{router.currentRouteName}}
     data-dragging={{constants.draggable}}
     data-editing="{{constants.editingRow}}"
     data-show-hidden={{settings.showHiddenRows}}
