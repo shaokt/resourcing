@@ -38,6 +38,27 @@ export default Ember.Component.extend({
             this.active.attr('data-active', true);
             this.set('settings.assignmentTile', this.active.attr('data-assignment'));
             this.constants.webcel.setTile(this.active);
-        }
-    }
+        },
+
+        selectForView() {
+            var self = this;
+            var newList = this.get('constants.assArray');
+            this.active = $(event.target);
+            this.active.parent().click(); // ensures the label activates the checkbox
+
+            if(this.active.attr('data-active') === 'true'){ // remove from list of projects to view
+                this.active.attr('data-active', false);
+                this.set('constants.assArray',
+                    newList.filter(function(i) {
+                    	return i != self.active.attr('data-assignment');
+                    })
+                )
+            }
+            else { // add to list of projects to view
+                this.active.attr('data-active', true);
+                newList.push(this.active.attr('data-assignment'));
+                this.set('constants.assArray', Array.from(newList));
+            }
+        }// selectForView
+    }// actions
 });

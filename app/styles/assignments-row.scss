@@ -1,6 +1,5 @@
 [data-view='assignment'],
 [data-view='timeaway'] {
-&[data-route="assignments.index"] {
     main {
         padding-top:165px;
 
@@ -77,7 +76,6 @@
         }
     }
 
-}//assignments.index
 }//data-view
 
 [data-view='timeaway'][data-route="assignments.index"] {

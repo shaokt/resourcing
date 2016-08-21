@@ -1,9 +1,11 @@
 <ul class="viewOptions">
     {{#unless constants.teamAssignmentView}}
         {{#unless shiftPhase}}
-            <li class="lock">
-                <a href="/" {{action "editing" on="click"}}></a>
-            </li>
+            {{#unless readOnly}}
+                <li class="lock">
+                    <a href="/" {{action "editing" on="click"}}></a>
+                </li>
+            {{/unless}}
         {{/unless}}
     {{else}}
         <li class="viewTeam">

@@ -23,13 +23,15 @@ export default Ember.Service.extend({
     mousePos:0,         // mouse position while hovering over tracker app
     draggable: false,   // if the rows are drag sortable or not
     webcel:null,        // singleton Webcel object - only one editable instance at a time
+    editingRow:false,   // whether a row is being edited or not
+    assArray:[],        // array of assignments to view while viewing employees
 	padout: function(number) { return (number < 10) ? '0' + number : number; }, // pad single digits to double (for date use)
 
     // save newly added data to store & display saving indicator
     save: function(data){
         var self = this;
-        this.set('saving', true)
-        data.save()
+        this.set('saving', true);
+        data.save();
         setTimeout(function(){self.set('saving', false)}, 500);
     },
 
@@ -50,9 +52,10 @@ export default Ember.Service.extend({
     },
 
     scrolled: function(minLeft){
-        var left = $(window).scrollLeft()
-        this.set('leftScroll', left == 0 && this.get('settings.view') == 'timeaway' ? minLeft : left)
-        $('.calendar').css({left:-left})
+        var left = $(window).scrollLeft();
+        this.set('leftScroll', left == 0 && this.get('settings.view') == 'timeaway' ? minLeft : left);
+        $('.calendar').css({left:-left});
+        $('.assignmentViewContainer').css({left:-left});
     },
 
     mouseMoved: function(event){

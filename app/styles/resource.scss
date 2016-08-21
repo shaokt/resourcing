@@ -1,3 +1,16 @@
+.rowContainer {
+    position:relative;
+    margin-top:15px;
+}
+.assignmentViewContainer {
+    border-bottom:10px solid #fff;
+    border-left:70px solid #fff;
+    border-right:10px solid #fff;
+    margin-top:-3px;
+    position:fixed;
+    top:155px;
+    z-index:4;
+}
 section.resourceRow {
     background:#eee;
     border:1px solid #aaa;
@@ -124,7 +137,7 @@ section.resourceRow {
             outline:3px solid #fff;
         	box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5);
             height:60px;
-            z-index:4;
+            z-index:5;
 
             &:before {
                 background:repeating-linear-gradient(-45deg, #222, #222 10px, #333 10px, #333 20px);

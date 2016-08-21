@@ -1,190 +1,188 @@
 <div id="year">2016</div>
 <div class="menu">
     <ul class="tileOptions">
-        {{#if (assignment-show-tiles settings.isWeeklyCalendar constants)}}
+        {{#if showAssignmentTiles}}
             <li class="assignments">
                 {{assignment-tile model=model settings=settings}}
             </li>
         {{/if}}
-        {{#if settings.isDailyCalendar}}
+        {{#if showTimeoffTiles}}
             <li class="timeAway">
                 {{time-away settings=settings}}
             </li>
         {{/if}}
     </ul>
 
-    <div class="buttonContainer">
-        <ul class="viewOptions">
-            {{#if showEmployeeTracking}}
-                {{#if settings.isWeeklyCalendar}}
-                    <li class="timeaway">
-                        <a href="/" {{action "toggleView" 'timeaway' on="click"}}>
-                            <span class="start"></span>
-                            <span class="reset"></span>
-                            <span class="hands"></span>
-                            <span class="time" data-time="3"></span>
-                            <span class="time" data-time="6"></span>
-                            <span class="time" data-time="9"></span>
-                            <span class="time" data-time="12"></span>
-                            <span class="text">Track Out of Office</span>
-                        </a>
-                    </li>
-                {{/if}}
-
-                {{#if settings.isDailyCalendar}}
-                    <li class="assignment">
-                        <a href="/" {{action "toggleView" 'assignment' on="click"}}>
-                            <span class="pencil"><span class="wood"></span></span>
-                            <span class="text">Track Assignments</span>
-                        </a>
-                    </li>
-                {{/if}}
-            {{/if}}
-
-            {{#if showRoadmap}}
-                <li class="roadmap">
-                    <a href="/assignments">
-                        <span class="item"></span>
-                        <span class="item"></span>
-                        <span class="item"></span>
-                        <span class="text">Roadmap</span>
+    <ul class="viewOptions">
+        {{#if showEmployeeTracking}}
+            {{#if settings.isWeeklyCalendar}}
+                <li class="timeaway">
+                    <a href="/" {{action "toggleView" 'timeaway' on="click"}}>
+                        <span class="start"></span>
+                        <span class="reset"></span>
+                        <span class="hands"></span>
+                        <span class="time" data-time="3"></span>
+                        <span class="time" data-time="6"></span>
+                        <span class="time" data-time="9"></span>
+                        <span class="time" data-time="12"></span>
+                        <span class="text">Track Out of Office</span>
                     </a>
                 </li>
             {{/if}}
 
-            {{#if settings.hasCalendar}}
-                <li class="today">
-                    <a href="/" {{action "scrollToday" on="click"}}>
-                        <span class="date"><span>{{constants.todayDate}}</span></span>
-                        <span class="page"></span>
-                        {{#if settings.isDailyCalendar}}
-                            <span class="text daily">Scroll to Today</span>
-                        {{else}}
-                            <span class="text">Scroll to This Week</span>
-                        {{/if}}
-                    </a>
-                </li>
-                {{#if showAddEmployee}}
-                    <li class="profile">
-                        <a href="/" {{action "addEmployee"}}>
-                            <span class="person female">
-                                <span class="hair"></span>
-                                <span class="face"></span>
-                                <span class="neck"></span>
-                            </span>
-
-                            <span class="person male">
-                                <span class="hair"></span>
-                                <span class="face"></span>
-                                <span class="neck"></span>
-                            </span>
-                            <span class="plus"></span>
-                            <span class="text">New Employee</span>
-                        </a>
-                    </li>
-                {{/if}}
-            {{/if}}
-
-            {{#if showSort}}
-                {{#if this.constants.draggable}}
-                    <li class="dragSort">
-                        <a href="/" {{action "dragDisable" on="click"}}>
-                            <span></span>
-                            <span class="text">Drag Sort</span>
-                        </a>
-                    </li>
-                {{else}}
-                    <li class="dragSort">
-                        <a href="/" {{action "dragEnable" on="click"}}>
-                            <span class="leftArrow"></span>
-                            <span class="rightArrow"></span>
-                            <span class="text">Drag Sort</span>
-                        </a>
-                    </li>
-                {{/if}}
-            {{/if}}
-
-            {{#if constants.editAssignments}}
+            {{#if settings.isDailyCalendar}}
                 <li class="assignment">
-                    <a href="/" {{action "addAssignment" on="click"}}>
+                    <a href="/" {{action "toggleView" 'assignment' on="click"}}>
                         <span class="pencil"><span class="wood"></span></span>
-                        <span class="text">Add Assignment</span>
+                        <span class="text">Track Assignments</span>
                     </a>
                 </li>
             {{/if}}
+        {{/if}}
 
-            {{#if showToggleRows}}
-                <li class="toggle">
-                    <a href="/" {{action "toggleViewHiddenRows" on="click"}}>
-                        <span class="eye"></span>
-                        {{#if settings.isHiddenRows}}
-                            <span class="text">Hide Hidden Rows</span>
-                        {{else}}
-                            <span class="text">Show Hidden Rows</span>
-                        {{/if}}
+        {{#if showRoadmap}}
+            <li class="roadmap">
+                <a href="/assignments">
+                    <span class="item"></span>
+                    <span class="item"></span>
+                    <span class="item"></span>
+                    <span class="text">Roadmap</span>
+                </a>
+            </li>
+        {{/if}}
+
+        {{#if settings.hasCalendar}}
+            <li class="today">
+                <a href="/" {{action "scrollToday" on="click"}}>
+                    <span class="date"><span>{{constants.todayDate}}</span></span>
+                    <span class="page"></span>
+                    {{#if settings.isDailyCalendar}}
+                        <span class="text daily">Scroll to Today</span>
+                    {{else}}
+                        <span class="text">Scroll to This Week</span>
+                    {{/if}}
+                </a>
+            </li>
+            {{#if showAddEmployee}}
+                <li class="profile">
+                    <a href="/" {{action "addEmployee"}}>
+                        <span class="person female">
+                            <span class="hair"></span>
+                            <span class="face"></span>
+                            <span class="neck"></span>
+                        </span>
+
+                        <span class="person male">
+                            <span class="hair"></span>
+                            <span class="face"></span>
+                            <span class="neck"></span>
+                        </span>
+                        <span class="plus"></span>
+                        <span class="text">New Employee</span>
                     </a>
                 </li>
             {{/if}}
+        {{/if}}
 
-            {{#if showOrg}}
-                <li class="org">
-                    <a href="/home?id={{settings.lastManager}}">
-                        <span class="member"></span>
-                        <span class="member"></span>
-                        <span class="member"></span>
-                        <span class="text">View Org</span>
+        {{#if showSort}}
+            {{#if this.constants.draggable}}
+                <li class="dragSort">
+                    <a href="/" {{action "dragDisable" on="click"}}>
+                        <span></span>
+                        <span class="text">Drag Sort</span>
+                    </a>
+                </li>
+            {{else}}
+                <li class="dragSort">
+                    <a href="/" {{action "dragEnable" on="click"}}>
+                        <span class="leftArrow"></span>
+                        <span class="rightArrow"></span>
+                        <span class="text">Drag Sort</span>
                     </a>
                 </li>
             {{/if}}
+        {{/if}}
 
-            {{#if showTeam}}
-                <li class="team">
-                    <a href="/" {{action "viewTeam" on="click"}} data-active="{{constants.teamAssignmentView}}">
-                        <span class="member"><span class="body"></span></span>
-                        <span class="member female"><span class="body"><span class="dress"></span></span></span>
-                        <span class="member"><span class="body"></span></span>
-                        <span class="text">View Team</span>
-                    </a>
-                    {{#if constants.teamAssignmentView}}
-                        <div class="specs">
-                            <div class="date">
-                                <div><span class="asof">{{constants.teamAsOfDate}}</span></div>
-                            </div>
-                            <div class="assignmentInfo">
-                                <style>
-                                    .assignmentInfo .short {
-                                        background:#{{constants.teamAssignment.background}};
-                                    }
-                                </style>
-                                {{#unless constants.teamAssignment}}
-                                    <span class="choose">
-                                        Choose Assignment
-                                    </span>
-                                {{else}}
-                                    <span class="short">
-                                        <span>{{constants.teamAssignment.short}}</span>
-                                    </span>
-                                {{/unless}}
+        {{#if constants.editAssignments}}
+            <li class="assignment">
+                <a href="/" {{action "addAssignment" on="click"}}>
+                    <span class="pencil"><span class="wood"></span></span>
+                    <span class="text">Add Assignment</span>
+                </a>
+            </li>
+        {{/if}}
+
+        {{#if showToggleRows}}
+            <li class="toggle">
+                <a href="/" {{action "toggleViewHiddenRows" on="click"}}>
+                    <span class="eye"></span>
+                    {{#if settings.isHiddenRows}}
+                        <span class="text">Hide Hidden Rows</span>
+                    {{else}}
+                        <span class="text">Show Hidden Rows</span>
+                    {{/if}}
+                </a>
+            </li>
+        {{/if}}
+
+        {{#if showOrg}}
+            <li class="org">
+                <a href="/home?id={{settings.lastManager}}">
+                    <span class="member"></span>
+                    <span class="member"></span>
+                    <span class="member"></span>
+                    <span class="text">View Org</span>
+                </a>
+            </li>
+        {{/if}}
+
+        {{#if showTeam}}
+            <li class="team">
+                <a href="/" {{action "viewTeam" on="click"}} data-active="{{constants.teamAssignmentView}}">
+                    <span class="member"><span class="body"></span></span>
+                    <span class="member female"><span class="body"><span class="dress"></span></span></span>
+                    <span class="member"><span class="body"></span></span>
+                    <span class="text">View Team</span>
+                </a>
+                {{#if constants.teamAssignmentView}}
+                    <div class="specs">
+                        <div class="date">
+                            <div><span class="asof">{{constants.teamAsOfDate}}</span></div>
+                        </div>
+                        <div class="assignmentInfo">
+                            <style>
+                                .assignmentInfo .short {
+                                    background:#{{constants.teamAssignment.background}};
+                                }
+                            </style>
+                            {{#unless constants.teamAssignment}}
+                                <span class="choose">
+                                    Choose Assignment
+                                </span>
+                            {{else}}
+                                <span class="short">
+                                    <span>{{constants.teamAssignment.short}}</span>
+                                </span>
+                            {{/unless}}
+                        </div>
+                    </div>
+                    {{#if constants.teamAsOfEmpty}}
+                        <div class="specs emptyTeam">
+                            <div>
+                                <p>No one assigned to
+                                    <span class="assignmentInfo"><span class="short"><span>{{constants.teamAssignment.short}}</span></span></span>
+                                    from
+                                    <span class="date"><span><span class="asof">{{constants.teamAsOfDate}}</span></span></span>
+                                    onward.
+                                </p>
+                                <p>Choose another date and/or assignment</p>
                             </div>
                         </div>
-                        {{#if constants.teamAsOfEmpty}}
-                            <div class="specs emptyTeam">
-                                <div>
-                                    <p>No one assigned to
-                                        <span class="assignmentInfo"><span class="short"><span>{{constants.teamAssignment.short}}</span></span></span>
-                                        from
-                                        <span class="date"><span><span class="asof">{{constants.teamAsOfDate}}</span></span></span>
-                                        onward.
-                                    </p>
-                                    <p>Choose another date and/or assignment</p>
-                                </div>
-                            </div>
-                        {{/if}}
                     {{/if}}
-                </li>
-            {{/if}}
-        </ul>
-    </div>
+                {{/if}}
+            </li>
+        {{/if}}
+    </ul>
 
     {{#if this.constants.saving}}
         <div id="saving"><span>Saving</span></div>

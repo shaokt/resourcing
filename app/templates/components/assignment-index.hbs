@@ -1,4 +1,6 @@
-{{date-line}}
+{{#unless nodate}}
+    {{date-line}}
+{{/unless}}
 {{#each model as |assignment|}}
     {{#if (assignment-view-people settings.view assignment.id currentAssignment)}}
     <section class="resourceRow{{if assignment.hidden ' hidden'}}"
@@ -27,6 +29,7 @@
             persons=persons
             phaseToShift=phaseToShift
             phaseAction=phaseAction
+            readOnly=readOnly
             row=row
             rowComponent=rowComponent
         }}

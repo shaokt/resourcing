@@ -1,16 +1,45 @@
 // chicklet tiles used to paint into each row
+.tileContainer {
+    float:left;
+    position:relative;
+}
 .tileOptions {
     cursor:pointer;
-    display:none;
+
+    &:hover {
+        input:checked,
+        label { display:block; }
+    }
+
+    input {
+        float:left;
+        display:none;
+        right:-8px;
+        position:absolute;
+        top:-5px;
+        z-index:2;
+    }
+
+    label {
+        float:left;
+        margin-bottom:5px;
+        margin-left:10px;
+        position:relative;
+        display:none;
+
+        &[data-active="true"]{
+            display:block;
+        }
+    }
+
 
     li {
          border:2px solid transparent;
          float:left;
          list-style:none;
          margin-right:5px;
-         max-width:975px;
+         max-width:50%;
          padding:8px 10px 0 10px;
-         position:absolute;
 
          &:before {
             float:left;
@@ -99,12 +128,12 @@ header {
                 border-radius:5px;
                 border-color:#aaa;
                 cursor:pointer;
-                padding-bottom:20px !important;
+                padding-bottom:10px !important;
             }
 
             [data-stamp="true"] { display:inline-block; }
 
-            + .buttonContainer { display:none; }
+            + .viewOptions { display:none; }
         }
     }
 }

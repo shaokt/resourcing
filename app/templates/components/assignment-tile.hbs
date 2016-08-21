@@ -8,7 +8,16 @@
 {{#each model as |item|}}
     {{#unless omit}}
         {{#unless item.hidden}}
-            <a href="#" data-assignment="{{item.id}}" data-stamp="true" {{action "select" on="click" event=event}} data-active="{{settings-default-tile 'assignment' item.id}}"><span></span></a>
+            {{#if constants.editingRow}}
+                <a href="#" data-assignment="{{item.id}}" data-stamp="true" {{action "select" on="click" event=event}} data-active="{{settings-default-tile 'assignment' item.id}}"><span></span></a>
+            {{else}}
+            <div class="tileContainer">
+                <label for="ass-{{item.id}}" data-active="{{settings-default-tile 'assignment' item.id}}">
+                    <a href="#" data-assignment="{{item.id}}" data-stamp="true" {{action "selectForView" on="click" event=event}}><span></span></a>
+                </label>
+                {{input type="checkbox" id=(concat 'ass-' item.id)}}
+            </div>
+            {{/if}}
         {{/unless}}
     {{/unless}}
     {{!  still render the style for hidden assignments so painted tiles get the proper styles}}

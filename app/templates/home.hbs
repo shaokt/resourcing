@@ -1,10 +1,14 @@
 {{! do not move styles to component as it will cause multiple view renders}}
 <style>
-    .info { left:{{constants.leftScroll}}px; }
-    .directs .resourceRow:before { left:{{constants.leftScroll}}px; }
+    .info,
+    .directs .resourceRow:before,
     .directs .resourceRow[data-expanded="true"]:last-child .row:before { left:{{constants.leftScroll}}px; }
-    .dateMarker { left:{{constants.mousePos}}px; }
+    .dateMarker,
     #dateLine { left:{{constants.mousePos}}px; }
+    .assignmentViewContainer { width:{{constants.calWidth}}px; }
+    {{#if showAssignment}}
+        .rowContainer { padding-top:{{numAssignmentsViewing}}px;}
+    {{/if}}
     {{counterCSS}}
 </style>
 
@@ -14,10 +18,18 @@
     data-show-hidden={{settings.showHiddenRows}}
     data-view="{{settings.view}}"
 >
-    {{header-section model=model settings=settings updateName="updateName" addEmployee="addEmployee"}}
+    {{header-section model=model settings=settings updateName="updateName" addEmployee="addEmployee" showAssignment=showAssignment viewAssignment=viewAssignment}}
+
     <main>
         {{date-line}}
-        {{resource-row model=model settings=settings updateName="updateName"}}
+            <div class="assignmentViewContainer">
+                {{#if showAssignment}}
+                    {{assignment-index model=viewAssignment nodate=true readOnly=true}}
+                {{/if}}
+            </div>
+        <div class="rowContainer">
+            {{resource-row model=model settings=settings updateName="updateName"}}
+        </div>
     </main>
 </div>
 
