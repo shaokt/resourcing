@@ -1,16 +1,6 @@
 {{! do not move styles to component as it will cause multiple view renders}}
-<style>
-    .info,
-    .directs .resourceRow:before,
-    .directs .resourceRow[data-expanded="true"]:last-child .row:before { left:{{constants.leftScroll}}px; }
-    .dateMarker,
-    #dateLine { left:{{constants.mousePos}}px; }
-    .assignmentViewContainer { width:{{constants.calWidth}}px; }
-    {{#if showAssignment}}
-        .rowContainer { padding-top:{{numAssignmentsViewing}}px;}
-    {{/if}}
-    {{counterCSS}}
-</style>
+{{dynamic-styles showAssignment=showAssignment numAssignmentsViewing=numAssignmentsViewing}}
+<style id="dynamicInfoPos"></style>
 
 <div id="pageContainer"
     data-dragging={{constants.draggable}}
