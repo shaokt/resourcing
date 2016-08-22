@@ -91,12 +91,12 @@
 
             &:hover {
                 .dateLine {
-                    height:40px;
+                    border:none;
                 }
             }
 
             .dateLine {
-                height:43px;
+                height:41px;
 
                 &:after, &:before {
                     display:none;
@@ -109,6 +109,10 @@
                 }
             }
         }//data-view
+
+        .assignmentViewContainer {
+            top:163px;
+        }
     }
 
     header:hover {

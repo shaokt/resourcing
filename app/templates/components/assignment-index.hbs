@@ -1,6 +1,7 @@
 {{#unless nodate}}
     {{date-line}}
 {{/unless}}
+<div class="{{assignmentViewContainer}}">
 {{#each model as |assignment|}}
     {{#if (assignment-view-people settings.view assignment.id currentAssignment)}}
     <section class="resourceRow{{if assignment.hidden ' hidden'}}"
@@ -40,14 +41,17 @@
     </section>
     {{/if}}
 {{/each}}
+</div>
 {{#if settings.isDailyCalendar}}
-    {{#each persons as |resource|}}
-        <section class="resourceRow" data-type="person">
-        	<div class="row" data-view="timeOff">
-                {{calendar-holiday-tiles}}
-                <div class="tiles">{{{resource.timeaway}}}</div>
-            </div>
-        {{resource-info model=persons index=index resource=resource readonly=true}}
-        </section>
-    {{/each}}
+    <div class="rowContainer">
+        {{#each persons as |resource|}}
+            <section class="resourceRow" data-type="person">
+            	<div class="row" data-view="timeOff">
+                    {{calendar-holiday-tiles}}
+                    <div class="tiles">{{{resource.timeaway}}}</div>
+                </div>
+            {{resource-info model=persons index=index resource=resource readonly=true}}
+            </section>
+        {{/each}}
+    </div>
 {{/if}}
