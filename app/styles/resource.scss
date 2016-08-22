@@ -115,6 +115,7 @@ section.resourceRow {
 
     &[data-active="true"] {
         border-top:25px solid #000;
+        z-index:6;
 
         &:after {
             display:none;
