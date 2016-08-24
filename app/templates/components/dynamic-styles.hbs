@@ -1,0 +1,11 @@
+<style>
+    .dateMarker,
+    #dateLine { left:{{constants.mousePos}}px; }
+    .assignmentViewContainer { width:{{constants.calWidth}}px; }
+
+    {{#if showAssignment}}
+        .rowContainer { padding-top:{{numAssignmentsViewing}}px;}
+    {{/if}}
+    
+    {{counterCSS}}
+</style>

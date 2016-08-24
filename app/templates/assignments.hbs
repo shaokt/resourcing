@@ -1,10 +1,6 @@
-<style>
-    .info,
-    .directs .resourceRow:before,
-    .directs .resourceRow[data-expanded="true"]:last-child .row:before { left:{{constants.leftScroll}}px; }
-    .dateMarker,
-    #dateLine { left:{{constants.mousePos}}px; }
-</style>
+{{dynamic-styles showAssignment=true numAssignmentsViewing=40}}
+<style id="dynamicInfoPos"></style>
+
 <div id="pageContainer"
     data-route={{router.currentRouteName}}
     data-dragging={{constants.draggable}}

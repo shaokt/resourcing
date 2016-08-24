@@ -8,14 +8,16 @@
         display:block !important
     }
 
-    *:not(.directs){
-        section.resourceRow {
-            &:not([data-active=true]){
-                .info {
-                    opacity:.8;
-                }
-                .row {
-                    opacity:.3;
+    .rowContainer {
+        &:not(.directs){
+            section.resourceRow {
+                &:not([data-active=true]){
+                    .info {
+                        opacity:.8;
+                    }
+                    .row {
+                        opacity:.3;
+                    }
                 }
             }
         }

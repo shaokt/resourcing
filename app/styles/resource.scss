@@ -9,7 +9,7 @@
     margin-top:-3px;
     position:fixed;
     top:155px;
-    z-index:4;
+    z-index:5;
 }
 section.resourceRow {
     background:#eee;
@@ -115,6 +115,7 @@ section.resourceRow {
 
     &[data-active="true"] {
         border-top:25px solid #000;
+        z-index:6;
 
         &:after {
             display:none;
