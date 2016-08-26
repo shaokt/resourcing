@@ -1,0 +1,6 @@
+<div class="tileContainer" data-container="{{item.id}}">
+    <a href="#" data-assignment="{{item.id}}" data-stamp="true" {{action "selectForView" on="click" event=event}}>
+        <span></span>
+    </a>
+    <input type="checkbox" id={{concat 'ass-' item.id '-v'}} checked={{item.selected}} onclick={{action "selectForView" event=event}}>
+</div>

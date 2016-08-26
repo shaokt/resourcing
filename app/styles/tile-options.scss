@@ -1,23 +1,49 @@
 // chicklet tiles used to paint into each row
 .tileContainer {
+    cursor:default;
+    display:none;
     float:left;
+    margin:0 5px 2px 0;
     position:relative;
-}
+
+    &:before {
+        border-radius:5px;
+        content:"";
+        display:block;
+        height:100%;
+        opacity:.3;
+        position:absolute;
+        width:100%;
+    }
+
+    &:hover {
+        [data-stamp="true"]{
+            border:1px solid #000;
+            opacity:1;
+            z-index:2;
+
+            span {
+                 display:block;
+                 margin:3px;
+                 padding:10px;
+            }
+        }
+    }
+}// tileContainer
+
 .tileOptions {
     cursor:pointer;
 
     &:hover {
-        input:checked,
+        .tileContainer,
+        input,
         label { display:block; }
     }
 
     input {
         float:left;
         display:none;
-        right:-8px;
-        position:absolute;
-        top:-5px;
-        z-index:2;
+        position:relative;
     }
 
     label {
