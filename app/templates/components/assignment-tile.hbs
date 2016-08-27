@@ -11,11 +11,7 @@
 {{#each model as |item|}}
     {{#unless omit}}
         {{#unless item.hidden}}
-            {{#if constants.editingRow}}
-                <a href="#" data-assignment="{{item.id}}" data-stamp="true" {{action "select" on="click" event=event}} data-active="{{settings-default-tile 'assignment' item.id}}"><span></span></a>
-            {{else}}
-                {{assignment-tile-item item=item}}
-            {{/if}}
+            {{assignment-tile-item item=item}}
         {{/unless}}
     {{/unless}}
     {{!  still render the style for hidden assignments so painted tiles get the proper styles}}
