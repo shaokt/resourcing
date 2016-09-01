@@ -19,6 +19,11 @@
 {{#if editing}}
     {{content-editable class="name" value=resource.name key-press="filter" focus-in=constants.focusInContentEditable}}
     {{content-editable class="name ad" value=resource.ad key-press="filter" focus-in=constants.focusInContentEditable}}
+    <ul class="tileOptions" style="background:#eee;clear:right;border:3px solid red;padding:5px;border-radius:5px;max-width:33%;margin-left:10px;">
+        <li class="assignments">
+            {{assignment-tile model=model paint=true}}
+        </li>
+    </ul>
 {{else}}
 	<div class="name">{{resource.name}}</div>
 {{/if}}

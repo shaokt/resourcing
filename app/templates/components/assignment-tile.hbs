@@ -11,7 +11,7 @@
 {{#each model as |item|}}
     {{#unless omit}}
         {{#unless item.hidden}}
-            {{assignment-tile-item item=item}}
+            {{assignment-tile-item item=item paint=paint}}
         {{/unless}}
     {{/unless}}
     {{!  still render the style for hidden assignments so painted tiles get the proper styles}}
