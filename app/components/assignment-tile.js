@@ -20,15 +20,6 @@ export default Ember.Component.extend({
 
     isEmpty: function(){
         return this.get('settings.assignmentTile') == "empty"
-    }.property('settings.assignmentTile'),
-
-    // remove active state on selected item if it exists
-    unselect: function(){
-        if(!this.active){
-            this.active = $('.tileOptions [data-active="true"]'); // this only occurs on load of default tile
-        }
-        try{ this.active.attr('data-active', false); }
-        catch(e){}
-    },
+    }.property('settings.assignmentTile')
 
 });

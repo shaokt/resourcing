@@ -1,8 +1,8 @@
 <div class="tileContainer" data-container="{{item.id}}">
-    <a href="#" data-assignment="{{item.id}}" data-stamp="true" {{action "selectForView" on="click" event=event}}>
+    <a href="#" data-assignment="{{item.id}}" data-stamp="true" {{action "select" on="click" event=event}}>
         <span></span>
     </a>
     {{#unless paint}}
-        <input type="checkbox" id={{concat 'ass-' item.id '-v'}} checked={{item.selected}} onclick={{action "selectForView" event=event}}>
+        <input type="checkbox" id={{concat 'ass-' item.id '-v'}} checked={{item.selected}} onclick={{action "select" event=event}}>
     {{/unless}}
 </div>

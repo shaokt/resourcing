@@ -1,10 +1,24 @@
 import Ember from 'ember';
+import { storageFor } from 'ember-local-storage';
 
 export default Ember.Component.extend({
     tagName:'',
+    settings: storageFor("settings"),
+
+    // remove active state on selected item if it exists
+    unselect: function(){
+        if(!this.active){
+            this.active = $('.tileOptions [data-active="true"]'); // this only occurs on load of default tile
+        }
+        try{ this.active.attr('data-active', false); }
+        catch(e){}
+    },
 
     actions: {
-        select() {
+        // dispatch for paint vs view depending on where component is rendered
+        select() { this.send(this.get('paint') ? 'selectForPaint' : 'selectForView'); },
+
+        selectForPaint() {
             this.unselect();
             this.active = $(event.target);
             this.active.attr('data-active', true);
