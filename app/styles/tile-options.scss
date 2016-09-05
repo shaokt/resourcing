@@ -3,7 +3,6 @@
     cursor:default;
     display:none;
     float:left;
-    margin:0 5px 2px 0;
     position:relative;
 
     &[data-active="true"] {
@@ -42,6 +41,10 @@
     &:hover {
         outline:none;
 
+        .tileContainer {
+            margin:0 5px 2px 0;
+        }
+
         .tileContainer,
         input,
         label { display:block; }
@@ -51,7 +54,6 @@
             border-radius:5px;
             border-color:#aaa;
             cursor:pointer;
-            padding-bottom:10px !important;
         }
 
         [data-stamp="true"] { display:inline-block; }
@@ -83,7 +85,7 @@
          float:left;
          list-style:none;
          margin-right:5px;
-         padding:8px 10px 0 10px;
+         padding:8px 10px 10px 10px;
 
          &:before {
             float:left;
@@ -162,24 +164,32 @@
     }//li
 }
 
-.resourceRow[data-type="person"] {
-    .tileOptions {
-        border-radius:5px;
-        float:left;
-        max-width:33%;
-        margin:-18px 0 0 10px;
-        transform:scale(.8);
-
-        li {
-            padding:0;
-        }
-
-        &:hover {
-            transform:scale(1);
+.resourceRow {
+    &[data-type="person"] {
+        .tileOptions {
+            float:left;
+            max-width:33%;
+            margin:-18px 0 0 10px;
+            transform:scale(.8);
 
             li {
-                 padding:8px 10px 0 10px;
+                margin-right:0;
+                padding:0;
             }
+
+            &:hover {
+                transform:scale(1);
+
+                li {
+                     padding:8px 10px 10px 10px;
+                }
+            }
+        }
+    }
+    &[data-type="assignment"] {
+        li [data-stamp="true"]:hover:before {
+            color:red !important;
+            display:none;
         }
     }
 }

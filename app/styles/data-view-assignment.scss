@@ -16,6 +16,10 @@
         padding-top:155px;
     }
 
+    &[data-route="assignments.index"] main {
+        padding-top:164px;
+    }
+
     [data-type="tile"] {
         background:rgba(255,204,102,.25);
         background: repeating-linear-gradient(
