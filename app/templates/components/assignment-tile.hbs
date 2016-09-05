@@ -1,13 +1,3 @@
-{{#if constants.editingRow}}
-    {{#unless omit}}
-        {{#if isEmpty}}
-            <a href="#" data-assignment="empty" data-stamp="true" class="empty" data-active="true" {{action "select" on="click" event=event}}><span></span></a>
-        {{else}}
-            <a href="#" data-assignment="empty" data-stamp="true" class="empty" data-active="false" {{action "select" on="click" event=event}}><span></span></a>
-        {{/if}}
-    {{/unless}}
-{{/if}}
-
 {{#each model as |item|}}
     {{#unless omit}}
         {{#unless item.hidden}}

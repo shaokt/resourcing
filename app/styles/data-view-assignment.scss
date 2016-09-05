@@ -148,10 +148,6 @@
             }
         }
 
-        .tileOptions li {
-            padding:0;
-            position:relative;
-        }
         .tiles [data-stamp="true"]{
             &:after {
                 background:rgba(0,0,0,.4);

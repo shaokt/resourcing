@@ -17,9 +17,4 @@ export default Ember.Component.extend({
             this.set('omit', true);
         }
     },
-
-    isEmpty: function(){
-        return this.get('settings.assignmentTile') == "empty"
-    }.property('settings.assignmentTile')
-
 });

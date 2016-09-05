@@ -6,6 +6,10 @@
     margin:0 5px 2px 0;
     position:relative;
 
+    &[data-active="true"] {
+        display:block;
+    }
+
     &:before {
         border-radius:5px;
         content:"";
@@ -36,9 +40,23 @@
      max-width:50%;
 
     &:hover {
+        outline:none;
+
         .tileContainer,
         input,
         label { display:block; }
+
+        li {
+            background:#eee;
+            border-radius:5px;
+            border-color:#aaa;
+            cursor:pointer;
+            padding-bottom:10px !important;
+        }
+
+        [data-stamp="true"] { display:inline-block; }
+
+        + .viewOptions { display:none; }
     }
 
     input {
@@ -144,34 +162,24 @@
     }//li
 }
 
-//header {
+.resourceRow[data-type="person"] {
     .tileOptions {
-        &:focus,
-        &:hover {
-            outline:none;
-            li {
-                background:#eee;
-                border-radius:5px;
-                border-color:#aaa;
-                cursor:pointer;
-                padding-bottom:10px !important;
-            }
-
-            [data-stamp="true"] { display:inline-block; }
-
-            + .viewOptions { display:none; }
-        }
-    }
-//}
-
-.resourceRow {
-    .tileOptions {
-        background:#eee;
-        border:3px solid red;
         border-radius:5px;
-        clear:right;
+        float:left;
         max-width:33%;
-        margin-left:10px;
-        padding:5px;
+        margin:-18px 0 0 10px;
+        transform:scale(.8);
+
+        li {
+            padding:0;
+        }
+
+        &:hover {
+            transform:scale(1);
+
+            li {
+                 padding:8px 10px 0 10px;
+            }
+        }
     }
 }

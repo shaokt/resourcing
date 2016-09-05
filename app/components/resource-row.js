@@ -15,13 +15,19 @@ export default Ember.Component.extend(Webcel, {
 
     // row available for editing/painting
     edit: function(){
-        // if a tile wasn't chosen, register the default loaded tile for painting
+        this.set('row', this.$().parent().find('.row')[0]);
+        this.set('rowComponent', this);
+
         if(this.get('router.currentRouteName') === 'home' && !this.constants.webcel.currentTile){
-            try{
-                $('.tileOptions [data-active="true"]')[0].click();
-            }catch(e){
-                $('.tileOptions a')[0].click();
-            }
+            var self = this;
+            setTimeout(function(){
+                try { //choose active tile for painting
+                    self.$().find('.tileOptions a[data-active="true"]')[0].click();
+                }
+                catch(e){ //if none was chosen, use first tile
+                    self.$().find('.tileOptions a')[0].click();
+                }
+            }, 0);
         }
         else if(this.get('router.currentRouteName') === 'assignments.index') {
             //if empty, place a block 3 columns wide centering on today's marker
@@ -36,9 +42,6 @@ export default Ember.Component.extend(Webcel, {
             }
             this.set('assignment.minWidth', this.constants.DIM * 3);
         }
-
-        this.set('row', this.$().parent().find('.row')[0]);
-        this.set('rowComponent', this);
 
         this.constants.webcel.setup({
             row: this.get('row'), // the row being edited
