@@ -20,6 +20,8 @@
     {{content-editable class="name" value=resource.name key-press="filter" focus-in=constants.focusInContentEditable}}
     {{content-editable class="name ad" value=resource.ad key-press="filter" focus-in=constants.focusInContentEditable}}
     {{#if settings.isWeeklyCalendar}}
+        <input type="checkbox" id="deletePaintedtiles" />
+        <label for="deletePaintedtiles" style="color:#fff;">Delete</label>
         <ul class="tileOptions">
             <li class="assignments">
                 {{assignment-tile model=model paint=true}}
