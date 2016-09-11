@@ -75,6 +75,11 @@ export default ResourceRowComponent.extend({
             keyCode == 13 ? this.send('editName') : 0
         },
 
+        // determines if we want to delete the painted tile or not
+        deleteTiles() {
+            this.constants.webcel.deleteTile(event.target.checked);
+        },
+
         // TODO:  send the name back up for saving
         editName() {
             this.send('editing')

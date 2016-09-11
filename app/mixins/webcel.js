@@ -33,6 +33,11 @@ export default Ember.Mixin.create(CalendarWidget, {
         this.currentTile = obj;
     },
 
+    // determines if we want to delete the painted tile or not
+    deleteTile: function(bool) {
+        this.deleting = bool;
+    },
+
     // get the area to paint over
     setPaintableArea: function(){
         var temp;
@@ -51,7 +56,6 @@ export default Ember.Mixin.create(CalendarWidget, {
     getTiles: function(){
         this.setPaintableArea();
 		var addTiles = "";
-		var empty = this.currentTile.hasClass('empty');
 		var tileClass = "";
 		var tileAssignment = this.currentTile.attr('data-assignment');
         var clone = $(this.row).clone(); // clone needed for removing tiles if applicable
@@ -62,12 +66,12 @@ export default Ember.Mixin.create(CalendarWidget, {
     			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
     				var thisTile = $(clone).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
     				thisTile.remove();
-                    if(this.get('router.currentRouteName') === 'assignments.index' && empty) {
+                    if(this.get('router.currentRouteName') === 'assignments.index' && this.deleting) {
         				var thisPhase = $(clone).find('.phases [data-x="' + x +'"][data-y="' + y + '"]');
         				thisPhase.remove();
                     }
 
-    				if(!empty){ // repaint area if delete tile not chosen
+    				if(!this.deleting){ // repaint area if delete tile not chosen
                         var holidayTile = this.constants.daily ? this.constants.holidayColumns.contains(x) : false;
 
     					if(!holidayTile){ // create tile if it is not a holiday column
