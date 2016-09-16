@@ -1,38 +1,41 @@
 import Ember from 'ember';
+import AssignmentTileComponent from "./assignment-tile";
+import { storageFor } from 'ember-local-storage';
 
-export default Ember.Component.extend({
+export default AssignmentTileComponent.extend({
     tagName:'',
+    settings: storageFor("settings"),
+    selected: false,
+
+    isActive: function(){
+        return !this.get('paint') ? false : this.get('item.id') == this.get('settings.assignmentTile');
+    }.property('settings.assignmentTile'),
+
+    // set up tile for painting
+    selectForPaint: function() {
+        this.set('settings.assignmentTile', this.get('item.id'));
+        this.constants.webcel.setTile($(event.target));
+    },
+
+    selectForView() {
+        var self = this;
+        var newList = this.get('constants.assArray');
+
+        if(this.selected){ // remove from list of projects to view
+            newList = newList.filter(function(i) { return i != self.get('item.id'); })
+        }
+        else { // add to list of projects to view
+            newList.push(this.get('item.id'));
+        }
+
+        this.set('constants.assArray', Array.from(newList))
+        this.toggleProperty('selected');
+    },// selectForView
 
     actions: {
+        // dispatch for paint vs view depending on where component is rendered
         select() {
-            this.unselect();
-            this.active = $(event.target);
-            this.active.attr('data-active', true);
-            this.set('settings.assignmentTile', this.active.attr('data-assignment'));
-            this.constants.webcel.setTile(this.active);
-        },
-
-        selectForView() {
-            var self = this;
-            var newList = this.get('constants.assArray');
-            this.active = $(event.target);
-            this.active = this.active[0].tagName.match(/input/i) ? this.active.prev() : this.active;
-
-            if(this.active.attr('data-active') === 'true'){ // remove from list of projects to view
-                this.set('item.selected', false);
-                this.active.attr('data-active', false);
-                this.set('constants.assArray',
-                    newList.filter(function(i) {
-                    	return i != self.active.attr('data-assignment');
-                    })
-                )
-            }
-            else { // add to list of projects to view
-                this.set('item.selected', true);
-                this.active.attr('data-active', true);
-                newList.push(this.active.attr('data-assignment'));
-                this.set('constants.assArray', Array.from(newList));
-            }
-        }// selectForView
+            this.get('paint') ? this.selectForPaint() : this.selectForView();
+        }
     }// actions
 });

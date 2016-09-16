@@ -21,8 +21,7 @@ export default Ember.Component.extend({
             "parentalLeave",
         	"jury",
         	"firstDay",
-        	"lastDay",
-            "empty"
+        	"lastDay"
     ],
 
     // remove active state on selected item if it exists

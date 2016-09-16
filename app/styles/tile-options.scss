@@ -3,8 +3,11 @@
     cursor:default;
     display:none;
     float:left;
-    margin:0 5px 2px 0;
     position:relative;
+
+    &[data-active="true"] {
+        display:block;
+    }
 
     &:before {
         border-radius:5px;
@@ -33,11 +36,29 @@
 
 .tileOptions {
     cursor:pointer;
+     max-width:50%;
 
     &:hover {
+        outline:none;
+
+        .tileContainer {
+            margin:0 5px 2px 0;
+        }
+
         .tileContainer,
         input,
         label { display:block; }
+
+        li {
+            background:#eee;
+            border-radius:5px;
+            border-color:#aaa;
+            cursor:pointer;
+        }
+
+        [data-stamp="true"] { display:inline-block; }
+
+        + .viewOptions { display:none; }
     }
 
     input {
@@ -64,8 +85,7 @@
          float:left;
          list-style:none;
          margin-right:5px;
-         max-width:50%;
-         padding:8px 10px 0 10px;
+         padding:8px 10px 10px 10px;
 
          &:before {
             float:left;
@@ -144,29 +164,67 @@
     }//li
 }
 
-header {
-    .tileOptions {
-        &:focus,
-        &:hover {
-            outline:none;
+.resourceRow {
+    &[data-type="person"] {
+        #deletePaintedtiles {
+            &:checked {
+                ~ .tileOptions {
+                    opacity:.3;
+
+                    &:hover {
+                        transform:scale(.8);
+
+                        li {
+                            background:none;
+                            border-color:transparent;
+                            padding:0;
+
+                            .tileContainer {
+                                margin:0;
+
+                                &[data-active="false"] {
+                                    display:none;
+                                }
+
+                                &[data-active="true"] {
+                                    a:before {
+                                        display:none;
+                                    }
+                                }
+                            }
+                        }// li
+                    }// hover
+                }// .tileOptions
+            }// checked
+
+            ~ label {
+                color:#fff;
+            }
+        }// deletePaintedtiles
+
+        .tileOptions {
+            float:left;
+            max-width:33%;
+            margin:-11px 0 0 10px;
+            transform:scale(.8);
+
             li {
-                background:#eee;
-                border-radius:5px;
-                border-color:#aaa;
-                cursor:pointer;
-                padding-bottom:10px !important;
+                margin-right:0;
+                padding:0;
             }
 
-            [data-stamp="true"] { display:inline-block; }
+            &:hover {
+                transform:scale(1);
 
-            + .viewOptions { display:none; }
+                li {
+                     padding:8px 10px 10px 10px;
+                }
+            }
         }
     }
-}
-
-.resourceRow {
-    .tileOptions li [data-stamp="true"] {
-        &:hover:before {
+    &[data-type="assignment"] {
+        li [data-stamp="true"]:hover:before {
+            color:red !important;
             display:none;
         }
     }

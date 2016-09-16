@@ -9,16 +9,12 @@
     }
 
     main {
-        padding-top:163px;
+        padding-top:165px;
     }
 
     section.resourceRow {
         .row[data-view="timeOff"] {
             height:15px;
-        }
-
-        [data-view="timeOff"] + .info .name {
-            box-shadow:-10px 3px 7px 3px rgba(0, 0, 0, .7);
         }
 
         &:not(.hidden):hover:after {
@@ -125,7 +121,7 @@
 
     .tileOptions:hover {
         li {
-            padding-right:55px !important;
+            //padding-right:55px !important;
         }
     }
 

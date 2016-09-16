@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import ResourceRowComponent from "./resource-row";
+import { storageFor } from 'ember-local-storage';
 
 //export default Ember.Component.extend(ResourceRowComponent, {
 export default ResourceRowComponent.extend({
@@ -8,6 +9,7 @@ export default ResourceRowComponent.extend({
     classNameBindings: ['editing'],
     collapse: '',
     editing: false,
+    settings: storageFor("settings"),
 
     didRender(){
         if(this.get('router.currentRouteName') === 'home'){
@@ -71,6 +73,11 @@ export default ResourceRowComponent.extend({
         filter(currentValue, event) {
             const keyCode = event.which;
             keyCode == 13 ? this.send('editName') : 0
+        },
+
+        // determines if we want to delete the painted tile or not
+        deleteTiles() {
+            this.constants.webcel.deleteTile(event.target.checked);
         },
 
         // TODO:  send the name back up for saving
