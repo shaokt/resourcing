@@ -27,6 +27,14 @@
                 {{assignment-tile model=model paint=true}}
             </li>
         </ul>
+    {{else if settings.isDailyCalendar}}
+        <input type="checkbox" id="deletePaintedtiles" onclick={{action "deleteTiles" event=event}} />
+        <label for="deletePaintedtiles">Delete</label>
+        <ul class="tileOptions">
+            <li class="timeAway">
+                {{time-away settings=settings}}
+            </li>
+        </ul>
     {{/if}}
 {{else}}
 	<div class="name">{{resource.name}}</div>
