@@ -8,6 +8,7 @@ export default ResourceRowComponent.extend({
     classNames: ['info'],
     classNameBindings: ['editing'],
     collapse: '',
+    hasDirects: false,
     editing: false,
     settings: storageFor("settings"),
 
@@ -18,7 +19,7 @@ export default ResourceRowComponent.extend({
 
             var exists = $.getJSON('http://localhost:3000/file/' + this.get('resource.ad'), function() {})
             .done(function() {
-                self.set('resource.hasDirects', exists.responseJSON ? true : false);
+                self.set('hasDirects', exists.responseJSON ? true : false);
             })
         }
     },

@@ -3,9 +3,10 @@
     main {
         padding-top:165px;
 
-        .long { display:none; }
-
         .resourceRow:not([data-active="true"]) .info {
+            
+            .long { display:none; }
+
             &:hover {
                 .short {display:none;}
                 .long { display:block; }
