@@ -58,7 +58,7 @@ export default Ember.Service.extend({
 
         $('.calendar').css({left:-left});
         $('.assignmentViewContainer').css({left:-left});
-        $('#dynamicInfoPos').html(".info, .directs .resourceRow:before, .directs .resourceRow[data-expanded='true']:last-child .row:before { left:" + leftScroll + "px; }"); // if setting via ember, the page responds really slow
+        $('#dynamicLeftScroll').html(".info, .directs .resourceRow:before, .directs .resourceRow[data-expanded='true']:last-child .row:before { left:" + leftScroll + "px; }"); // if setting via ember, very slow response
     },
 
     mouseMoved: function(event){
@@ -67,6 +67,7 @@ export default Ember.Service.extend({
     	pos = pos - pos%this.DIM;
     	pos <= 0 ? pos = 0 : 0;
 		pos = pos >= max ? max : pos;
-        this.set('mousePos', pos)
+
+        $('#dynamicMousePosition').html(".dateMarker, #dateLine { left:" + pos + "px; }") // if setting via ember, very slow response
     },
 });
