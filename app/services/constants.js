@@ -54,11 +54,12 @@ export default Ember.Service.extend({
     scrolled: function(minLeft){
         var left = $(window).scrollLeft();
         var leftScroll = left == 0 && this.get('settings.view') == 'timeaway' ? minLeft : left;
-        this.set('leftScroll', leftScroll);
 
-        $('.calendar').css({left:-left});
-        $('.assignmentViewContainer').css({left:-left});
-        $('#dynamicLeftScroll').html(".info, .directs .resourceRow:before, .directs .resourceRow[data-expanded='true']:last-child .row:before { left:" + leftScroll + "px; }"); // if setting via ember, very slow response
+        $('#dynamicLeftScroll').html(
+            ".info, .directs .resourceRow:before, .directs .resourceRow[data-expanded='true']:last-child .row:before { left:" + leftScroll + "px; }" +
+            ".assignmentViewContainer, .calendar {left:" + -left + "px; }"
+
+        ); // if setting via ember, very slow response
     },
 
     getMousePos: function(event) {
