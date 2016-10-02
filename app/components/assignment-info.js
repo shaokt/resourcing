@@ -66,6 +66,10 @@ export default ResourceInfoComponent.extend({
     },
 
     actions: {
+        select() {
+            $('header .tileOptions .assignments').find('[data-assignment="' + this.get('assignment.id') + '"]').click();
+        },
+
         // get vacation of those who are on the project
         viewTeam() {
             this.set('persons', []);
