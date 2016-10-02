@@ -6,10 +6,26 @@ export default AssignmentTileComponent.extend({
     tagName:'',
     settings: storageFor("settings"),
     selected: false,
+    headerAssignments: null,
 
     isActive: function(){
-        return !this.get('paint') ? false : this.get('item.id') == this.get('settings.assignmentTile');
+        if(this.get('paint')){
+            var current = this.get('item.id') === this.get('settings.assignmentTile');
+            return current ? this.showAssignmentWhilePainting() : false;
+        }
+        return false;
     }.property('settings.assignmentTile'),
+
+    // if seleting a tile for painting, ensure it shows in the roadmap above
+    showAssignmentWhilePainting: function(){
+        var self = this;
+        if(this.headerAssignments === null) this.headerAssignments = $('header .tileOptions .assignments');
+        setTimeout(function(){
+            var item = self.headerAssignments.find('[data-assignment="' + self.get('settings.assignmentTile') + '"]');
+            item.attr('data-active') === 'false' ? item.click() : 0;
+        }, 0);
+        return true;
+    },
 
     // set up tile for painting
     selectForPaint: function() {
