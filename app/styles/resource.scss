@@ -103,8 +103,14 @@ section.resourceRow {
             font-weight:bold;
             letter-spacing:1px;
             padding:0 4px;
+
+            &.short + input.viewAssignment {
+                left:-16px;
+                position:absolute;
+                top:-2px;
+            }
         }
-    }
+    }// .info
 
     &:hover {
         > .info .name {

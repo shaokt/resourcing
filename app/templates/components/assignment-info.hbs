@@ -25,3 +25,7 @@
 {{else}}
     <div class="name short" data-type="value">{{assignment.short}}</div>
 {{/if}}
+
+{{#if readOnly}}
+    <input type="checkbox" checked=checked onclick={{action "select" event=event}} class="viewAssignment" style="" />
+{{/if}}

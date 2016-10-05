@@ -140,6 +140,15 @@ export default Ember.Component.extend(Webcel, {
     },
 
     actions:{
+        findAssignment() {
+            var x = this.get('constants').getMousePos(event);
+    		var y = event.pageY  - $(event.target).offset().top;
+            y = y - y%8; // 8 = height of tile of painted assignment
+
+            var assignment = $(event.target).find('.tiles [data-x="' + x +'"][data-y="' + y*1.875 + '"]').attr('data-assignment');
+            $('header .tileOptions .assignments').find('[data-assignment="' + assignment + '"]').click();
+        },
+
         dragEnter(e) {
             try{
             	var drop = $(e.target).parents('section')[0];
