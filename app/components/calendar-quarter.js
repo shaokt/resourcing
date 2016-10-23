@@ -8,7 +8,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: '',
     onload: function(){
-        if(this.quarter.done) return;
+        if(this.quarter.done){ return; }
 
         // determine the fiscal year this month falls in
         this.quarter.fiscalYear = this.year + this.quarter.year;
