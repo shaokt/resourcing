@@ -11,18 +11,16 @@ export default Ember.Mixin.create(CalendarWidget, {
     currentTile: null, // the tile to use for painting
     _self: this,
 
-    Webcel: function(obj, emData){
-        var setup, _this = this;
-        var isDown = 0;
+    Webcel: function(){
         return this;
     },
 
-    resize: function(e){
+    resize: function(){
         $(this.sizer).css({top: this.downY > this.upY ? this.upY : this.downY});
 		$(this.sizer).css({height:Math.abs(this.upY - this.downY) + this.constants.DIM});
 
         // only resize if not over the un-editable area
-        if(this.upX >= this.constants.prevYear || this.get('router.currentRouteName') != 'home'){
+        if(this.upX >= this.constants.prevYear || this.get('router.currentRouteName') !== 'home'){
     		$(this.sizer).css({left: this.downX > this.upX ? this.upX : this.downX });
     		$(this.sizer).css({width:Math.abs(this.upX - this.downX) + this.constants.DIM});
         }
@@ -34,7 +32,7 @@ export default Ember.Mixin.create(CalendarWidget, {
     },
 
     // determines if we want to delete the painted tile or not
-    deleteTile: function(bool) {
+    deleteTile: function(bool){
         this.deleting = bool;
     },
 
@@ -62,11 +60,11 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 		for(var x = this.downX; x <= this.upX; x+=this.constants.DIM){
             // permit tiles on anything after the previous year, on the home screen (editing resources)
-            if(x >= this.constants.prevYear || this.get('router.currentRouteName') != 'home'){
+            if(x >= this.constants.prevYear || this.get('router.currentRouteName') !== 'home'){
     			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
     				var thisTile = $(clone).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
     				thisTile.remove();
-                    if(this.get('router.currentRouteName') === 'assignments.index' && this.deleting) {
+                    if(this.get('router.currentRouteName') === 'assignments.index' && this.deleting){
         				var thisPhase = $(clone).find('.phases [data-x="' + x +'"][data-y="' + y + '"]');
         				thisPhase.remove();
                     }
@@ -75,19 +73,20 @@ export default Ember.Mixin.create(CalendarWidget, {
                         var holidayTile = this.constants.daily ? this.constants.holidayColumns.contains(x) : false;
 
     					if(!holidayTile){ // create tile if it is not a holiday column
+                            var dataYear;
                             var stamp = (thisTile.length && thisTile.attr('data-stamp')) ? ' data-stamp="true"' : "";
                             var dataAssignment = ""; // the assignment tile ID if applicable
 
                             if(this.constants.daily){ // add year indicator for out of office tracking
                         		tileClass = this.currentTile.attr('class');
-                                var dataYear = tileClass == "vacationCarryover" ?
+                                dataYear = tileClass === "vacationCarryover" ?
                                     (x < this.constants.nextYear ? (this.year - 1) : this.year) :
-                                    (x < this.constants.nextYear ? this.year : (this.year + 1))
+                                    (x < this.constants.nextYear ? this.year : (this.year + 1));
                                 tileClass = ' class="' + tileClass + '"';
                             } else {
-                                var dataYear = x < this.constants.nextYear ? this.year : (this.year + 1)
+                                dataYear = x < this.constants.nextYear ? this.year : (this.year + 1);
                                 dataAssignment = ' data-assignment="' + tileAssignment + '"';
-                            };
+                            }
     						addTiles+=
                                 '<span data-type="tile" data-x="' + x + '" data-y="' + y + '"' +
                                 tileClass +
@@ -101,12 +100,10 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 		addTiles = ($(clone).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
 
-        this.constants.daily ?
-            this.data.set('timeaway', addTiles) :
-            this.data.set('assignment', addTiles);
+        this.data.set(this.constants.daily ? 'timeaway' : 'assignment', addTiles);
 
         // update the phaes in case they were shifted, deleted etc
-        if(this.get('router.currentRouteName') === 'assignments.index') {
+        if(this.get('router.currentRouteName') === 'assignments.index'){
             this.data.set('phases', ($(clone).find('.phases')[0].innerHTML).htmlSafe());
         }
 
@@ -116,7 +113,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 
     setPhase: function(){
         // only create the phase stamp if a phase is selected
-        if(this.data.get('stampPhase')) {
+        if(this.data.get('stampPhase')){
             var clone = $(this.row).clone(); // clone needed for removing tiles if applicable
             var exists = $(clone).find('.phases [data-x="' + this.downX + '"][data-y="' + this.downY + '"]');
 
@@ -134,14 +131,14 @@ export default Ember.Mixin.create(CalendarWidget, {
     },
 
     dragAssignmentHandle:function(){
-        if(this.handle) {
+        if(this.handle){
             var newWidth = this.get('rowComponent.assignment.originalWidth');
 
             if(this.handle === "left"){
                 newWidth += this.downX - this.upX;
-                newWidth >= this.get('rowComponent.assignment.minWidth') ? this.set('rowComponent.assignment.x', this.upX) : 0;
+                if(newWidth >= this.get('rowComponent.assignment.minWidth')){ this.set('rowComponent.assignment.x', this.upX); }
             }
-            else if(this.handle === "right") {
+            else if(this.handle === "right"){
                 newWidth += this.upX - this.downX;
             }
 
@@ -152,7 +149,6 @@ export default Ember.Mixin.create(CalendarWidget, {
         }
     },
 
-    //setup: function(obj, emData){
     setup: function(params){
         var movePointer, mouseDown, mouseUp;
         this.constants.webcel = this;
@@ -164,9 +160,8 @@ export default Ember.Mixin.create(CalendarWidget, {
         setTimeout(function(){
             self.pointer = $(self.row).find('.pointer')[0];
             self.sizer = $(self.row).find('.sizer')[0];
-        }, 0)
+        }, 0);
         this.maxY = this.constants.daily ? 0 : 45;
-        var self = this;
 
         movePointer = function(e){
     		self.x = e.pageX - $(this).offset().left;
@@ -176,7 +171,7 @@ export default Ember.Mixin.create(CalendarWidget, {
             self.y > self.maxY ? self.y = self.maxY : 0;
 
             // only allow the pointer to move if it is not in the un-editable area
-            if(self.x >= self.constants.prevYear || self.get('router.currentRouteName') != 'home'){ $(self.pointer).css({left:self.x}); }
+            if(self.x >= self.constants.prevYear || self.get('router.currentRouteName') !== 'home'){ $(self.pointer).css({left:self.x}); }
             $(self.pointer).css({top:self.y});
 
             if(self.isDown){
@@ -195,7 +190,7 @@ export default Ember.Mixin.create(CalendarWidget, {
     				$(self.sizer).show();
                 }
 			}
-        }
+        };
 
 		mouseDown = function(e){
             // clicking on the stamp that you want to move around
@@ -205,9 +200,9 @@ export default Ember.Mixin.create(CalendarWidget, {
             }
             else {
     			self.downX = e.pageX - $(this).offset().left;
-                if(self.downX < self.constants.prevYear && self.get('router.currentRouteName') === 'home') return;
+                if(self.downX < self.constants.prevYear && self.get('router.currentRouteName') === 'home'){ return; }
     			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
-    			self.downY = e.pageY  - $(this).offset().top
+    			self.downY = e.pageY  - $(this).offset().top;
     			self.downY = self.downY - self.downY%self.constants.DIM;
 
                 self.downY > self.maxY ? self.downY = self.maxY : 0;
@@ -216,11 +211,11 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 			switch (e.which){
 				case 1: { // left mouse button
-                    if(self.rowComponent.get('phaseAction') === 'shift') break;; // do not paint if the user wants to shift the phases around
+                    if(self.rowComponent.get('phaseAction') === 'shift'){ break; } // do not paint if the user wants to shift the phases around
                     if(self.get('router.currentRouteName') === 'assignments.index'){
                         self.handle = $(e.target).hasClass('handle') ? $(e.target).hasClass('left') ? "left" : "right" : false;
                         self.downX = self.get('rowComponent.assignment.x');
-                        if(self.handle === "right") self.downX += self.get('rowComponent.assignment.w') - self.constants.DIM;
+                        if(self.handle === "right"){ self.downX += self.get('rowComponent.assignment.w') - self.constants.DIM; }
                         self.set('rowComponent.assignment.originalWidth', self.get('rowComponent.assignment.w'));
                     }
                     if(!self.isDown){ self.isDown = 1; }
@@ -228,14 +223,14 @@ export default Ember.Mixin.create(CalendarWidget, {
                 }
 				case 3: { // right click: stamp
                     // stamps limited to phases of the project defined in the assignment-phases component
-                    if(self.get('router.currentRouteName') === 'assignments.index') {
+                    if(self.get('router.currentRouteName') === 'assignments.index'){
                         self.setPhase(e);
                     }
                     // stamps  the short name of the project on the project tile
                     else {
     					var thisTile = $(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
-                        if(thisTile.attr('data-stamp') == "true"){ thisTile.removeAttr('data-stamp') }
-                        else{ thisTile.attr('data-stamp', true) }
+                        if(thisTile.attr('data-stamp') === "true"){ thisTile.removeAttr('data-stamp'); }
+                        else{ thisTile.attr('data-stamp', true); }
 
                 		var addTiles = ($(self.row).find(".tiles")[0].innerHTML.replace(/<!---->/gi, '').trim()).htmlSafe();
                         self.constants.daily ?
@@ -245,7 +240,7 @@ export default Ember.Mixin.create(CalendarWidget, {
                     break;
                 }
             }//switch
-        }//mouseDOwn
+        };//mouseDOwn
 
 		mouseUp = function(e){
 			switch (e.which){
@@ -265,7 +260,7 @@ export default Ember.Mixin.create(CalendarWidget, {
                     }
                 }
             }
-        }// mouseUp
+        };// mouseUp
 
         $(this.row).bind('mousemove', movePointer);
         $(this.row).bind('mousedown', mouseDown).bind('contextmenu', function(e){e.preventDefault();});

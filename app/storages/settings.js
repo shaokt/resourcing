@@ -2,15 +2,15 @@ import StorageObject from 'ember-local-storage/local/object';
 
 const Storage = StorageObject.extend({
     isWeeklyCalendar: function(){
-        return this.get('view') == 'assignment';
+        return this.get('view') === 'assignment';
     }.property('view'),
 
     isDailyCalendar: function(){
-        return this.get('view') == 'timeaway';
+        return this.get('view') === 'timeaway';
     }.property('view'),
 
     hasCalendar: function(){
-        return this.get('view') == 'timeaway' || this.get('view') == 'assignment';
+        return this.get('view') === 'timeaway' || this.get('view') === 'assignment';
     }.property('view'),
 
     isHiddenRows: function(){

@@ -6,7 +6,7 @@ export default Ember.Route.extend({
     settings: storageFor("settings"),
 
     beforeModel: function(transition){
-        this.id = transition.queryParams.id
+        this.id = transition.queryParams.id;
         this.set('settings.lastManager', this.id);
     },
 
