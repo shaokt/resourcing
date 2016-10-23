@@ -35,7 +35,7 @@ export default Ember.Component.extend(Webcel, {
                 var col = this.constants.todayColumn;
                 col -= col > 0 ? this.constants.DIM : 0;
 
-                var width = this.constants.DIM * (this.constants.todayColumn == this.constants.calWidth - this.constants.DIM ? 2 : 3);
+                var width = this.constants.DIM * (this.constants.todayColumn === this.constants.calWidth - this.constants.DIM ? 2 : 3);
 
                 this.set('assignment.w', width);
                 this.set('assignment.x', col);
@@ -51,12 +51,12 @@ export default Ember.Component.extend(Webcel, {
     },
 
     save: function(){
-        this.constants.save(this.get('resource'))
+        this.constants.save(this.get('resource'));
         this.constants.webcel.done();
     },
 
     isbefore:function (a, b){
-    	if (a.parentNode == b.parentNode) {
+    	if (a.parentNode === b.parentNode) {
     		for (var cur = a; cur; cur = cur.previousSibling) {
     			if (cur === b) { return true; }
     		}
@@ -66,20 +66,20 @@ export default Ember.Component.extend(Webcel, {
 
     // get the phase clicked on for shifting
     getPhaseShift: function(x, y){
-        var phaseToShift = $(this.row).find('.phases [data-x="' + x +'"][data-y="' + y + '"]')
-        if(phaseToShift[0] === this.get('phaseToShift')) return; // do nothing if clicking the same phase to move around
+        var phaseToShift = Ember.$(this.row).find('.phases [data-x="' + x +'"][data-y="' + y + '"]');
+        if(phaseToShift[0] === this.get('phaseToShift')){ return; } // do nothing if clicking the same phase to move around
 
         if(phaseToShift.length){
             this.updateRelatedPhasesPosition(); // choosing another phase, udpate all related phase positions first
             try {
-                $(this.get('phaseToShift'))
+                Ember.$(this.get('phaseToShift'))
                     .removeAttr('class')
-                    .removeAttr('data-phaselink')
+                    .removeAttr('data-phaselink');
             }
             catch(e){} // nothing was initially set, do nothing
     		this.set('phaseToShift', phaseToShift[0]);
 
-            $(phaseToShift)
+            Ember.$(phaseToShift)
                 .addClass('active')
                 .attr('data-phaselink', true);
 
@@ -91,13 +91,13 @@ export default Ember.Component.extend(Webcel, {
         // link all phases together if they are to the right of current phase
         if(!this.breakLink){
             this.resetPhaseToShiftPosition();
-            var x = parseInt($(this.get('phaseToShift')).attr('data-x'));
-            var links = $(this.get('phaseToShift')).parent().find('[data-x]').filter(function(){
-                if(parseInt($(this).attr('data-x')) > x){
-                    $(this).attr('data-phaselink', true)
+            var x = parseInt(Ember.$(this.get('phaseToShift')).attr('data-x'));
+            Ember.$(this.get('phaseToShift')).parent().find('[data-x]').filter(function(){
+                if(parseInt(Ember.$(this).attr('data-x')) > x){
+                    Ember.$(this).attr('data-phaselink', true);
                     return true;
                 }
-            })
+            });
         }
         else { // remove the links & update their new positions
             this.updateRelatedPhasesPosition();
@@ -106,33 +106,32 @@ export default Ember.Component.extend(Webcel, {
 
     // delete the phase as chosen by user
     getPhaseDelete: function(x, y){
-        var clone = $(this.row).clone(); // clone needed for removing tiles if applicable
-        var phaseToDelete = $(clone).find('.phases [data-x="' + x +'"][data-y="' + y + '"]')
+        var clone = Ember.$(this.row).clone(); // clone needed for removing tiles if applicable
+        var phaseToDelete = Ember.$(clone).find('.phases [data-x="' + x +'"][data-y="' + y + '"]');
         if(phaseToDelete.length){
-            //var phaseContainer = $(phaseToDelete)[0].parentNode;
-            $(phaseToDelete[0]).remove();
-    		var test = ($(clone).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim()).htmlSafe();
-            this.set('assignment.phases', test)
+            Ember.$(phaseToDelete[0]).remove();
+    		var test = (Ember.$(clone).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim()).htmlSafe();
+            this.set('assignment.phases', test);
         }
     },
 
     // update the x positions of the related phases being moved
     updateRelatedPhasesPosition: function(){
         var self = this;
-        var links = $(this.get('phaseToShift')).parent().find('[data-phaselink]').filter(function(){
-            if(this != self.get('phaseToShift')){
-                $(this).removeAttr('data-phaselink')
-                var x = parseInt($(this).attr('data-x'));
-                $(this).attr('data-x', x + self.get('shiftHorizontal'));
+        Ember.$(this.get('phaseToShift')).parent().find('[data-phaselink]').filter(function(){
+            if(this !== self.get('phaseToShift')){
+                Ember.$(this).removeAttr('data-phaselink');
+                var x = parseInt(Ember.$(this).attr('data-x'));
+                Ember.$(this).attr('data-x', x + self.get('shiftHorizontal'));
             }
             return true;
-        })
+        });
         this.resetPhaseToShiftPosition();
     },
 
     // when breaking and unbreaking the link, reset the phase being shift's position for proper calculations
     resetPhaseToShiftPosition: function(){
-        var pts = $(this.get('phaseToShift'));
+        var pts = Ember.$(this.get('phaseToShift'));
         pts.attr('data-x', parseInt(pts.attr('data-x')) + this.get('shiftHorizontal'));
         pts.attr('data-y', parseInt(pts.attr('data-y')) + this.get('shiftVertical'));
         this.set('shiftHorizontal', 0);
@@ -142,62 +141,62 @@ export default Ember.Component.extend(Webcel, {
     actions:{
         findAssignment() {
             var x = this.get('constants').getMousePos(event);
-    		var y = event.pageY  - $(event.target).offset().top;
+    		var y = event.pageY  - Ember.$(event.target).offset().top;
             y = y - y%8; // 8 = height of tile of painted assignment
 
-            var assignment = $(event.target).find('.tiles [data-x="' + x +'"][data-y="' + y*1.875 + '"]').attr('data-assignment');
-            $('header .tileOptions .assignments').find('[data-assignment="' + assignment + '"]').click();
+            var assignment = Ember.$(event.target).find('.tiles [data-x="' + x +'"][data-y="' + y*1.875 + '"]').attr('data-assignment');
+            Ember.$('header .tileOptions .assignments').find('[data-assignment="' + assignment + '"]').click();
         },
 
         dragEnter(e) {
             try{
-            	var drop = $(e.target).parents('section')[0];
-            	if(drop != this.dragSource && drop != undefined){
+            	var drop = Ember.$(e.target).parents('section')[0];
+            	if(drop !== this.dragSource && drop !== undefined){
                     if(this.dragSource.ghost){
                         this.dragSource.ghost.remove();
                     }
                     else{
                         this.dragSource.ghost = document.createElement("section");
-                        $(this.dragSource.ghost).addClass('resourceRow ghost')
-                        $(this.dragSource.ghost).html(this.dragSource.innerHTML)
+                        Ember.$(this.dragSource.ghost).addClass('resourceRow ghost');
+                        Ember.$(this.dragSource.ghost).html(this.dragSource.innerHTML);
                     }
 
                     var isBefore = this.isbefore(this.dragSource, drop);
-            		drop.parentNode.insertBefore(this.dragSource.ghost, isBefore ? drop : drop.nextSibling)
-                    this.dragSource.newIndex = $(drop).attr('data-index')
+            		drop.parentNode.insertBefore(this.dragSource.ghost, isBefore ? drop : drop.nextSibling);
+                    this.dragSource.newIndex = Ember.$(drop).attr('data-index');
                 }
-                else if(drop == this.dragSource) {
-                    this.dragSource.newIndex = this.dragSource.index
-                    this.dragSource.ghost.remove()
+                else if(drop === this.dragSource) {
+                    this.dragSource.newIndex = this.dragSource.index;
+                    this.dragSource.ghost.remove();
                 }
             }
-            catch(e){}
+            catch(error){}
         },
 
         dragStart(e) {
         	this.dragSource = e.target;
-            var item = this.get('model').resource.findBy('id', $(this.dragSource).attr('data-id'));
+            var item = this.get('model').resource.findBy('id', Ember.$(this.dragSource).attr('data-id'));
             this.dragSource.index = this.dragSource.newIndex = this.get('model').resource.indexOf(item);
 
-        	$(this.dragSource).addClass('moving');
-            $('#pageContainer').addClass('moving');
+        	Ember.$(this.dragSource).addClass('moving');
+            Ember.$('#pageContainer').addClass('moving');
         	e.dataTransfer.effectAllowed = 'copyMove';
         },
 
         dragEnd() {
-            console.log(this.dragSource.index + " : " + this.dragSource.newIndex)
-        	$(this.dragSource).removeClass('moving');
-            $(this.dragSource.ghost).remove()
-            $('#pageContainer').removeClass('moving');
+            console.log(this.dragSource.index + " : " + this.dragSource.newIndex);
+        	Ember.$(this.dragSource).removeClass('moving');
+            Ember.$(this.dragSource.ghost).remove();
+            Ember.$('#pageContainer').removeClass('moving');
 
             var items = this.get('model').resource;
             var item = this.get('model').resource.objectAt(this.dragSource.index);
 
             items.removeAt(this.dragSource.index);
             try{
-                items.insertAt(this.dragSource.newIndex, item._internalModel)
+                items.insertAt(this.dragSource.newIndex, item._internalModel);
             }
-            catch(e){ console.log(e.message)}
+            catch(error){}
         },
 
         dragOver(e) {

@@ -8,14 +8,14 @@ export default ResourceInfoComponent.extend({
     findPeople: {},
     settings: storageFor("settings"),
     shiftPhase: function(){
-        return this.get('phaseAction') == 'shift';
+        return this.get('phaseAction') === 'shift';
     }.property('phaseAction'),
 
     getPeople(org) {
         var self = this;
         org.forEach(function(person){
             ++self.counter;
-            var exists = $.getJSON('http://localhost:3000/file/' + person.get('ad'), function() {})
+            var exists = Ember.$.getJSON('http://localhost:3000/file/' + person.get('ad'), function() {})
             .done(function() {
                 var ad = person.get('ad');
                 if(exists.responseJSON) { // has direct reports
@@ -31,16 +31,16 @@ export default ResourceInfoComponent.extend({
                         --self.counter;
                         if(self.counter===0){ self.done(); }
                         self.hasAssignment(person);
-                    }, 0)
+                    }, 0);
                 }
-            })
-        })
+            });
+        });
     },
 
     done() {
         if(this.peopleAssigned){
             this.set('settings.view', 'timeaway');
-            this.set('constants.dataView', 'timeaway')
+            this.set('constants.dataView', 'timeaway');
             this.set('constants.teamAsOfEmpty', false);
         }
         else {
@@ -52,12 +52,12 @@ export default ResourceInfoComponent.extend({
     // checks if the person has a specific assignment from a specific date
     hasAssignment(person) {
         var self = this;
-        var assignment = $('<div></div>')
+        var assignment = Ember.$('<div></div>')
             .append(person.get('assignment'))
             .find('[data-assignment="' + this.currentAssignment + '"]')
             .filter(function(){
-                return parseInt($(this).attr('data-x')) >= parseInt(self.get('constants.teamAsOf'));
-            })
+                return parseInt(Ember.$(this).attr('data-x')) >= parseInt(self.get('constants.teamAsOf'));
+            });
 
         if(assignment.length){
             this.set('peopleAssigned', ++this.peopleAssigned);
@@ -67,7 +67,7 @@ export default ResourceInfoComponent.extend({
 
     actions: {
         select() {
-            $('header .tileOptions .assignments').find('[data-assignment="' + this.get('assignment.id') + '"]').click();
+            Ember.$('header .tileOptions .assignments').find('[data-assignment="' + this.get('assignment.id') + '"]').click();
         },
 
         // get vacation of those who are on the project
@@ -76,8 +76,8 @@ export default ResourceInfoComponent.extend({
             this.set('constants.teamAsOfEmpty', false);
             if(this.get('settings.view') === 'timeaway') {
                 this.set('readonly', false);
-                this.set('settings.view', 'assignment')
-                this.set('constants.dataView', 'assignment')
+                this.set('settings.view', 'assignment');
+                this.set('constants.dataView', 'assignment');
                 this.set('constants.teamAssignment', '');
             }
             else {
@@ -87,7 +87,7 @@ export default ResourceInfoComponent.extend({
                 this.set('constants.teamAssignment', this.get('assignment'));
                 this.set('findPeople', this.get('store').query('direct', {manager: 'PL145'})).then(function(){
                     self.getPeople(self.findPeople);
-                })
+                });
             }
         },
     }

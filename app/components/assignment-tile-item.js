@@ -19,10 +19,10 @@ export default AssignmentTileComponent.extend({
     // if seleting a tile for painting, ensure it shows in the roadmap above
     showAssignmentWhilePainting: function(){
         var self = this;
-        if(this.headerAssignments === null) this.headerAssignments = $('header .tileOptions .assignments');
+        if(this.headerAssignments === null){ this.headerAssignments = Ember.$('header .tileOptions .assignments'); }
         setTimeout(function(){
             var item = self.headerAssignments.find('[data-assignment="' + self.get('settings.assignmentTile') + '"]');
-            item.attr('data-active') === 'false' ? item.click() : 0;
+            if(item.attr('data-active') === 'false'){ item.click(); }
         }, 0);
         return true;
     },
@@ -30,7 +30,7 @@ export default AssignmentTileComponent.extend({
     // set up tile for painting
     selectForPaint: function() {
         this.set('settings.assignmentTile', this.get('item.id'));
-        this.constants.webcel.setTile($(event.target));
+        this.constants.webcel.setTile(Ember.$(event.target));
     },
 
     selectForView() {
@@ -38,20 +38,21 @@ export default AssignmentTileComponent.extend({
         var newList = this.get('constants.assArray');
 
         if(this.selected){ // remove from list of projects to view
-            newList = newList.filter(function(i) { return i != self.get('item.id'); })
+            newList = newList.filter(function(i) { return i !== self.get('item.id'); });
         }
         else { // add to list of projects to view
             newList.push(this.get('item.id'));
         }
 
-        this.set('constants.assArray', Array.from(newList))
+        this.set('constants.assArray', Array.from(newList));
         this.toggleProperty('selected');
     },// selectForView
 
     actions: {
         // dispatch for paint vs view depending on where component is rendered
         select() {
-            this.get('paint') ? this.selectForPaint() : this.selectForView();
+            if(this.get('paint')){ this.selectForPaint(); }
+            else{ this.selectForView(); }
         }
     }// actions
 });

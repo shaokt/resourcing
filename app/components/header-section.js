@@ -54,7 +54,7 @@ export default Ember.Component.extend({
     actions: {
         // allows user to view all team members assigned to a project
         viewTeam() {
-            if(this.get('constants.dataView') === 'timeaway') return;
+            if(this.get('constants.dataView') === 'timeaway'){ return; }
             this.toggleProperty('constants.teamAssignmentView');
             if(!this.get('constants.teamAssignmentView')){
                 this.set('constants.teamAssignment', '');
@@ -77,15 +77,15 @@ export default Ember.Component.extend({
 
         // switch views between assignment, timeaway etc
         toggleView(view) {
-            this.get('settings').set('view', view)
-            document.title = this.get('settings.view') == "timeaway" ?
+            this.get('settings').set('view', view);
+            document.title = this.get('settings.view') === "timeaway" ?
                 "Resourcing - Time Off" :
                 "Resourcing - Assignments";
         },
 
         // show/hide hidden rows
         toggleViewHiddenRows() {
-            this.get('settings').set('showHiddenRows', !(this.get('settings').get('showHiddenRows')))
+            this.get('settings').set('showHiddenRows', !(this.get('settings').get('showHiddenRows')));
         },
 
         // enable drag & drop of resource rows

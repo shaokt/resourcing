@@ -84,11 +84,11 @@ export default Ember.Component.extend(WebcelMixin, {
         this.set('constants.todayDate', day);
     	date.week.addClass("selected");
     	date.month.addClass("selected");
-        date.week.attr("tabindex", 0)
+        date.week.attr("tabindex", 0);
         this.set('constants.todayColumn', date.week.attr("data-column"));
         this.setTeamDate(date);
         this.scrollToday(500);
-        $('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))})
+        Ember.$('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))});
     },
 
     // set the team date indicator
@@ -109,7 +109,7 @@ export default Ember.Component.extend(WebcelMixin, {
         // in the timeaway view, add the teamDate class one level lower
         if(this.get('settings.view') === 'timeaway' && this.get('router.currentRouteName') === 'assignments.index'){
             //console.log(this.get('constants.todayColumnDate').find('.dayNum'))
-            $(this.get('constants.todayColumnDate').find('.dayNum')).addClass('teamDate')
+            Ember.$(this.get('constants.todayColumnDate').find('.dayNum')).addClass('teamDate');
         }
     },
 
@@ -127,17 +127,17 @@ export default Ember.Component.extend(WebcelMixin, {
     // scroll to today
     scrollToday:function(time){
         var self = this;
-    	setTimeout(function(){ $(window).scrollLeft(self.constants.todayColumn - (self.constants.DIM*22) );}, time);
+    	setTimeout(function(){ Ember.$(window).scrollLeft(self.constants.todayColumn - (self.constants.DIM*22) );}, time);
     },
 
     // figure out which column in the calendar to select
     getDate:function(year, month, day){
-    	var month = this.calendar.find("[data-date='" + year + " " + month + "']");
+    	month = this.calendar.find("[data-date='" + year + " " + month + "']");
     	var week = null;
-    	$(month).find(".day").each(function(){
-    		week == null ? week = $(this) : 0;
-    		if(day >= +($(this).text().match(/\d+/)[0])){ week = $(this); }
-    	})
+    	Ember.$(month).find(".day").each(function(){
+            if(week == null){ week = Ember.$(this); }
+    		if(day >= +(Ember.$(this).text().match(/\d+/)[0])){ week = Ember.$(this); }
+    	});
     	return {month:month, week:week};
     },
 
@@ -157,10 +157,10 @@ export default Ember.Component.extend(WebcelMixin, {
     onload() {
         this.constants.webcel = this.Webcel();
         this.set('constants.calWidth', ((this.constants.numDays) * this.constants.DIM));
-        $('#pageContainer').css({width:this.constants.calWidth});
-        $('.calendar').css({width:this.constants.calWidth});
+        Ember.$('#pageContainer').css({width:this.constants.calWidth});
+        Ember.$('.calendar').css({width:this.constants.calWidth});
 
-        this.calendar = $('#' + this.attrs.elementId);
+        this.calendar = Ember.$('#' + this.attrs.elementId);
         this.highlightToday();
 
         this.constants.daily = this.daily;

@@ -14,7 +14,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         var self = this;
         this.set('viewAssignment',[]);
         this.get('model.assignment').forEach(function(item){
-            $.inArray(item.id, self.get('constants.assArray')) !== -1 ? self.viewAssignment.push(item) : 0;
+            if(Ember.$.inArray(item.id, self.get('constants.assArray')) !== -1){ self.viewAssignment.push(item); }
         });
 
         this.set('numAssignmentsViewing', this.get('viewAssignment').length * 40); // 40=height of each assignment row
@@ -29,17 +29,17 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         this.bindScrolling();
         this.bindMouseMove();
 
-        document.title += this.get('settings.view') == "timeaway" ? " - Time Off" : " - Assignments";
+        document.title += this.get('settings.view') === "timeaway" ? " - Time Off" : " - Assignments";
 
         //TODO: dynamic year
-        this.year=2016
+        this.year=2016;
         var self = this;
         var vacationCounters = ['lieu', 'personal', 'sick', 'unofficial', 'vacation'];
         var vacationCountersPrevious = ['vacationCarryover'];
-        $.each(vacationCounters, function(i, val){
+        Ember.$.each(vacationCounters, function(i, val){
         	self.counterCSS += '.tiles .' + val + '[data-year="' + self.year+ '"] { counter-increment:' + val + 'Counter } ';
         });
-        $.each(vacationCountersPrevious, function(i, val){
+        Ember.$.each(vacationCountersPrevious, function(i, val){
         	self.counterCSS += '.tiles .' + val + '[data-year="' + (self.year-1) + '"] { counter-increment:' + val + 'Counter } ';
         });
     },
@@ -58,10 +58,10 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
               timeaway: "",
             });
 
-            var store = this.get('model').resource
+            var store = this.get('model').resource;
             newEmployee.save().then(function(){
-                store.pushObject(newEmployee._internalModel)
-            })
+                store.pushObject(newEmployee._internalModel);
+            });
         }
     }
 });

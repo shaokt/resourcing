@@ -8,10 +8,10 @@ export default Ember.Component.extend({
         this._super(...arguments);
         var self = this;
 
-        var exists = $.getJSON('http://localhost:3000/file/' + this.get('direct.ad'), function() {})
+        var exists = Ember.$.getJSON('http://localhost:3000/file/' + this.get('direct.ad'), function() {})
         .done(function() {
             self.set('resource.hasDirects', exists.responseJSON ? true : false);
-        })
+        });
     },
 
     // show/hide direct reports

@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { storageFor } from 'ember-local-storage';
 export default Ember.Service.extend({
     settings: storageFor("settings"),
@@ -32,7 +33,7 @@ export default Ember.Service.extend({
         var self = this;
         this.set('saving', true);
         data.save();
-        setTimeout(function(){self.set('saving', false)}, 500);
+        setTimeout(function(){self.set('saving', false);}, 500);
     },
 
     // create an ID for a new record
@@ -43,7 +44,7 @@ export default Ember.Service.extend({
     },
 
     // highlight content in contenteditable fields on focus
-    focusInContentEditable: function(currentValue, event){
+    focusInContentEditable: function(currentValue){
         var selection = window.getSelection();
         var range = document.createRange();
         range.selectNodeContents(currentValue.element);
@@ -52,10 +53,10 @@ export default Ember.Service.extend({
     },
 
     scrolled: function(minLeft){
-        var left = $(window).scrollLeft();
-        var leftScroll = left == 0 && this.get('settings.view') == 'timeaway' ? minLeft : left;
+        var left = Ember.$(window).scrollLeft();
+        var leftScroll = left === 0 && this.get('settings.view') === 'timeaway' ? minLeft : left;
 
-        $('#dynamicLeftScroll').html(
+        Ember.$('#dynamicLeftScroll').html(
             ".info, .directs .resourceRow:before, .directs .resourceRow[data-expanded='true']:last-child .row:before { left:" + leftScroll + "px; }" +
             ".assignmentViewContainer, .calendar {left:" + -left + "px; }"
 
@@ -66,12 +67,12 @@ export default Ember.Service.extend({
     	var pos = event.pageX - 70; // 70 determined via css margin/padding page offset
         var max = this.calWidth - this.DIM;
     	pos = pos - pos%this.DIM;
-    	pos <= 0 ? pos = 0 : 0;
+        pos = pos <= 0 ? 0 : pos;
 		return pos = pos >= max ? max : pos;
     },
 
     mouseMoved: function(event){
         var pos = this.getMousePos(event);
-        $('#dynamicMousePosition').html(".dateMarker, #dateLine { left:" + pos + "px; }") // if setting via ember, very slow response
+        Ember.$('#dynamicMousePosition').html(".dateMarker, #dateLine { left:" + pos + "px; }"); // if setting via ember, very slow response
     },
 });

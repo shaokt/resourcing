@@ -3,15 +3,13 @@ import ScrollingMixin from "../mixins/scrolling";
 import MouseMoveMixin from "../mixins/mousemove";
 import { storageFor } from 'ember-local-storage';
 
-const { computed } = Ember;
-
 export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     needs:['application'],
     settings: storageFor("settings"),
 
     init: function () {
         Ember.run.scheduleOnce("afterRender",this,function() {
-            this.set('constants.dataView', 'assignment')
+            this.set('constants.dataView', 'assignment');
             var route = this.get('router.currentPath');
             if(route === 'assignments.index'){
                 document.title = "View Assignments";
@@ -21,7 +19,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
             }
             else{
                 document.title = "Edit Assignments";
-                this.get('settings').set('view', '')
+                this.get('settings').set('view', '');
             }
         });
     },
@@ -41,14 +39,14 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
 
             // highligh new row & focus into first editable field
             setTimeout(function(){
-                var tr = $('[data-assignment-id="' + newItem.id +'"] tr');
-                $(tr).addClass('new');
-                $(tr).find('.lock a').click();
+                var tr = Ember.$('[data-assignment-id="' + newItem.id +'"] tr');
+                Ember.$(tr).addClass('new');
+                Ember.$(tr).find('.lock a').click();
                 setTimeout(function(){
-                    $(tr).find('.short').focus();
-                }, 0)
-            }, 0)
-            this.constants.save(newItem)
+                    Ember.$(tr).find('.short').focus();
+                }, 0);
+            }, 0);
+            this.constants.save(newItem);
         }
     }
 });
