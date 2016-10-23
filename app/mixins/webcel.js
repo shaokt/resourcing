@@ -9,7 +9,6 @@ export default Ember.Mixin.create(CalendarWidget, {
     x:0, y: 0,
     downX:0, upX:0, downY:0, upY:0,
     currentTile: null, // the tile to use for painting
-    _self: this,
 
     Webcel: function(){
         return this;
