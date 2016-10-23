@@ -7,6 +7,6 @@ export default Ember.Helper.extend({
     // params[0] - the current view
     // params[1] - the tile being loaded/compared to
     compute(params) {
-        return this.get('settings').get(params[0] + 'Tile') == params[1]
+        return this.get('settings').get(params[0] + 'Tile') === params[1];
     }
 });

@@ -67,7 +67,7 @@ export default Ember.Service.extend({
     	var pos = event.pageX - 70; // 70 determined via css margin/padding page offset
         var max = this.calWidth - this.DIM;
     	pos = pos - pos%this.DIM;
-    	pos <= 0 ? pos = 0 : 0;
+        pos = pos <= 0 ? 0 : pos;
 		return pos = pos >= max ? max : pos;
     },
 
