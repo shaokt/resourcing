@@ -12,6 +12,10 @@ export default Ember.Component.extend({
 
     init() {
         this._super();
+
+        this.set('yearNext', this.get('settings.year')+1);
+        this.set('yearPrev', this.get('settings.year')-1);
+
         var route = this.get('router.currentRouteName');
         if(route === 'assignments.index'){
             this.set('showAddEmployee', false);
@@ -52,8 +56,9 @@ export default Ember.Component.extend({
     }).property('settings.isDailyCalendar'),
 
     actions: {
-        test(){
-            this.set('settings.year', this.get('settings.year')+1);
+        // view a different year
+        changeYear(num){
+            this.set('settings.year', this.get('settings.year')+num);
             this.sendAction('update');
         },
 

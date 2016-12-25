@@ -7,16 +7,45 @@ header {
     width:100%;
     z-index: 10;
 
-    #year {
-        background:#000;
-        color:#fff;
-        font-size:1.5em;
-        font-weight:bold;
+    #yearContainer {
         left:15px;
-        padding:5px;
         position:fixed;
-        top:1.2em;
+        top:.25em;
         z-index: 4;
+
+        .year {
+            clear:both;
+            color:#fff;
+            float:left;
+            font-weight:bold;
+            text-decoration:none;
+
+            &#yearCurrent{
+                background:#000;
+                font-size:1.5em;
+                padding:5px;
+            }
+
+            &#yearPrev, &#yearNext{
+                background:#888;
+                margin:2px 0;
+                padding:2px;
+
+                &:hover {
+                    background:#fff;
+                    color:#888;
+                }
+            }
+
+            &#yearPrev {
+                margin-left:-.5em;
+            }
+
+            &#yearNext {
+                float:right;
+                margin-right:-.5em;
+            }
+        }
     }
 
     .menu {

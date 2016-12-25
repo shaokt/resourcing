@@ -1,4 +1,8 @@
-<div id="year" {{action "test" on="click"}}>{{settings.year}}</div>
+<div id="yearContainer">
+    <a href="/" class="year" id="yearPrev" {{action "changeYear" -1 on="click"}}>{{yearPrev}}</a>
+    <div class="year" id="yearCurrent">{{settings.year}}</div>
+    <a href="/" class="year" id="yearNext" {{action "changeYear" 1 on="click"}}>{{yearNext}}</a>
+</div>
 <div class="menu">
     <ul class="tileOptions">
         {{#if showAssignmentTiles}}
