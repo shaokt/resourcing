@@ -31,8 +31,6 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
 
         document.title += this.get('settings.view') === "timeaway" ? " - Time Off" : " - Assignments";
 
-        //TODO: dynamic year
-        this.year=2016;
         var self = this;
         var vacationCounters = ['lieu', 'personal', 'sick', 'unofficial', 'vacation'];
         var vacationCountersPrevious = ['vacationCarryover'];
@@ -49,6 +47,10 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     mouseMoved: function(event){ this.constants.mouseMoved(event); },
 
     actions: {
+        update(){
+            location.reload();
+        },
+
         addEmployee(){
             var newEmployee = this.get('store').createRecord('resource', {
               id: this.constants.createID(),

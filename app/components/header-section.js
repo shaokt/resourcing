@@ -52,6 +52,11 @@ export default Ember.Component.extend({
     }).property('settings.isDailyCalendar'),
 
     actions: {
+        test(){
+            this.set('settings.year', this.get('settings.year')+1);
+            this.sendAction('update');
+        },
+
         // allows user to view all team members assigned to a project
         viewTeam() {
             if(this.get('constants.dataView') === 'timeaway'){ return; }

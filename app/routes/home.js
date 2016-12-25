@@ -12,7 +12,7 @@ export default Ember.Route.extend({
 
     model() {
         return Ember.RSVP.hash({
-            resource: this.get('store').query('user', {manager: this.id}),
+            resource: this.get('store').query('user', {year: this.get('settings.year'), manager: this.id}),
             assignment: this.get('store').findAll('assignment')
         });
     },
