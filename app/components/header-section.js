@@ -59,7 +59,7 @@ export default Ember.Component.extend({
         // view a different year
         changeYear(num){
             this.set('settings.year', this.get('settings.year')+num);
-            this.sendAction('update');
+            location.reload();
         },
 
         // allows user to view all team members assigned to a project

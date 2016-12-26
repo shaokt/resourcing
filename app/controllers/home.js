@@ -47,10 +47,6 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     mouseMoved: function(event){ this.constants.mouseMoved(event); },
 
     actions: {
-        update(){
-            location.reload();
-        },
-
         addEmployee(){
             var newEmployee = this.get('store').createRecord('resource', {
               id: this.constants.createID(),
