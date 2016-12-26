@@ -128,6 +128,33 @@ header {
             }
         }
     }//.menu
+
+    .message {
+        border:3px solid #ff0000;
+        border-radius:5px;
+        float:left;
+        margin:-6px 0 0 25px;
+        padding:4px 5px;
+
+        p {
+            line-height:110%;
+            margin-top:2px;
+
+            &:first-child {
+                margin-top:0;
+            }
+        }
+
+        ul {
+            margin-left:15px;
+            li {
+                line-height:110%;
+                list-style:disc;
+                margin:4px 0;
+            }
+        }
+    }
+
 }//header
 
 #pageContainer {

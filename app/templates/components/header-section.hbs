@@ -168,16 +168,14 @@
                         </div>
                     </div>
                     {{#if constants.teamAsOfEmpty}}
-                        <div class="specs emptyTeam">
-                            <div>
-                                <p>No one assigned to
-                                    <span class="assignmentInfo"><span class="short"><span>{{constants.teamAssignment.short}}</span></span></span>
-                                    from
-                                    <span class="date"><span><span class="asof">{{constants.teamAsOfDate}}</span></span></span>
-                                    onward.
-                                </p>
-                                <p>Choose another date and/or assignment</p>
-                            </div>
+                        <div class="specs message emptyTeam">
+                            <p>No one assigned to
+                                <span class="assignmentInfo"><span class="short"><span>{{constants.teamAssignment.short}}</span></span></span>
+                                from
+                                <span class="date"><span><span class="asof">{{constants.teamAsOfDate}}</span></span></span>
+                                onward.
+                            </p>
+                            <p>Choose another date and/or assignment</p>
                         </div>
                     {{/if}}
                 {{/if}}
@@ -197,5 +195,12 @@
 {{#if settings.isDailyCalendar}}
     {{calendar-widget elementId="calendarDaily" daily=true width=width}}
 {{/if}}
-
+{{else}}
+    <div class="message">
+        <p>There are no files for the year / user / view you chose.</p>
+        <ul>
+            <li>Choose another year on the left</li>
+            <li><a href="/" class="year" id="yearPrev" {{action "currentYear"  on="click"}}>Return to current year</a></li>
+        </ul>
+    </div>
 {{/if}}

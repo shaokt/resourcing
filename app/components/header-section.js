@@ -66,6 +66,11 @@ export default Ember.Component.extend({
             location.reload();
         },
 
+        currentYear(){
+            this.set('settings.year', (new Date()).getFullYear());
+            location.reload();
+        },
+
         // allows user to view all team members assigned to a project
         viewTeam() {
             if(this.get('constants.dataView') === 'timeaway'){ return; }
