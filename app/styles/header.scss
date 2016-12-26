@@ -49,7 +49,7 @@ header {
     }
 
     .menu {
-        margin-left:0px;
+        margin-left:25px;
         position:fixed;
         width:100%;
         z-index:4;
@@ -80,6 +80,34 @@ header {
                 }
             }
         }// viewOptions
+
+        .tileOptions {
+            li:not(:hover) {
+                height:39px;
+                padding:0;
+                width:52px;
+                display: block;
+                overflow:hidden;
+
+                .tileContainer {
+                    display:block;
+
+                    a {
+                        border-color:transparent !important;
+                        display:block;
+                        height:8px;
+                        width:8px;
+
+                        span {
+                            padding:0;
+                        }
+                        &:after {
+                            content:"";
+                        }
+                    }
+                }
+            }
+        }
 
         .viewOptions {
             display:inline-block;
