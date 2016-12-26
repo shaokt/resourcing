@@ -9,6 +9,7 @@ export default Ember.Component.extend({
     showTeam: false,
     showToggleRows: false,
     showRoadmap: false,
+    hasFile: false,
 
     init() {
         this._super();
@@ -24,6 +25,7 @@ export default Ember.Component.extend({
             this.set('showOrg', true);
             this.set('showTeam', true);
             this.set('showToggleRows', false);
+            this.set('hasFile', this.get('model.length') > 0);
         }
         else if(route === 'assignments.edit') {
             this.set('showAddEmployee', false);
@@ -32,6 +34,7 @@ export default Ember.Component.extend({
             this.set('showOrg', true);
             this.set('showTeam', false);
             this.set('showToggleRows', true);
+            this.set('hasFile', this.get('model.length') > 0);
 
         }
         else if(route === 'home') {
@@ -42,6 +45,7 @@ export default Ember.Component.extend({
             this.set('showTeam', false);
             this.set('showRoadmap', true);
             this.set('showToggleRows', true);
+            this.set('hasFile', this.get('model.resource.length') > 0);
         }
     },
 

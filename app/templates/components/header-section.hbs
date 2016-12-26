@@ -3,6 +3,8 @@
     <div class="year" id="yearCurrent">{{settings.year}}</div>
     <a href="/" class="year" id="yearNext" {{action "changeYear" 1 on="click"}}>{{yearNext}}</a>
 </div>
+
+{{#if hasFile}}
 <div class="menu">
     <ul class="tileOptions">
         {{#if showAssignmentTiles}}
@@ -194,4 +196,6 @@
 
 {{#if settings.isDailyCalendar}}
     {{calendar-widget elementId="calendarDaily" daily=true width=width}}
+{{/if}}
+
 {{/if}}
