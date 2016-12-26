@@ -53,7 +53,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
               name: 'Enter Name',
               hidden: false,
               assignment: "",
-              timeaway: "",
+              timeaway: ""
             });
 
             var store = this.get('model').resource;
