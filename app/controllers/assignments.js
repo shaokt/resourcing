@@ -7,6 +7,10 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     needs:['application'],
     settings: storageFor("settings"),
 
+    hasFile: Ember.computed('model.resource', function(){
+        return this.get('model.length') > 0;
+    }),
+
     init: function () {
         Ember.run.scheduleOnce("afterRender",this,function() {
             this.set('constants.dataView', 'assignment');

@@ -8,8 +8,10 @@
     data-view="{{constants.dataView}}"
     data-view-team={{constants.teamAssignmentView}}
 >
-    {{header-section model=model addAssignment="addAssignment" settings=settings}}
+    {{header-section model=model hasFile=hasFile addAssignment="addAssignment" settings=settings}}
+    {{#if hasFile}}
     <main>
         {{outlet}}
     </main>
+    {{/if}}
 </div>

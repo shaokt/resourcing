@@ -83,19 +83,21 @@ header {
 
         .tileOptions {
             li:not(:hover) {
+                display: block;
                 height:39px;
+                overflow:hidden;
                 padding:0;
                 width:52px;
-                display: block;
-                overflow:hidden;
 
                 .tileContainer {
                     display:block;
+                    float:none;
 
                     a {
                         border-color:transparent !important;
                         display:block;
                         height:8px;
+                        opacity:.7;
                         width:8px;
 
                         span {

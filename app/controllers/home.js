@@ -6,8 +6,13 @@ import { storageFor } from 'ember-local-storage';
 export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     counterCSS: '',
     minLeft: 0, // the minimum left position to show names when scrolling
-
     settings: storageFor("settings"),
+    queryParams: ['id'],
+    id:null,
+
+    hasFile: Ember.computed('model.resource', function(){
+        return this.get('model.resource.length') > 0;
+    }),
 
     // determines which assignment to show while viewing employees
     showAssignment: function(){

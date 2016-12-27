@@ -1,7 +1,7 @@
 <div id="yearContainer">
-    <a href="/" class="year" id="yearPrev" {{action "changeYear" -1 on="click"}}>{{yearPrev}}</a>
+    <a href="{{router.url}}" class="year" id="yearPrev" {{action "changeYear" -1 on="click"}}>{{yearPrev}}</a>
     <div class="year" id="yearCurrent">{{settings.year}}</div>
-    <a href="/" class="year" id="yearNext" {{action "changeYear" 1 on="click"}}>{{yearNext}}</a>
+    <a href="{{router.url}}" class="year" id="yearNext" {{action "changeYear" 1 on="click"}}>{{yearNext}}</a>
 </div>
 
 {{#if hasFile}}
@@ -200,7 +200,8 @@
         <p>There are no files for the year / user / view you chose.</p>
         <ul>
             <li>Choose another year on the left</li>
-            <li><a href="/" class="year" id="yearPrev" {{action "currentYear"  on="click"}}>Return to current year</a></li>
+            <li>Go to: {{#link-to 'assignments'}}<button {{action "currentRoadmap" bubbles=true}}>Roadmap view for {{currentYear}}</button>{{/link-to}}</li>
+            <li>Go to: {{#link-to 'home' (query-params id=lastManager)}}<button {{action "currentManager" bubbles=true}}>{{settings.lastManager}} manager view for {{currentYear}}</button>{{/link-to}}</li>
         </ul>
     </div>
 {{/if}}
