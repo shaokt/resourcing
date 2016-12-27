@@ -14,9 +14,8 @@ export default Ember.Component.extend({
 
     init() {
         this._super();
-
-        this.set('yearNext', this.get('settings.year')+1);
-        this.set('yearPrev', this.get('settings.year')-1);
+        this.set('yearPrev', parseInt(this.get('year'))-1);
+        this.set('yearNext', parseInt(this.get('year'))+1);
 
         var route = this.get('router.currentRouteName');
         if(route === 'assignments.index'){
@@ -58,22 +57,6 @@ export default Ember.Component.extend({
     }).property('settings.isDailyCalendar'),
 
     actions: {
-        // view a different year
-        changeYear(num){
-            this.set('settings.year', this.get('settings.year')+num);
-            location.reload();
-        },
-
-        currentRoadmap(){
-            this.set('settings.year', this.get('currentYear'));
-            if(this.get('showOrg')) location.reload();
-        },
-
-        currentManager(){
-            this.set('settings.year', this.get('currentYear'));
-            if(this.get('showRoadmap')) location.reload();
-        },
-
         // allows user to view all team members assigned to a project
         viewTeam() {
             if(this.get('constants.dataView') === 'timeaway'){ return; }

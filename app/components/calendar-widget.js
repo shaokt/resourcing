@@ -6,7 +6,9 @@ export default Ember.Component.extend(WebcelMixin, {
     tagName:'div',
     classNames: ['calendar'],
     settings: storageFor("settings"),
-    year: Ember.computed.alias('settings.year'),
+    year: Ember.computed('_year', function(){
+        return parseInt(this.get('_year'));
+    }),
 
     today: new Date(),
     teamDate:null,  //column in calendar indicating day/week the team view starts for given assignment

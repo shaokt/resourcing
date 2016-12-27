@@ -7,8 +7,9 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     counterCSS: '',
     minLeft: 0, // the minimum left position to show names when scrolling
     settings: storageFor("settings"),
-    queryParams: ['id'],
+    queryParams: ['id', 'year'],
     id:null,
+    year: null,
 
     hasFile: Ember.computed('model.resource', function(){
         return this.get('model.resource.length') > 0;
@@ -30,6 +31,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     init() {
         this._super();
 
+        //console.log(this.get('router.router.state.queryParams'));
         this.minLeft = 22 * this.constants.DIM; // assume 22 business days in a month
         this.bindScrolling();
         this.bindMouseMove();

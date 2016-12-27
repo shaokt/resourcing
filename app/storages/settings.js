@@ -21,7 +21,6 @@ const Storage = StorageObject.extend({
 Storage.reopenClass({
     initialState() {
         return {
-            year: (new Date()).getFullYear(), // default to current year
             view: "timeaway",
             assignmentTile: "empty",
             timeawayTile: "vacation",

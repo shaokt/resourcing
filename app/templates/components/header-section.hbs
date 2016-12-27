@@ -1,7 +1,7 @@
 <div id="yearContainer">
-    <a href="{{router.url}}" class="year" id="yearPrev" {{action "changeYear" -1 on="click"}}>{{yearPrev}}</a>
-    <div class="year" id="yearCurrent">{{settings.year}}</div>
-    <a href="{{router.url}}" class="year" id="yearNext" {{action "changeYear" 1 on="click"}}>{{yearNext}}</a>
+    <a href="/home?id={{settings.lastManager}}&year={{yearPrev}}" class="year" id="yearPrev">{{yearPrev}}</a>
+    <div class="year" id="yearCurrent">{{year}}</div>
+    <a href="/home?id={{settings.lastManager}}&year={{yearNext}}" class="year" id="yearNext">{{yearNext}}</a>
 </div>
 
 {{#if hasFile}}
@@ -189,19 +189,19 @@
 </div>
 
 {{#if settings.isWeeklyCalendar}}
-    {{calendar-widget elementId="calendarWeekly" daily=false width=width}}
+    {{calendar-widget elementId="calendarWeekly" _year=year daily=false width=width}}
 {{/if}}
 
 {{#if settings.isDailyCalendar}}
-    {{calendar-widget elementId="calendarDaily" daily=true width=width}}
+    {{calendar-widget elementId="calendarDaily" _year=year daily=true width=width}}
 {{/if}}
 {{else}}
     <div class="message">
         <p>There are no files for the year / user / view you chose.</p>
         <ul>
             <li>Choose another year on the left</li>
-            <li>Go to: {{#link-to 'assignments'}}<button {{action "currentRoadmap" bubbles=true}}>Roadmap view for {{currentYear}}</button>{{/link-to}}</li>
-            <li>Go to: {{#link-to 'home' (query-params id=lastManager)}}<button {{action "currentManager" bubbles=true}}>{{settings.lastManager}} manager view for {{currentYear}}</button>{{/link-to}}</li>
+            <li>Go to: <a href="/assignments">Roadmap view for {{currentYear}}</a></li>
+            <li>Go to: <a href="/home?id={{lastManager}}">{{settings.lastManager}} manager view for {{currentYear}}</a></li>
         </ul>
     </div>
 {{/if}}
