@@ -1,8 +1,4 @@
-<div id="yearContainer">
-    <a href="/home?id={{settings.lastManager}}&year={{yearPrev}}" class="year" id="yearPrev">{{yearPrev}}</a>
-    <div class="year" id="yearCurrent">{{year}}</div>
-    <a href="/home?id={{settings.lastManager}}&year={{yearNext}}" class="year" id="yearNext">{{yearNext}}</a>
-</div>
+{{year-nav year=year settings=settings}}
 
 {{#if hasFile}}
 <div class="menu">
@@ -200,8 +196,8 @@
         <p>There are no files for the year / user / view you chose.</p>
         <ul>
             <li>Choose another year on the left</li>
-            <li>Go to: <a href="/assignments">Roadmap view for {{currentYear}}</a></li>
-            <li>Go to: <a href="/home?id={{lastManager}}">{{settings.lastManager}} manager view for {{currentYear}}</a></li>
+            <li>Go to: <a href="/assignments">{{currentYear}} Roadmap view</a></li>
+            <li>Go to: <a href="/home?id={{settings.lastManager}}">{{currentYear}} {{settings.lastManager}} manager view</a></li>
         </ul>
     </div>
 {{/if}}

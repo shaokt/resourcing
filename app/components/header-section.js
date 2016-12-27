@@ -10,13 +10,9 @@ export default Ember.Component.extend({
     showToggleRows: false,
     showRoadmap: false,
     currentYear: (new Date()).getFullYear(),
-    lastManager: Ember.computed.alias('settings.lastManager'),
 
     init() {
         this._super();
-        this.set('yearPrev', parseInt(this.get('year'))-1);
-        this.set('yearNext', parseInt(this.get('year'))+1);
-
         var route = this.get('router.currentRouteName');
         if(route === 'assignments.index'){
             this.set('showAddEmployee', false);
