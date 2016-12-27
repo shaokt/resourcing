@@ -1,5 +1,5 @@
 <div class="tileContainer" data-container="{{item.id}}" data-active="{{if paint isActive selected}}">
-    <a href="#" data-assignment="{{item.id}}" data-stamp="true" data-active="{{if paint isActive selected}}" {{action "select" on="click" event=event}}>
+    <a href="project/{{item.short}}/select" data-assignment="{{item.id}}" data-stamp="true" data-active="{{if paint isActive selected}}" {{action "select" on="click" event=event}}>
         <span></span>
     </a>
     {{#unless paint}}
