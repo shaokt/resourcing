@@ -26,6 +26,7 @@ export default Ember.Service.extend({
     webcel:null,        // singleton Webcel object - only one editable instance at a time
     editingRow:false,   // whether a row is being edited or not
     assArray:[],        // array of assignments to view while viewing employees
+    disableEditing:false,   // by default, the rows are editable unless viewing a diff year
 	padout: function(number) { return (number < 10) ? '0' + number : number; }, // pad single digits to double (for date use)
 
     // save newly added data to store & display saving indicator

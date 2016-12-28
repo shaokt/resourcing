@@ -49,6 +49,7 @@
         {{/if}}
 
         {{#if settings.hasCalendar}}
+            {{#if viewingCurrentYear}}
             <li class="today">
                 <a href="scroll calendar" {{action "scrollToday" on="click"}}>
                     <span class="date"><span>{{constants.todayDate}}</span></span>
@@ -60,6 +61,7 @@
                     {{/if}}
                 </a>
             </li>
+            {{/if}}
             {{#if showAddEmployee}}
                 <li class="profile">
                     <a href="add employee" {{action "addEmployee"}}>
@@ -81,6 +83,7 @@
             {{/if}}
         {{/if}}
 
+        {{#unless constants.disableEditing}}
         {{#if showSort}}
             {{#if this.constants.draggable}}
                 <li class="dragSort">
@@ -99,6 +102,7 @@
                 </li>
             {{/if}}
         {{/if}}
+        {{/unless}}
 
         {{#if constants.editAssignments}}
             <li class="assignment">
@@ -178,6 +182,17 @@
             </li>
         {{/if}}
     </ul>
+    {{#unless viewingCurrentYear}}
+        <div class="message notCurrent" sstyle="position:fixed;top:20px;right:20px;">
+            <p>You are not viewing the current year.</p>
+
+            {{#if constants.disableEditing}}
+                <p><a href="/unlock to edit rows" {{action "enableEditing" on="click"}}>Unlock in order to edit rows.</a></p>
+            {{else}}
+                <p>Page is now unlocked for editing rows.</p>
+            {{/if}}
+        </div>
+    {{/unless}}
 
     {{#if this.constants.saving}}
         <div id="saving"><span>Saving</span></div>
@@ -192,7 +207,7 @@
     {{calendar-widget elementId="calendarDaily" _year=year daily=true width=width}}
 {{/if}}
 {{else}}
-    <div class="message">
+    <div class="message notFound">
         <p>There are no files for the year / user / view you chose.</p>
         <ul>
             <li>Choose another year on the left</li>

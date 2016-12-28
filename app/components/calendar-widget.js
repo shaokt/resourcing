@@ -80,18 +80,25 @@ export default Ember.Component.extend(WebcelMixin, {
 
     // highlight today in the calendar
     highlightToday:function(){
-    	var year = this.today.getFullYear();
-    	var month = ("0" + (this.today.getMonth() + 1)).slice(-2);
-    	var day = this.today.getDate();
-    	var date = this.getDate(year, month, day);
-        this.set('constants.todayDate', day);
-    	date.week.addClass("selected");
-    	date.month.addClass("selected");
-        date.week.attr("tabindex", 0);
-        this.set('constants.todayColumn', date.week.attr("data-column"));
-        this.setTeamDate(date);
-        this.scrollToday(500);
-        Ember.$('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))});
+        try{
+        	var year = this.today.getFullYear();
+        	var month = ("0" + (this.today.getMonth() + 1)).slice(-2);
+        	var day = this.today.getDate();
+        	var date = this.getDate(year, month, day);
+            this.set('constants.todayDate', day);
+        	date.week.addClass("selected");
+        	date.month.addClass("selected");
+            date.week.attr("tabindex", 0);
+            this.set('constants.todayColumn', date.week.attr("data-column"));
+            this.setTeamDate(date);
+            this.scrollToday(500);
+            Ember.$('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))});
+            this.set('viewingCurrentYear', true);
+        }catch(e){
+            // viewing earlier / future years where "today" doesn't exist in that calendar
+            Ember.$('#todayDateLine').css({display:'none'});
+            this.set('viewingCurrentYear', false);
+        }
     },
 
     // set the team date indicator

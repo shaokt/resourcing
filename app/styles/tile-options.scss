@@ -58,7 +58,13 @@
 
         [data-stamp="true"] { display:inline-block; }
 
-        + .viewOptions { display:none; }
+        + .viewOptions {
+            display:none;
+
+            + .message {
+                display:none;
+            }
+        }
     }
 
     input {

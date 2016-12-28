@@ -55,7 +55,10 @@ header {
         z-index:4;
 
         .viewOptions {
+            float:left;
+            margin-left:10px;
             padding-top:12px;
+
             button {
                 float:left;
                 margin-left:10px;
@@ -77,6 +80,20 @@ header {
                 &#dragEnable span {
                     background:#C75500;
                     border-color:#923C01;
+                }
+            }
+
+            li {
+                display:inline-block;
+                float:none;
+
+                a {
+                    cursor:none;
+                    font-size:2em;
+
+                    &:hover {
+                        transform:scale(1.5);
+                    }
                 }
             }
         }// viewOptions
@@ -110,32 +127,12 @@ header {
                 }
             }
         }
-
-        .viewOptions {
-            display:inline-block;
-            margin-left:10px;
-
-            li {
-                display:inline-block;
-                float:none;
-
-                a {
-                    cursor:none;
-                    font-size:2em;
-
-                    &:hover {
-                        transform:scale(1.5);
-                    }
-                }
-            }
-        }
     }//.menu
 
     .message {
         border:3px solid #ff0000;
         border-radius:5px;
         float:left;
-        margin:-6px 0 0 25px;
         padding:4px 5px;
 
         p {
@@ -154,6 +151,10 @@ header {
                 list-style:disc;
                 margin:4px 0;
             }
+        }
+
+        &.notFound, &.emptyTeam {
+            margin:-6px 0 0 25px;
         }
     }
 

@@ -10,6 +10,11 @@ export default Ember.Component.extend({
     showToggleRows: false,
     showRoadmap: false,
     currentYear: (new Date()).getFullYear(),
+    viewingCurrentYear: Ember.computed(function(){
+        var result = this.get('year') === this.get('currentYear');
+        if(!result) this.set('constants.disableEditing', true);
+        return result;
+    }),
 
     init() {
         this._super();
@@ -53,6 +58,10 @@ export default Ember.Component.extend({
     }).property('settings.isDailyCalendar'),
 
     actions: {
+        enableEditing() {
+            this.set('constants.disableEditing', false);
+        },
+
         // allows user to view all team members assigned to a project
         viewTeam() {
             if(this.get('constants.dataView') === 'timeaway'){ return; }
