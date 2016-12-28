@@ -15,7 +15,7 @@ export default Ember.Component.extend({
         }
         else {
             this.set('qp', '&year=');
-            return `/home?id=${this.get('settings.lastManager')}`
+            return `/home?id=${this.get('settings.lastManager')}`;
         }
     }),
     yearPrevPath: Ember.computed(function(){
