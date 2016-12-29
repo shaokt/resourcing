@@ -9,9 +9,20 @@ export default Ember.Component.extend({
     showTeam: false,
     showToggleRows: false,
     showRoadmap: false,
+    currentYear: (new Date()).getFullYear(),
+    viewingCurrentYear: Ember.computed(function(){
+        return this.get('year') === this.get('currentYear');
+    }),
 
     init() {
         this._super();
+
+        if(!this.get('viewingCurrentYear')) {
+            this.set('constants.disableEditing', true);
+            this.set('yearHome', `&year=${this.get('year')}`);
+            this.set('yearRoadmap', `?year=${this.get('year')}`);
+        }
+
         var route = this.get('router.currentRouteName');
         if(route === 'assignments.index'){
             this.set('showAddEmployee', false);
@@ -52,6 +63,10 @@ export default Ember.Component.extend({
     }).property('settings.isDailyCalendar'),
 
     actions: {
+        enableEditing() {
+            this.set('constants.disableEditing', false);
+        },
+
         // allows user to view all team members assigned to a project
         viewTeam() {
             if(this.get('constants.dataView') === 'timeaway'){ return; }
@@ -59,7 +74,11 @@ export default Ember.Component.extend({
             if(!this.get('constants.teamAssignmentView')){
                 this.set('constants.teamAssignment', '');
             }
-            this.constants.todayColumnDate[0].click();
+            try {
+                this.constants.todayColumnDate[0].click();
+            }catch(e){ // viewing a different year where 'today' doesn't exist
+                Ember.$('.calendar').find(`.month[data-date="${this.get('year')} 01"]`).find('.day')[0].click();
+            }
         },
 
         // scroll today's column into view

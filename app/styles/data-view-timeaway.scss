@@ -5,6 +5,10 @@
                 background:#1f74f2;
                 border:2px solid #0b3f92;
             }
+
+            .assignment {
+                margin-left:61px;
+            }
         }
     }
 
@@ -12,8 +16,18 @@
         padding-top:165px;
     }
 
+    &[data-route="assignments.index"]{
+        .menu .tileOptions {
+            display:none;
+        }
+    }
+
     section.resourceRow {
         .row[data-view="timeOff"] {
+            /* TODO: allow grid lines
+            background-image: linear-gradient(to right, #ddd 1px, transparent 1px);
+            background-size: 15px 30px;
+            */
             height:15px;
         }
 

@@ -85,7 +85,8 @@ export default ResourceInfoComponent.extend({
                 this.set('readonly', true);
                 this.set('currentAssignment', this.get('assignment.id'));
                 this.set('constants.teamAssignment', this.get('assignment'));
-                this.set('findPeople', this.get('store').query('direct', {manager: 'PL145'})).then(function(){
+                //TODO dynamic manager file selection
+                this.set('findPeople', this.get('store').query('direct', {manager: 'kangshao'})).then(function(){
                     self.getPeople(self.findPeople);
                 });
             }

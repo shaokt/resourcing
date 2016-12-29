@@ -6,7 +6,11 @@ export default Ember.Component.extend(WebcelMixin, {
     tagName:'div',
     classNames: ['calendar'],
     settings: storageFor("settings"),
-    year: 2016,
+    year: Ember.computed('_year', function(){
+        this.set('constants.year', this.get('_year'));
+        return parseInt(this.get('_year'));
+    }),
+
     today: new Date(),
     teamDate:null,  //column in calendar indicating day/week the team view starts for given assignment
 	dayNames: ["S", "M", "T", "W", "R", "F", "S"],
@@ -77,18 +81,25 @@ export default Ember.Component.extend(WebcelMixin, {
 
     // highlight today in the calendar
     highlightToday:function(){
-    	var year = this.today.getFullYear();
-    	var month = ("0" + (this.today.getMonth() + 1)).slice(-2);
-    	var day = this.today.getDate();
-    	var date = this.getDate(year, month, day);
-        this.set('constants.todayDate', day);
-    	date.week.addClass("selected");
-    	date.month.addClass("selected");
-        date.week.attr("tabindex", 0);
-        this.set('constants.todayColumn', date.week.attr("data-column"));
-        this.setTeamDate(date);
-        this.scrollToday(500);
-        Ember.$('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))});
+        try{
+        	var year = this.today.getFullYear();
+        	var month = ("0" + (this.today.getMonth() + 1)).slice(-2);
+        	var day = this.today.getDate();
+        	var date = this.getDate(year, month, day);
+            this.set('constants.todayDate', day);
+        	date.week.addClass("selected");
+        	date.month.addClass("selected");
+            date.week.attr("tabindex", 0);
+            this.set('constants.todayColumn', date.week.attr("data-column"));
+            this.setTeamDate(date);
+            this.scrollToday(500);
+            Ember.$('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))});
+            this.set('viewingCurrentYear', true);
+        }catch(e){
+            // viewing earlier / future years where "today" doesn't exist in that calendar
+            Ember.$('#todayDateLine').css({display:'none'});
+            this.set('viewingCurrentYear', false);
+        }
     },
 
     // set the team date indicator
@@ -166,7 +177,7 @@ export default Ember.Component.extend(WebcelMixin, {
         this.constants.daily = this.daily;
         if(this.daily){
             if(!this.holidays.year){
-                this.holidays.year = this.year;
+                this.holidays.year = this.get('year');
                 this.holidays.getDates();
             }
             this.holidays.display();

@@ -7,6 +7,7 @@ export default Ember.Service.extend({
     dataView: '',       // a way to set the view based on user actions
     calWidth: 0,        // calendar width
     numDays: 0,         // number of days rendered on calendar
+    year: 0,            // current year
     prevYear: 0,        // previous year's column
     _prevYear: 0,       // previous year's column
     nextYear: 0,        // next year's column
@@ -26,6 +27,7 @@ export default Ember.Service.extend({
     webcel:null,        // singleton Webcel object - only one editable instance at a time
     editingRow:false,   // whether a row is being edited or not
     assArray:[],        // array of assignments to view while viewing employees
+    disableEditing:false,   // by default, the rows are editable unless viewing a diff year
 	padout: function(number) { return (number < 10) ? '0' + number : number; }, // pad single digits to double (for date use)
 
     // save newly added data to store & display saving indicator

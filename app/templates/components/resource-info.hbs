@@ -1,12 +1,14 @@
 <ul class="viewOptions">
-    {{#unless readonly}}
-        <li class="lock">
-            <a href="/" {{action "editing" on="click"}}></a>
-        </li>
+    {{#unless constants.disableEditing}}
+        {{#unless readonly}}
+            <li class="lock">
+                <a href="{{resource.name}} {{resource.ad}}/edit" {{action "editing" on="click"}}></a>
+            </li>
 
-        <li class="toggle">
-            <a href="/" {{action "toggleRow" on="click"}}></a>
-        </li>
+            <li class="toggle">
+                <a href="{{resource.name}} {{resource.ad}}/toggle" {{action "toggleRow" on="click"}}></a>
+            </li>
+        {{/unless}}
     {{/unless}}
 
     {{#if hasDirects}}

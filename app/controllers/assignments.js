@@ -6,6 +6,12 @@ import { storageFor } from 'ember-local-storage';
 export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     needs:['application'],
     settings: storageFor("settings"),
+    queryParams: ['year'],
+    year: null,
+
+    hasFile: Ember.computed('model.resource', function(){
+        return this.get('model.length') > 0;
+    }),
 
     init: function () {
         Ember.run.scheduleOnce("afterRender",this,function() {
