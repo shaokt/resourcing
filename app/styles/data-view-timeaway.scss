@@ -68,11 +68,6 @@
         &[data-stamp="true"]:after { content: "FD"; }
     }
 
-    .half {
-        background:#99CC99;
-        &[data-stamp="true"]:after { content: "1/2"; }
-    }
-
     .jury {
         background:#1A8007;
         &[data-stamp="true"]:after { content: "J"; }
@@ -98,9 +93,19 @@
         &[data-stamp="true"]:after { content: "P"; }
     }
 
+    .personalHalf {
+        background:#B798BF;
+        &[data-stamp="true"]:after { content: ".5P"; }
+    }
+
     .vacation {
         background:#4271AE;
         &[data-stamp="true"]:after { content:'V'; }
+    }
+
+    .vacationHalf {
+        background:#4271AE;
+        &[data-stamp="true"]:after { content:'.5V'; }
     }
 
     .vacationCarryover {
@@ -111,6 +116,11 @@
     .vacationTentative {
         background:#9F3E99;
         &[data-stamp="true"]:after { content: "V?"; }
+    }
+
+    .shortTermDisability {
+        background:#deaddd;
+        &[data-stamp="true"]:after { content: "SD"; }
     }
 
     .sick {
@@ -134,9 +144,7 @@
     }
 
     .tileOptions:hover {
-        li {
-            //padding-right:55px !important;
-        }
+        max-width:100%;
     }
 
     .tileOptions li {
@@ -151,22 +159,26 @@
 
         :hover { z-index:3; }
 
+        .vacationHalf, .personalHalf { margin-left:20px; }
+
         .vacation:hover:before { content:"Vacation"; }
         .vacationCarryover:hover:before { content:"Carryover"; }
         .vacationTentative:hover:before { content:"Tentative Vacation"; }
         .unofficial:hover:before { content:"Unofficial Lieu Day"; }
+        .vacationHalf:hover:before { content:"Vacation Half Day"; }
 
         .sick { clear:left; }
         .sick:hover:before { content:"Sick Day"; }
         .personal:hover:before { content:"Personal Day"; }
         .lieu:hover:before { content:"Lieu Day"; }
         .wfh:hover:before { content:"Remote Work (WFH)"; }
+        .personalHalf:hover:before { content:"Personal Half Day"; }
 
         .conference { clear:left; }
         .conference:hover:before { content:"Conference"; }
         .training:hover:before { content:"Training"; }
-        .half:hover:before { content:"Half Day"; }
         .bereavement:hover:before { content:"Bereavement"; }
+        .shortTermDisability:hover:before { content:"Short Term Disability"; }
 
         .parentalLeave { clear:left; }
         .parentalLeave:hover:before { content:"Parental Leave"; }
