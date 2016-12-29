@@ -69,7 +69,11 @@ export default Ember.Component.extend({
             if(!this.get('constants.teamAssignmentView')){
                 this.set('constants.teamAssignment', '');
             }
-            this.constants.todayColumnDate[0].click();
+            try {
+                this.constants.todayColumnDate[0].click();
+            }catch(e){ // viewing a different year where 'today' doesn't exist
+                $('.calendar').find(`.month[data-date="${this.get('year')} 01"]`).find('.day')[0].click();
+            }
         },
 
         // scroll today's column into view

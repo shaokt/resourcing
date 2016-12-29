@@ -16,6 +16,12 @@
         padding-top:165px;
     }
 
+    &[data-route="assignments.index"]{
+        .menu .tileOptions {
+            display:none;
+        }
+    }
+
     section.resourceRow {
         .row[data-view="timeOff"] {
             height:15px;
