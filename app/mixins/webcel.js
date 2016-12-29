@@ -79,11 +79,13 @@ export default Ember.Mixin.create(CalendarWidget, {
                             if(this.constants.daily){ // add year indicator for out of office tracking
                         		tileClass = this.currentTile.attr('class');
                                 dataYear = tileClass === "vacationCarryover" ?
-                                    (x < this.constants.nextYear ? (this.year - 1) : this.year) :
-                                    (x < this.constants.nextYear ? this.year : (this.year + 1));
+                                    (x < this.constants.nextYear ? (this.get('year') - 1) : this.get('year')) :
+                                    (x < this.constants.nextYear ? this.get('year') : (this.get('year') + 1));
                                 tileClass = ' class="' + tileClass + '"';
+                                //console.log(`${x} ${this.constants.nextYear}`)
+                                console.log((this.get('year') + 1))
                             } else {
-                                dataYear = x < this.constants.nextYear ? this.year : (this.year + 1);
+                                dataYear = x < this.constants.nextYear ? this.get('year') : (this.get('year') + 1);
                                 dataAssignment = ' data-assignment="' + tileAssignment + '"';
                             }
     						addTiles+=
