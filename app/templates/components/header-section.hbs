@@ -39,7 +39,7 @@
 
         {{#if showRoadmap}}
             <li class="roadmap">
-                <a href="/assignments">
+                <a href="/assignments{{yearRoadmap}}">
                     <span class="item"></span>
                     <span class="item"></span>
                     <span class="item"></span>
@@ -128,7 +128,7 @@
 
         {{#if showOrg}}
             <li class="org">
-                <a href="/home?id={{settings.lastManager}}">
+                <a href="/home?id={{settings.lastManager}}{{yearHome}}">
                     <span class="member"></span>
                     <span class="member"></span>
                     <span class="member"></span>

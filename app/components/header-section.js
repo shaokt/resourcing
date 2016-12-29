@@ -11,13 +11,18 @@ export default Ember.Component.extend({
     showRoadmap: false,
     currentYear: (new Date()).getFullYear(),
     viewingCurrentYear: Ember.computed(function(){
-        var result = this.get('year') === this.get('currentYear');
-        if(!result) this.set('constants.disableEditing', true);
-        return result;
+        return this.get('year') === this.get('currentYear');
     }),
 
     init() {
         this._super();
+
+        if(!this.get('viewingCurrentYear')) {
+            this.set('constants.disableEditing', true);
+            this.set('yearHome', `&year=${this.get('year')}`);
+            this.set('yearRoadmap', `?year=${this.get('year')}`);
+        }
+
         var route = this.get('router.currentRouteName');
         if(route === 'assignments.index'){
             this.set('showAddEmployee', false);
@@ -72,7 +77,7 @@ export default Ember.Component.extend({
             try {
                 this.constants.todayColumnDate[0].click();
             }catch(e){ // viewing a different year where 'today' doesn't exist
-                $('.calendar').find(`.month[data-date="${this.get('year')} 01"]`).find('.day')[0].click();
+                Ember.$('.calendar').find(`.month[data-date="${this.get('year')} 01"]`).find('.day')[0].click();
             }
         },
 
