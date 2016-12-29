@@ -82,8 +82,6 @@ export default Ember.Mixin.create(CalendarWidget, {
                                     (x < this.constants.nextYear ? (this.get('year') - 1) : this.get('year')) :
                                     (x < this.constants.nextYear ? this.get('year') : (this.get('year') + 1));
                                 tileClass = ' class="' + tileClass + '"';
-                                //console.log(`${x} ${this.constants.nextYear}`)
-                                console.log((this.get('year') + 1))
                             } else {
                                 dataYear = x < this.constants.nextYear ? this.get('year') : (this.get('year') + 1);
                                 dataAssignment = ' data-assignment="' + tileAssignment + '"';
