@@ -19,7 +19,8 @@ export default Ember.Mixin.create(CalendarWidget, {
 		Ember.$(this.sizer).css({height:Math.abs(this.upY - this.downY) + this.constants.DIM});
 
         // only resize if not over the un-editable area
-        if(this.upX >= this.constants.prevYear || this.get('router.currentRouteName') !== 'home'){
+        //if(this.upX >= this.constants.prevYear || this.get('router.currentRouteName') !== 'home'){
+        if(this.upX >= 0 || this.get('router.currentRouteName') !== 'home'){
     		Ember.$(this.sizer).css({left: this.downX > this.upX ? this.upX : this.downX });
     		Ember.$(this.sizer).css({width:Math.abs(this.upX - this.downX) + this.constants.DIM});
         }
@@ -59,7 +60,8 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 		for(var x = this.downX; x <= this.upX; x+=this.constants.DIM){
             // permit tiles on anything after the previous year, on the home screen (editing resources)
-            if(x >= this.constants.prevYear || this.get('router.currentRouteName') !== 'home'){
+            //if(x >= this.constants.prevYear || this.get('router.currentRouteName') !== 'home'){
+            if(x >= 0 || this.get('router.currentRouteName') !== 'home'){
     			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
     				var thisTile = Ember.$(clone).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
     				thisTile.remove();
@@ -79,8 +81,8 @@ export default Ember.Mixin.create(CalendarWidget, {
                             if(this.constants.daily){ // add year indicator for out of office tracking
                         		tileClass = this.currentTile.attr('class');
                                 dataYear = tileClass === "vacationCarryover" ?
-                                    (x < this.constants.nextYear ? (this.get('year') - 1) : this.get('year')) :
-                                    (x < this.constants.nextYear ? this.get('year') : (this.get('year') + 1));
+                                    (x < this.constants.nextYear ? (this.get('year') -1) : this.get('year')) :
+                                    (x < this.constants.prevYear ? (this.get('year') -1) : x < this.constatns.nextYear ? this.get('year') : (this.get('year') + 1));
                                 tileClass = ' class="' + tileClass + '"';
                             } else {
                                 dataYear = x < this.constants.nextYear ? this.get('year') : (this.get('year') + 1);
@@ -166,7 +168,8 @@ export default Ember.Mixin.create(CalendarWidget, {
             self.y = self.y > self.maxY ? self.maxY : self.y;
 
             // only allow the pointer to move if it is not in the un-editable area
-            if(self.x >= self.constants.prevYear || self.get('router.currentRouteName') !== 'home'){ Ember.$(self.pointer).css({left:self.x}); }
+            //if(self.x >= self.constants.prevYear || self.get('router.currentRouteName') !== 'home'){ Ember.$(self.pointer).css({left:self.x}); }
+            if(self.x >= 0 || self.get('router.currentRouteName') !== 'home'){ Ember.$(self.pointer).css({left:self.x}); }
             Ember.$(self.pointer).css({top:self.y});
 
             if(self.isDown){
@@ -195,7 +198,7 @@ export default Ember.Mixin.create(CalendarWidget, {
             }
             else {
     			self.downX = e.pageX - Ember.$(this).offset().left;
-                if(self.downX < self.constants.prevYear && self.get('router.currentRouteName') === 'home'){ return; }
+                //if(self.downX < self.constants.prevYear && self.get('router.currentRouteName') === 'home'){ return; }
     			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
     			self.downY = e.pageY  - Ember.$(this).offset().top;
     			self.downY = self.downY - self.downY%self.constants.DIM;
