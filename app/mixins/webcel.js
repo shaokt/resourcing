@@ -82,7 +82,7 @@ export default Ember.Mixin.create(CalendarWidget, {
                         		tileClass = this.currentTile.attr('class');
                                 dataYear = tileClass === "vacationCarryover" ?
                                     (x < this.constants.nextYear ? (this.get('year') -1) : this.get('year')) :
-                                    (x < this.constants.prevYear ? (this.get('year') -1) : x < this.constatns.nextYear ? this.get('year') : (this.get('year') + 1));
+                                    (x < this.constants.prevYear ? (this.get('year') -1) : x < this.constants.nextYear ? this.get('year') : (this.get('year') + 1));
                                 tileClass = ' class="' + tileClass + '"';
                             } else {
                                 dataYear = x < this.constants.nextYear ? this.get('year') : (this.get('year') + 1);
