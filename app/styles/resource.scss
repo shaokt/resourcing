@@ -3,13 +3,18 @@
     margin-top:15px;
 }
 .assignmentViewContainer {
-    border-bottom:10px solid #fff;
+    background:#fff;
     border-left:70px solid #fff;
     border-right:10px solid #fff;
     margin-top:-3px;
+    padding-bottom:10px;
     position:fixed;
     top:155px;
     z-index:5;
+
+    section.resourceRow:last-child {
+        border-bottom:1px solid #aaa;
+    }
 }
 section.resourceRow {
     background:#eee;
@@ -236,3 +241,20 @@ section.resourceRow {
         }
     }
 }//resourceRow
+
+[data-gridLines=true] {
+    main, .assignmentViewContainer, .calendar,
+    .resourceRow .row {
+        background: repeating-linear-gradient(
+            90deg,
+            #fff,
+            #fff 15px,
+            #feefee 15px,
+            #feefee 30px
+        );
+    }
+
+    main, .assignmentViewContainer {
+        background-position-x:-1px;
+    }
+}

@@ -25,6 +25,7 @@ Storage.reopenClass({
             assignmentTile: "empty",
             timeawayTile: "vacation",
             lastManager: "",
+            gridLines: false, 
             showHiddenRows: true
         };
     }

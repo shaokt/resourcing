@@ -67,6 +67,10 @@ export default Ember.Component.extend({
             this.set('constants.disableEditing', false);
         },
 
+        toggleGrid() {
+            this.toggleProperty('settings.gridLines');
+        },
+
         // allows user to view all team members assigned to a project
         viewTeam() {
             if(this.get('constants.dataView') === 'timeaway'){ return; }

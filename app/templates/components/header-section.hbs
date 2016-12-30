@@ -181,6 +181,13 @@
                 {{/if}}
             </li>
         {{/if}}
+        <li class="gridLines">
+            <a href="Toggle grid lines" {{action "toggleGrid" on="click"}}>
+                <span class="grid"></span>
+                <span class="column"></span>
+                <span class="text">Toggle Grid Lines</span>
+            </a>
+        </li>
     </ul>
     {{#unless viewingCurrentYear}}
         <div class="message notCurrent">
