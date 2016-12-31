@@ -13,6 +13,13 @@ export default Ember.Component.extend({
     viewingCurrentYear: Ember.computed(function(){
         return this.get('year') === this.get('currentYear');
     }),
+    lastManager1: Ember.computed(function(){
+        return this.get('settings.lastManager').split("", 1);
+    }),
+    lastManager2: Ember.computed(function(){
+        this.get('settings.lastManager').match(/.(.*)/);
+        return RegExp.$1;
+    }),
 
     init() {
         this._super();
@@ -65,6 +72,10 @@ export default Ember.Component.extend({
     actions: {
         enableEditing() {
             this.set('constants.disableEditing', false);
+        },
+
+        toggleGrid() {
+            this.toggleProperty('settings.gridLines');
         },
 
         // allows user to view all team members assigned to a project

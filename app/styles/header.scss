@@ -92,6 +92,9 @@ header {
                     font-size:2em;
 
                     &:hover {
+                        box-shadow:0 0 5px 5px rgba(250,0,250,.1);
+                        border:1px solid rgba(250,0,250,.3);
+                        border-radius:5px;
                         transform:scale(1.5);
                     }
                 }
@@ -232,6 +235,143 @@ header {
                 }//a
             }//toggle
         }//viewOptions
+
+        #currentlyViewing {
+            animation:slide 2500ms 1 linear;
+            background:#fff;
+            position:fixed;
+            right:20px;
+            top:28px;
+
+            @keyframes slide {
+                50% { transform:scale(1.2) translate(-100%); }
+            }
+
+            .container {
+                span {
+                    &.shadow {
+                        background:#000;
+                        border-radius:2px;
+                        box-sizing:border-box;
+                        display:inline-block;
+                        left:-15px;
+                        overflow:hidden;
+                        padding:0 10px;
+                        position:absolute;
+                        text-transform:uppercase;
+                        white-space:nowrap;
+                        width:43px;
+
+                        &:before {
+                            border-radius:2px;
+                            box-sizing:border-box;
+                            color: #fff;
+                            content:attr(data-first-letter);
+                            display:inline-block;
+                            font-weight:bold;
+                            font-size:36px;
+                            left:-11px;
+                            opacity:.5;
+                            position:relative;
+                            padding:0 10px;
+                            text-align:right;
+                            width:40px;
+                        }
+
+                        &:after {
+                            color:#fff;
+                            content: attr(data-last-letters);
+                            font-size:24px;
+                            margin-left:-16px;
+                            position: relative;
+                        }
+                    }
+                    &:nth-child(2) {
+                        box-sizing:border-box;
+                        display:inline-block;
+                        font-size:36px;
+                        font-weight:bold;
+                        left:-16px;
+                        padding:0 10px;
+                        position:relative;
+                        text-transform:uppercase;
+                        text-align:right;
+                        white-space:nowrap;
+                        width:40px;
+                        z-index: -1;
+                    }
+
+                    &:nth-child(3) {
+                        background:#fff;
+                        font-size:24px;
+                        position: relative;
+                        text-transform:uppercase;
+                        z-index: -1;
+
+                        span {
+                            margin-left:-21px;
+                        }
+                    }
+                }//span
+
+                span:nth-child(2) {
+                    left:-14px;
+                    animation:spinName 2500ms 1 linear;
+                }
+                .shadow {
+                    animation:growShadow 2500ms 1 linear;
+                    &:before {
+                        animation:spinName 2500ms 1 linear;
+                    }
+                }
+
+                &:hover {
+                    span:nth-child(2) {
+                        animation:spinName 2500ms infinite linear;
+                    }
+                    .shadow {
+                        animation:growShadow 2500ms infinite linear;
+                        &:before {
+                            animation:spinName 2500ms infinite linear;
+                        }
+                    }
+                }
+
+                @keyframes growShadow {
+                    50% {
+                        width:200%;
+                    }
+                    75%,100% {
+                        background:#f9a;
+                        width:43px;
+                    }
+                }
+
+                @keyframes spinName {
+                    15% {
+                        transform:rotate(-45deg) scale(2);
+                    }
+                    25% {
+                        transform:rotate(45deg) scale(2);
+                    }
+                    50%{
+                        transform:rotate(180deg) scale(2);
+                    }
+                    60% {
+                        transform:rotate(20deg);
+                    }
+                    70%, 100%{
+                        transform:rotate(0deg);
+                    }
+                }
+            }//.container
+
+            .year {
+                font-size:1.2em;
+                float:right;
+                margin:-50px 0px 0 0;
+            }
+        }
     }//header
 }//pageContainer
 

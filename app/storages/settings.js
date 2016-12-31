@@ -25,7 +25,8 @@ Storage.reopenClass({
             assignmentTile: "empty",
             timeawayTile: "vacation",
             lastManager: "",
-            showHiddenRows: true
+            gridLines: false,
+            showHiddenRows: false 
         };
     }
 });
