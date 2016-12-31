@@ -237,15 +237,15 @@ header {
         }//viewOptions
 
         #currentlyViewing {
+            animation:slide 2500ms 1 linear;
             background:#fff;
             position:fixed;
             right:20px;
+            top:28px;
             z-index:-1;
-            animation:slide 2500ms 1 linear;
+
             @keyframes slide {
-                50% {
-                    transform:scale(1.2) translate(-100%);
-                }
+                50% { transform:scale(1.2) translate(-100%); }
             }
 
             .container {
@@ -370,6 +370,7 @@ header {
             .year {
                 font-size:1.2em;
                 float:right;
+                margin:-50px 0px 0 0;
             }
         }
     }//header
