@@ -14,17 +14,17 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     }),
 
     init: function () {
-        Ember.run.scheduleOnce("afterRender",this,function() {
+        Ember.run.scheduleOnce("afterRender",this,()=> {
             this.set('constants.dataView', 'roadmap');
             var route = this.get('router.currentPath');
             if(route === 'roadmap.index'){
-                document.title = `Roadmap ${this.get('year')}`;
+                document.title = `${this.get('year')} Roadmap`;
                 this.get('settings').set('view', 'roadmap');
                 this.bindScrolling();
                 this.bindMouseMove();
             }
             else{
-                document.title = "Edit Assignments";
+                document.title = `${this.get('year')} Roadmap | Edit`;
                 this.get('settings').set('view', '');
             }
         });

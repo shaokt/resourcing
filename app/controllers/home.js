@@ -15,6 +15,11 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         return this.get('model.resource.length') > 0;
     }),
 
+    // update the title based on view for the manager
+    setTitle: Ember.observer('settings.view', function(){
+        document.title = `${this.get('year')} ${this.get('settings.lastManager')} ${this.get('settings.view') === 'timeaway' ? ' | Time Off' : ' | Roadmap'}`;
+    }),
+
     // determines which assignment to show while viewing employees
     showAssignment: function(){
         var self = this;
@@ -31,12 +36,11 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     init() {
         this._super();
 
-        //console.log(this.get('router.router.state.queryParams'));
+        Ember.run.scheduleOnce("afterRender",this,()=>{this.setTitle();});
+
         this.minLeft = 22 * this.constants.DIM; // assume 22 business days in a month
         this.bindScrolling();
         this.bindMouseMove();
-
-        document.title += this.get('settings.view') === "timeaway" ? " - Time Off" : " - Assignments";
 
         var self = this;
         var vacationCounters = ['lieu', 'personal', 'sick', 'unofficial', 'vacation'];

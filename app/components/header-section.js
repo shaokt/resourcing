@@ -105,17 +105,14 @@ export default Ember.Component.extend({
             this.sendAction('addEmployee');
         },
 
-        // switch views between assignment, timeaway etc
+        // switch views between roadmap or timeaway
         toggleView(view) {
             this.get('settings').set('view', view);
-            document.title = this.get('settings.view') === "timeaway" ?
-                "Resourcing - Time Off" :
-                "Resourcing - Assignments";
         },
 
         // show/hide hidden rows
         toggleViewHiddenRows() {
-            this.get('settings').set('showHiddenRows', !(this.get('settings').get('showHiddenRows')));
+            this.toggleProperty('settings.showHiddenRows');
         },
 
         // enable drag & drop of resource rows
