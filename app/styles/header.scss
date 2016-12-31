@@ -242,7 +242,6 @@ header {
             position:fixed;
             right:20px;
             top:28px;
-            z-index:-1;
 
             @keyframes slide {
                 50% { transform:scale(1.2) translate(-100%); }
