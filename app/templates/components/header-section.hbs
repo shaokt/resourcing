@@ -204,6 +204,20 @@
     {{#if this.constants.saving}}
         <div id="saving"><span>Saving</span></div>
     {{/if}}
+
+    <div id="currentlyViewing">
+        <div class="container">
+            {{#if showAddEmployee}}
+                <span class="shadow" data-first-letter="{{lastManager1}}" data-last-letters="{{lastManager2}}"></span>
+                <span>{{lastManager1}}</span><span><span>{{lastManager2}}</span></span>
+            {{/if}}
+            {{#if showOrg}}
+                <span class="shadow" data-first-letter="R" data-last-letters="oadmap"></span>
+                <span>R</span><span><span>oadmap</span></span>
+            {{/if}}
+        </div>
+        {{year}}
+    </div>
 </div>
 
 {{#if settings.isWeeklyCalendar}}
