@@ -1,4 +1,4 @@
-[data-view='assignment'],
+[data-view='roadmap'],
 [data-view='timeaway'] {
     main {
         padding-top:165px;
@@ -80,9 +80,9 @@
 
 }//data-view
 
-[data-view='timeaway'][data-route="assignments.index"] {
+[data-view='timeaway'][data-route="roadmap.index"] {
     main {
-        [data-view="assignment"] {
+        [data-view="roadmap"] {
             background: repeating-linear-gradient(
                 -50deg,
                 rgba(255,255,255,.2),

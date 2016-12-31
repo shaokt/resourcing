@@ -9,9 +9,9 @@ export default Ember.Component.extend({
 
     path: Ember.computed('router', function(){
         var route = this.get('router.currentRouteName');
-        if(route.match(/assignments/gi)){
+        if(route.match(/roadmap/gi)){
             this.set('qp', '?year=');
-            return "/assignments";
+            return "/roadmap";
         }
         else {
             this.set('qp', '&year=');

@@ -15,11 +15,11 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
 
     init: function () {
         Ember.run.scheduleOnce("afterRender",this,function() {
-            this.set('constants.dataView', 'assignment');
+            this.set('constants.dataView', 'roadmap');
             var route = this.get('router.currentPath');
-            if(route === 'assignments.index'){
-                document.title = "View Assignments";
-                this.get('settings').set('view', 'assignment');
+            if(route === 'roadmap.index'){
+                document.title = `Roadmap ${this.get('year')}`;
+                this.get('settings').set('view', 'roadmap');
                 this.bindScrolling();
                 this.bindMouseMove();
             }

@@ -65,7 +65,7 @@ export default Ember.Mixin.create(CalendarWidget, {
     			for(var y = this.downY; y <= this.upY; y+=this.constants.DIM){
     				var thisTile = Ember.$(clone).find('.tiles [data-x="' + x +'"][data-y="' + y + '"]');
     				thisTile.remove();
-                    if(this.get('router.currentRouteName') === 'assignments.index' && this.deleting){
+                    if(this.get('router.currentRouteName') === 'roadmap.index' && this.deleting){
         				var thisPhase = Ember.$(clone).find('.phases [data-x="' + x +'"][data-y="' + y + '"]');
         				thisPhase.remove();
                     }
@@ -180,7 +180,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 				self.upY = self.upY - self.upY%self.constants.DIM;
                 self.upY = self.upY > self.maxY ? self.maxY : self.upY;
 
-                if(self.get('router.currentRouteName') === 'assignments.index'){
+                if(self.get('router.currentRouteName') === 'roadmap.index'){
                     self.dragAssignmentHandle();
                 }
                 else{
@@ -210,7 +210,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 			switch (e.which){
 				case 1: { // left mouse button
                     if(self.rowComponent.get('phaseAction') === 'shift'){ break; } // do not paint if the user wants to shift the phases around
-                    if(self.get('router.currentRouteName') === 'assignments.index'){
+                    if(self.get('router.currentRouteName') === 'roadmap.index'){
                         self.handle = Ember.$(e.target).hasClass('handle') ? Ember.$(e.target).hasClass('left') ? "left" : "right" : false;
                         self.downX = self.get('rowComponent.assignment.x');
                         if(self.handle === "right"){ self.downX += self.get('rowComponent.assignment.w') - self.constants.DIM; }
@@ -221,7 +221,7 @@ export default Ember.Mixin.create(CalendarWidget, {
                 }
 				case 3: { // right click: stamp
                     // stamps limited to phases of the project defined in the assignment-phases component
-                    if(self.get('router.currentRouteName') === 'assignments.index'){
+                    if(self.get('router.currentRouteName') === 'roadmap.index'){
                         self.setPhase(e);
                     }
                     // stamps  the short name of the project on the project tile
@@ -249,7 +249,7 @@ export default Ember.Mixin.create(CalendarWidget, {
                         self.rowComponent.getPhaseDelete(self.upX, self.upY);
                     }
                     else{
-                        if(self.get('router.currentRouteName') !== 'assignments.index'){
+                        if(self.get('router.currentRouteName') !== 'roadmap.index'){
                             self.resize(e);
                             self.getTiles(e);
                         }

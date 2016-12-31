@@ -29,7 +29,7 @@ export default Ember.Component.extend(Webcel, {
                 }
             }, 0);
         }
-        else if(this.get('router.currentRouteName') === 'assignments.index') {
+        else if(this.get('router.currentRouteName') === 'roadmap.index') {
             //if empty, place a block 3 columns wide centering on today's marker
             if(!this.get('assignment.w')){
                 var col = this.constants.todayColumn;

@@ -31,7 +31,7 @@ export default Ember.Component.extend({
         }
 
         var route = this.get('router.currentRouteName');
-        if(route === 'assignments.index'){
+        if(route === 'roadmap.index'){
             this.set('showAddEmployee', false);
             this.set('showEmployeeTracking', false);
             this.set('showSort', false);
@@ -39,7 +39,7 @@ export default Ember.Component.extend({
             this.set('showTeam', true);
             this.set('showToggleRows', false);
         }
-        else if(route === 'assignments.edit') {
+        else if(route === 'roadmap.edit') {
             this.set('showAddEmployee', false);
             this.set('showEmployeeTracking', false);
             this.set('showSort', true);
