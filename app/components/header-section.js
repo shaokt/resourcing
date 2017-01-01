@@ -10,6 +10,7 @@ export default Ember.Component.extend({
     showToggleRows: false,
     showRoadmap: false,
     currentYear: (new Date()).getFullYear(),
+    yearNextFile: true,
     viewingCurrentYear: Ember.computed(function(){
         return this.get('year') === this.get('currentYear');
     }),
@@ -66,11 +67,8 @@ export default Ember.Component.extend({
     getNextYearFile: function() {
         var exists = Ember.$.getJSON(`http://localhost:3000/file/${this.get('yearNext')}/${this.get('settings.lastManager')}`, ()=> {})
         .done(()=> {
-            if(!exists.responseJSON) { // file exists
+            if(!exists.responseJSON) { // file doesn't exist
                 this.set('yearNextFile', false);
-            }
-            else { // file exists
-                this.set('yearNextFile', true);
             }
         });
     },
