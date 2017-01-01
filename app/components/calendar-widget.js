@@ -118,7 +118,7 @@ export default Ember.Component.extend(WebcelMixin, {
         this.teamDateSelect(date);
 
         // in the timeaway view, add the teamDate class one level lower
-        if(this.get('settings.view') === 'timeaway' && this.get('router.currentRouteName') === 'assignments.index'){
+        if(this.get('settings.view') === 'timeaway' && this.get('router.currentRouteName') === 'roadmap.index'){
             //console.log(this.get('constants.todayColumnDate').find('.dayNum'))
             Ember.$(this.get('constants.todayColumnDate').find('.dayNum')).addClass('teamDate');
         }

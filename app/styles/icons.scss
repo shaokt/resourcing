@@ -52,16 +52,16 @@ section.resourceRow {
             }//li
         }//viewOptions
 
-        [data-view="assignment"] + .info {
+        [data-view="roadmap"] + .info {
             .name { margin-top:7px; }
         }
     }//resourceRow
 }//data-view-team
 
-[data-view="assignment"] {
+[data-view="roadmap"] {
 &[data-view-team="true"] {
     section.resourceRow {
-        .row[data-view="assignment"]:after {
+        .row[data-view="roadmap"]:after {
             background:#fff0d3;
             opacity:.8;
         }
@@ -96,7 +96,7 @@ section.resourceRow {
             }//li
         }//viewOptions
 
-        [data-view="assignment"] + .info {
+        [data-view="roadmap"] + .info {
             s.name { margin-top:0; }
         }
     }

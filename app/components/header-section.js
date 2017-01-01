@@ -31,7 +31,7 @@ export default Ember.Component.extend({
         }
 
         var route = this.get('router.currentRouteName');
-        if(route === 'assignments.index'){
+        if(route === 'roadmap.index'){
             this.set('showAddEmployee', false);
             this.set('showEmployeeTracking', false);
             this.set('showSort', false);
@@ -39,12 +39,13 @@ export default Ember.Component.extend({
             this.set('showTeam', true);
             this.set('showToggleRows', false);
         }
-        else if(route === 'assignments.edit') {
+        else if(route === 'roadmap.edit') {
             this.set('showAddEmployee', false);
             this.set('showEmployeeTracking', false);
             this.set('showSort', true);
             this.set('showOrg', true);
             this.set('showTeam', false);
+            this.set('showRoadmap', true);
             this.set('showToggleRows', true);
 
         }
@@ -105,17 +106,14 @@ export default Ember.Component.extend({
             this.sendAction('addEmployee');
         },
 
-        // switch views between assignment, timeaway etc
+        // switch views between roadmap or timeaway
         toggleView(view) {
             this.get('settings').set('view', view);
-            document.title = this.get('settings.view') === "timeaway" ?
-                "Resourcing - Time Off" :
-                "Resourcing - Assignments";
         },
 
         // show/hide hidden rows
         toggleViewHiddenRows() {
-            this.get('settings').set('showHiddenRows', !(this.get('settings').get('showHiddenRows')));
+            this.toggleProperty('settings.showHiddenRows');
         },
 
         // enable drag & drop of resource rows

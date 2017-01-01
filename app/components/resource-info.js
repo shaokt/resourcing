@@ -36,7 +36,7 @@ export default ResourceRowComponent.extend({
                 var self = this;
 
                 // resource === assignment in this block due to shared code
-                if(this.get('router.currentRouteName') === 'assignments.index'){
+                if(this.get('router.currentRouteName') === 'roadmap.index'){
                     this.set('resource.paint', true);
                     setTimeout(function(){
                         self.constants.webcel.setTile(Ember.$(self.element).find('.tileOptions li a[data-assignment="' + self.get('resource.id') + '"]'));

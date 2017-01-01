@@ -1,10 +1,11 @@
 // editing actual assignments, not paiting into resource rows
-#pageContainer[data-view="assignment"][data-route="assignments.edit"] {
+#pageContainer[data-view="roadmap"][data-route="roadmap.edit"] {
     header {
         height:55px;
         width:100%;
     }
     main {
+        background:#fff;
         border-bottom:none;
         padding-top:80px;
         padding-bottom:250px;
@@ -154,6 +155,7 @@
                         float:left;
                         margin:2px 0;
                         padding:5px;
+                        position:relative;
                     }
 
                     [contenteditable="true"] {
@@ -251,7 +253,6 @@
                     position:absolute;
                     top:0;
                     width:100%;
-                    z-index:-1;
                 }
 
                 .hexbackgroundArrow {

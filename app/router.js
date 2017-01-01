@@ -6,7 +6,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('assignments', function() {
+  this.route('roadmap', function() {
     this.route('edit');
   });
   this.route('home');

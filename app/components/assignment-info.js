@@ -76,8 +76,8 @@ export default ResourceInfoComponent.extend({
             this.set('constants.teamAsOfEmpty', false);
             if(this.get('settings.view') === 'timeaway') {
                 this.set('readonly', false);
-                this.set('settings.view', 'assignment');
-                this.set('constants.dataView', 'assignment');
+                this.set('settings.view', 'roadmap');
+                this.set('constants.dataView', 'roadmap');
                 this.set('constants.teamAssignment', '');
             }
             else {
