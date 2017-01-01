@@ -48,6 +48,7 @@
             </li>
         {{/if}}
 
+        {{#unless constants.editAssignments}}
         {{#if settings.hasCalendar}}
             {{#if viewingCurrentYear}}
             <li class="today">
@@ -82,6 +83,7 @@
                 </li>
             {{/if}}
         {{/if}}
+        {{/unless}}
 
         {{#unless constants.disableEditing}}
         {{#if showSort}}
@@ -181,13 +183,16 @@
                 {{/if}}
             </li>
         {{/if}}
-        <li class="gridLines">
-            <a href="Toggle grid lines" {{action "toggleGrid" on="click"}}>
-                <span class="grid"></span>
-                <span class="column"></span>
-                <span class="text">Toggle Grid Lines</span>
-            </a>
-        </li>
+
+        {{#unless constants.editAssignments}}
+            <li class="gridLines">
+                <a href="Toggle grid lines" {{action "toggleGrid" on="click"}}>
+                    <span class="grid"></span>
+                    <span class="column"></span>
+                    <span class="text">Toggle Grid Lines</span>
+                </a>
+            </li>
+        {{/unless}}
     </ul>
     {{#unless viewingCurrentYear}}
         <div class="message notCurrent">
@@ -220,13 +225,15 @@
     </div>
 </div>
 
-{{#if settings.isWeeklyCalendar}}
-    {{calendar-widget elementId="calendarWeekly" _year=year daily=false width=width}}
-{{/if}}
+{{#unless constants.editAssignments}}
+    {{#if settings.isWeeklyCalendar}}
+        {{calendar-widget elementId="calendarWeekly" _year=year daily=false width=width}}
+    {{/if}}
 
-{{#if settings.isDailyCalendar}}
-    {{calendar-widget elementId="calendarDaily" _year=year daily=true width=width}}
-{{/if}}
+    {{#if settings.isDailyCalendar}}
+        {{calendar-widget elementId="calendarDaily" _year=year daily=true width=width}}
+    {{/if}}
+{{/unless}}
 {{else}}
     <div class="message notFound">
         <p>There are no files for the year / user / view you chose.</p>

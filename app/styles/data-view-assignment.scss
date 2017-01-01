@@ -16,11 +16,12 @@
         padding-top:155px;
     }
 
-    &[data-route="roadmap.index"]{
+    &[data-route="roadmap.index"],
+    &[data-route="roadmap.edit"]{
         .menu .tileOptions {
             display:none;
         }
-        
+
         main {
             padding-top:164px;
         }

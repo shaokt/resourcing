@@ -25,7 +25,6 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
             }
             else{
                 document.title = `${this.get('year')} Roadmap | Edit`;
-                this.get('settings').set('view', '');
             }
         });
     },

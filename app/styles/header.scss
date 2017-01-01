@@ -5,7 +5,7 @@ header {
     left:0;
     position:fixed;
     width:100%;
-    z-index: 10;
+    z-index:11;
 
     #yearContainer {
         left:15px;
@@ -265,16 +265,16 @@ header {
                         &:before {
                             border-radius:2px;
                             box-sizing:border-box;
-                            color: #fff;
+                            color:#7f7f7f;
                             content:attr(data-first-letter);
                             display:inline-block;
                             font-weight:bold;
                             font-size:36px;
                             left:-11px;
-                            opacity:.5;
                             position:relative;
                             padding:0 10px;
                             text-align:right;
+                            text-shadow:-1px 2px #fff;
                             width:40px;
                         }
 
@@ -357,7 +357,7 @@ header {
                     50%{
                         transform:rotate(180deg) scale(2);
                     }
-                    60% {
+                    60%, 74% {
                         transform:rotate(20deg);
                     }
                     70%, 100%{

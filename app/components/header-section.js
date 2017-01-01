@@ -45,6 +45,7 @@ export default Ember.Component.extend({
             this.set('showSort', true);
             this.set('showOrg', true);
             this.set('showTeam', false);
+            this.set('showRoadmap', true);
             this.set('showToggleRows', true);
 
         }
