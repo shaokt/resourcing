@@ -28,6 +28,8 @@ export default Ember.Component.extend({
             this.set('constants.disableEditing', true);
             this.set('yearHome', `&year=${this.get('year')}`);
             this.set('yearRoadmap', `?year=${this.get('year')}`);
+            this.set('yearNext', parseInt(this.get('year'))+1);
+            this.getNextYearFile();
         }
 
         var route = this.get('router.currentRouteName');
@@ -58,6 +60,19 @@ export default Ember.Component.extend({
             this.set('showRoadmap', true);
             this.set('showToggleRows', true);
         }
+    },
+
+    // check if the next year's file exists
+    getNextYearFile: function() {
+        var exists = Ember.$.getJSON(`http://localhost:3000/file/${this.get('yearNext')}/${this.get('settings.lastManager')}`, ()=> {})
+        .done(()=> {
+            if(!exists.responseJSON) { // file exists
+                this.set('yearNextFile', false);
+            }
+            else { // file exists
+                this.set('yearNextFile', true);
+            }
+        });
     },
 
     // determine whether to show assignment tiles or not
