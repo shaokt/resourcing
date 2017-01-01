@@ -210,7 +210,7 @@
                 <p>{{yearNext}} {{settings.lastManager}} file doesn't exist.</p>
 
                 {{#if constants.disableEditing}}
-                    <p><a href="/export to {{yearNext}}" {{action "enableEditing" on="click"}}>Export to {{yearNext}} {{settings.lastManager}}</a></p>
+                    <p><a href="/export to {{yearNext}}" {{action "exportNextYear" on="click"}}>Export to {{yearNext}} {{settings.lastManager}}</a></p>
                 {{else}}
                     <p>Page is now unlocked for editing rows.</p>
                 {{/if}}

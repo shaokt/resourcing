@@ -129,6 +129,16 @@ export default Ember.Component.extend({
             this.toggleProperty('settings.showHiddenRows');
         },
 
+        // export current year's file to next year
+        exportNextYear() {
+            var create = Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${this.get('settings.lastManager')}`, ()=> {})
+            .done(()=> {
+                if(create.responseJSON) { // file successfully created
+                    this.set('yearNextFile', true);
+                }
+            });
+        },
+
         // enable drag & drop of resource rows
         dragEnable() {
             this.set('constants.draggable', true);
