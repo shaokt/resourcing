@@ -151,6 +151,16 @@ export default Ember.Component.extend({
                 q1Weekly = (q1Daily + dayNum)/5;
             }
 
+            // if exporting a manager to next year but roadmap isn't exported yet, export roadmap first
+            if(this.get('router.currentRouteName') === 'home') {
+                var exists = Ember.$.getJSON(`http://localhost:3000/exists/${this.get('yearNext')}/assignments`, ()=> {})
+                .done(()=>{
+                    if(!exists.responseJSON){
+                        Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/assignments`, ()=> {})
+                    }
+                })
+            }
+
             var create = Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/${filename}`, ()=> {})
             .done(()=> {
                 if(create.responseJSON) { // file successfully created
