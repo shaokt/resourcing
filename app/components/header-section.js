@@ -131,7 +131,27 @@ export default Ember.Component.extend({
 
         // export current year's file to next year
         exportNextYear() {
-            var create = Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${this.get('settings.lastManager')}`, ()=> {})
+            var q1Weekly;   // column value of q1 in weekly view
+            var q1Daily;    // column value of q1 in daily view
+            var dayNum;     // number of total extra days to account for
+            var extraDays;  // extra days to account for when getting values in the weekly & daily view
+
+            var q1 = Ember.$('.calendar').find(`.quarter [data-date="${this.get('year')} 11"] .day`)[0];
+
+            if(this.get('settings.view') === 'roadmap'){
+                extraDays = {1:0, 2:0, 3:0, 4:1, 5:2, 6:3, 7:4}; // all posible values for a Monday are 1-7th. If > 3, then need to account for days from previous week
+                dayNum = extraDays[parseInt($(q1).find('.dayNum')[0].innerHTML)] * 15;
+                q1Weekly = parseInt($(q1).attr('data-column'));
+                q1Daily = (q1Weekly*5) - dayNum;
+            }
+            else {
+                extraDays = {M:0, T:4, W:3, R:2, F:1}; // all possible days the month can start on. If not Monday, then need to account for extra days to the next Monday
+                dayNum = parseInt(extraDays[$(q1).find('.dayName')[0].innerHTML]) * 15;
+                q1Daily = parseInt($(q1).attr('data-column'));
+                q1Weekly = (q1Daily + dayNum)/5;
+            }
+
+            var create = Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/${this.get('settings.lastManager')}`, ()=> {})
             .done(()=> {
                 if(create.responseJSON) { // file successfully created
                     this.set('yearNextFile', true);
