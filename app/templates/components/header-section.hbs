@@ -207,12 +207,12 @@
 
         {{#unless yearNextFile}}
             <div class="message notCurrent">
-                <p>{{yearNext}} {{settings.lastManager}} file doesn't exist.</p>
-
-                {{#if constants.disableEditing}}
-                    <p><a href="/export to {{yearNext}}" {{action "exportNextYear" on="click"}}>Export to {{yearNext}} {{settings.lastManager}}</a></p>
+                {{#if showAddEmployee}}
+                    <p>{{yearNext}} {{settings.lastManager}} file doesn't exist.</p>
+                    <p><a href="/export to {{yearNext}}" {{action "exportNextYear" settings.lastManager on="click"}}>Export to {{yearNext}} {{settings.lastManager}}</a></p>
                 {{else}}
-                    <p>Page is now unlocked for editing rows.</p>
+                    <p>{{yearNext}} Roadmap file doesn't exist.</p>
+                    <p><a href="/export to {{yearNext}}" {{action "exportNextYear" 'assignments' on="click"}}>Export to {{yearNext}} Roadmap</a></p>
                 {{/if}}
             </div>
         {{/unless}}

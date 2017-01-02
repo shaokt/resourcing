@@ -130,7 +130,7 @@ export default Ember.Component.extend({
         },
 
         // export current year's file to next year
-        exportNextYear() {
+        exportNextYear(filename) {
             var q1Weekly;   // column value of q1 in weekly view
             var q1Daily;    // column value of q1 in daily view
             var dayNum;     // number of total extra days to account for
@@ -151,7 +151,7 @@ export default Ember.Component.extend({
                 q1Weekly = (q1Daily + dayNum)/5;
             }
 
-            var create = Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/${this.get('settings.lastManager')}`, ()=> {})
+            var create = Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/${filename}`, ()=> {})
             .done(()=> {
                 if(create.responseJSON) { // file successfully created
                     this.set('yearNextFile', true);
