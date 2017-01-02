@@ -42,16 +42,17 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
               background: ""
             });
 
-            // highligh new row & focus into first editable field
-            setTimeout(function(){
-                var tr = Ember.$('[data-assignment-id="' + newItem.id +'"] tr');
-                Ember.$(tr).addClass('new');
-                Ember.$(tr).find('.lock a').click();
+            var store = this.get('model');
+            newItem.save().then(function(){
+                store.pushObject(newItem._internalModel);
+
                 setTimeout(function(){
+                    var tr = Ember.$('[data-assignment-id="' + newItem.id +'"] tr');
+                    Ember.$(tr).addClass('new');
+                    Ember.$(tr).find('.lock a').click();
                     Ember.$(tr).find('.short').focus();
                 }, 0);
-            }, 0);
-            this.constants.save(newItem);
-        }
-    }
+            });
+        }// addAssignment
+    }// actions
 });
