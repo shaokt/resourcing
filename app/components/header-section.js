@@ -24,15 +24,6 @@ export default Ember.Component.extend({
 
     init() {
         this._super();
-
-        if(!this.get('viewingCurrentYear')) {
-            this.set('constants.disableEditing', true);
-            this.set('yearHome', `&year=${this.get('year')}`);
-            this.set('yearRoadmap', `?year=${this.get('year')}`);
-            this.set('yearNext', parseInt(this.get('year'))+1);
-            this.getNextYearFile();
-        }
-
         var route = this.get('router.currentRouteName');
         if(route === 'roadmap.index'){
             this.set('showAddEmployee', false);
@@ -61,11 +52,20 @@ export default Ember.Component.extend({
             this.set('showRoadmap', true);
             this.set('showToggleRows', true);
         }
+
+        if(!this.get('viewingCurrentYear')) {
+            this.set('constants.disableEditing', true);
+            this.set('yearHome', `&year=${this.get('year')}`);
+            this.set('yearRoadmap', `?year=${this.get('year')}`);
+            this.set('yearNext', parseInt(this.get('year'))+1);
+            this.getNextYearFile();
+        }
     },
 
     // check if the next year's file exists
     getNextYearFile: function() {
-        var exists = Ember.$.getJSON(`http://localhost:3000/file/${this.get('yearNext')}/${this.get('settings.lastManager')}`, ()=> {})
+        var filename = this.get('showAddEmployee') ? this.get('settings.lastManager') : 'assignments';
+        var exists = Ember.$.getJSON(`http://localhost:3000/file/${this.get('yearNext')}/${filename}`, ()=> {})
         .done(()=> {
             if(!exists.responseJSON) { // file doesn't exist
                 this.set('yearNextFile', false);
