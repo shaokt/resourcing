@@ -1,0 +1,237 @@
+// chicklet tiles used to paint into each row
+.tileContainer {
+    cursor:default;
+    display:none;
+    float:left;
+    position:relative;
+
+    &[data-active="true"] {
+        display:block;
+    }
+
+    &:before {
+        border-radius:5px;
+        content:"";
+        display:block;
+        height:100%;
+        opacity:.3;
+        position:absolute;
+        width:100%;
+    }
+
+    &:hover {
+        [data-stamp="true"]{
+            border:1px solid #000;
+            opacity:1;
+            z-index:2;
+
+            span {
+                 display:block;
+                 margin:3px;
+                 padding:10px;
+            }
+        }
+    }
+}// tileContainer
+
+.tileOptions {
+    cursor:pointer;
+     max-width:50%;
+
+    &:hover {
+        outline:none;
+
+        .tileContainer {
+            margin:0 5px 2px 0;
+        }
+
+        .tileContainer,
+        input,
+        label { display:block; }
+
+        li {
+            background:#eee;
+            border-radius:5px;
+            border-color:#aaa;
+            cursor:pointer;
+        }
+
+        [data-stamp="true"] { display:inline-block; }
+
+        + .viewOptions {
+            display:none;
+
+            ~ .message {
+                display:none;
+            }
+        }
+    }
+
+    input {
+        float:left;
+        display:none;
+        position:relative;
+    }
+
+    label {
+        float:left;
+        margin-bottom:5px;
+        margin-left:10px;
+        position:relative;
+        display:none;
+
+        &[data-active="true"]{
+            display:block;
+        }
+    }
+
+
+    li {
+         border:2px solid transparent;
+         float:left;
+         list-style:none;
+         margin-right:5px;
+         padding:8px 10px 10px 10px;
+
+         &:before {
+            float:left;
+            font-weight:bold;
+            margin:10px 5px 0 0;
+         }
+
+        [data-stamp="true"] {
+            border:1px solid transparent;
+            border-radius:5px;
+            display:none;
+            float:left;
+            line-height:0;
+        	margin:1px 0 0 1px;
+            opacity:.4;
+        	padding:1px;
+            position:relative;
+            text-decoration:none;
+        	width:auto;
+            white-space:nowrap;
+
+            &:after {
+                padding:5px;
+                position:relative;
+                top:-1.4em;
+            }
+
+            &[data-active="true"],
+            &:focus,
+            &:hover {
+                border:1px solid #000;
+                opacity:1;
+                z-index:2;
+
+                span {
+                     display:block;
+                     margin:3px;
+                     padding:10px;
+                }
+                &:before {
+                    background:#fff;
+                    border:1px solid #000;
+                    border-radius:5px;
+                    bottom:-2.8em;
+                    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
+                    color:#000;
+                    float:left;
+                    font-size:1.5em;
+                    left:0%;
+                    line-height:125%;
+                    padding:5px;
+                    position:absolute;
+                    white-space:nowrap;
+                }
+            }
+
+            span {
+                background:#000;
+                border-radius:5px;
+                display:block;
+                padding:13px;
+            }
+            &.empty {
+                background: repeating-linear-gradient( -55deg, #222, #222 5px, #333 5px, #333 10px);
+                &[data-stamp="true"]:after { content: "\2002"; }
+                span { background:none; }
+            }
+
+            &[data-active="true"]{
+                display:block;
+                opacity:1;
+            }
+        }//data-stamp="true"
+
+        .empty:hover:before { content:"Delete"; }
+    }//li
+}
+
+.resourceRow {
+    &[data-type="person"] {
+        #deletePaintedtiles {
+            &:checked {
+                ~ .tileOptions {
+                    opacity:.3;
+
+                    &:hover {
+                        transform:scale(.8);
+
+                        li {
+                            background:none;
+                            border-color:transparent;
+                            padding:0;
+
+                            .tileContainer {
+                                margin:0;
+
+                                &[data-active="false"] {
+                                    display:none;
+                                }
+
+                                &[data-active="true"] {
+                                    a:before {
+                                        display:none;
+                                    }
+                                }
+                            }
+                        }// li
+                    }// hover
+                }// .tileOptions
+            }// checked
+
+            ~ label {
+                color:#fff;
+            }
+        }// deletePaintedtiles
+
+        .tileOptions {
+            float:left;
+            max-width:33%;
+            margin:-11px 0 0 10px;
+            transform:scale(.8);
+
+            li {
+                margin-right:0;
+                padding:0;
+            }
+
+            &:hover {
+                transform:scale(1);
+
+                li {
+                     padding:8px 10px 10px 10px;
+                }
+            }
+        }
+    }
+    &[data-type="assignment"] {
+        li [data-stamp="true"]:hover:before {
+            color:red !important;
+            display:none;
+        }
+    }
+}

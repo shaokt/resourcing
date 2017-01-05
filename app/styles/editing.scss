@@ -1,10 +1,25 @@
-body[data-editing="true"] {
-    header button,
+[data-editing="true"] {
     .viewOptions {
         display:none !important;
     }
 
+    .tileOptions,
     .editing .viewOptions {
         display:block !important
+    }
+
+    .rowContainer {
+        &:not(.directs){
+            section.resourceRow {
+                &:not([data-active=true]){
+                    .info {
+                        opacity:.8;
+                    }
+                    .row {
+                        opacity:.3;
+                    }
+                }
+            }
+        }
     }
 }

@@ -1,0 +1,60 @@
+<tr>
+    <td class="value">
+        <style>
+            [data-assignment-id="{{assignment.id}}"] .hexbackgroundArrow:after { border-left-color:#{{hexbackground}} !important; }
+            [data-assignment-id="{{assignment.id}}"] tr { border-color:#{{hexbackground}}; }
+
+            [data-assignment-id="{{assignment.id}}"] .arrow:after,
+            [data-assignment-id="{{assignment.id}}"] .arrow:before,
+            [data-assignment-id="{{assignment.id}}"] .hexbackground,
+            [data-assignment="{{assignment.id}}"] { background:#{{assignment.background}} !important; }
+
+            [data-assignment="{{assignment.id}}"][data-stamp="true"]:after { content:'{{assignment.short}}' }
+            [data-assignment="{{assignment.id}}"]:before { content:'{{assignment.long}}' !important; }
+        </style>
+
+        <div class="hexbackground"></div>
+
+        <ul class="viewOptions">
+            <li class="lock">
+                <a href="/" {{action "editing" on="click"}}></a>
+            </li>
+            <li class="toggle">
+                <a href="/" {{action "toggleRow" on="click"}}></a>
+            </li>
+        </ul>
+        {{#if editing}}
+            {{content-editable class="short" value=assignment.short allowNewlines=false focus-in=constants.focusInContentEditable}}
+            {{content-editable class="long" value=assignment.long allowNewlines=false focus-in=constants.focusInContentEditable}}
+            {{content-editable class="background"
+                value=assignment.background
+                allowNewlines=false
+                maxlength="6"
+                key-press="filter"
+                focus-out="upperCase"
+                focus-in=constants.focusInContentEditable
+            }}
+        {{else}}
+            <div class="short" data-type="value">{{assignment.short}}</div>
+            <div class="long" data-type="value">{{assignment.long}}</div>
+            <div class="background" data-type="value">{{assignment.background}}</div>
+        {{/if}}
+    </td>
+
+    <td class="arrow">
+        <div class="hexbackgroundArrow"></div>
+    </td>
+
+    <td class="headerPreview">
+        <ul class="tileOptions">
+            <li>
+                <div data-assignment="{{assignment.id}}" data-stamp="true" data-active="true"><span></span></div>
+            </li>
+        </ul>
+    </td>
+    <td class="rowPreview">
+        <section class="resourceRow">
+            <div class="tiles"><div data-type="tile" data-stamp="true" data-assignment="{{assignment.id}}"></div></div>
+        </section>
+    </td>
+</tr>

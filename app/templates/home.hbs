@@ -1,0 +1,33 @@
+{{! do not move styles to component as it will cause multiple view renders}}
+{{dynamic-styles showAssignment=showAssignment numAssignmentsViewing=numAssignmentsViewing counterCSS=counterCSS}}
+
+<div id="pageContainer"
+    data-dragging={{constants.draggable}}
+    data-editing="{{constants.editingRow}}"
+    data-gridLines="{{settings.gridLines}}"
+    data-show-hidden={{settings.showHiddenRows}}
+    data-view="{{settings.view}}"
+>
+    {{header-section model=model year=year hasFile=hasFile settings=settings updateName="updateName" addEmployee="addEmployee" showAssignment=showAssignment viewAssignment=viewAssignment}}
+
+    {{#if hasFile}}
+    <main>
+        {{date-line}}
+        {{#if settings.isWeeklyCalendar}}
+            {{#if numAssignmentsViewing}}
+                <div class="assignmentViewContainer">
+                    {{roadmap-index model=viewAssignment nodate=true readOnly=true}}
+                </div>
+            {{/if}}
+        {{/if}}
+        <div class="rowContainer">
+            {{resource-row model=model settings=settings updateName="updateName"}}
+        </div>
+    </main>
+    {{/if}}
+</div>
+
+<style>
+    section.resourceRow[data-active="true"] .row:before { width:{{constants.prevYear}}px; }
+    .pointer { left:{{constants.prevYear}}px}
+</style>

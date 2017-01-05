@@ -1,27 +1,41 @@
-{{#each model as |resource|}}
-    <section class="resourceRow" data-active="{{resource.active}}">
-        {{resource-info resource=resource config=config updateName="updateName"}}
-
-        {{#if isWeeklyCalendar}}
-        	<div class="row" data-view="assignment">
-                <div class="pointer"></div>
-                <div class="sizer"></div>
+{{#each model.resource as |resource index|}}
+    <section class="resourceRow{{if resource.hidden ' hidden'}}"
+        data-active="{{resource.active}}"
+        data-expanded="{{resource.expanded}}"
+        data-id="{{resource.id}}"
+        data-index="{{index}}"
+        data-name="{{resource.name}}"
+        data-type="person"
+        draggable="{{if constants.draggable 'true'}}"
+        ondragenter={{action "dragEnter"}}
+        ondragstart={{action "dragStart"}}
+        ondragend={{action "dragEnd"}}
+        ondragover={{action "dragOver"}}
+    >
+        {{#if settings.isWeeklyCalendar}}
+        	<div class="row" data-view="roadmap" {{action "findAssignment"}}>
+                {{#if resource.active}}
+                    <div class="pointer"></div>
+                    <div class="sizer"></div>
+                {{/if}}
                 <div class="tiles">{{{resource.assignment}}}</div>
             </div>
         {{/if}}
 
-        {{#if isDailyCalendar}}
+        {{#if settings.isDailyCalendar}}
         	<div class="row" data-view="timeOff">
-                <div class="pointer"></div>
-                <div class="sizer"></div>
-                <div class="tiles">
-                    {{#if resource.updated}}
-                        {{resource.timeaway}}
-                    {{else}}
-                        {{{resource.timeaway}}}
-                    {{/if}}
-                </div>
+                {{#if resource.active}}
+                    <div class="pointer"></div>
+                    <div class="sizer"></div>
+                {{/if}}
+                {{calendar-holiday-tiles}}
+                <div class="tiles">{{{resource.timeaway}}}</div>
             </div>
+        {{/if}}
+
+        {{resource-info model=model index=index resource=resource updateName="updateName" updateRow="updateRow"}}
+        {{#if resource.directs}}
+            {{resource-direct resource=resource settings=settings}}
         {{/if}}
     </section>
 {{/each}}

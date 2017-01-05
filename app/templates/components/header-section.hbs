@@ -1,47 +1,259 @@
-<div id="year">2015</div>
+{{year-nav year=year settings=settings}}
+
+{{#if hasFile}}
 <div class="menu">
     <ul class="tileOptions">
-        {{#if isWeeklyCalendar}}
+        {{#if showAssignmentTiles}}
             <li class="assignments">
-				<div class="empty" data-scope="text"><div></div></div>
-                {{#each assignments as |assignment|}}
-                    <div class="{{assignment.class}}" data-scope="text"><div></div></div>
-                {{/each}}
+                {{assignment-tile model=model settings=settings}}
             </li>
-        {{/if}}
-        {{#if isDailyCalendar}}
-            {{time-away config=config}}
         {{/if}}
     </ul>
 
-    <div class="buttonContainer">
-        <button class="changeView" {{action "toggleView" on="click"}}>
-            {{#if isWeeklyCalendar}}
-                <span class="timeOff">Time off</span>
+    <ul class="viewOptions">
+        {{#if showEmployeeTracking}}
+            {{#if settings.isWeeklyCalendar}}
+                <li class="timeaway">
+                    <a href="out of office" {{action "toggleView" 'timeaway' on="click"}}>
+                        <span class="start"></span>
+                        <span class="reset"></span>
+                        <span class="hands"></span>
+                        <span class="time" data-time="3"></span>
+                        <span class="time" data-time="6"></span>
+                        <span class="time" data-time="9"></span>
+                        <span class="time" data-time="12"></span>
+                        <span class="text">Track Out of Office</span>
+                    </a>
+                </li>
             {{/if}}
-            {{#if isDailyCalendar}}
-                <span class="assignment">Assignment</span>
+
+            {{#if settings.isDailyCalendar}}
+                <li class="assignment">
+                    <a href="track assignments" {{action "toggleView" 'roadmap' on="click"}}>
+                        <span class="pencil"><span class="wood"></span></span>
+                        <span class="text">Track Assignments</span>
+                    </a>
+                </li>
             {{/if}}
-        </button>
+        {{/if}}
 
-        <button id="today" {{action "scrollToday" on="click"}}><span>Today</span></button>
-
-        <button id="addResource"><span>Add</span></button>
-
-        <button id="save"><span>Save</span></button>
-
-        <ul class="viewOptions">
-            <li class="toggle">
-                <a href="#" class=""></a>
+        {{#if showRoadmap}}
+            <li class="roadmap">
+                <a href="/roadmap{{yearRoadmap}}">
+                    <span class="item"></span>
+                    <span class="item"></span>
+                    <span class="item"></span>
+                    <span class="text">Roadmap</span>
+                </a>
             </li>
-        </ul>
+        {{/if}}
+
+        {{#unless constants.editAssignments}}
+        {{#if settings.hasCalendar}}
+            {{#if viewingCurrentYear}}
+            <li class="today">
+                <a href="scroll calendar" {{action "scrollToday" on="click"}}>
+                    <span class="date"><span>{{constants.todayDate}}</span></span>
+                    <span class="page"></span>
+                    {{#if settings.isDailyCalendar}}
+                        <span class="text daily">Scroll to Today</span>
+                    {{else}}
+                        <span class="text">Scroll to This Week</span>
+                    {{/if}}
+                </a>
+            </li>
+            {{/if}}
+            {{#if showAddEmployee}}
+                <li class="profile">
+                    <a href="add employee" {{action "addEmployee"}}>
+                        <span class="person female">
+                            <span class="hair"></span>
+                            <span class="face"></span>
+                            <span class="neck"></span>
+                        </span>
+
+                        <span class="person male">
+                            <span class="hair"></span>
+                            <span class="face"></span>
+                            <span class="neck"></span>
+                        </span>
+                        <span class="plus"></span>
+                        <span class="text">New Employee</span>
+                    </a>
+                </li>
+            {{/if}}
+        {{/if}}
+        {{/unless}}
+
+        {{#unless constants.disableEditing}}
+        {{#if showSort}}
+            {{#if this.constants.draggable}}
+                <li class="dragSort">
+                    <a href="drag &amp; drop sorting" {{action "dragDisable" on="click"}}>
+                        <span></span>
+                        <span class="text">Drag Sort</span>
+                    </a>
+                </li>
+            {{else}}
+                <li class="dragSort">
+                    <a href="drag &amp; drop sorting" {{action "dragEnable" on="click"}}>
+                        <span class="leftArrow"></span>
+                        <span class="rightArrow"></span>
+                        <span class="text">Drag Sort</span>
+                    </a>
+                </li>
+            {{/if}}
+        {{/if}}
+        {{/unless}}
+
+        {{#if constants.editAssignments}}
+            <li class="assignment">
+                <a href="add assignment" {{action "addAssignment" on="click"}}>
+                    <span class="pencil"><span class="wood"></span></span>
+                    <span class="text">Add Assignment</span>
+                </a>
+            </li>
+        {{/if}}
+
+        {{#if showToggleRows}}
+            <li class="toggle">
+                <a href="toggle hidden rows" {{action "toggleViewHiddenRows" on="click"}}>
+                    <span class="eye"></span>
+                    {{#if settings.isHiddenRows}}
+                        <span class="text">Hide Hidden Rows</span>
+                    {{else}}
+                        <span class="text">Show Hidden Rows</span>
+                    {{/if}}
+                </a>
+            </li>
+        {{/if}}
+
+        {{#if showOrg}}
+            <li class="org">
+                <a href="/home?id={{settings.lastManager}}{{yearHome}}">
+                    <span class="member"></span>
+                    <span class="member"></span>
+                    <span class="member"></span>
+                    <span class="text">View Org</span>
+                </a>
+            </li>
+        {{/if}}
+
+        {{#if showTeam}}
+            <li class="team">
+                <a href="view team" {{action "viewTeam" on="click"}} data-active="{{constants.teamAssignmentView}}">
+                    <span class="member"><span class="body"></span></span>
+                    <span class="member female"><span class="body"><span class="dress"></span></span></span>
+                    <span class="member"><span class="body"></span></span>
+                    <span class="text">View Team</span>
+                </a>
+                {{#if constants.teamAssignmentView}}
+                    <div class="specs">
+                        <div class="date">
+                            <div><span class="asof">{{constants.teamAsOfDate}}</span></div>
+                        </div>
+                        <div class="assignmentInfo">
+                            <style>
+                                .assignmentInfo .short {
+                                    background:#{{constants.teamAssignment.background}};
+                                }
+                            </style>
+                            {{#unless constants.teamAssignment}}
+                                <span class="choose">
+                                    Choose Assignment
+                                </span>
+                            {{else}}
+                                <span class="short">
+                                    <span>{{constants.teamAssignment.short}}</span>
+                                </span>
+                            {{/unless}}
+                        </div>
+                    </div>
+                    {{#if constants.teamAsOfEmpty}}
+                        <div class="specs message emptyTeam">
+                            <p>No one assigned to
+                                <span class="assignmentInfo"><span class="short"><span>{{constants.teamAssignment.short}}</span></span></span>
+                                from
+                                <span class="date"><span><span class="asof">{{constants.teamAsOfDate}}</span></span></span>
+                                onward.
+                            </p>
+                            <p>Choose another date and/or assignment</p>
+                        </div>
+                    {{/if}}
+                {{/if}}
+            </li>
+        {{/if}}
+
+        {{#unless constants.editAssignments}}
+            <li class="gridLines">
+                <a href="Toggle grid lines" {{action "toggleGrid" on="click"}}>
+                    <span class="grid"></span>
+                    <span class="column"></span>
+                    <span class="text">Toggle Grid Lines</span>
+                </a>
+            </li>
+        {{/unless}}
+    </ul>
+    {{#unless viewingCurrentYear}}
+        <div class="message notCurrent">
+            <p>You are not viewing the current year.</p>
+
+            {{#if constants.disableEditing}}
+                <p><a href="/unlock to edit rows" {{action "enableEditing" on="click"}}>Unlock in order to edit rows.</a></p>
+            {{else}}
+                <p>Page is now unlocked for editing rows.</p>
+            {{/if}}
+        </div>
+
+        {{#unless yearNextFile}}
+            <div class="message notCurrent">
+                {{#if showAddEmployee}}
+                    <p>{{yearNext}} {{settings.lastManager}} file doesn't exist.</p>
+                    <p><a href="/export to {{yearNext}}" {{action "exportNextYear" settings.lastManager on="click"}}>Export to {{yearNext}} {{settings.lastManager}}</a></p>
+                {{else}}
+                    <p>{{yearNext}} Roadmap file doesn't exist.</p>
+                    <p><a href="/export to {{yearNext}}" {{action "exportNextYear" 'assignments' on="click"}}>Export to {{yearNext}} Roadmap</a></p>
+                {{/if}}
+            </div>
+        {{/unless}}
+    {{/unless}}
+
+    {{#if this.constants.saving}}
+        <div id="saving"><span>Saving</span></div>
+    {{/if}}
+
+    <div id="currentlyViewing">
+        <div class="container">
+            {{#if showAddEmployee}}
+                <span class="shadow" data-first-letter="{{lastManager1}}" data-last-letters="{{lastManager2}}"></span>
+                <span>{{lastManager1}}</span><span><span>{{lastManager2}}</span></span>
+            {{/if}}
+            {{#if showOrg}}
+                <span class="shadow" data-first-letter="R" data-last-letters="oadmap"></span>
+                <span>R</span><span><span>oadmap</span></span>
+            {{/if}}
+        </div>
+        <span class="year">{{year}}</span>
     </div>
 </div>
 
-{{#if isWeeklyCalendar}}
-    {{calendar-widget elementId="calendarWeekly" daily=false width=width}}
-{{/if}}
+    {{#unless constants.editAssignments}}
+        {{#if settings.isWeeklyCalendar}}
+            {{calendar-widget elementId="calendarWeekly" _year=year daily=false width=width}}
+        {{/if}}
 
-{{#if isDailyCalendar}}
-    {{calendar-widget elementId="calendarDaily" daily=true width=width}}
+        {{#if settings.isDailyCalendar}}
+            {{calendar-widget elementId="calendarDaily" _year=year daily=true width=width}}
+        {{/if}}
+    {{/unless}}
+{{else}}
+    <div class="message notFound">
+        <p>There are no files for the year / user / view you chose.</p>
+        <p>Either:</p>
+        <ul>
+            <li>Choose another year on the left</li>
+            <li>Go to: <a href="/roadmap">{{currentYear}} Roadmap view</a></li>
+            <li>Go to: <a href="/home?id={{settings.lastManager}}">{{currentYear}} {{settings.lastManager}} manager view</a></li>
+        </ul>
+    </div>
 {{/if}}

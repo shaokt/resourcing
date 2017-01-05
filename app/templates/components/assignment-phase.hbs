@@ -1,0 +1,27 @@
+{{#if delete}}
+    {{input type="radio" id=id name="phase" action="delete" on="focus-in"}}
+    <label for="phase{{label}}">
+        <span>X</span>
+    </label>
+{{else}}
+    {{#if shift}}
+        {{input type="radio" id=id name="phase" action="shift" on="focus-in"}}
+        <label for="phase{{label}}">
+            <span class="verticalArrow"></span>
+            <span class="horizontalArrow"></span>
+        </label>
+
+        {{#if shiftPhase}}
+            <a href="/" class="link" data-break="{{breakLink}}" {{action "togglePhaseLink"}}><span class="middleLink"><span></span></span></a>
+        {{/if}}
+
+        {{#unless showHandles}}
+            <a href="/" class="ok" {{action "donePhaseAction" true}}>OK</a>
+        {{/unless}}
+    {{else}}
+        {{input type="radio" id=id name="phase" action="setStamp" on="focus-in"}}
+        <label for="phase{{label}}">
+            <span>{{label}}</span>
+        </label>
+    {{/if}}
+{{/if}}

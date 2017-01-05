@@ -1,9 +1,12 @@
 html { font:62.5% Helvetica, Arial, sans-serif; }
 
-body { float:left;font-size:1.2rem;
+body {
+    float:left;font-size:1.2rem;
+    /*
     > .ember-view{
         overflow:hidden;
     }
+    */
 }
 
 button {
@@ -35,13 +38,14 @@ button {
 
     main {
         border-top:0;
-        padding:163px 0 15px 0;
+        border-bottom:1px solid #aaa;
+        margin-bottom:45px;
         position:relative;
     }
-}
 
-#pageContainer[data-view="timeoff"] {
-    main {
-        padding-top:173px;
+    &[data-show-hidden="false"] {
+        section.resourceRow.hidden {
+            display:none;
+        }
     }
 }

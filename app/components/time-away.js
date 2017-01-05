@@ -1,24 +1,25 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    tagName: 'li',
+    tagName: '',
     active: null,
 
-    // TODO: config through JSON for easy updates
+    // TODO: JSON file for easy updates
     timeaway: [
-            "empty",
             "vacation",
             "vacationCarryover",
             "vacationTentative",
+        	"unofficial",
+            "vacationHalf",
             "sick",
             "personal",
         	"lieu",
-        	"unofficial",
         	"wfh",
+            "personalHalf",
         	"conference",
         	"training",
-        	"half",
         	"bereavement",
+            "shortTermDisability",
             "parentalLeave",
         	"jury",
         	"firstDay",
@@ -28,7 +29,7 @@ export default Ember.Component.extend({
     // remove active state on selected item if it exists
     unselect: function(){
         if(!this.active){
-            this.active = $('.tileOptions [data-active="true"]'); // this only occurs on load of default tile
+            this.active = Ember.$('.tileOptions [data-active="true"]'); // this only occurs on load of default tile
         }
         try{ this.active.attr('data-active', false); }
         catch(e){}
@@ -39,9 +40,9 @@ export default Ember.Component.extend({
     actions: {
         select() {
             this.unselect();
-            this.active = $(event.target);
+            this.active = Ember.$(event.target);
             this.active.attr('data-active', true);
-            this.set('config.timeawayTile', this.active.context.className); // update config store
+            this.set('settings.timeawayTile', this.active.context.className);
             this.constants.webcel.setTile(this.active);
         }
     }

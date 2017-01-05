@@ -1,0 +1,102 @@
+#pageContainer {
+
+    /* needed to override accidental hover of siblings during drag */
+    &.moving {
+        .resourceRow {
+            &:hover {
+                .info .name {
+                    background:#000;
+                }
+
+                &.hidden .info .name {
+                    background:red;
+                }
+            }
+        }
+
+        main {
+            padding-bottom:20px;
+            border-bottom:0;
+        }
+
+        section.resourceRow:last-child {
+            border-bottom:1px solid #aaa;
+        }
+    }
+
+    &[data-dragging="true"]{
+        header {
+            button:not(#dragDisable),
+            .tileOptions,
+            .viewOptions { visibility:hidden; }
+        }
+
+        .resourceRow {
+            cursor:move;
+
+            .info {
+                cursor:move;
+            }
+
+            &:after,
+            .counters,
+            .viewOptions li:not(.drag) {
+                display:none;
+            }
+
+            &.moving {
+                //border:2px solid #923C01;
+                border:1px dotted red;
+                cursor:none !important;
+                opacity:.5;
+                z-index:10;
+
+                .info {
+                    &:before {
+                        display:none;
+                    }
+                    .name {
+                        background:red;
+                    }
+                }
+
+                .row {
+                    opacity:1;
+
+                    &:after {
+                        //background:#C75500;
+                        content:"";
+                        display:block;
+                        height:100%;
+                        opacity:.2;
+                    }
+                }
+            }// moving
+
+            &.ghost {
+                box-shadow:2px 2px 5px 5px rgba(199,85,0,.5);
+                z-index:10;
+
+                .info{
+                    .name { background:green;}
+                    &:before {
+                        background:green;
+                        border:1px solid #fff;
+                        border-radius:10px;
+                        content:"";
+                        display:block;
+                        height:10px;
+                        left:-15px;
+                        position:absolute;
+                        top:1px;
+                        width:10px;
+                    }
+                }
+            }
+        }// resourceRow
+
+        #dateLine,
+        .dateMarker { display:none; }
+        #todayDateLine { box-shadow:none; }
+    }
+}

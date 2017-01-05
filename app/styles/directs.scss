@@ -1,0 +1,93 @@
+section.resourceRow {
+    .directs { // 1 level down
+        margin-left:1px;
+        position:relative;
+
+        .resourceRow {
+            border-right:0;
+
+            &:before { // vertical tree line
+                background:#fff;
+                box-shadow:-1px 1px 0px 0px rgba(0,0,0,.1);
+                content:"";
+                height:100%;
+                padding-top:1px;
+                position:absolute;
+                top:-25px;
+                width:2px;
+                z-index:4;
+            }
+        }
+
+        .info {
+            margin-left:-50px;
+
+            &:after { // horizontal tree line
+                background:#fff;
+                box-shadow:0px 1px 0px 0px rgba(0,0,0,.1);
+                content:"";
+                height:2px;
+                left:-19px;
+                position:absolute;
+                top:6px;
+                width:19px;
+            }
+        }
+
+        .directs { // 2nd level down
+            .resourceRow:before { margin-left:20px; }
+            .info { margin-left:-30px;}
+                .resourceRow {
+                    &[data-expanded="true"]:last-child {
+                        > .row {
+                            &:before {
+                                margin-left:20px;
+                            }
+                        }
+                    }
+                }
+
+            .directs { // 3rd level down
+                .resourceRow:before { margin-left:40px; }
+                .info { margin-left:-10px;}
+            }
+        }
+    }// directs
+
+    &[data-expanded="true"]:last-child {
+        &:before { display:none; }
+        > .row {
+            &:before {
+                background:#fff;
+                box-shadow:-1px 1px 0px 0px rgba(0,0,0,.1);
+                content:"";
+                height:100%;
+                padding-top:1px;
+                position:absolute;
+                top:-25px;
+                width:2px;
+                z-index:4;
+            }
+        }
+    }// last child in the tree structure that has directs showing
+}// resourceRow
+
+[data-view="timeaway"] {
+    section.resourceRow {
+        .directs {
+            .resourceRow {
+                &:before {
+                    top:-8px;
+                }
+            }
+        }
+
+        &[data-expanded="true"]:last-child {
+            > .row {
+                &:before {
+                    top:-8px;
+                }
+            }
+        }// last child in the tree structure that has directs showing
+    }// resourceRow
+}// timeaway overrides

@@ -1,0 +1,281 @@
+#pageContainer header .viewOptions {
+    .team {
+        margin-left:10px;
+        min-width:65px;
+        width:auto;
+
+        a {
+            width:65px;
+
+            .member {
+                position:absolute;
+                top:-1px;
+
+                &:nth-of-type(2) { left:26px; }
+                &:nth-of-type(3) {
+                    left:50px;
+
+                    .body { border-top-color:#ABC123; }
+                    &:after { border-right-color:#ABC123; }
+                    &:before { border-left-color:#ABC123; }
+                }
+
+                &:after, &:before { // arms
+                    background:none;
+                    border-radius:10px;
+                    content:"";
+                    display:block;
+                    height:5px;
+                    left:-7px;
+                    position:absolute;
+                    top:18px;
+                    border-left:6px solid #000;
+                    border-right:6px solid #abc;
+                    transform:rotate(-45deg);
+                    z-index:0;
+                }
+
+                &:before { // right arm
+                    border-right:6px solid #000;
+                    border-left:6px solid #abc;
+                    left:8px;
+                    transform:rotate(45deg);
+                }
+
+                .body {
+                    border-top:14px solid #abc;
+                    border-radius:2px;
+                    border-top-left-radius:3px;
+                    border-top-right-radius:3px;
+                    border-bottom:12px solid #99a;
+                    display:block;
+                    margin-top:15px;
+                    position:relative;
+                    width:13px;
+                    z-index:2;
+
+                    &:after { // leg line
+                        background:#fff;
+                        content:"";
+                        display:block;
+                        height:11px;
+                        left:6px;
+                        position:absolute;
+                        bottom:-12px;
+                        width:1px;
+                    }
+
+                    &:before { // head
+                        background:#000;
+                        border-radius:100%;
+                        content:"";
+                        display:block;
+                        height:12px;
+                        position:absolute;
+                        top:-27px;
+                        width:12px;
+                    }
+                }
+
+                &.female {
+                    &:after, &:before { height:4px;margin-top:1px; }
+                    &:after { border-right-color:#000;left:-9px; }
+                    &:before { border-left-color:#000; }
+
+                    .body {
+                         border-top-color:#f9a;
+                         width:11px;
+
+                         &:after {
+                             height:8px;
+                             left:5px;
+                         }
+
+                         &:before {
+                             height:11px;
+                             margin-top:1px;
+                             width:11px;
+                         }
+                     }
+
+                    .dress {
+                        border:14px solid #f9a;
+                        border-left-color:transparent;
+                        border-right-color:transparent;
+                        border-top-color:transparent;
+                        border-radius:100%;
+                        display:block;
+                        left:-8px;
+                        position:absolute;
+                        transform:rotate(2deg);
+                        top:-26px;
+
+                        &:before {
+                            background:#ff0000;
+                            border-left:2px solid #fff;
+                            border-right:2px solid #fff;
+                            content:"";
+                            display:block;
+                            height:1px;
+                            left:-6px;
+                            position:absolute;
+                            top:6px;
+                            width:8px;
+                        }
+                    }
+                }
+            }//member
+
+            &:hover {
+                .member {
+                    &:nth-of-type(1) {
+                        &:before {
+                            animation:raiseArmR 2000ms infinite linear;
+                        }
+
+                        .body {
+                            &:before {
+                                animation:tiltHeadL 2000ms infinite linear;
+                            }
+                        }
+                    }
+
+                    &:nth-of-type(2) {
+                        &:after {
+                            animation:raiseArmL 2000ms infinite linear;
+                        }
+                        &:before {
+                            animation:raiseArmR 2000ms infinite linear;
+                        }
+                    }
+
+                    &:nth-of-type(3) {
+                        &:after {
+                            animation:raiseArmL 2000ms infinite linear;
+                        }
+
+                        .body {
+                            &:before {
+                                animation:tiltHeadR 2000ms infinite linear;
+                            }
+                        }
+                    }
+                }
+
+                @keyframes tiltHeadL {
+                    30%, 50% { left:-2px; }
+                    65% { left:0; }
+                }
+
+                @keyframes tiltHeadR {
+                    30%, 50% { left:2px; }
+                    65% { left:0; }
+                }
+
+                @keyframes raiseArmL {
+                    30%, 50% {
+                        transform:rotate(45deg);
+                        top:12px;
+                    }
+
+                    65% {
+                        transform:rotate(-45deg);
+                        top:18px;
+                    }
+                }
+
+                @keyframes raiseArmR {
+                    30%, 50% {
+                        transform:rotate(-45deg);
+                        top:12px;
+                    }
+
+                    65% {
+                        transform:rotate(45deg);
+                        top:18px;
+                    }
+                }
+            }//hover
+
+            &[data-active="true"] {
+                transform:scale(1.5);
+            }
+        }//team
+    }// a
+
+    .specs {
+        float:left;
+        margin-left:95px;
+        position:relative;
+
+        div {
+            white-space:nowrap;
+        }
+
+        .asof {
+            background:#000;
+            border-radius:2px;
+            color:#fff;
+            font-weight:bold;
+            padding:2px 5px;
+        }
+
+        .assignmentInfo {
+            margin-top:10px;
+            position:relative;
+
+            span {
+                border-radius:2px;
+                color:#fff;
+                display:inline-block;
+                padding:5px;
+
+                &.choose {
+                    background:#ff0000;
+                    font-weight:bold;
+                    padding-left:18px;
+
+                    &:after, &:before {
+                        content:"";
+                        display:block;
+                        left:3px;
+                        position:absolute;
+                        top:6px;
+                    }
+                    &:after { // arrow tip
+                        background:transparent;
+                        border:5px solid #fff;
+                        border-top-color:transparent;
+                        border-left-color:transparent;
+                        transform:rotate(-45deg);
+                    }
+
+                    &:before {
+                        background:#fff;
+                        height:4px;
+                        margin-top:3px;
+                        width:5px;
+                    }
+                }//choose
+            }//span
+
+            .short {
+                border-radius:2px;
+                color:#fff;
+                padding:4px 3px;
+
+                span {
+                    background:rgba(0,0,0,.3);
+                    border-radius:2px;
+                    color:#fff;
+                    margin-top:0;
+                    padding:2px 5px;
+                }
+            }
+        }//assignmentInfo
+    }//specs
+
+    .emptyTeam {
+        margin-left:15px;
+    }
+}//viewOptions

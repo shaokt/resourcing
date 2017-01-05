@@ -5,4 +5,4 @@ export default {
         application.inject('component:header-section', 'cal', 'component:calendar-widget');
         application.inject('component:calendar-widget', 'holidays', 'component:calendar-holidays');
     }
-}
+};

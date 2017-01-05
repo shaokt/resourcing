@@ -5,26 +5,29 @@
                 background:#1f74f2;
                 border:2px solid #0b3f92;
             }
+
+            .assignment {
+                margin-left:61px;
+            }
         }
     }
+
+    main {
+        padding-top:165px;
+    }
+
+    &[data-route="roadmap.index"]{
+        .menu .tileOptions {
+            display:none;
+        }
+    }
+
     section.resourceRow {
-        .row {
-            outline:none;
+        .row[data-view="timeOff"] {
             height:15px;
         }
 
-        &:after {
-            background:#100;
-            content: "";
-            display:block;
-            height:100%;
-            opacity:.1;
-            position:absolute;
-            top:0;
-            width:100%;
-        }
-
-        &:hover:after {
+        &:not(.hidden):hover:after {
             display:none;
         }
 
@@ -33,25 +36,32 @@
         }
     }//resourceRow
 
-    [data-scope="text"],
     [data-stamp="true"] {
         background:none;
         border:none;
         color:#fff;
         font-size:.8rem;
         line-height:180%;
-        outline:none;
-        padding:0;
         text-align:center;
-        width:15px;
     }
 
     [data-type="tile"] {
         z-index:1;
-    }
-
-    .empty {
-        &[data-stamp="true"]:after { content: "\2002"; }
+        &:hover {
+            &:before {
+                background:#000;
+                border-radius:2px;
+                bottom:-20px;
+                box-shadow:0px 0px 10px 5px rgba(255,255,255,.7);
+                color:#fff;
+                font-size:10px;
+                left:0;
+                line-height:100%;
+                padding:3px 5px;
+                position:absolute;
+                white-space:nowrap;
+            }
+        }
     }
 
     .bereavement {
@@ -64,18 +74,9 @@
         &[data-stamp="true"]:after { content: "C"; }
     }
 
-    .empty {
-        background: repeating-linear-gradient( -55deg, #222, #222 5px, #333 5px, #333 10px);
-    }
-
     .firstDay {
         background:#718C00;
         &[data-stamp="true"]:after { content: "FD"; }
-    }
-
-    .half {
-        background:#99CC99;
-        &[data-stamp="true"]:after { content: "1/2"; }
     }
 
     .jury {
@@ -103,9 +104,19 @@
         &[data-stamp="true"]:after { content: "P"; }
     }
 
+    .personalHalf {
+        background:#B798BF;
+        &[data-stamp="true"]:after { content: ".5P"; }
+    }
+
     .vacation {
         background:#4271AE;
         &[data-stamp="true"]:after { content:'V'; }
+    }
+
+    .vacationHalf {
+        background:#4271AE;
+        &[data-stamp="true"]:after { content:'.5V'; }
     }
 
     .vacationCarryover {
@@ -116,6 +127,11 @@
     .vacationTentative {
         background:#9F3E99;
         &[data-stamp="true"]:after { content: "V?"; }
+    }
+
+    .shortTermDisability {
+        background:#deaddd;
+        &[data-stamp="true"]:after { content: "SD"; }
     }
 
     .sick {
@@ -138,99 +154,49 @@
         &[data-stamp="true"]:after { content:'R'; }
     }
 
-    .tileOptions li {
-        &:before { content:"Time Away: "; }
+    .tileOptions:hover {
+        max-width:100%;
+    }
 
-        .bereavement:hover:before { content:"Bereavement"; }
-        .conference:hover:before { content:"Conference"; }
-        .firstDay:hover:before { content:"First Day"; }
-        .half:hover:before { content:"Half Day"; }
-        .jury:hover:before { content:"Jury Duty"; }
-        .lastDay:hover:before { content:"Last Day"; }
-        .lieu:hover:before { content:"Lieu Day"; }
-        .parentalLeave:hover:before { content:"Parental Leave"; }
-        .personal:hover:before { content:"Personal Day"; }
+    .tileOptions li {
+        position:relative;
+
+        &:hover {
+            .empty {
+                position:absolute;
+                right:10px;
+            }
+        }
+    }
+    .tileOptions li, section.resourceRow:not([data-active="true"]) .row[data-view="timeOff"] {
+
+        :hover { z-index:3; }
+
+        .vacationHalf, .personalHalf { margin-left:20px; }
+
         .vacation:hover:before { content:"Vacation"; }
         .vacationCarryover:hover:before { content:"Carryover"; }
         .vacationTentative:hover:before { content:"Tentative Vacation"; }
+        .unofficial:hover:before { content:"Unofficial Lieu Day"; }
+        .vacationHalf:hover:before { content:"Vacation Half Day"; }
+
+        .sick { clear:left; }
         .sick:hover:before { content:"Sick Day"; }
-        .training:hover:before { content:"Training"; }
-        .unofficial:hover:before { content:"Unofficial Day Off"; }
+        .personal:hover:before { content:"Personal Day"; }
+        .lieu:hover:before { content:"Lieu Day"; }
         .wfh:hover:before { content:"Remote Work (WFH)"; }
+        .personalHalf:hover:before { content:"Personal Half Day"; }
+
+        .conference { clear:left; }
+        .conference:hover:before { content:"Conference"; }
+        .training:hover:before { content:"Training"; }
+        .bereavement:hover:before { content:"Bereavement"; }
+        .shortTermDisability:hover:before { content:"Short Term Disability"; }
+
+        .parentalLeave { clear:left; }
+        .parentalLeave:hover:before { content:"Parental Leave"; }
+        .jury:hover:before { content:"Jury Duty"; }
+        .firstDay:hover:before { content:"First Day"; }
+        .lastDay:hover:before { content:"Last Day"; }
     }
 }//data-view=timeaway
-
-/*
-.active [data-view="vacationView"] .lieu:hover:after { content: "L"; }
-.active [data-view="vacationView"] .lastDay:hover:after { content: "LD"; }
-.active [data-view="vacationView"] .jury:hover:after { content: "J"; }
-.active [data-view="vacationView"] .half:hover:after { content: "1/2"; }
-.active [data-view="vacationView"] .firstDay:hover:after { content: "FD"; }
-.active [data-view="vacationView"] .bereavement:hover:after { content: "B"; }
-.active [data-view="vacationView"] .parentalLeave:hover:after { content:'PL'; }
-.active .conference:hover:after { content: "C"; }
-.active [data-view="vacationView"] .personal:hover:after { content: "P"; }
-.active .training:hover:after { content: "T"; }
-.active [data-view="vacationView"] .vacation:hover:after { content: "V"; }
-.active [data-view="vacationView"] .vacationCarryover:hover:after { content: "VC"; }
-.active [data-view="vacationView"] .vacationTentative:hover:after { content: "V?"; }
-.active [data-view="vacationView"] .unofficial:hover:after { content: "\263C"; }
-.active [data-view="vacationView"] .wfh:hover:after { content:'R'; }
-.active [data-view="vacationView"] .sick:hover:after { content: "S"; }
-
-.personal.counter:after { content: "P : " counter(personalCounter); }
-.vacation.counter:after { content: "V : " counter(vacationCounter); }
-.vacationCarryover.counter:after { content: "VC : " counter(vacationCarryoverCounter); }
-.unofficial.counter:after { content: "\263C  : " counter(unofficialCounter); }
-.sick.counter:after { content: "S : " counter(sickCounter); }
-.lieu.counter:after { content: "L : " counter(lieuCounter); }
-*/
-
-/*
-.textContainer [data-scope="text"] {
-	background:#333;
-	font-size:.6em;
-	line-height:100%;
-	margin:0;
-	padding:0 2px;
-}
-
-.row { counter-reset: vacationCounter vacationCarryoverCounter sickCounter lieuCounter personalCounter unofficialCounter; }
-.vacationView .textContainer [data-scope="text"] { background:none;border:none;font-size:.8rem;outline:none;width:15px;text-align:center;margin:0;line-height:180%;padding:0; }
-.vacationView .counter {
-	border:1px solid #fff;
-	display:inline-block;
-	margin-top:2px;
-	padding:1px 2px;
-}
-
-.active [data-view="vacationView"] .tileContainer span:hover:after {
-	color:#fff;
-	display:block;
-	font-size:.8rem;
-	text-align:center;
-}
-
-#projectList [data-scope="text"], #vacationList [data-scope="text"] { position:relative; }
-#projectList [data-scope="text"]:hover:before, #vacationList [data-scope="text"]:hover:before {
-	background:#fff;
-	border:1px solid #000;
-	border-radius:5px;
-	bottom:-3.5em;
-	box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
-	color:#000;
-	content: "Delete";
-	float:left;
-	height:1.5em;
-	left:50%;
-	line-height:125%;
-	padding:5px;
-	position:absolute;
-	white-space:nowrap;
-}
-
-.active > [data-view="vacationView"] [data-type="tile"] { z-index:999;}
-
-[data-view="vacationView"] .holiday { background:#af0b1c;opacity:.8; }
-[data-view="vacationView"] .holiday:after { content:"";color:#fff;display:block;font-size:.8rem;text-align:center; }
-*/

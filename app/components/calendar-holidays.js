@@ -5,8 +5,8 @@ export default Ember.Component.extend({
 	getHolidayWeekday: function(date){
 		var date2 = new Date(date);
 		var theDay = date2.getDay();
-		if(theDay == 0 || theDay == 6){ // weekend, go to Monday
-			while(theDay == 0 || theDay == 6){
+		if(theDay === 0 || theDay === 6){ // weekend, go to Monday
+			while(theDay === 0 || theDay === 6){
 				theDay = new Date(date2);
 				theDay.setDate(theDay.getDate() + 1);
 				date2 = new Date(theDay);
@@ -14,7 +14,7 @@ export default Ember.Component.extend({
 			}
 			return date2.getFullYear() + " " + ("0" + (date2.getMonth() + 1)).slice(-2) + " " + date2.getDate();
 		}
-		else return date;
+		else{ return date; }
 	},
 
 	// return all mondays or specific monday
@@ -31,20 +31,19 @@ export default Ember.Component.extend({
 			d.setDate(d.getDate() + 7);
 		}
 
-		if(number) return mondays[number-1];
-		else return mondays;
+		if(number){ return mondays[number-1]; }
+		else{ return mondays; }
 	},
 
     getDates: function(){
 		var easter = this.Easter(this.year);
 		var easterNext = this.Easter(this.year+1);
-		easter.setDate(easter.getDate() - 2)
-		easterNext.setDate(easterNext.getDate() - 2)
+		easter.setDate(easter.getDate() - 2);
+		easterNext.setDate(easterNext.getDate() - 2);
         this.collection = {
 			remembranceDayLast: { name:"Remembrance Day", date: this.getHolidayWeekday(this.year-1 + " 11 11")},
 			christmasLast: { name:"Christmas", date: this.getHolidayWeekday(this.year-1 + " 12 25") },
 			boxingDayLast: { name:"Boxing Day", date: this.getHolidayWeekday(this.year-1 + " 12 26") },
-
 
 			newYear: { name:"New Year", date: this.getHolidayWeekday(this.year + " 01 1") },
 			familyDay: { name:"Family Day", date: this.year + " 02 " + this.getMonday(this.year, 2, 3)}, // 3rd Monday in February
@@ -63,7 +62,7 @@ export default Ember.Component.extend({
 			goodFridayNext: { name:"Good Friday", date: this.year+1 + " " + ("0" + (easterNext.getMonth() + 1)).slice(-2) + " " + easterNext.getDate()},
 			victoriaDayNext: { name:"Victoria Day", date: this.VictoriaDay(this.year+1)}, // Monday before May 25
 			canadaDayNext: { name:"Canada Day", date: this.getHolidayWeekday(this.year+1 + " 07 1") }
-        }
+        };
     },
 
 	// calculate easter
@@ -80,34 +79,29 @@ export default Ember.Component.extend({
 		var M = 3 + Math.floor((L + 40)/44);
 		var D = L + 28 - 31*Math.floor(M/4);
 
-		return new Date(year + " " + this.padout(M) + ' ' + D);
+		return new Date(year + " " + this.constants.padout(M) + ' ' + D);
 	},
 
 	// calculate Victoria Day - Monday before May 25th
 	VictoriaDay: function(year){
 		var date = new Date(year, "04", "24");
 		var theDay = date.getDay();
-		while(theDay != 1){
+		while(theDay !== 1){
 			date = new Date(date.setDate(date.getDate() - 1));
 			theDay = date.getDay();
 		}
 		return(date.getFullYear() + " 05 " + date.getDate());
 	},
 
-	padout: function(number) { return (number < 10) ? '0' + number : number; },
-
+	/*	mark holidays on the calendar & save the coloumn values for highlighting/overlaying for resesource views
+	*/
     display: function(){
-		$.each(this.collection, function(key, value){
-			var thisHoliday = $("#calendarDaily").find("[data-date = '" + value.date + "']");
-			$(thisHoliday).addClass('holiday').attr("data-holiday", value.name);
-            /* TODO - register holidays per resource
-			value.column = $(thisHoliday).attr("data-column")
-			var hc = $("<div>").addClass("holidayColumn").html("&nbsp;");
-			try{$(hc).css({left:$(thisHoliday).offset().left - 22});}catch(e){}
-			resourceContainer").append(hc);
-			holidays[key].column = value.column;
-            */
+		var columns = [];
+		Ember.$.each(this.collection, function(key, value){
+			var thisHoliday = Ember.$("#calendarDaily").find("[data-date = '" + value.date + "']");
+			Ember.$(thisHoliday).addClass('holiday').attr("data-holiday", value.name);
+			columns.pushObject(parseInt(Ember.$(thisHoliday).attr("data-column")));
         });
+		this.set('constants.holidayColumns', columns.uniq());
     }
-
 });

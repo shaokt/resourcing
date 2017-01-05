@@ -1,0 +1,16 @@
+{{#each model as |item|}}
+    {{#unless omit}}
+        {{#unless item.hidden}}
+            {{assignment-tile-item item=item paint=paint}}
+        {{/unless}}
+    {{/unless}}
+    {{!  still render the style for hidden assignments so painted tiles get the proper styles}}
+    {{#unless paint}}
+        <style>
+            .tileContainer[data-container="{{item.id}}"]:before,
+            [data-assignment="{{item.id}}"] { background:#{{item.background}} !important; }
+            [data-assignment="{{item.id}}"][data-stamp="true"]:after { content:'{{item.short}}' }
+            [data-assignment="{{item.id}}"][data-stamp="true"]:hover:before{ content:'{{item.long}}' }
+        </style>
+    {{/unless}}
+{{/each}}

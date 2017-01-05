@@ -1,0 +1,125 @@
+[data-view='roadmap'],
+[data-view='timeaway'] {
+    main {
+        padding-top:165px;
+
+        .resourceRow:not([data-active="true"]) .info {
+
+            .long { display:none; }
+
+            &:hover {
+                .short {display:none;}
+                .long { display:block; }
+            }
+        }
+
+        @import "assignments-phase-stamps.scss";
+
+        [data-active="true"][data-type="assignment"] {
+            .tileOptions {
+                background:#fff;
+                border-radius:5px;
+                border-top:1px solid #000;
+                border-top-right-radius:0;
+                float:left;
+                margin-top:-14px;
+
+                li {
+                    border:0;
+                    margin:0;
+                    padding:0;
+                    position:relative;
+
+                    [data-assignment] {
+                        cursor:default;
+                    }
+                }
+            }//tileOptions
+
+            @import "assignments-phase-list.scss";
+            @import "assignments-phase-edit.scss";
+
+            > [data-phase-action=""].row,
+            > [data-phase-action="delete"].row,
+            > [data-phase-action="shift"].row {
+                background: repeating-linear-gradient(
+                    90deg,
+                    #d3d3d3,
+                    #d3d3d3 15px,
+                    #c1c1c1 15px,
+                    #c1c1c1 30px
+                );
+            }
+        }//data-active
+
+        section.resourceRow[data-type="assignment"] {
+            [data-type="tile"] {
+                &[data-assignment] {
+                    height:100%;
+                }
+            }
+            &:not([data-active="true"]) {
+                .row {
+                    height:40px;
+
+                    [data-type="tile"] {
+                        &[data-y="15"]{ top:10px; }
+                        &[data-y="30"]{ top:20px; }
+                        &[data-y="45"]{ top:30px; }
+                    }
+                }
+            }
+        }
+    }//main
+
+    #todayDateLine {
+        &:before {
+            height:20px;
+        }
+    }
+
+}//data-view
+
+[data-view='timeaway'][data-route="roadmap.index"] {
+    main {
+        [data-view="roadmap"] {
+            background: repeating-linear-gradient(
+                -50deg,
+                rgba(255,255,255,.2),
+                rgba(255,255,255,.2) 10px,
+                #d9d9d9 10px,
+                #d9d9d9 20px
+            );
+
+            &:hover {
+                .dateLine {
+                    border:none;
+                }
+            }
+
+            .dateLine {
+                height:41px;
+
+                &:after, &:before {
+                    display:none;
+                }
+            }
+
+            .phases {
+                [data-type="tile"] {
+                    z-index:2;
+                }
+            }
+        }//data-view
+
+        .assignmentViewContainer {
+            top:163px;
+        }
+    }
+
+    header:hover {
+        .dateMarker {
+            top:77px;
+        }
+    }
+}

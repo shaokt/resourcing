@@ -6,6 +6,10 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('roadmap', function() {
+    this.route('edit');
+  });
+  this.route('home');
 });
 
 export default Router;
