@@ -105,8 +105,8 @@
     }
 
     .personalHalf {
-        background:#B798BF;
-        &[data-stamp="true"]:after { content: ".5P"; }
+        background:linear-gradient(to right bottom, #2f3414 50%, #B798BF 50%);
+        &[data-stamp="true"]:after { content: "P"; }
     }
 
     .vacation {
@@ -115,8 +115,8 @@
     }
 
     .vacationHalf {
-        background:#4271AE;
-        &[data-stamp="true"]:after { content:'.5V'; }
+        background:linear-gradient(to right bottom, #2f3414 50%, #4271AE 50%);
+        &[data-stamp="true"]:after { content:'V'; }
     }
 
     .vacationCarryover {
@@ -172,8 +172,6 @@
 
         :hover { z-index:3; }
 
-        .vacationHalf, .personalHalf { margin-left:20px; }
-
         .vacation:hover:before { content:"Vacation"; }
         .vacationCarryover:hover:before { content:"Carryover"; }
         .vacationTentative:hover:before { content:"Tentative Vacation"; }
@@ -198,5 +196,10 @@
         .jury:hover:before { content:"Jury Duty"; }
         .firstDay:hover:before { content:"First Day"; }
         .lastDay:hover:before { content:"Last Day"; }
+    }
+    .info {
+        .tileOptions li {
+            .vacationHalf, .personalHalf { margin-left:20px; }
+        }
     }
 }//data-view=timeaway

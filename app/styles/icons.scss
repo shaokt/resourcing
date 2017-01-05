@@ -1266,6 +1266,7 @@ ul.viewOptions {
     .expand { display:none; }
 }
 
+.info:focus ul.viewOptions,
 .info:hover ul.viewOptions { display:block; }
 
 //spinner from: http://codepen.io/MattIn4D/pen/LiKFC
