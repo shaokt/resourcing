@@ -5,10 +5,10 @@ export default ApplicationAdapter.extend({
     settings: storageFor("settings"),
 
     createRecord(store, type, snapshot){
-        return this._createRecord(store, type, snapshot, 'resources', this.get('settings.lastManager'));
+        return this._createRecord(store, type, snapshot, 'assignments', 'assignment');
     },
 
     updateRecord(store, type, snapshot){
-        return this._updateRecord(store, type, snapshot, 'resources', this.get('settings.lastManager'));
+        return this._updateRecord(store, type, snapshot, 'assignments', 'assignment');
     }
 });

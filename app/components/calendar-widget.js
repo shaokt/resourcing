@@ -7,7 +7,6 @@ export default Ember.Component.extend(WebcelMixin, {
     classNames: ['calendar'],
     settings: storageFor("settings"),
     year: Ember.computed('_year', function(){
-        this.set('constants.year', this.get('_year'));
         return parseInt(this.get('_year'));
     }),
 

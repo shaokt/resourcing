@@ -24,6 +24,9 @@ export default Ember.Component.extend({
 
     init() {
         this._super();
+
+        this.set('constants.year', this.get('year'));
+
         var route = this.get('router.currentRouteName');
         if(route === 'roadmap.index'){
             this.set('showAddEmployee', false);
