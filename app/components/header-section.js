@@ -65,7 +65,7 @@ export default Ember.Component.extend({
     // check if the next year's file exists
     getNextYearFile: function() {
         var filename = this.get('showAddEmployee') ? this.get('settings.lastManager') : 'assignments';
-        var exists = Ember.$.getJSON(`http://localhost:3000/file/${this.get('yearNext')}/${filename}`, ()=> {})
+        var exists = Ember.$.getJSON(`http://localhost:3000/exists/${this.get('yearNext')}/${filename}`, ()=> {})
         .done(()=> {
             if(!exists.responseJSON) { // file doesn't exist
                 this.set('yearNextFile', false);
