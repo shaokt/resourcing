@@ -150,6 +150,7 @@
 
             span {
                 background:#000;
+                border:1px solid transparent;
                 border-radius:5px;
                 display:block;
                 padding:13px;
@@ -163,6 +164,10 @@
             &[data-active="true"]{
                 display:block;
                 opacity:1;
+
+                span {
+                    border-color:#fff;
+                }
             }
         }//data-stamp="true"
 

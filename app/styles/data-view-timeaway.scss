@@ -113,7 +113,7 @@
         background:#4271AE;
         &[data-stamp="true"]:after { content:'V'; }
 
-        span {
+        span.taken {
             border-left:7px solid rgba(255,255,255,.5);
             margin-left:2px;
             padding-left:3px;
