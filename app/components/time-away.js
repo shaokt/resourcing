@@ -41,8 +41,9 @@ export default Ember.Component.extend({
         select() {
             this.unselect();
             this.active = Ember.$(event.target);
+            if(this.active[0].tagName.match(/span/i)) { this.active = this.active.closest('a'); }
             this.active.attr('data-active', true);
-            this.set('settings.timeawayTile', this.active.context.className);
+            this.set('settings.timeawayTile', this.active[0].className);
             this.constants.webcel.setTile(this.active);
         }
     }
