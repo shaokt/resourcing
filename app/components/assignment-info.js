@@ -15,11 +15,11 @@ export default ResourceInfoComponent.extend({
         var self = this;
         org.forEach(function(person){
             ++self.counter;
-            var exists = Ember.$.getJSON('http://localhost:3000/file/' + person.get('ad'), function() {})
+            var exists = Ember.$.getJSON(`http://localhost:3000/exists/${self.get('constants.year')}/${person.get('ad')}`, ()=> {})
             .done(function() {
                 var ad = person.get('ad');
                 if(exists.responseJSON) { // has direct reports
-                    self.set('findPeople.' + ad, self.get('store').query('direct', {manager: ad})).then(function(){
+                    self.set('findPeople.' + ad, self.get('store').query('user', {year: self.get('constants.year'), manager: ad})).then(function(){
                         --self.counter;
                         self.getPeople(self.get('findPeople.' + ad));
                         self.hasAssignment(person);
@@ -86,7 +86,7 @@ export default ResourceInfoComponent.extend({
                 this.set('currentAssignment', this.get('assignment.id'));
                 this.set('constants.teamAssignment', this.get('assignment'));
                 //TODO dynamic manager file selection
-                this.set('findPeople', this.get('store').query('direct', {manager: 'kangshao'})).then(function(){
+                this.set('findPeople', this.get('store').query('user', {year: this.get('constants.year'), manager: 'kangshao'})).then(function(){
                     self.getPeople(self.findPeople);
                 });
             }
