@@ -52,7 +52,7 @@ export default ResourceRowComponent.extend({
         // show/hide direct reports
         toggleDirects() {
             if(this.collapse === ''){
-                this.set('resource.directs', this.get('store').query('direct', {year: this.get('constants.year'), manager: this.get('resource.ad')}));
+                this.set('resource.directs', this.get('store').query('user', {year: this.get('constants.year'), manager: this.get('resource.ad')}));
                 this.set('resource.expanded', true);
                 this.set('collapse', 'collapse');
             }
