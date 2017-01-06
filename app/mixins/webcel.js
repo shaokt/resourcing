@@ -101,26 +101,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 		addTiles = (Ember.$(clone).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
 
-        if(this.constants.daily) {
-            var div = Ember.$('<div></div>').append(addTiles.string);
-            div.find('span').sort(function(a, b) {
-                return +a.getAttribute('data-x') - +b.getAttribute('data-x');
-            }).appendTo(div);
-
-            Ember.$(div[0].childNodes).each(function(index){
-                const prev = Ember.$(div[0].childNodes)[index - 1];
-                    if(Ember.$(this).attr('class') === $(prev).attr('class')){
-                        if(Ember.$(this).attr('data-x') - $(prev).attr('data-x') > 15) {
-                            Ember.$(this).attr('data-stamp', true)
-                        } else {
-                            Ember.$(this).attr('data-stamp', false)
-                        }
-                    } else {
-                        Ember.$(this).attr('data-stamp', true)
-                    }
-            });
-            addTiles = div[0].innerHTML.htmlSafe();
-        }
+        addTiles = this.sortTiles(addTiles);
 
         this.data.set(this.constants.daily ? 'timeaway' : 'assignment', addTiles);
         this.constants.daily ? this.rowComponent.updateCounters() : 0;
@@ -128,6 +109,25 @@ export default Ember.Mixin.create(CalendarWidget, {
 		Ember.$(this.sizer).hide();
         this.downX = this.upX = 0;
     },//getTiles
+
+    sortTiles: function(addTiles){
+        if(this.constants.daily){
+            var div = Ember.$('<div></div>').append(addTiles.string);
+            div.find('span').sort(function(a, b) {
+                return +a.getAttribute('data-x') - +b.getAttribute('data-x');
+            }).appendTo(div);
+
+            Ember.$(div[0].childNodes).each(function(index){
+                const prev = Ember.$(div[0].childNodes)[index - 1];
+                Ember.$(this).attr('data-stamp',
+                    Ember.$(this).attr('class') === $(prev).attr('class') &&
+                    Ember.$(this).attr('data-x') - $(prev).attr('data-x') <= 15 ?
+                    false : true);
+            });
+            addTiles = div[0].innerHTML.htmlSafe();
+        }
+        return addTiles;
+    },
 
     setPhase: function(){
         // only create the phase stamp if a phase is selected
