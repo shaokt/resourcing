@@ -104,7 +104,7 @@ export default Ember.Mixin.create(CalendarWidget, {
         addTiles = this.sortTiles(addTiles);
 
         this.data.set(this.constants.daily ? 'timeaway' : 'assignment', addTiles);
-        this.constants.daily ? this.rowComponent.updateCounters() : 0;
+        if(this.constants.daily) { this.rowComponent.updateCounters(); }
 
 		Ember.$(this.sizer).hide();
         this.downX = this.upX = 0;
@@ -120,8 +120,8 @@ export default Ember.Mixin.create(CalendarWidget, {
             Ember.$(div[0].childNodes).each(function(index){
                 const prev = Ember.$(div[0].childNodes)[index - 1];
                 Ember.$(this).attr('data-stamp',
-                    Ember.$(this).attr('class') === $(prev).attr('class') &&
-                    Ember.$(this).attr('data-x') - $(prev).attr('data-x') <= 15 ?
+                    Ember.$(this).attr('class') === Ember.$(prev).attr('class') &&
+                    Ember.$(this).attr('data-x') - Ember.$(prev).attr('data-x') <= 15 ?
                     false : true);
             });
             addTiles = div[0].innerHTML.htmlSafe();
@@ -246,8 +246,9 @@ export default Ember.Mixin.create(CalendarWidget, {
                     if(self.get('router.currentRouteName') === 'roadmap.index'){
                         self.setPhase(e);
                     }
-                    // stamps  the short name of the project on the project tile
+                    // stamps the short name of the project on the project tile
                     else {
+                        if(self.constants.daily) { return; } // with auto-stamping outOfOffice codes, disable right-click stamp of these tiles
     					var thisTile = Ember.$(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
                         if(thisTile.attr('data-stamp') === "true"){ thisTile.removeAttr('data-stamp'); }
                         else{ thisTile.attr('data-stamp', true); }
