@@ -120,11 +120,12 @@ export default Ember.Mixin.create(CalendarWidget, {
             Ember.$(div[0].childNodes).each(function(index){
                 const prev = Ember.$(div[0].childNodes)[index - 1];
 
-                    if(!(Ember.$(this).attr('class') === Ember.$(prev).attr('class') &&
-                    Ember.$(this).attr('data-x') - Ember.$(prev).attr('data-x') <= 15)) {
-                        Ember.$(this).attr('data-stamp', true);
-
-                    }
+                if(!(Ember.$(this).attr('class') === Ember.$(prev).attr('class') &&
+                    Ember.$(this).attr('data-x') - Ember.$(prev).attr('data-x') <= 15)){
+                    Ember.$(this).attr('data-stamp', true);
+                } else {
+                    Ember.$(this).removeAttr('data-stamp');
+                }
             });
             addTiles = div[0].innerHTML.htmlSafe();
         }
