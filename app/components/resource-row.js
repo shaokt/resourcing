@@ -138,6 +138,26 @@ export default Ember.Component.extend(Webcel, {
         this.set('shiftVertical', 0);
     },
 
+    // update the vacation/personal counters
+    updateCounters(){
+        var tiles = this.get('resource.timeaway');
+        tiles = typeof(tiles) === 'object' ? tiles.string : tiles;
+        var dataYear = `[data-year="${this.get('constants.year')}"]`;
+        var div = Ember.$('<div></div>').append(tiles);
+
+        var col = this.get('constants.todayColumn');
+        var v1 = Ember.$(div).find(`.vacation${dataYear}`);
+        var v2 = Ember.$(div).find(`.vacationHalf${dataYear}`);
+        var v1TD = Ember.$(v1).filter(function(){ return parseInt(Ember.$(this).attr('data-x')) <= col; });
+        var v2TD = Ember.$(v2).filter(function(){ return parseInt(Ember.$(this).attr('data-x')) <= col; });
+
+        var p1 = Ember.$(div).find(`.personal${dataYear}`).length;
+        var p2 = Ember.$(div).find(`.personalHalf${dataYear}`).length/2;
+        this.set('resource.vacation', v1.length + v2.length/2);
+        this.set('resource.vacationToDate', v1TD.length + v2TD.length/2);
+        this.set('resource.personal', p1+p2);
+    },
+
     actions:{
         findAssignment() {
             var x = this.get('constants').getMousePos(event);

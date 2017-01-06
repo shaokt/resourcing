@@ -33,23 +33,6 @@ export default ResourceRowComponent.extend({
         this.updateCounters(e);
     },
 
-    updateCounters(e){
-        var dataYear = `[data-year="${this.get('constants.year')}"]`;
-        var div = Ember.$('<div></div>').append(this.get('resource.timeaway'));
-
-        var v1 = $(div).find(`.vacation${dataYear}`);
-        var v2 = $(div).find(`.vacationHalf${dataYear}`);
-        var col = this.get('constants.todayColumn');
-        var v1TD = $(v1).filter(function(){ return parseInt($(this).attr('data-x')) <= col; });
-        var v2TD = $(v2).filter(function(){ return parseInt($(this).attr('data-x')) <= col; });
-
-        var p1 = $(div).find(`.personal${dataYear}`).length;
-        var p2 = $(div).find(`.personalHalf${dataYear}`).length/2;
-        this.set('resource.vacation', v1.length + v2.length/2);
-        this.set('resource.vacationToDate', v1TD.length + v2TD.length/2);
-        this.set('resource.personal', p1+p2);
-    },
-
     actions: {
         // open a row up for edit by unlocking
         editing() {

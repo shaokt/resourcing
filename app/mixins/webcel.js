@@ -102,6 +102,7 @@ export default Ember.Mixin.create(CalendarWidget, {
 		addTiles = (Ember.$(clone).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
 
         this.data.set(this.constants.daily ? 'timeaway' : 'assignment', addTiles);
+        this.constants.daily ? this.rowComponent.updateCounters() : 0;
 
 		Ember.$(this.sizer).hide();
         this.downX = this.upX = 0;
