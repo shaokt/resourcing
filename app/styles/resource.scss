@@ -89,13 +89,20 @@ section.resourceRow {
     }
 
     .info {
-        border-left:70px solid transparent;
         cursor:default;
         display:inline-block;
-        margin-left:-70px;
         position:absolute;
         top:0;
         z-index:3;
+
+        &:focus, &:hover {
+            outline:none;
+            z-index:9;
+
+            .name {
+                background:#c55500;
+            }
+        }
 
         .name {
             background:#000;
@@ -190,7 +197,6 @@ section.resourceRow {
         }// row
 
         > .info {
-            //background:#fff;
             border-radius:2px;
             border-left-width:25px;
             box-shadow:none;
@@ -201,6 +207,13 @@ section.resourceRow {
             ul.viewOptions {
                 width:20px;
                 left:-20px;
+
+                li {
+                    background:#fff;
+                    a {
+                        opacity:1;
+                    }
+                }
             }
 
             .name {

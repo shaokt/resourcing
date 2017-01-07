@@ -1,19 +1,29 @@
 /*http://nicolasgallagher.com/pure-css-gui-icons/demo/*/
 section.resourceRow {
     ul.viewOptions {
-        display:none;
         left:-60px;
         position:absolute;
         top:0;
         width:60px;
 
         li {
+            background:transparent;
+            border-radius:2px;
             float:right;
             height:1.2em;
             width:20px;
 
             a {
+                border-radius:2px;
+                opacity:0;
                 width:20px;
+
+                &:focus, &:hover {
+                    background:#fff;
+                    box-shadow:0 0 1px 1px #000;
+                    height:100%;
+                    opacity:1;
+                }
 
                 &:active:before,
                 &:focus:before,
@@ -157,55 +167,7 @@ ul.viewOptions {
     }// ul.viewOptions
 
     @import "icons-roadmap";
-
-    .lock {
-        &:after,
-        &:before {
-            background:#fff;
-            border-radius:3px;
-            height:3px;
-            left:8px;
-            margin-top:-2px;
-            width:3px;
-            z-index:10;
-        }
-
-        &:before {
-            left:9px;
-            width:1px;
-            height:4px;
-            margin-top:0px;
-        }
-
-        a:after {
-            background:#fff;
-            border:2px solid #000;
-            border-bottom:0;
-            border-radius:5px 5px 0 0;
-            height:5px;
-            left:5px;
-            margin-top:-11px;
-            width:5px;
-        }
-
-        a:before {
-            height:10px;
-            left:3px;
-            margin-top:-4px;
-            width:13px;
-        }
-
-        a:active:after,
-        a:focus:after,
-        a:hover:after {
-            border-color:#C55500;
-        }
-
-        a:focus:before,
-        a:hover:before {
-            box-shadow:-1px 3px 1px 1px rgba(0, 0, 0, .3);
-        }
-    }//locks
+    @import "icons-lock";
 
     .viewTeam {
         a {
@@ -266,6 +228,7 @@ ul.viewOptions {
             height:.33em;
             left:.5em;
             margin-top:-.42em;
+            top:53%;
             width:.33em;
         }
 
@@ -276,6 +239,7 @@ ul.viewOptions {
             left:.25em;
             margin-top:-.67em;
             transform:rotate(45deg);
+            top:53%;
             width:1.17em;
         }
     }//toggle
@@ -1266,8 +1230,14 @@ ul.viewOptions {
     .expand { display:none; }
 }
 
-.info:focus ul.viewOptions,
-.info:hover ul.viewOptions { display:block; }
+.info:focus,
+.info:hover {
+    ul.viewOptions  {
+        li a {
+            opacity:1;
+        }
+    }
+}
 
 //spinner from: http://codepen.io/MattIn4D/pen/LiKFC
 #saving {
