@@ -1,11 +1,12 @@
-[data-view='assignment'],
+[data-view='roadmap'],
 [data-view='timeaway'] {
     main {
         padding-top:165px;
 
-        .long { display:none; }
+        .resourceRow:not([data-active="true"]) .info {
 
-        :not([data-active="true"]) .info {
+            .long { display:none; }
+
             &:hover {
                 .short {display:none;}
                 .long { display:block; }
@@ -14,7 +15,7 @@
 
         @import "assignments-phase-stamps.scss";
 
-        [data-active="true"] {
+        [data-active="true"][data-type="assignment"] {
             .tileOptions {
                 background:#fff;
                 border-radius:5px;
@@ -26,7 +27,8 @@
                 li {
                     border:0;
                     margin:0;
-                    padding-top:0;
+                    padding:0;
+                    position:relative;
 
                     [data-assignment] {
                         cursor:default;
@@ -78,9 +80,9 @@
 
 }//data-view
 
-[data-view='timeaway'][data-route="assignments.index"] {
+[data-view='timeaway'][data-route="roadmap.index"] {
     main {
-        [data-view="assignment"] {
+        [data-view="roadmap"] {
             background: repeating-linear-gradient(
                 -50deg,
                 rgba(255,255,255,.2),

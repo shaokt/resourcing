@@ -1,10 +1,12 @@
 <ul class="viewOptions">
     {{#unless constants.teamAssignmentView}}
-        {{#unless shiftPhase}}
-            {{#unless readOnly}}
-                <li class="lock">
-                    <a href="/" {{action "editing" on="click"}}></a>
-                </li>
+        {{#unless constants.disableEditing}}
+            {{#unless shiftPhase}}
+                {{#unless readOnly}}
+                    <li class="lock">
+                        <a href="/" {{action "editing" on="click"}}></a>
+                    </li>
+                {{/unless}}
             {{/unless}}
         {{/unless}}
     {{else}}
@@ -24,4 +26,8 @@
     {{assignment-phases assignment=assignment shift="assignment.phases" phaseAction=phaseAction phaseToShift=phaseToShift row=row rowComponent=rowComponent}}
 {{else}}
     <div class="name short" data-type="value">{{assignment.short}}</div>
+{{/if}}
+
+{{#if readOnly}}
+    <input type="checkbox" checked=checked onclick={{action "select" event=event}} class="viewAssignment" style="" />
 {{/if}}

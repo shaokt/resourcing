@@ -18,21 +18,24 @@
         padding:1px 2px 0 2px;
         white-space:nowrap;
 
-        &.lieu:after { content: "L : " counter(lieuCounter); }
-        &.personal:after { content: "P : " counter(personalCounter); }
-        &.sick:after { content: "S : " counter(sickCounter); }
-        &.unofficial:after { content: "\263C  : " counter(unofficialCounter); }
-        &.vacation:after { content: "V : " counter(vacationCounter); }
-        &.vacationCarryover:after { content: "VC : " counter(vacationCarryoverCounter); }
+        &.lieu:before { content: "L : " counter(lieuCounter); }
+        &.personal:before { content: "P : "; }
+        &.sick:before { content: "S : " counter(sickCounter); }
+        &.unofficial:before { content: "\263C  : " counter(unofficialCounter); }
+        &.vacation:before { content: "V : "; }
+        &.vacationToDate:before { content: "V To Date: "; }
+        &.vacationCarryover:before { content: "VC : " counter(vacationCarryoverCounter); }
     }
 }
 
 [data-view="timeaway"] {
     [data-active="true"] > .info .counters {
         display:inline-block;
+        float:right;
         margin-top:2px;
     }
 
+    .info:focus .counters,
     .info:hover .counters {
     	display:inline-block;
     }

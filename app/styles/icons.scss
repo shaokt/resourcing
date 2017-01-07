@@ -52,16 +52,16 @@ section.resourceRow {
             }//li
         }//viewOptions
 
-        [data-view="assignment"] + .info {
+        [data-view="roadmap"] + .info {
             .name { margin-top:7px; }
         }
     }//resourceRow
 }//data-view-team
 
-[data-view="assignment"] {
+[data-view="roadmap"] {
 &[data-view-team="true"] {
     section.resourceRow {
-        .row[data-view="assignment"]:after {
+        .row[data-view="roadmap"]:after {
             background:#fff0d3;
             opacity:.8;
         }
@@ -96,7 +96,7 @@ section.resourceRow {
             }//li
         }//viewOptions
 
-        [data-view="assignment"] + .info {
+        [data-view="roadmap"] + .info {
             s.name { margin-top:0; }
         }
     }
@@ -371,6 +371,8 @@ ul.viewOptions {
                             animation:rotateMale 1000ms infinite linear;
                         }
                         .neck {
+                            height:16px;
+                            overflow:hidden;
                             animation:rotateMaleNeck 1000ms infinite linear;
                         }
                     }
@@ -1028,7 +1030,7 @@ ul.viewOptions {
                 background:#FFF;
                 border-radius:100%;
                 height:28px;
-                left:12px;
+                left:11px;
                 top:8px;
                 width:28px;
             }
@@ -1037,7 +1039,7 @@ ul.viewOptions {
                 background-image:linear-gradient(45deg, #000 0%, #fff 50%, #000 100%);
                 border-radius:100%;
                 height:38px;
-                left:7px;
+                left:6px;
                 top:3px;
                 width:38px;
             }
@@ -1045,8 +1047,8 @@ ul.viewOptions {
             span.start {
                 display:block;
                 position:absolute;
-                left:0;
-                top:-0px;
+                left:-1px;
+                top:0;
 
                 &:after { // button
                     background-image:linear-gradient(to right, #000 0%, #fff 50%, #000 100%);
@@ -1074,7 +1076,7 @@ ul.viewOptions {
             span.reset {
                 display:block;
                 position:absolute;
-                left:40px;
+                left:39px;
                 top:4px;
                 transform:rotate(45deg) scale(.75);
 
@@ -1107,7 +1109,7 @@ ul.viewOptions {
                     display:block;
                     font-size:.5em;
                     height:2px;
-                    left:16px;
+                    left:15px;
                     position:absolute;
                     transform:rotate(60deg);
                     top:22px;
@@ -1119,7 +1121,7 @@ ul.viewOptions {
                     border-bottom:12px solid transparent;
                     content:"";
                     display:block;
-                    left:25px;
+                    left:24px;
                     position:absolute;
                     top:10px;
                     width:2px;
@@ -1138,22 +1140,22 @@ ul.viewOptions {
                 }
 
                 &[data-time="3"]:before {
-                    left:41px;
+                    left:40px;
                     top:20px;
                 }
 
                 &[data-time="6"]:before {
-                    left:25px;
+                    left:24px;
                     top:37px;
                 }
 
                 &[data-time="9"]:before {
-                    left:9px;
+                    left:8px;
                     top:20px;
                 }
 
                 &[data-time="12"]:before {
-                    left:25px;
+                    left:24px;
                     top:5px;
                 }
             }
@@ -1201,6 +1203,57 @@ ul.viewOptions {
             }
         }//a
     }//timeaway
+
+    .gridLines {
+        &:hover {
+            .column {
+                animation:fadeGrid 2000ms infinite linear;
+            }
+
+            .grid {
+                animation:fadeGrid2 2000ms infinite linear;
+            }
+        }
+
+        .column {
+            background-color:#fff;
+            display:block;
+            height:100%;
+            margin:0 auto;
+            opacity:.5;
+            width:18px;
+
+            background-image:linear-gradient(rgba(0,0,0,.3) 1px, transparent 1px);
+            background-size:34px 13px;
+        }
+
+        .grid {
+            background-image: linear-gradient(90deg, rgba(254,187,187,.5) 50%, transparent 50%),
+            linear-gradient(rgba(0,0,0,.3) 1px, transparent 1px);
+            background-size:34px 13px;
+            display:block;
+            position:absolute;
+            height:100%;
+            width:100%;
+        }
+
+        @keyframes fadeGrid {
+            30%, 100% {
+                border-radius:5px;
+                opacity:1;
+                width:100%;
+            }
+        }
+
+        @keyframes fadeGrid2 {
+            30%, 100% {
+                border-radius:5px;
+                background-color:#000;
+                background-size:1000px 13px;
+            }
+        }
+    }
+
 }//ul.viewOptions
 
 .editing ul.viewOptions {
@@ -1213,6 +1266,7 @@ ul.viewOptions {
     .expand { display:none; }
 }
 
+.info:focus ul.viewOptions,
 .info:hover ul.viewOptions { display:block; }
 
 //spinner from: http://codepen.io/MattIn4D/pen/LiKFC

@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { storageFor } from 'ember-local-storage';
 export default Ember.Service.extend({
     settings: storageFor("settings"),
@@ -6,6 +7,7 @@ export default Ember.Service.extend({
     dataView: '',       // a way to set the view based on user actions
     calWidth: 0,        // calendar width
     numDays: 0,         // number of days rendered on calendar
+    year: 0,            // current year
     prevYear: 0,        // previous year's column
     _prevYear: 0,       // previous year's column
     nextYear: 0,        // next year's column
@@ -25,6 +27,7 @@ export default Ember.Service.extend({
     webcel:null,        // singleton Webcel object - only one editable instance at a time
     editingRow:false,   // whether a row is being edited or not
     assArray:[],        // array of assignments to view while viewing employees
+    disableEditing:false,   // by default, the rows are editable unless viewing a diff year
 	padout: function(number) { return (number < 10) ? '0' + number : number; }, // pad single digits to double (for date use)
 
     // save newly added data to store & display saving indicator
@@ -32,7 +35,7 @@ export default Ember.Service.extend({
         var self = this;
         this.set('saving', true);
         data.save();
-        setTimeout(function(){self.set('saving', false)}, 500);
+        setTimeout(function(){self.set('saving', false);}, 500);
     },
 
     // create an ID for a new record
@@ -43,7 +46,7 @@ export default Ember.Service.extend({
     },
 
     // highlight content in contenteditable fields on focus
-    focusInContentEditable: function(currentValue, event){
+    focusInContentEditable: function(currentValue){
         var selection = window.getSelection();
         var range = document.createRange();
         range.selectNodeContents(currentValue.element);
@@ -52,21 +55,26 @@ export default Ember.Service.extend({
     },
 
     scrolled: function(minLeft){
-        var left = $(window).scrollLeft();
-        var leftScroll = left == 0 && this.get('settings.view') == 'timeaway' ? minLeft : left;
-        this.set('leftScroll', leftScroll);
+        var left = Ember.$(window).scrollLeft();
+        var leftScroll = left === 0 && this.get('settings.view') === 'timeaway' ? minLeft : left;
 
-        $('.calendar').css({left:-left});
-        $('.assignmentViewContainer').css({left:-left});
-        $('#dynamicInfoPos').html(".info, .directs .resourceRow:before, .directs .resourceRow[data-expanded='true']:last-child .row:before { left:" + leftScroll + "px; }"); // if setting via ember, the page responds really slow
+        Ember.$('#dynamicLeftScroll').html(
+            ".info, .directs .resourceRow:before, .directs .resourceRow[data-expanded='true']:last-child .row:before { left:" + leftScroll + "px; }" +
+            ".assignmentViewContainer, .calendar {left:" + -left + "px; }"
+
+        ); // if setting via ember, very slow response
     },
 
-    mouseMoved: function(event){
+    getMousePos: function(event) {
     	var pos = event.pageX - 70; // 70 determined via css margin/padding page offset
         var max = this.calWidth - this.DIM;
     	pos = pos - pos%this.DIM;
-    	pos <= 0 ? pos = 0 : 0;
-		pos = pos >= max ? max : pos;
-        this.set('mousePos', pos)
+        pos = pos <= 0 ? 0 : pos;
+		return pos = pos >= max ? max : pos;
+    },
+
+    mouseMoved: function(event){
+        var pos = this.getMousePos(event);
+        Ember.$('#dynamicMousePosition').html(".dateMarker, #dateLine { left:" + pos + "px; }"); // if setting via ember, very slow response
     },
 });

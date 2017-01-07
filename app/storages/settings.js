@@ -2,15 +2,15 @@ import StorageObject from 'ember-local-storage/local/object';
 
 const Storage = StorageObject.extend({
     isWeeklyCalendar: function(){
-        return this.get('view') == 'assignment';
+        return this.get('view') === 'roadmap';
     }.property('view'),
 
     isDailyCalendar: function(){
-        return this.get('view') == 'timeaway';
+        return this.get('view') === 'timeaway';
     }.property('view'),
 
     hasCalendar: function(){
-        return this.get('view') == 'timeaway' || this.get('view') == 'assignment';
+        return this.get('view') === 'timeaway' || this.get('view') === 'roadmap';
     }.property('view'),
 
     isHiddenRows: function(){
@@ -25,7 +25,8 @@ Storage.reopenClass({
             assignmentTile: "empty",
             timeawayTile: "vacation",
             lastManager: "",
-            showHiddenRows: true
+            gridLines: false,
+            showHiddenRows: false
         };
     }
 });

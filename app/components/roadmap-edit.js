@@ -17,12 +17,12 @@ export default Ember.Component.extend({
         // if the current assignment is being edited
         editing() {
             this.toggleProperty('editing');
-            if(this.editing == true){
-                $('body').attr('data-editing', true)
+            if(this.editing === true){
+                Ember.$('body').attr('data-editing', true);
             }
             else {
-                $('body').attr('data-editing', false)
-                this.constants.save(this.get('assignment'))
+                Ember.$('body').attr('data-editing', false);
+                this.constants.save(this.get('assignment'));
             }
         },
 
@@ -30,7 +30,7 @@ export default Ember.Component.extend({
         toggleRow() {
             this.$().toggleClass('hidden');
             this.set('assignment.hidden', this.$().hasClass('hidden'));
-            this.constants.save(this.get('assignment'))
+            this.constants.save(this.get('assignment'));
         },
 
         // only allow 0-9, a-f, A-F for hex values
@@ -44,8 +44,8 @@ export default Ember.Component.extend({
         },
 
         // capitalize hex values
-        upperCase(currentValue, event){
-            currentValue.set('value', currentValue.get('value').toUpperCase())
+        upperCase(currentValue){
+            currentValue.set('value', currentValue.get('value').toUpperCase());
         }
     }
 });

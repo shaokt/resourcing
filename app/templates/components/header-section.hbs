@@ -1,14 +1,11 @@
-<div id="year">2016</div>
+{{year-nav year=year settings=settings}}
+
+{{#if hasFile}}
 <div class="menu">
     <ul class="tileOptions">
         {{#if showAssignmentTiles}}
             <li class="assignments">
                 {{assignment-tile model=model settings=settings}}
-            </li>
-        {{/if}}
-        {{#if showTimeoffTiles}}
-            <li class="timeAway">
-                {{time-away settings=settings}}
             </li>
         {{/if}}
     </ul>
@@ -17,7 +14,7 @@
         {{#if showEmployeeTracking}}
             {{#if settings.isWeeklyCalendar}}
                 <li class="timeaway">
-                    <a href="/" {{action "toggleView" 'timeaway' on="click"}}>
+                    <a href="out of office" {{action "toggleView" 'timeaway' on="click"}}>
                         <span class="start"></span>
                         <span class="reset"></span>
                         <span class="hands"></span>
@@ -32,7 +29,7 @@
 
             {{#if settings.isDailyCalendar}}
                 <li class="assignment">
-                    <a href="/" {{action "toggleView" 'assignment' on="click"}}>
+                    <a href="track assignments" {{action "toggleView" 'roadmap' on="click"}}>
                         <span class="pencil"><span class="wood"></span></span>
                         <span class="text">Track Assignments</span>
                     </a>
@@ -42,7 +39,7 @@
 
         {{#if showRoadmap}}
             <li class="roadmap">
-                <a href="/assignments">
+                <a href="/roadmap{{yearRoadmap}}">
                     <span class="item"></span>
                     <span class="item"></span>
                     <span class="item"></span>
@@ -51,9 +48,11 @@
             </li>
         {{/if}}
 
+        {{#unless constants.editAssignments}}
         {{#if settings.hasCalendar}}
+            {{#if viewingCurrentYear}}
             <li class="today">
-                <a href="/" {{action "scrollToday" on="click"}}>
+                <a href="scroll calendar" {{action "scrollToday" on="click"}}>
                     <span class="date"><span>{{constants.todayDate}}</span></span>
                     <span class="page"></span>
                     {{#if settings.isDailyCalendar}}
@@ -63,9 +62,10 @@
                     {{/if}}
                 </a>
             </li>
+            {{/if}}
             {{#if showAddEmployee}}
                 <li class="profile">
-                    <a href="/" {{action "addEmployee"}}>
+                    <a href="add employee" {{action "addEmployee"}}>
                         <span class="person female">
                             <span class="hair"></span>
                             <span class="face"></span>
@@ -83,18 +83,20 @@
                 </li>
             {{/if}}
         {{/if}}
+        {{/unless}}
 
+        {{#unless constants.disableEditing}}
         {{#if showSort}}
             {{#if this.constants.draggable}}
                 <li class="dragSort">
-                    <a href="/" {{action "dragDisable" on="click"}}>
+                    <a href="drag &amp; drop sorting" {{action "dragDisable" on="click"}}>
                         <span></span>
                         <span class="text">Drag Sort</span>
                     </a>
                 </li>
             {{else}}
                 <li class="dragSort">
-                    <a href="/" {{action "dragEnable" on="click"}}>
+                    <a href="drag &amp; drop sorting" {{action "dragEnable" on="click"}}>
                         <span class="leftArrow"></span>
                         <span class="rightArrow"></span>
                         <span class="text">Drag Sort</span>
@@ -102,10 +104,11 @@
                 </li>
             {{/if}}
         {{/if}}
+        {{/unless}}
 
         {{#if constants.editAssignments}}
             <li class="assignment">
-                <a href="/" {{action "addAssignment" on="click"}}>
+                <a href="add assignment" {{action "addAssignment" on="click"}}>
                     <span class="pencil"><span class="wood"></span></span>
                     <span class="text">Add Assignment</span>
                 </a>
@@ -114,7 +117,7 @@
 
         {{#if showToggleRows}}
             <li class="toggle">
-                <a href="/" {{action "toggleViewHiddenRows" on="click"}}>
+                <a href="toggle hidden rows" {{action "toggleViewHiddenRows" on="click"}}>
                     <span class="eye"></span>
                     {{#if settings.isHiddenRows}}
                         <span class="text">Hide Hidden Rows</span>
@@ -127,7 +130,7 @@
 
         {{#if showOrg}}
             <li class="org">
-                <a href="/home?id={{settings.lastManager}}">
+                <a href="/home?id={{settings.lastManager}}{{yearHome}}">
                     <span class="member"></span>
                     <span class="member"></span>
                     <span class="member"></span>
@@ -138,7 +141,7 @@
 
         {{#if showTeam}}
             <li class="team">
-                <a href="/" {{action "viewTeam" on="click"}} data-active="{{constants.teamAssignmentView}}">
+                <a href="view team" {{action "viewTeam" on="click"}} data-active="{{constants.teamAssignmentView}}">
                     <span class="member"><span class="body"></span></span>
                     <span class="member female"><span class="body"><span class="dress"></span></span></span>
                     <span class="member"><span class="body"></span></span>
@@ -167,32 +170,90 @@
                         </div>
                     </div>
                     {{#if constants.teamAsOfEmpty}}
-                        <div class="specs emptyTeam">
-                            <div>
-                                <p>No one assigned to
-                                    <span class="assignmentInfo"><span class="short"><span>{{constants.teamAssignment.short}}</span></span></span>
-                                    from
-                                    <span class="date"><span><span class="asof">{{constants.teamAsOfDate}}</span></span></span>
-                                    onward.
-                                </p>
-                                <p>Choose another date and/or assignment</p>
-                            </div>
+                        <div class="specs message emptyTeam">
+                            <p>No one assigned to
+                                <span class="assignmentInfo"><span class="short"><span>{{constants.teamAssignment.short}}</span></span></span>
+                                from
+                                <span class="date"><span><span class="asof">{{constants.teamAsOfDate}}</span></span></span>
+                                onward.
+                            </p>
+                            <p>Choose another date and/or assignment</p>
                         </div>
                     {{/if}}
                 {{/if}}
             </li>
         {{/if}}
+
+        {{#unless constants.editAssignments}}
+            <li class="gridLines">
+                <a href="Toggle grid lines" {{action "toggleGrid" on="click"}}>
+                    <span class="grid"></span>
+                    <span class="column"></span>
+                    <span class="text">Toggle Grid Lines</span>
+                </a>
+            </li>
+        {{/unless}}
     </ul>
+    {{#unless viewingCurrentYear}}
+        <div class="message notCurrent">
+            <p>You are not viewing the current year.</p>
+
+            {{#if constants.disableEditing}}
+                <p><a href="/unlock to edit rows" {{action "enableEditing" on="click"}}>Unlock in order to edit rows.</a></p>
+            {{else}}
+                <p>Page is now unlocked for editing rows.</p>
+            {{/if}}
+        </div>
+
+        {{#unless yearNextFile}}
+            <div class="message notCurrent">
+                {{#if showAddEmployee}}
+                    <p>{{yearNext}} {{settings.lastManager}} file doesn't exist.</p>
+                    <p><a href="/export to {{yearNext}}" {{action "exportNextYear" settings.lastManager on="click"}}>Export to {{yearNext}} {{settings.lastManager}}</a></p>
+                {{else}}
+                    <p>{{yearNext}} Roadmap file doesn't exist.</p>
+                    <p><a href="/export to {{yearNext}}" {{action "exportNextYear" 'assignments' on="click"}}>Export to {{yearNext}} Roadmap</a></p>
+                {{/if}}
+            </div>
+        {{/unless}}
+    {{/unless}}
 
     {{#if this.constants.saving}}
         <div id="saving"><span>Saving</span></div>
     {{/if}}
+
+    <div id="currentlyViewing">
+        <div class="container">
+            {{#if showAddEmployee}}
+                <span class="shadow" data-first-letter="{{lastManager1}}" data-last-letters="{{lastManager2}}"></span>
+                <span>{{lastManager1}}</span><span><span>{{lastManager2}}</span></span>
+            {{/if}}
+            {{#if showOrg}}
+                <span class="shadow" data-first-letter="R" data-last-letters="oadmap"></span>
+                <span>R</span><span><span>oadmap</span></span>
+            {{/if}}
+        </div>
+        <span class="year">{{year}}</span>
+    </div>
 </div>
 
-{{#if settings.isWeeklyCalendar}}
-    {{calendar-widget elementId="calendarWeekly" daily=false width=width}}
-{{/if}}
+    {{#unless constants.editAssignments}}
+        {{#if settings.isWeeklyCalendar}}
+            {{calendar-widget elementId="calendarWeekly" _year=year daily=false width=width}}
+        {{/if}}
 
-{{#if settings.isDailyCalendar}}
-    {{calendar-widget elementId="calendarDaily" daily=true width=width}}
+        {{#if settings.isDailyCalendar}}
+            {{calendar-widget elementId="calendarDaily" _year=year daily=true width=width}}
+        {{/if}}
+    {{/unless}}
+{{else}}
+    <div class="message notFound">
+        <p>There are no files for the year / user / view you chose.</p>
+        <p>Either:</p>
+        <ul>
+            <li>Choose another year on the left</li>
+            <li>Go to: <a href="/roadmap">{{currentYear}} Roadmap view</a></li>
+            <li>Go to: <a href="/home?id={{settings.lastManager}}">{{currentYear}} {{settings.lastManager}} manager view</a></li>
+        </ul>
+    </div>
 {{/if}}

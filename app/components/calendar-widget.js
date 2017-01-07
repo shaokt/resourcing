@@ -6,7 +6,10 @@ export default Ember.Component.extend(WebcelMixin, {
     tagName:'div',
     classNames: ['calendar'],
     settings: storageFor("settings"),
-    year: 2016,
+    year: Ember.computed('_year', function(){
+        return parseInt(this.get('_year'));
+    }),
+
     today: new Date(),
     teamDate:null,  //column in calendar indicating day/week the team view starts for given assignment
 	dayNames: ["S", "M", "T", "W", "R", "F", "S"],
@@ -77,18 +80,25 @@ export default Ember.Component.extend(WebcelMixin, {
 
     // highlight today in the calendar
     highlightToday:function(){
-    	var year = this.today.getFullYear();
-    	var month = ("0" + (this.today.getMonth() + 1)).slice(-2);
-    	var day = this.today.getDate();
-    	var date = this.getDate(year, month, day);
-        this.set('constants.todayDate', day);
-    	date.week.addClass("selected");
-    	date.month.addClass("selected");
-        date.week.attr("tabindex", 0)
-        this.set('constants.todayColumn', date.week.attr("data-column"));
-        this.setTeamDate(date);
-        this.scrollToday(500);
-        $('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))})
+        try{
+        	var year = this.today.getFullYear();
+        	var month = ("0" + (this.today.getMonth() + 1)).slice(-2);
+        	var day = this.today.getDate();
+        	var date = this.getDate(year, month, day);
+            this.set('constants.todayDate', day);
+        	date.week.addClass("selected");
+        	date.month.addClass("selected");
+            date.week.attr("tabindex", 0);
+            this.set('constants.todayColumn', date.week.attr("data-column"));
+            this.setTeamDate(date);
+            this.scrollToday(500);
+            Ember.$('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))});
+            this.set('viewingCurrentYear', true);
+        }catch(e){
+            // viewing earlier / future years where "today" doesn't exist in that calendar
+            Ember.$('#todayDateLine').css({display:'none'});
+            this.set('viewingCurrentYear', false);
+        }
     },
 
     // set the team date indicator
@@ -107,9 +117,9 @@ export default Ember.Component.extend(WebcelMixin, {
         this.teamDateSelect(date);
 
         // in the timeaway view, add the teamDate class one level lower
-        if(this.get('settings.view') === 'timeaway' && this.get('router.currentRouteName') === 'assignments.index'){
+        if(this.get('settings.view') === 'timeaway' && this.get('router.currentRouteName') === 'roadmap.index'){
             //console.log(this.get('constants.todayColumnDate').find('.dayNum'))
-            $(this.get('constants.todayColumnDate').find('.dayNum')).addClass('teamDate')
+            Ember.$(this.get('constants.todayColumnDate').find('.dayNum')).addClass('teamDate');
         }
     },
 
@@ -127,17 +137,17 @@ export default Ember.Component.extend(WebcelMixin, {
     // scroll to today
     scrollToday:function(time){
         var self = this;
-    	setTimeout(function(){ $(window).scrollLeft(self.constants.todayColumn - (self.constants.DIM*22) );}, time);
+    	setTimeout(function(){ Ember.$(window).scrollLeft(self.constants.todayColumn - (self.constants.DIM*22) );}, time);
     },
 
     // figure out which column in the calendar to select
     getDate:function(year, month, day){
-    	var month = this.calendar.find("[data-date='" + year + " " + month + "']");
+    	month = this.calendar.find("[data-date='" + year + " " + month + "']");
     	var week = null;
-    	$(month).find(".day").each(function(){
-    		week == null ? week = $(this) : 0;
-    		if(day >= +($(this).text().match(/\d+/)[0])){ week = $(this); }
-    	})
+    	Ember.$(month).find(".day").each(function(){
+            if(week == null){ week = Ember.$(this); }
+    		if(day >= +(Ember.$(this).text().match(/\d+/)[0])){ week = Ember.$(this); }
+    	});
     	return {month:month, week:week};
     },
 
@@ -157,16 +167,16 @@ export default Ember.Component.extend(WebcelMixin, {
     onload() {
         this.constants.webcel = this.Webcel();
         this.set('constants.calWidth', ((this.constants.numDays) * this.constants.DIM));
-        $('#pageContainer').css({width:this.constants.calWidth});
-        $('.calendar').css({width:this.constants.calWidth});
+        Ember.$('#pageContainer').css({width:this.constants.calWidth});
+        Ember.$('.calendar').css({width:this.constants.calWidth});
 
-        this.calendar = $('#' + this.attrs.elementId);
+        this.calendar = Ember.$('#' + this.attrs.elementId);
         this.highlightToday();
 
         this.constants.daily = this.daily;
         if(this.daily){
             if(!this.holidays.year){
-                this.holidays.year = this.year;
+                this.holidays.year = this.get('year');
                 this.holidays.getDates();
             }
             this.holidays.display();

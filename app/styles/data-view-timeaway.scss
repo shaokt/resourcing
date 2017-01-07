@@ -5,20 +5,26 @@
                 background:#1f74f2;
                 border:2px solid #0b3f92;
             }
+
+            .assignment {
+                margin-left:61px;
+            }
         }
     }
 
     main {
-        padding-top:163px;
+        padding-top:165px;
+    }
+
+    &[data-route="roadmap.index"]{
+        .menu .tileOptions {
+            display:none;
+        }
     }
 
     section.resourceRow {
         .row[data-view="timeOff"] {
             height:15px;
-        }
-
-        [data-view="timeOff"] + .info .name {
-            box-shadow:-10px 3px 7px 3px rgba(0, 0, 0, .7);
         }
 
         &:not(.hidden):hover:after {
@@ -41,6 +47,21 @@
 
     [data-type="tile"] {
         z-index:1;
+        &:hover {
+            &:before {
+                background:#000;
+                border-radius:2px;
+                bottom:-20px;
+                box-shadow:0px 0px 10px 5px rgba(255,255,255,.7);
+                color:#fff;
+                font-size:10px;
+                left:0;
+                line-height:100%;
+                padding:3px 5px;
+                position:absolute;
+                white-space:nowrap;
+            }
+        }
     }
 
     .bereavement {
@@ -56,11 +77,6 @@
     .firstDay {
         background:#718C00;
         &[data-stamp="true"]:after { content: "FD"; }
-    }
-
-    .half {
-        background:#99CC99;
-        &[data-stamp="true"]:after { content: "1/2"; }
     }
 
     .jury {
@@ -88,8 +104,24 @@
         &[data-stamp="true"]:after { content: "P"; }
     }
 
+    .personalHalf {
+        background:linear-gradient(to right bottom, #2f3414 50%, #B798BF 50%);
+        &[data-stamp="true"]:after { content: "P"; }
+    }
+
     .vacation {
         background:#4271AE;
+        &[data-stamp="true"]:after { content:'V'; }
+
+        span.taken {
+            border-left:7px solid rgba(255,255,255,.5);
+            margin-left:2px;
+            padding-left:3px;
+        }
+    }
+
+    .vacationHalf {
+        background:linear-gradient(to right bottom, #2f3414 50%, #4271AE 50%);
         &[data-stamp="true"]:after { content:'V'; }
     }
 
@@ -101,6 +133,11 @@
     .vacationTentative {
         background:#9F3E99;
         &[data-stamp="true"]:after { content: "V?"; }
+    }
+
+    .shortTermDisability {
+        background:#deaddd;
+        &[data-stamp="true"]:after { content: "SD"; }
     }
 
     .sick {
@@ -124,9 +161,7 @@
     }
 
     .tileOptions:hover {
-        li {
-            padding-right:55px !important;
-        }
+        max-width:100%;
     }
 
     .tileOptions li {
@@ -138,6 +173,8 @@
                 right:10px;
             }
         }
+    }
+    .tileOptions li, section.resourceRow:not([data-active="true"]) .row[data-view="timeOff"] {
 
         :hover { z-index:3; }
 
@@ -145,23 +182,30 @@
         .vacationCarryover:hover:before { content:"Carryover"; }
         .vacationTentative:hover:before { content:"Tentative Vacation"; }
         .unofficial:hover:before { content:"Unofficial Lieu Day"; }
+        .vacationHalf:hover:before { content:"Vacation Half Day"; }
 
         .sick { clear:left; }
         .sick:hover:before { content:"Sick Day"; }
         .personal:hover:before { content:"Personal Day"; }
         .lieu:hover:before { content:"Lieu Day"; }
         .wfh:hover:before { content:"Remote Work (WFH)"; }
+        .personalHalf:hover:before { content:"Personal Half Day"; }
 
         .conference { clear:left; }
         .conference:hover:before { content:"Conference"; }
         .training:hover:before { content:"Training"; }
-        .half:hover:before { content:"Half Day"; }
         .bereavement:hover:before { content:"Bereavement"; }
+        .shortTermDisability:hover:before { content:"Short Term Disability"; }
 
         .parentalLeave { clear:left; }
         .parentalLeave:hover:before { content:"Parental Leave"; }
         .jury:hover:before { content:"Jury Duty"; }
         .firstDay:hover:before { content:"First Day"; }
         .lastDay:hover:before { content:"Last Day"; }
+    }
+    .info {
+        .tileOptions li {
+            .vacationHalf, .personalHalf { margin-left:20px; }
+        }
     }
 }//data-view=timeaway

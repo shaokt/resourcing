@@ -3,13 +3,18 @@
     margin-top:15px;
 }
 .assignmentViewContainer {
-    border-bottom:10px solid #fff;
+    background:#fff;
     border-left:70px solid #fff;
     border-right:10px solid #fff;
     margin-top:-3px;
+    padding-bottom:10px;
     position:fixed;
     top:155px;
     z-index:5;
+
+    section.resourceRow:last-child {
+        border-bottom:1px solid #aaa;
+    }
 }
 section.resourceRow {
     background:#eee;
@@ -103,8 +108,14 @@ section.resourceRow {
             font-weight:bold;
             letter-spacing:1px;
             padding:0 4px;
+
+            &.short + input.viewAssignment {
+                left:-16px;
+                position:absolute;
+                top:-2px;
+            }
         }
-    }
+    }// .info
 
     &:hover {
         > .info .name {
@@ -140,6 +151,7 @@ section.resourceRow {
             height:60px;
             z-index:5;
 
+            /*
             &:before {
                 background:repeating-linear-gradient(-45deg, #222, #222 10px, #333 10px, #333 20px);
                 content:"";
@@ -148,6 +160,7 @@ section.resourceRow {
                 opacity:.8;
                 position:absolute;
             }
+            */
 
             .pointer {
                 display:block;
@@ -177,13 +190,13 @@ section.resourceRow {
         }// row
 
         > .info {
-            background:#fff;
+            //background:#fff;
             border-radius:2px;
             border-left-width:25px;
             box-shadow:none;
             margin-left:-25px;
             top:-23px;
-            z-index:4;
+            z-index:5;
 
             ul.viewOptions {
                 width:20px;
@@ -219,7 +232,7 @@ section.resourceRow {
             background:#000;
             content:"";
             display:block;
-            height:32px;
+            height:100%;
             opacity:.8;
             position:absolute;
             top:0;
@@ -228,3 +241,20 @@ section.resourceRow {
         }
     }
 }//resourceRow
+
+[data-gridLines=true] {
+    main, .assignmentViewContainer, .calendar,
+    .resourceRow .row {
+        background: repeating-linear-gradient(
+            90deg,
+            #fff,
+            #fff 15px,
+            #feefee 15px,
+            #feefee 30px
+        );
+    }
+
+    main, .assignmentViewContainer {
+        background-position-x:-1px;
+    }
+}

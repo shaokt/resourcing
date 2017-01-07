@@ -1,4 +1,4 @@
-[data-view="assignment"]{
+[data-view="roadmap"]{
     header {
         .menu {
             button.changeView span {
@@ -14,6 +14,17 @@
 
     main {
         padding-top:155px;
+    }
+
+    &[data-route="roadmap.index"],
+    &[data-route="roadmap.edit"]{
+        .menu .tileOptions {
+            display:none;
+        }
+
+        main {
+            padding-top:164px;
+        }
     }
 
     [data-type="tile"] {
@@ -148,10 +159,6 @@
             }
         }
 
-        .tileOptions li {
-            padding:0;
-            position:relative;
-        }
         .tiles [data-stamp="true"]{
             &:after {
                 background:rgba(0,0,0,.4);

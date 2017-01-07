@@ -1,23 +1,76 @@
 // chicklet tiles used to paint into each row
 .tileContainer {
+    cursor:default;
+    display:none;
     float:left;
     position:relative;
-}
-.tileOptions {
-    cursor:pointer;
+
+    &[data-active="true"] {
+        display:block;
+    }
+
+    &:before {
+        border-radius:5px;
+        content:"";
+        display:block;
+        height:100%;
+        opacity:.3;
+        position:absolute;
+        width:100%;
+    }
 
     &:hover {
-        input:checked,
+        [data-stamp="true"]{
+            border:1px solid #000;
+            opacity:1;
+            z-index:2;
+
+            span {
+                 display:block;
+                 margin:3px;
+                 padding:10px;
+            }
+        }
+    }
+}// tileContainer
+
+.tileOptions {
+    cursor:pointer;
+     max-width:50%;
+
+    &:hover {
+        outline:none;
+
+        .tileContainer {
+            margin:0 5px 2px 0;
+        }
+
+        .tileContainer,
+        input,
         label { display:block; }
+
+        li {
+            background:#eee;
+            border-radius:5px;
+            border-color:#aaa;
+            cursor:pointer;
+        }
+
+        [data-stamp="true"] { display:inline-block; }
+
+        + .viewOptions {
+            display:none;
+
+            ~ .message {
+                display:none;
+            }
+        }
     }
 
     input {
         float:left;
         display:none;
-        right:-8px;
-        position:absolute;
-        top:-5px;
-        z-index:2;
+        position:relative;
     }
 
     label {
@@ -38,8 +91,7 @@
          float:left;
          list-style:none;
          margin-right:5px;
-         max-width:50%;
-         padding:8px 10px 0 10px;
+         padding:8px 10px 10px 10px;
 
          &:before {
             float:left;
@@ -98,6 +150,7 @@
 
             span {
                 background:#000;
+                border:1px solid transparent;
                 border-radius:5px;
                 display:block;
                 padding:13px;
@@ -111,6 +164,10 @@
             &[data-active="true"]{
                 display:block;
                 opacity:1;
+
+                span {
+                    border-color:#fff;
+                }
             }
         }//data-stamp="true"
 
@@ -118,29 +175,67 @@
     }//li
 }
 
-header {
-    .tileOptions {
-        &:focus,
-        &:hover {
-            outline:none;
+.resourceRow {
+    &[data-type="person"] {
+        #deletePaintedtiles {
+            &:checked {
+                ~ .tileOptions {
+                    opacity:.3;
+
+                    &:hover {
+                        transform:scale(.8);
+
+                        li {
+                            background:none;
+                            border-color:transparent;
+                            padding:0;
+
+                            .tileContainer {
+                                margin:0;
+
+                                &[data-active="false"] {
+                                    display:none;
+                                }
+
+                                &[data-active="true"] {
+                                    a:before {
+                                        display:none;
+                                    }
+                                }
+                            }
+                        }// li
+                    }// hover
+                }// .tileOptions
+            }// checked
+
+            ~ label {
+                color:#fff;
+            }
+        }// deletePaintedtiles
+
+        .tileOptions {
+            float:left;
+            max-width:33%;
+            margin:-13px 0 0 10px;
+            transform:scale(.8);
+
             li {
-                background:#eee;
-                border-radius:5px;
-                border-color:#aaa;
-                cursor:pointer;
-                padding-bottom:10px !important;
+                margin-right:0;
+                padding:0;
             }
 
-            [data-stamp="true"] { display:inline-block; }
+            &:hover {
+                transform:scale(1);
 
-            + .viewOptions { display:none; }
+                li {
+                     padding:8px 10px 10px 10px;
+                }
+            }
         }
     }
-}
-
-.resourceRow {
-    .tileOptions li [data-stamp="true"] {
-        &:hover:before {
+    &[data-type="assignment"] {
+        li [data-stamp="true"]:hover:before {
+            color:red !important;
             display:none;
         }
     }

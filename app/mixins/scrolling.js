@@ -1,20 +1,19 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
-    _self: this,
-    bindScrolling: function(opts) {
+    bindScrolling: function() {
         var onScroll, _this = this;
 
         onScroll = function(){
             return _this.scrolled();
         };
 
-        $(document).bind('touchmove', onScroll);
-        $(window).bind('scroll', onScroll);
+        Ember.$(document).bind('touchmove', onScroll);
+        Ember.$(window).bind('scroll', onScroll);
     },
 
     unbindScrolling: function() {
-        $(window).unbind('scroll');
-        $(document).unbind('touchmove');
+        Ember.$(window).unbind('scroll');
+        Ember.$(document).unbind('touchmove');
     }
 });

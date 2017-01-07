@@ -12,24 +12,11 @@
 
     .dateMarker {
         background:transparent;
-        border-bottom:2px solid red;
-        box-shadow:0 0 10px 2px rgba(100,0,0,.5);
+        border-bottom:5px solid red;
         height:30px;
-        outline:1px solid #000;
         position:absolute;
         width:15px;
         z-index:4;
-
-        &:after {
-            content:'';
-            background:#000;
-            bottom:-18px;
-            height:15px;
-            left:7px;
-            opacity:.2;
-            position:absolute;
-            width:1px;
-        }
     }
 
     .quarter {
@@ -140,6 +127,35 @@
                         position:absolute;
                         width:15px;
                     }
+
+                    .dayNum {
+                        &:after {
+                            content:'';
+                            border:10px solid #c1a;
+                            border-bottom-color:transparent;
+                            border-left-color:transparent;
+                            border-right-color:transparent;
+                            bottom:-20px;
+                            display:block;
+                            left:-3px;
+                            height:0;
+                            position:absolute;
+                            width:0;
+                            z-index:9;
+                        }
+                        &:before {
+                            border:2px solid #c1a;
+                            border-radius:100%;
+                            content:'';
+                            display:block;
+                            height:30px;
+                            left:-10px;
+                            position:absolute;
+                            top:-5px;
+                            width:30px;
+                            z-index:9;
+                        }
+                    }
                 }
                 &.teamDate, .teamDate {
                     &:before {
@@ -202,7 +218,17 @@ header {
     }
 }
 
-#calendarWeekly .day { border-left:0; }
+#calendarWeekly .day {
+    border-left:0;
+    &.selected .dayNum {
+        &:after {
+            bottom:-25px;
+        }
+        &:before {
+            top:-7px;
+        }
+    }
+}
 #calendarDaily .day {
     &.selected {
         border-top:0;
@@ -232,13 +258,12 @@ header {
 
 .dateLine {
     background:#000;
-    box-shadow:1px 1px 1px 1px rgba(255,255,255,1);
+    box-shadow:0px 0px 0px 1px rgba(255,255,255,1);
     height:100%;
     margin-left:6px;
     opacity:.2;
     position:absolute;
     top:0;
-    width:1px;
     z-index:6;
 
     &.holidayLine, &#todayDateLine {
