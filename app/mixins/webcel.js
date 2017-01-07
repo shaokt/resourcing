@@ -101,11 +101,36 @@ export default Ember.Mixin.create(CalendarWidget, {
 
 		addTiles = (Ember.$(clone).find(".tiles")[0].innerHTML.replace(/<!---->/g, '').trim() + addTiles).htmlSafe();
 
+        addTiles = this.sortTiles(addTiles);
+
         this.data.set(this.constants.daily ? 'timeaway' : 'assignment', addTiles);
+        if(this.constants.daily) { this.rowComponent.updateCounters(); }
 
 		Ember.$(this.sizer).hide();
         this.downX = this.upX = 0;
     },//getTiles
+
+    sortTiles: function(addTiles){
+        if(this.constants.daily){
+            var div = Ember.$('<div></div>').append(addTiles.string);
+            div.find('span').sort(function(a, b) {
+                return +a.getAttribute('data-x') - +b.getAttribute('data-x');
+            }).appendTo(div);
+
+            Ember.$(div[0].childNodes).each(function(index){
+                const prev = Ember.$(div[0].childNodes)[index - 1];
+
+                if(!(Ember.$(this).attr('class') === Ember.$(prev).attr('class') &&
+                    Ember.$(this).attr('data-x') - Ember.$(prev).attr('data-x') <= 15)){
+                    Ember.$(this).attr('data-stamp', true);
+                } else {
+                    Ember.$(this).removeAttr('data-stamp');
+                }
+            });
+            addTiles = div[0].innerHTML.htmlSafe();
+        }
+        return addTiles;
+    },
 
     setPhase: function(){
         // only create the phase stamp if a phase is selected
@@ -224,8 +249,9 @@ export default Ember.Mixin.create(CalendarWidget, {
                     if(self.get('router.currentRouteName') === 'roadmap.index'){
                         self.setPhase(e);
                     }
-                    // stamps  the short name of the project on the project tile
+                    // stamps the short name of the project on the project tile
                     else {
+                        if(self.constants.daily) { return; } // with auto-stamping outOfOffice codes, disable right-click stamp of these tiles
     					var thisTile = Ember.$(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
                         if(thisTile.attr('data-stamp') === "true"){ thisTile.removeAttr('data-stamp'); }
                         else{ thisTile.attr('data-stamp', true); }

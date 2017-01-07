@@ -36,21 +36,25 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     init() {
         this._super();
 
-        Ember.run.scheduleOnce("afterRender",this,()=>{this.setTitle();});
+        Ember.run.scheduleOnce("afterRender",this,()=>{
+            this.setTitle();
+            var self = this;
+            var result = "";
+            var vacationCounters = ['lieu', 'personal', 'sick', 'unofficial'];
+            var vacationCountersPrevious = ['vacationCarryover'];
+            Ember.$.each(vacationCounters, function(i, val){
+            	result += '.tiles .' + val + '[data-year="' + self.get('year')+ '"] { counter-increment:' + val + 'Counter } ';
+            });
+            Ember.$.each(vacationCountersPrevious, function(i, val){
+            	result += '.tiles .' + val + '[data-year="' + (self.get('year')-1) + '"] { counter-increment:' + val + 'Counter } ';
+            });
+            self.set('counterCSS', result)
+        });
 
         this.minLeft = 22 * this.constants.DIM; // assume 22 business days in a month
         this.bindScrolling();
         this.bindMouseMove();
 
-        var self = this;
-        var vacationCounters = ['lieu', 'personal', 'sick', 'unofficial', 'vacation'];
-        var vacationCountersPrevious = ['vacationCarryover'];
-        Ember.$.each(vacationCounters, function(i, val){
-        	self.counterCSS += '.tiles .' + val + '[data-year="' + self.year+ '"] { counter-increment:' + val + 'Counter } ';
-        });
-        Ember.$.each(vacationCountersPrevious, function(i, val){
-        	self.counterCSS += '.tiles .' + val + '[data-year="' + (self.year-1) + '"] { counter-increment:' + val + 'Counter } ';
-        });
     },
 
     scrolled: function(){ this.constants.scrolled(this.minLeft); },

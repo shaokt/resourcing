@@ -4,6 +4,8 @@ import { storageFor } from 'ember-local-storage';
 
 export default ResourceRowComponent.extend({
     tagName: 'div',
+    attributeBindings: ['tabindex'],
+    tabindex:0,
     classNames: ['info'],
     classNameBindings: ['editing'],
     collapse: '',
@@ -21,6 +23,14 @@ export default ResourceRowComponent.extend({
                 self.set('hasDirects', exists.responseJSON ? true : false);
             });
         }
+    },
+
+    mouseEnter(e) {
+        this.updateCounters(e);
+    },
+
+    focusIn(e) {
+        this.updateCounters(e);
     },
 
     actions: {
