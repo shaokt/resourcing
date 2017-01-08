@@ -15,7 +15,7 @@ export default DS.JSONAPIAdapter.extend({
     },
 
     _swap(obj, path, filename){
-        const url = `${this.host}/${path}/swap/${this.get('constants.year')}/${filename}/${obj.index}/${obj.newIndex}`;
+        const url = `${this.host}/${path}/swap/${this.get('constants.year')}/${obj.index}/${obj.newIndex}/${filename}`;
         return this.ajax(url, "patch");
     },
 

@@ -31,7 +31,7 @@ export default Ember.Component.extend({
         if(route === 'roadmap.index'){
             this.set('showAddEmployee', false);
             this.set('showEmployeeTracking', false);
-            this.set('showSort', false);
+            this.set('showSort', true);
             this.set('showOrg', true);
             this.set('showTeam', true);
             this.set('showToggleRows', false);
@@ -39,7 +39,7 @@ export default Ember.Component.extend({
         else if(route === 'roadmap.edit') {
             this.set('showAddEmployee', false);
             this.set('showEmployeeTracking', false);
-            this.set('showSort', true);
+            this.set('showSort', false);
             this.set('showOrg', true);
             this.set('showTeam', false);
             this.set('showRoadmap', true);

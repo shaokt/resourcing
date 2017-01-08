@@ -85,6 +85,17 @@
         {{/if}}
         {{/unless}}
 
+        {{#if showOrg}}
+            <li class="org">
+                <a href="/home?id={{settings.lastManager}}{{yearHome}}">
+                    <span class="member"></span>
+                    <span class="member"></span>
+                    <span class="member"></span>
+                    <span class="text">View Org</span>
+                </a>
+            </li>
+        {{/if}}
+
         {{#unless constants.disableEditing}}
         {{#if showSort}}
             {{#if this.constants.draggable}}
@@ -125,17 +136,6 @@
                     {{else}}
                         <span class="text">Show Hidden Rows</span>
                     {{/if}}
-                </a>
-            </li>
-        {{/if}}
-
-        {{#if showOrg}}
-            <li class="org">
-                <a href="/home?id={{settings.lastManager}}{{yearHome}}">
-                    <span class="member"></span>
-                    <span class="member"></span>
-                    <span class="member"></span>
-                    <span class="text">View Org</span>
                 </a>
             </li>
         {{/if}}

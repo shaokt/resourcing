@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import ResourceRowComponent from "./resource-row";
 import { storageFor } from 'ember-local-storage';
 
-export default Ember.Component.extend({
+export default ResourceRowComponent.extend({
     tagName:'',
     currentAssignment:0,
     persons: [],

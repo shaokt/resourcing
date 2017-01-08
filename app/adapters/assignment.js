@@ -10,5 +10,9 @@ export default ApplicationAdapter.extend({
 
     updateRecord(store, type, snapshot){
         return this._updateRecord(store, type, snapshot, 'assignments', 'assignment');
+    },
+
+    swap(obj){
+        return this._swap(obj, 'assignments', 'assignment');
     }
 });

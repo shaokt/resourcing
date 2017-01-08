@@ -194,9 +194,11 @@ export default Ember.Component.extend(Webcel, {
         },
 
         dragStart(e) {
+            this.set('theModel', 'model' + (this.get('router.currentRouteName') === 'home' ? '.resource' : ''));
+
         	this.dragSource = e.target;
-            var item = this.get('model').resource.findBy('id', Ember.$(this.dragSource).attr('data-id'));
-            this.dragSource.index = this.dragSource.newIndex = this.get('model').resource.indexOf(item);
+            var item = this.get(this.get('theModel')).findBy('id', Ember.$(this.dragSource).attr('data-id'));
+            this.dragSource.index = this.dragSource.newIndex = this.get(this.get('theModel')).indexOf(item);
 
         	Ember.$(this.dragSource).addClass('moving');
             Ember.$('#pageContainer').addClass('moving');
@@ -209,11 +211,15 @@ export default Ember.Component.extend(Webcel, {
             Ember.$(this.dragSource.ghost).remove();
             Ember.$('#pageContainer').removeClass('moving');
 
-            var items = this.get('model').resource;
-            var item = this.get('model').resource.objectAt(this.dragSource.index);
+            var items = this.get(this.get('theModel'));
+            var item = this.get(this.get('theModel')).objectAt(this.dragSource.index);
 
             items.removeAt(this.dragSource.index);
-            this.get('store').adapterFor('resource').swap(this.dragSource);
+            if(this.get('theModel') === 'model.resource'){
+                this.get('store').adapterFor('resource').swap(this.dragSource);
+            } else {
+                this.get('store').adapterFor('assignment').swap(this.dragSource);
+            }
             try{
                 items.insertAt(this.dragSource.newIndex, item._internalModel);
             }
