@@ -10,5 +10,9 @@ export default ApplicationAdapter.extend({
 
     updateRecord(store, type, snapshot){
         return this._updateRecord(store, type, snapshot, 'resources', this.get('settings.lastManager'));
+    },
+
+    swap(obj){
+        return this._swap(obj, 'resources', this.get('settings.lastManager'));
     }
 });

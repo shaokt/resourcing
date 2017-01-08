@@ -31,15 +31,15 @@ export default Ember.Component.extend({
         if(route === 'roadmap.index'){
             this.set('showAddEmployee', false);
             this.set('showEmployeeTracking', false);
-            this.set('showSort', false);
+            this.set('showSort', true);
             this.set('showOrg', true);
             this.set('showTeam', true);
-            this.set('showToggleRows', false);
+            this.set('showToggleRows', true);
         }
         else if(route === 'roadmap.edit') {
             this.set('showAddEmployee', false);
             this.set('showEmployeeTracking', false);
-            this.set('showSort', true);
+            this.set('showSort', false);
             this.set('showOrg', true);
             this.set('showTeam', false);
             this.set('showRoadmap', true);
@@ -129,7 +129,7 @@ export default Ember.Component.extend({
 
         // show/hide hidden rows
         toggleViewHiddenRows() {
-            this.toggleProperty('settings.showHiddenRows');
+            this.toggleProperty(`settings.showHidden${this.get('showOrg') ? 'Assignments' : 'Employees'}`);
         },
 
         // export current year's file to next year
@@ -172,14 +172,8 @@ export default Ember.Component.extend({
             });
         },
 
-        // enable drag & drop of resource rows
-        dragEnable() {
-            this.set('constants.draggable', true);
-        },
-
-        // disable drag & drop of resource rows
-        dragDisable() {
-            this.set('constants.draggable', false);
+        toggleDrag() {
+            this.toggleProperty('constants.draggable');
         }
     }
 });

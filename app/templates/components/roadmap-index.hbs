@@ -2,13 +2,19 @@
     {{date-line}}
 {{/unless}}
 <div class="{{assignmentViewContainer}}">
-{{#each model as |assignment|}}
+{{#each model as |assignment index|}}
     {{#if (assignment-view-people settings.view assignment.id currentAssignment)}}
     <section class="resourceRow{{if assignment.hidden ' hidden'}}"
         data-active="{{assignment.active}}"
+        data-id="{{assignment.id}}"
+        data-index="{{index}}"
         data-name="{{assignment.short}}"
         data-type="assignment"
-        data-id="{{assignment.id}}"
+        draggable="{{if constants.draggable 'true'}}"
+        ondragenter={{action "dragEnter"}}
+        ondragstart={{action "dragStart"}}
+        ondragend={{action "dragEnd"}}
+        ondragover={{action "dragOver"}}
     >
     	<div class="row" data-view="roadmap" data-phase-action="{{phaseAction}}">
             {{#if settings.isDailyCalendar}}

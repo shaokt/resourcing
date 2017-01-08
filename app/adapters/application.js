@@ -14,6 +14,11 @@ export default DS.JSONAPIAdapter.extend({
         return this.ajax(url, "post", {data: this.serializeData(store, type, snapshot)});
     },
 
+    _swap(obj, path, filename){
+        const url = `${this.host}/${path}/swap/${this.get('constants.year')}/${obj.index}/${obj.newIndex}/${filename}`;
+        return this.ajax(url, "patch");
+    },
+
     serializeData(store, type, snapshot){
         var data = {};
         var serializer = store.serializerFor(type.modelName);

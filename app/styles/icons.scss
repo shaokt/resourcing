@@ -36,6 +36,10 @@ section.resourceRow {
 }//section.resourceRow
 
 [data-view-team="true"] {
+    .menu .viewOptions li {
+        &.dragSort { visibility:hidden; }
+    }
+
     section.resourceRow {
         ul.viewOptions {
             display:block;
@@ -298,7 +302,7 @@ ul.viewOptions {
     }//remove
 
     .profile {
-        margin:0 25px 0 5px !important;
+        margin:0 35px 0 5px !important;
         &:after, &:before { display:none; }
 
         a {
