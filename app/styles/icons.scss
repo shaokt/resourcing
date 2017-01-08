@@ -263,14 +263,14 @@ ul.viewOptions {
         &:before {
             background:#fff;
             height:10px;
-            left:7px;
+            left:9px;
             margin-top:-5px;
             width:2px;
             z-index:10;
         }
 
         a:before, a:after {
-            margin:-8px 0 0;
+            margin:-8px 0 0 2px;
         }
 
         a:before {
