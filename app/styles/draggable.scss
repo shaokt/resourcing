@@ -30,6 +30,12 @@
             .viewOptions li:not(.showWhileDragging){ visibility:hidden; }
         }
 
+        .assignmentViewContainer {
+            display:none;
+        }
+
+        .rowContainer { padding-top:0; }
+
         .resourceRow {
             cursor:move;
 
