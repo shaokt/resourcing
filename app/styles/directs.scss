@@ -32,11 +32,12 @@ section.resourceRow {
                 top:6px;
                 width:19px;
             }
+            .viewOptions { z-index:9; }
         }
 
         .directs { // 2nd level down
             .resourceRow:before { margin-left:20px; }
-            .info { margin-left:40px;}
+            .info { margin-left:40px; }
                 .resourceRow {
                     &[data-expanded="true"]:last-child {
                         > .row {

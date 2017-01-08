@@ -260,15 +260,25 @@ ul.viewOptions {
     }//toggle
 
     .expand {
-        &:before {
-            background:#fff;
-            height:10px;
-            left:9px;
-            margin-top:-5px;
-            width:2px;
-            z-index:10;
-        }
+        a span {
+            display:block;
+            height:100%;
+            position:absolute;
+            width:100%;
 
+            &:before {
+                background:#fff;
+                content:'';
+                display:block;
+                height:10px;
+                left:9px;
+                margin-top:-5px;
+                position:absolute;
+                top:50%;
+                width:2px;
+                z-index:10;
+            }
+        }
         a:before, a:after {
             margin:-8px 0 0 2px;
         }
@@ -289,6 +299,7 @@ ul.viewOptions {
     }//expand
 
     .collapse {
+        a span:before { display:none; }
         &:before {
             background:none;
         }
