@@ -1,6 +1,7 @@
 #pageContainer header .viewOptions {
     .team {
         margin-left:10px;
+        margin-right:40px;
         min-width:65px;
         width:auto;
 
@@ -196,10 +197,6 @@
                     }
                 }
             }//hover
-
-            &[data-active="true"] {
-                transform:scale(1.5);
-            }
         }//team
     }// a
 

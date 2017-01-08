@@ -10,5 +10,6 @@ export default {
         // router
         application.inject('controller', 'router', 'router:main');
         application.inject('component', 'router', 'router:main');
+        application.inject('storage', 'router', 'router:main');
     }
 };

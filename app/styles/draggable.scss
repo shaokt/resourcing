@@ -26,10 +26,15 @@
 
     &[data-dragging="true"]{
         header {
-            button:not(#dragDisable),
             .tileOptions,
-            .viewOptions { visibility:hidden; }
+            .viewOptions li:not(.showWhileDragging){ visibility:hidden; }
         }
+
+        .assignmentViewContainer {
+            display:none;
+        }
+
+        .rowContainer { padding-top:0; }
 
         .resourceRow {
             cursor:move;
@@ -38,7 +43,6 @@
                 cursor:move;
             }
 
-            &:after,
             .counters,
             .viewOptions li:not(.drag) {
                 display:none;
