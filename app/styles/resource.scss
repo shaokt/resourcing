@@ -253,6 +253,10 @@ section.resourceRow {
             width:100%;
             z-index: 2;
         }
+
+        &:hover:after {
+            display:none;
+        }
     }
 
 
