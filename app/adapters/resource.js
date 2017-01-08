@@ -14,5 +14,9 @@ export default ApplicationAdapter.extend({
 
     swap(obj){
         return this._swap(obj, 'resources', this.get('settings.lastManager'));
+    },
+
+    deleteRecord(store, type, snapshot){
+        return this._deleteRecord(store, type, snapshot, 'resources', this.get('settings.lastManager'));
     }
 });

@@ -14,6 +14,12 @@ export default DS.JSONAPIAdapter.extend({
         return this.ajax(url, "post", {data: this.serializeData(store, type, snapshot)});
     },
 
+    _deleteRecord(store, type, snapshot, path, filename){
+        const url = `${this.host}/${path}/${snapshot.id}/${this.get('constants.year')}/${filename}`;
+        //return this.ajax(url, "delete", {data: this.serializeData(store, type, snapshot)});
+        return this.ajax(url, "delete", {data: this.serializeData(store, type, snapshot)});
+    },
+
     _swap(obj, path, filename){
         const url = `${this.host}/${path}/swap/${this.get('constants.year')}/${obj.index}/${obj.newIndex}/${filename}`;
         return this.ajax(url, "patch");

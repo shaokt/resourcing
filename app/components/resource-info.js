@@ -56,7 +56,12 @@ export default ResourceRowComponent.extend({
             }
             else {
                 this.set('constants.editingRow', false);
-                this.save();
+                if(this.get('resource.toDelete')){
+                    this.get('resource').destroyRecord();
+
+                } else {
+                    this.save();
+                }
             }
         },
 
