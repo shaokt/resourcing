@@ -172,14 +172,8 @@ export default Ember.Component.extend({
             });
         },
 
-        // enable drag & drop of resource rows
-        dragEnable() {
-            this.set('constants.draggable', true);
-        },
-
-        // disable drag & drop of resource rows
-        dragDisable() {
-            this.set('constants.draggable', false);
+        toggleDrag() {
+            this.toggleProperty('constants.draggable');
         }
     }
 });
