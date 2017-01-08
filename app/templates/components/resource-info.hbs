@@ -21,26 +21,39 @@
 {{#if editing}}
     {{content-editable class="name" value=resource.name key-press="filter" focus-in=constants.focusInContentEditable}}
     {{content-editable class="name ad" value=resource.ad key-press="filter" focus-in=constants.focusInContentEditable}}
-    {{#if settings.isWeeklyCalendar}}
-        <input type="checkbox" id="deletePaintedtiles" onclick={{action "deleteTiles" event=event}} />
-        <label for="deletePaintedtiles">Delete</label>
-        <ul class="tileOptions">
+
+    <ul class="tileOptions" data-deletingTiles="{{deletingTiles}}">
+        {{#if settings.isWeeklyCalendar}}
             <li class="assignments">
                 {{assignment-tile model=model paint=true}}
             </li>
-        </ul>
-    {{else if settings.isDailyCalendar}}
-        <input type="checkbox" id="deletePaintedtiles" onclick={{action "deleteTiles" event=event}} />
-        <label for="deletePaintedtiles">Delete</label>
-        <ul class="tileOptions">
+        {{else if settings.isDailyCalendar}}
             <li class="timeAway">
                 {{time-away settings=settings}}
             </li>
-        </ul>
-    {{/if}}
+        {{/if}}
+    </ul>
+
+    <div class="delete tile">
+        <input type="checkbox" id="deletePaintedtiles" onclick={{action "deleteTiles" event=event}} />
+        <label for="deletePaintedtiles">Erase Tiles</label>
+    </div>
 {{else}}
 	<div class="name">{{resource.name}}</div>
 {{/if}}
 {{#unless readonly}}
     {{resource-counters resource=resource}}
 {{/unless}}
+
+{{#if editing}}
+    <div class="delete user">
+        <input type="checkbox" id="deleteUser" onclick={{action "deleteUser" event=event}} />
+        <label for="deleteUser">Delete User</label>
+        {{#if resource.toDelete}}
+            <div class="message">
+                <p>Lock the row to confirm deletion of <span class="toDelete">{{resource.name}}</span></p>
+                <p>Uncheck checkbox to cancel this action</p>
+            </div>
+        {{/if}}
+    </div>
+{{/if}}

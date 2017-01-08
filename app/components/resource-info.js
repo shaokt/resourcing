@@ -11,6 +11,7 @@ export default ResourceRowComponent.extend({
     collapse: '',
     hasDirects: false,
     editing: false,
+    deletingTiles: false,
     settings: storageFor("settings"),
 
     didRender(){
@@ -87,7 +88,12 @@ export default ResourceRowComponent.extend({
 
         // determines if we want to delete the painted tile or not
         deleteTiles() {
+            this.toggleProperty('deletingTiles');
             this.constants.webcel.deleteTile(event.target.checked);
+        },
+
+        deleteUser(e) {
+            this.set('resource.toDelete', Ember.$(e.target).prop('checked'));
         },
 
         // TODO:  send the name back up for saving

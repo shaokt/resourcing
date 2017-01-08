@@ -36,7 +36,7 @@
 
 .tileOptions {
     cursor:pointer;
-     max-width:50%;
+    max-width:50%;
 
     &:hover {
         outline:none;
@@ -177,41 +177,63 @@
 
 .resourceRow {
     &[data-type="person"] {
-        #deletePaintedtiles {
-            &:checked {
-                ~ .tileOptions {
+        .info {
+            color:#fff;
+
+            .tileOptions {
+                &[data-deletingTiles="true"] {
                     visibility:hidden;
+                }
 
-                    &:hover {
-                        transform:scale(.8);
-
-                        li {
-                            background:none;
-                            border-color:transparent;
-                            padding:0;
-
-                            .tileContainer {
-                                margin:0;
-
-                                &[data-active="false"] {
-                                    display:none;
-                                }
-
-                                &[data-active="true"] {
-                                    a:before {
-                                        display:none;
-                                    }
-                                }
-                            }
-                        }// li
-                    }// hover
-                }// .tileOptions
-            }// checked
-
-            ~ label {
-                color:#fff;
+                &:hover {
+                    ~ *{
+                        display:none;
+                    }
+                }
             }
-        }// deletePaintedtiles
+
+            .delete {
+                float:left;
+
+                &.user {
+                    margin-left:30px;
+
+                    label {
+                        background:#000;
+                        padding:3px 6px 3px 20px;
+                        border-radius:5px;
+                        margin-left:-20px;
+                    }
+
+                    input {
+                        position:relative;
+                    }
+                }
+
+                .message {
+                    background:#222;
+                    box-shadow: 0 0 10px 5px rgba(25,25,25,.5);
+                    border:2px solid #fff;
+                    border-radius:10px;
+                    margin-top:5px;
+                    padding:15px 20px;
+
+                    p {
+                        margin-top:10px;
+                        &:first-child {
+                            margin-top:0;
+                        }
+                    }
+
+                    .toDelete {
+                        background:#d9d;
+                        border-radius:2px;
+                        padding:0 3px;
+                        text-shadow:1px 1px 5px #222;
+                    }
+                }//.message
+            }//.delete
+        }//.info
 
         .tileOptions {
             float:left;
