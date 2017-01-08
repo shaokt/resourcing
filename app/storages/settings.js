@@ -14,8 +14,8 @@ const Storage = StorageObject.extend({
     }.property('view'),
 
     isHiddenRows: function(){
-        return this.get('showHiddenRows');
-    }.property('showHiddenRows')
+        return this.get(`showHidden${this.get('router.currentRouteName') === 'home' ? 'Employees' : 'Assignments'}`);
+    }.property('showHiddenEmployees', 'showHiddenAssignments')
 });
 
 Storage.reopenClass({
@@ -26,7 +26,8 @@ Storage.reopenClass({
             timeawayTile: "vacation",
             lastManager: "",
             gridLines: false,
-            showHiddenRows: false
+            showHiddenEmployees: false,
+            showHiddenAssignments: false
         };
     }
 });

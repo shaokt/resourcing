@@ -129,7 +129,7 @@ export default Ember.Component.extend({
 
         // show/hide hidden rows
         toggleViewHiddenRows() {
-            this.toggleProperty('settings.showHiddenRows');
+            this.toggleProperty(`settings.showHidden${this.get('showOrg') ? 'Assignments' : 'Employees'}`);
         },
 
         // export current year's file to next year
