@@ -36,6 +36,10 @@ section.resourceRow {
 }//section.resourceRow
 
 [data-view-team="true"] {
+    .menu .viewOptions li {
+        &.dragSort { visibility:hidden; }
+    }
+
     section.resourceRow {
         ul.viewOptions {
             display:block;

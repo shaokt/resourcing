@@ -96,50 +96,6 @@
             </li>
         {{/if}}
 
-        {{#unless constants.disableEditing}}
-        {{#if showSort}}
-            {{#if this.constants.draggable}}
-                <li class="dragSort showWhileDragging">
-                    <a href="drag &amp; drop sorting" class="drag" {{action "dragDisable" on="click"}}>
-                        <span class="leftArrow"></span>
-                        <span class="rightArrow"></span>
-                        <span class="text">Done Sorting</span>
-                    </a>
-                </li>
-            {{else}}
-                <li class="dragSort">
-                    <a href="drag &amp; drop sorting" {{action "dragEnable" on="click"}}>
-                        <span class="leftArrow"></span>
-                        <span class="rightArrow"></span>
-                        <span class="text">Drag Sort</span>
-                    </a>
-                </li>
-            {{/if}}
-        {{/if}}
-        {{/unless}}
-
-        {{#if constants.editAssignments}}
-            <li class="assignment">
-                <a href="add assignment" {{action "addAssignment" on="click"}}>
-                    <span class="pencil"><span class="wood"></span></span>
-                    <span class="text">Add Assignment</span>
-                </a>
-            </li>
-        {{/if}}
-
-        {{#if showToggleRows}}
-            <li class="toggle showWhileDragging">
-                <a href="toggle hidden rows" {{action "toggleViewHiddenRows" on="click"}}>
-                    <span class="eye"></span>
-                    {{#if settings.isHiddenRows}}
-                        <span class="text">Hide Hidden Rows</span>
-                    {{else}}
-                        <span class="text">Show Hidden Rows</span>
-                    {{/if}}
-                </a>
-            </li>
-        {{/if}}
-
         {{#if showTeam}}
             <li class="team">
                 <a href="view team" {{action "viewTeam" on="click"}} data-active="{{constants.teamAssignmentView}}">
@@ -194,6 +150,50 @@
                 </a>
             </li>
         {{/unless}}
+
+        {{#if showToggleRows}}
+            <li class="toggle showWhileDragging">
+                <a href="toggle hidden rows" {{action "toggleViewHiddenRows" on="click"}}>
+                    <span class="eye"></span>
+                    {{#if settings.isHiddenRows}}
+                        <span class="text">Hide Hidden Rows</span>
+                    {{else}}
+                        <span class="text">Show Hidden Rows</span>
+                    {{/if}}
+                </a>
+            </li>
+        {{/if}}
+
+        {{#unless constants.disableEditing}}
+        {{#if showSort}}
+            {{#if this.constants.draggable}}
+                <li class="dragSort showWhileDragging">
+                    <a href="drag &amp; drop sorting" class="drag" {{action "dragDisable" on="click"}}>
+                        <span class="leftArrow"></span>
+                        <span class="rightArrow"></span>
+                        <span class="text">Done Sorting</span>
+                    </a>
+                </li>
+            {{else}}
+                <li class="dragSort">
+                    <a href="drag &amp; drop sorting" {{action "dragEnable" on="click"}}>
+                        <span class="leftArrow"></span>
+                        <span class="rightArrow"></span>
+                        <span class="text">Drag Sort</span>
+                    </a>
+                </li>
+            {{/if}}
+        {{/if}}
+        {{/unless}}
+
+        {{#if constants.editAssignments}}
+            <li class="assignment">
+                <a href="add assignment" {{action "addAssignment" on="click"}}>
+                    <span class="pencil"><span class="wood"></span></span>
+                    <span class="text">Add Assignment</span>
+                </a>
+            </li>
+        {{/if}}
     </ul>
     {{#unless viewingCurrentYear}}
         <div class="message notCurrent">

@@ -34,7 +34,7 @@ export default Ember.Component.extend({
             this.set('showSort', true);
             this.set('showOrg', true);
             this.set('showTeam', true);
-            this.set('showToggleRows', false);
+            this.set('showToggleRows', true);
         }
         else if(route === 'roadmap.edit') {
             this.set('showAddEmployee', false);
