@@ -104,6 +104,14 @@
                 text-align:center;
                 width:15px;
 
+                &[tabindex],
+                &:focus {
+                    background:yellow !important;
+                    color:#000 !important;
+                    outline:0;
+                    text-shadow:none !important;
+                }
+
                 &:hover { cursor:default; }
                 &[data-day-name="M"] { border-left:1px solid #f6ceef; }
                 &[data-day-name="F"] { border-right:1px solid #f6ceef; }

@@ -91,7 +91,7 @@ export default Ember.Component.extend(WebcelMixin, {
             date.week.attr("tabindex", 0);
             this.set('constants.todayColumn', date.week.attr("data-column"));
             this.setTeamDate(date);
-            this.scrollToday(500);
+            if(!this.get('constants.teamAssignmentView')){ this.scrollToday(500); }
             Ember.$('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))});
             this.set('viewingCurrentYear', true);
         }catch(e){
@@ -118,8 +118,10 @@ export default Ember.Component.extend(WebcelMixin, {
 
         // in the timeaway view, add the teamDate class one level lower
         if(this.get('settings.view') === 'timeaway' && this.get('router.currentRouteName') === 'roadmap.index'){
-            //console.log(this.get('constants.todayColumnDate').find('.dayNum'))
-            Ember.$(this.get('constants.todayColumnDate').find('.dayNum')).addClass('teamDate');
+            var teamDate = Ember.$(this.get('constants.todayColumnDate').find('.dayNum')).addClass('teamDate').parent();
+            teamDate.attr('tabindex',0).focus();
+
+            Ember.$(window).scrollLeft(teamDate.attr('data-column') - (this.constants.DIM*22));
         }
     },
 
