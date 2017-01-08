@@ -1,9 +1,11 @@
 <ul class="viewOptions">
     {{#unless constants.disableEditing}}
         {{#unless readonly}}
-            <li class="lock">
-                <a href="{{resource.name}} {{resource.ad}}/edit" {{action "editing" on="click"}}><span></span></a>
-            </li>
+            {{#if lockable}}
+                <li class="lock">
+                    <a href="{{resource.name}} {{resource.ad}}/edit" {{action "editing" on="click"}}><span></span></a>
+                </li>
+            {{/if}}
 
             <li class="toggle">
                 <a href="{{resource.name}} {{resource.ad}}/toggle" {{action "toggleRow" on="click"}}></a>
@@ -53,10 +55,14 @@
 {{#if editing}}
     <div class="delete user">
         <input type="checkbox" id="deleteUser" onclick={{action "deleteUser" event=event}} />
-        <label for="deleteUser">Delete User</label>
+        <label for="deleteUser">Delete {{resource.name}}</label>
         {{#if resource.toDelete}}
             <div class="message">
-                <p>Lock the row to confirm deletion of <span class="toDelete">{{resource.name}}</span></p>
+                {{#unless lockable}}
+                    <p><a href="{{resource.name}} {{resource.ad}}/confirm delete" {{action "confirmDeleteUser" on="click"}}>Continue with delete?</a></p>
+                {{else}}
+                    <p>Lock the row to complete deletion of <span class="toDelete">{{resource.name}}</span></p>
+                {{/unless}}
                 <p>Uncheck checkbox to cancel this action</p>
             </div>
         {{/if}}

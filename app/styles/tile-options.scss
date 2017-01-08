@@ -223,6 +223,18 @@
                         &:first-child {
                             margin-top:0;
                         }
+
+                        a {
+                            background:#3B3FFC;
+                            border-radius:2px;
+                            border:1px solid #fff;
+                            color:#fff;
+                            height:auto;
+                            margin-top:-3px;
+                            padding:2px 5px;
+                            text-decoration:none;
+                            width:auto;
+                        }//.confirmDelete
                     }
 
                     .toDelete {

@@ -12,6 +12,7 @@ export default ResourceRowComponent.extend({
     hasDirects: false,
     editing: false,
     deletingTiles: false,
+    lockable: true,
     settings: storageFor("settings"),
 
     didRender(){
@@ -98,7 +99,12 @@ export default ResourceRowComponent.extend({
         },
 
         deleteUser(e) {
+            this.set('lockable', !Ember.$(e.target).prop('checked'));
             this.set('resource.toDelete', Ember.$(e.target).prop('checked'));
+        },
+
+        confirmDeleteUser() {
+            this.set('lockable', true);
         },
 
         // TODO:  send the name back up for saving
