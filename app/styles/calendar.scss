@@ -206,18 +206,6 @@
     }// holiday
 }//calendar
 
-header {
-    &:hover {
-        .dateMarker {
-            box-shadow:none;
-            height:0 !important;
-            outline:none;
-            top:66px;
-            z-index:0;
-        }
-    }
-}
-
 #calendarWeekly .day {
     border-left:0;
     &.selected .dayNum {
