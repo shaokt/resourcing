@@ -201,10 +201,10 @@ export default Ember.Component.extend(Webcel, {
         	Ember.$(this.dragSource).addClass('moving');
             Ember.$('#pageContainer').addClass('moving');
         	e.dataTransfer.effectAllowed = 'copyMove';
+            e.dataTransfer.setDragImage(Ember.$('<div></div>')[0], 0, 0);
         },
 
         dragEnd() {
-            console.log(this.dragSource.index + " : " + this.dragSource.newIndex);
         	Ember.$(this.dragSource).removeClass('moving');
             Ember.$(this.dragSource.ghost).remove();
             Ember.$('#pageContainer').removeClass('moving');
@@ -213,6 +213,7 @@ export default Ember.Component.extend(Webcel, {
             var item = this.get('model').resource.objectAt(this.dragSource.index);
 
             items.removeAt(this.dragSource.index);
+            this.get('store').adapterFor('resource').swap(this.dragSource);
             try{
                 items.insertAt(this.dragSource.newIndex, item._internalModel);
             }

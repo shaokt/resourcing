@@ -26,9 +26,8 @@
 
     &[data-dragging="true"]{
         header {
-            button:not(#dragDisable),
             .tileOptions,
-            .viewOptions { visibility:hidden; }
+            .viewOptions li:not(.showWhileDragging){ visibility:hidden; }
         }
 
         .resourceRow {
@@ -38,7 +37,6 @@
                 cursor:move;
             }
 
-            &:after,
             .counters,
             .viewOptions li:not(.drag) {
                 display:none;
