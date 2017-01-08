@@ -94,12 +94,19 @@
                     height:20px;
                     position:absolute;
                     border:20px solid transparent;
+                    border-right:0;
                     margin-left:-45px;
-                    left:0;
+                    left:-4px;
                     top:-6px;
+                    width:auto;
 
                     li {
+                        float:none;
                         height:100%;
+                        
+                        a {
+                            opacity:1;
+                        }
                     }
                 }
 

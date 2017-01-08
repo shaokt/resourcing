@@ -1,4 +1,5 @@
 /*http://nicolasgallagher.com/pure-css-gui-icons/demo/*/
+table.edit,
 section.resourceRow {
     ul.viewOptions {
         left:-60px;
@@ -226,9 +227,12 @@ ul.viewOptions {
     }//viewTeam
 
     .toggle {
-        &:hover {
-            a:after {
-                background:#C55500;
+        a {
+            &:focus,
+            &:hover {
+                &:after, &:before {
+                    background:#C55500;
+                }
             }
         }
 

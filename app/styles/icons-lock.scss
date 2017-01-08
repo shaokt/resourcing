@@ -48,13 +48,13 @@
     a:hover:after {
         border-color:#C55500;
         :after {
-
-        background:#fff;
+            background:#fff;
         }
     }
 
     a:focus:before,
     a:hover:before {
+        background:#c55500;
         box-shadow:-1px 3px 1px 1px rgba(0, 0, 0, .3);
     }
 }//locks
