@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import ResourceRowComponent from "./resource-row";
 import { storageFor } from 'ember-local-storage';
 

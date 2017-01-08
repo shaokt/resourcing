@@ -48,7 +48,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
             Ember.$.each(vacationCountersPrevious, function(i, val){
             	result += '.tiles .' + val + '[data-year="' + (self.get('year')-1) + '"] { counter-increment:' + val + 'Counter } ';
             });
-            self.set('counterCSS', result)
+            self.set('counterCSS', result);
         });
 
         this.minLeft = 22 * this.constants.DIM; // assume 22 business days in a month

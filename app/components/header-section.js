@@ -143,14 +143,14 @@ export default Ember.Component.extend({
 
             if(this.get('settings.view') === 'roadmap'){
                 extraDays = {1:0, 2:0, 3:0, 4:1, 5:2, 6:3, 7:4}; // all posible values for a Monday are 1-7th. If > 3, then need to account for days from previous week
-                dayNum = extraDays[parseInt($(q1).find('.dayNum')[0].innerHTML)] * 15;
-                q1Weekly = parseInt($(q1).attr('data-column'));
+                dayNum = extraDays[parseInt(Ember.$(q1).find('.dayNum')[0].innerHTML)] * 15;
+                q1Weekly = parseInt(Ember.$(q1).attr('data-column'));
                 q1Daily = (q1Weekly*5) - dayNum;
             }
             else {
                 extraDays = {M:0, T:4, W:3, R:2, F:1}; // all possible days the month can start on. If not Monday, then need to account for extra days to the next Monday
-                dayNum = parseInt(extraDays[$(q1).find('.dayName')[0].innerHTML]) * 15;
-                q1Daily = parseInt($(q1).attr('data-column'));
+                dayNum = parseInt(extraDays[Ember.$(q1).find('.dayName')[0].innerHTML]) * 15;
+                q1Daily = parseInt(Ember.$(q1).attr('data-column'));
                 q1Weekly = (q1Daily + dayNum)/5;
             }
 
@@ -159,9 +159,9 @@ export default Ember.Component.extend({
                 var exists = Ember.$.getJSON(`http://localhost:3000/exists/${this.get('yearNext')}/assignments`, ()=> {})
                 .done(()=>{
                     if(!exists.responseJSON){
-                        Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/assignments`, ()=> {})
+                        Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/assignments`, ()=> {});
                     }
-                })
+                });
             }
 
             var create = Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/${filename}`, ()=> {})
