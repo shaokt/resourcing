@@ -11,6 +11,7 @@
         ondragstart={{action "dragStart"}}
         ondragend={{action "dragEnd"}}
         ondragover={{action "dragOver"}}
+        data-deleteUser={{resource.toDelete}}
     >
         {{#if settings.isWeeklyCalendar}}
         	<div class="row" data-view="roadmap" {{action "findAssignment"}}>
