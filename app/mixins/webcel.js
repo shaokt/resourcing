@@ -236,22 +236,20 @@ export default Ember.Mixin.create(CalendarWidget, {
 				case 1: { // left mouse button
                     if(self.rowComponent.get('phaseAction') === 'shift'){ break; } // do not paint if the user wants to shift the phases around
                     if(self.get('router.currentRouteName') === 'roadmap.index'){
-                        self.handle = Ember.$(e.target).hasClass('handle') ? Ember.$(e.target).hasClass('left') ? "left" : "right" : false;
-                        self.downX = self.get('rowComponent.assignment.x');
-                        if(self.handle === "right"){ self.downX += self.get('rowComponent.assignment.w') - self.constants.DIM; }
-                        self.set('rowComponent.assignment.originalWidth', self.get('rowComponent.assignment.w'));
+                        if(self.rowComponent.get('phaseAction') === 'stamp') { // stamp the roadmap with phases
+                            self.setPhase(e); // stamps limited to phases of the project defined in the assignment-phases component
+                        } else {
+                            self.handle = Ember.$(e.target).hasClass('handle') ? Ember.$(e.target).hasClass('left') ? "left" : "right" : false;
+                            self.downX = self.get('rowComponent.assignment.x');
+                            if(self.handle === "right"){ self.downX += self.get('rowComponent.assignment.w') - self.constants.DIM; }
+                            self.set('rowComponent.assignment.originalWidth', self.get('rowComponent.assignment.w'));
+                        }
                     }
                     if(!self.isDown){ self.isDown = 1; }
                     break;
                 }
 				case 3: { // right click: stamp
-                    // stamps limited to phases of the project defined in the assignment-phases component
-                    if(self.get('router.currentRouteName') === 'roadmap.index'){
-                        self.setPhase(e);
-                    }
-                    // stamps the short name of the project on the project tile
-                    else {
-                        if(self.constants.daily) { return; } // with auto-stamping outOfOffice codes, disable right-click stamp of these tiles
+                    if(!(self.constants.daily || self.get('router.currentRouteName') === 'roadmap.index')) {  // with auto-stamping outOfOffice codes, disable right-click stamp of these tiles
     					var thisTile = Ember.$(self.row).find('.tiles [data-x="' + self.downX +'"][data-y="' + self.downY + '"]');
                         if(thisTile.attr('data-stamp') === "true"){ thisTile.removeAttr('data-stamp'); }
                         else{ thisTile.attr('data-stamp', true); }
