@@ -19,8 +19,13 @@
 </ul>
 
 {{#if editing}}
-    {{content-editable class="name" value=resource.name key-press="filter" focus-in=constants.focusInContentEditable}}
-    {{content-editable class="name ad" value=resource.ad key-press="filter" focus-in=constants.focusInContentEditable}}
+    {{#unless resource.toDelete}}
+        {{content-editable class="name" value=resource.name key-press="filter" focus-in=constants.focusInContentEditable}}
+        {{content-editable class="name ad" value=resource.ad key-press="filter" focus-in=constants.focusInContentEditable}}
+    {{else}}
+    	<div class="name">{{resource.name}}</div>
+    	<div class="name">{{resource.ad}}</div>
+    {{/unless}}
 
     <ul class="tileOptions" data-deletingTiles="{{deletingTiles}}">
         {{#if settings.isWeeklyCalendar}}
