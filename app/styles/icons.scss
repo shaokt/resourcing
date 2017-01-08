@@ -50,8 +50,9 @@ section.resourceRow {
                 top:9px;
                 transform:scale(2);
 
+                a:focus,
                 a:hover {
-                    background:#000;
+                    background:#000 !important;
 
                     span {
                         left:7px;
@@ -177,7 +178,13 @@ ul.viewOptions {
         a {
             border-radius:2px;
             background:#ff0000;
+            opacity:1 !important;
             height:14px;
+
+            &:focus,
+            &:hover {
+                background:#ff0000 !important;
+            }
 
             span {
                 display:inline-block;

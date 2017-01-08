@@ -16,7 +16,7 @@
         height:30px;
         position:absolute;
         width:15px;
-        z-index:4;
+        z-index:-1;
     }
 
     .quarter {
@@ -103,6 +103,14 @@
                 position:relative;
                 text-align:center;
                 width:15px;
+
+                &[tabindex],
+                &:focus {
+                    background:yellow !important;
+                    color:#000 !important;
+                    outline:0;
+                    text-shadow:none !important;
+                }
 
                 &:hover { cursor:default; }
                 &[data-day-name="M"] { border-left:1px solid #f6ceef; }
@@ -205,18 +213,6 @@
         }
     }// holiday
 }//calendar
-
-header {
-    &:hover {
-        .dateMarker {
-            box-shadow:none;
-            height:0 !important;
-            outline:none;
-            top:66px;
-            z-index:0;
-        }
-    }
-}
 
 #calendarWeekly .day {
     border-left:0;
