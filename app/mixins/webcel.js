@@ -218,8 +218,9 @@ export default Ember.Mixin.create(CalendarWidget, {
 		mouseDown = function(e){
             // clicking on the stamp that you want to move around
             if(self.rowComponent.get('phaseAction').match(/shift|delete/)){
-                self.downX = self.upX = Ember.$(e.target).attr('data-x');
-                self.downY = self.upY = Ember.$(e.target).attr('data-y');
+                const obj = Ember.$(e.target).closest(`[data-type="tile"]`);
+                self.downX = self.upX = obj.attr('data-x');
+                self.downY = self.upY = obj.attr('data-y');
             }
             else {
     			self.downX = e.pageX - Ember.$(this).offset().left;

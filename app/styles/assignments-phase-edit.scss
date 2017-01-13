@@ -18,22 +18,12 @@
             }
 
             &[data-phaselink="true"] {
-                &:after {
-                    border:2px solid rgba(0,0,0,.7);
-                    background:#fff;
-                    color:#000;
-                }
+                border:2px solid rgba(0,0,0,.7);
+                background:#fff;
+                color:#000;
 
                 &.active {
-                    &:after {
-                        box-shadow:0 0 2px 2px #fffc00;
-                    }
-                }
-            }
-
-            &:hover {
-                &:after {
-                    border-color:#fff;
+                    box-shadow:0 0 2px 2px #fffc00;
                 }
             }
         }
@@ -57,5 +47,17 @@
     .pointer {
         display:block;
         z-index:0;
+    }
+}
+
+.phases {
+    [data-type="tile"] {
+        border:1px solid #000;
+        padding-top:1px;
+        
+        &:hover {
+            border-color:#fff;
+            box-shadow:0 0 2px 5px rgba(0,0,0,.5);
+        }
     }
 }

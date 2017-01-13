@@ -1,15 +1,17 @@
 [data-type="tile"] {
     &[data-phase] {
-        background:transparent;
+        background:rgba(0, 0, 0, 0.4);
+        height:auto !important;
+        line-height:100%;
+        padding:0 2px;
+        white-space:nowrap;
+        width:auto;
 
         &:before {
-            background:rgba(0, 0, 0, 0.4);
             content:"";
             cursor:none;
             left:0;
             line-height:100%;
-            padding:0 2px;
-            position:absolute;
             top:0;
             white-space:nowrap;
             z-index:1;
@@ -17,6 +19,14 @@
 
         &:hover {
             &:after { display:none; }
+        }
+
+        span {
+            &.text {
+                &:before {
+                    content:': ';
+                }
+            }
         }
     }//data-phase
 
