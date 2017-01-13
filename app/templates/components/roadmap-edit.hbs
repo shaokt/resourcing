@@ -1,16 +1,17 @@
 <tr>
     <td class="value">
         <style>
-            [data-assignment-id="{{assignment.id}}"] .hexbackgroundArrow:after { border-left-color:#{{hexbackground}} !important; }
+            [data-assignment-id="{{assignment.id}}"] .hexbackgroundArrow:after { border-left-color:#{{hexbackground}} !important;content:''; }
             [data-assignment-id="{{assignment.id}}"] tr { border-color:#{{hexbackground}}; }
 
-            [data-assignment-id="{{assignment.id}}"] .arrow:after,
             [data-assignment-id="{{assignment.id}}"] .arrow:before,
+            [data-assignment-id="{{assignment.id}}"] .arrow:after,
             [data-assignment-id="{{assignment.id}}"] .hexbackground,
             [data-assignment="{{assignment.id}}"] { background:#{{assignment.background}} !important; }
 
-            [data-assignment="{{assignment.id}}"][data-stamp="true"]:after { content:'{{assignment.short}}' }
-            [data-assignment="{{assignment.id}}"]:before { content:'{{assignment.long}}' !important; }
+
+            [data-assignment="{{assignment.id}}"][data-stamp="true"]:before { content:'{{assignment.short}}';display:block !important;padding:0 5px !important; }
+            [data-assignment="{{assignment.id}}"]:after { content:'{{assignment.long}}' !important; }
         </style>
 
         <div class="hexbackground"></div>

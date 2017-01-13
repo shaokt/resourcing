@@ -53,19 +53,19 @@
         line-height:180%;
         text-align:center;
 
-        &:after {
+        &:before {
             content:"???";
         }
-        &:before {
+        &:after {
             content:"Assignment was removed";
         }
 
         &:hover {
-            &:before {
+            &:after {
                 display:block;
             }
         }
-        &:before {
+        &:after {
             background:#000;
             cursor:none;
             display: none;
@@ -76,7 +76,7 @@
             z-index:2;
         }
         &[data-y="45"]{
-            &:before{
+            &:after {
                 top:-8px;
             }
         }
@@ -115,7 +115,7 @@
                                 background:rgba(0,0,0,.3);
                                 opacity:.8;
 
-                                &:before {
+                                &:after {
                                     display:table-cell;
                                     text-align:center;
                                     vertical-align:middle;
@@ -128,7 +128,7 @@
                                 &:hover {
                                     margin-left:-5px;
 
-                                    &:before {
+                                    &:after {
                                         content:"\25C0";
                                     }
                                 }
@@ -141,7 +141,7 @@
                                 &:hover {
                                     margin-right:-5px;
 
-                                    &:before {
+                                    &:after {
                                         content:"\25B6";
                                     }
                                 }
@@ -151,7 +151,7 @@
                 }// data-type tile
 
                 [data-stamp="true"]{
-                    &:hover:before {
+                    &:hover:after {
                         background:none;
                         content:"";
                     }
@@ -160,7 +160,7 @@
         }
 
         .tiles [data-stamp="true"]{
-            &:after {
+            &:before {
                 background:rgba(0,0,0,.4);
                 cursor:none;
                 left:0;

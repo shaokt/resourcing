@@ -2,7 +2,7 @@
     &[data-phase] {
         background:transparent;
 
-        &:after {
+        &:before {
             background:rgba(0, 0, 0, 0.4);
             content:"";
             cursor:none;
@@ -16,18 +16,18 @@
         }
 
         &:hover {
-            &:before { display:none; }
+            &:after { display:none; }
         }
     }//data-phase
 
-    &[data-phase="BAT"] { &:after { content:"BAT"; } }
-    &[data-phase="DIT"] { &:after { content:"DIT"; } }
-    &[data-phase="FRZ"] { &:after { content:"FRZ"; } }
-    &[data-phase="PLT"] { &:after { content:"PLT"; } }
-    &[data-phase="PRD"] { &:after { content:"PRD"; } }
-    &[data-phase="REQ"] { &:after { content:"Req"; } }
-    &[data-phase="SIT"] { &:after { content:"SIT"; } }
-    &[data-phase="SPR"] { &:after { content:"Spr"; } }
-    &[data-phase="UAT"] { &:after { content:"UAT"; } }
-    &[data-phase="WTY"] { &:after { content:"WTY"; } }
+    &[data-phase="BAT"] { &:before { content:"BAT"; } }
+    &[data-phase="DIT"] { &:before { content:"DIT"; } }
+    &[data-phase="FRZ"] { &:before { content:"FRZ"; } }
+    &[data-phase="PLT"] { &:before { content:"PLT"; } }
+    &[data-phase="PRD"] { &:before { content:"PRD"; } }
+    &[data-phase="REQ"] { &:before { content:"Req"; } }
+    &[data-phase="SIT"] { &:before { content:"SIT"; } }
+    &[data-phase="SPR"] { &:before { content:"Spr"; } }
+    &[data-phase="UAT"] { &:before { content:"UAT"; } }
+    &[data-phase="WTY"] { &:before { content:"WTY"; } }
 }//data-type

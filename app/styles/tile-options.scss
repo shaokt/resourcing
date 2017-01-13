@@ -9,7 +9,7 @@
         display:block;
     }
 
-    &:before {
+    &:after {
         border-radius:5px;
         content:"";
         display:block;
@@ -71,6 +71,7 @@
         float:left;
         display:none;
         position:relative;
+        z-index:1;
     }
 
     label {
@@ -93,7 +94,7 @@
          margin-right:5px;
          padding:8px 10px 10px 10px;
 
-         &:before {
+         &:after {
             float:left;
             font-weight:bold;
             margin:10px 5px 0 0;
@@ -113,10 +114,10 @@
         	width:auto;
             white-space:nowrap;
 
-            &:after {
+            &:before {
                 padding:5px;
                 position:relative;
-                top:-1.4em;
+                top:1.6em;
             }
 
             &[data-active="true"],
@@ -131,7 +132,7 @@
                      margin:3px;
                      padding:10px;
                 }
-                &:before {
+                &:after {
                     background:#fff;
                     border:1px solid #000;
                     border-radius:5px;
@@ -157,7 +158,7 @@
             }
             &.empty {
                 background: repeating-linear-gradient( -55deg, #222, #222 5px, #333 5px, #333 10px);
-                &[data-stamp="true"]:after { content: "\2002"; }
+                &[data-stamp="true"]:before { content: "\2002"; }
                 span { background:none; }
             }
 
@@ -171,7 +172,7 @@
             }
         }//data-stamp="true"
 
-        .empty:hover:before { content:"Delete"; }
+        .empty:hover:after { content:"Delete"; }
     }//li
 }
 
@@ -268,7 +269,7 @@
         }
     }
     &[data-type="assignment"] {
-        li [data-stamp="true"]:hover:before {
+        li [data-stamp="true"]:hover:after {
             color:red !important;
             display:none;
         }
