@@ -224,7 +224,6 @@ export default Ember.Mixin.create(CalendarWidget, {
             }
             else {
     			self.downX = e.pageX - Ember.$(this).offset().left;
-                //if(self.downX < self.constants.prevYear && self.get('router.currentRouteName') === 'home'){ return; }
     			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
     			self.downY = e.pageY  - Ember.$(this).offset().top;
     			self.downY = self.downY - self.downY%self.constants.DIM;
@@ -241,9 +240,23 @@ export default Ember.Mixin.create(CalendarWidget, {
                             self.setPhase(e); // stamps limited to phases of the project defined in the assignment-phases component
                         } else {
                             self.handle = Ember.$(e.target).hasClass('handle') ? Ember.$(e.target).hasClass('left') ? "left" : "right" : false;
-                            self.downX = self.get('rowComponent.assignment.x');
-                            if(self.handle === "right"){ self.downX += self.get('rowComponent.assignment.w') - self.constants.DIM; }
-                            self.set('rowComponent.assignment.originalWidth', self.get('rowComponent.assignment.w'));
+                            if(!self.handle) {
+                                const stamp = Ember.$(e.target).closest(`[data-type="tile"]`);
+                                try {
+                                    self.stampCusto.removeClass('customize');
+                                }catch(e){}
+
+                                if(self.stampCusto != stamp){
+                                    self.stampCusto = Ember.$(e.target).closest(`[data-type="tile"]`);
+                                    self.stampCusto.toggleClass('customize');
+                                } else {
+                                    self.stampCusto = null;
+                                }
+                            } else {
+                                self.downX = self.get('rowComponent.assignment.x');
+                                if(self.handle === "right"){ self.downX += self.get('rowComponent.assignment.w') - self.constants.DIM; }
+                                self.set('rowComponent.assignment.originalWidth', self.get('rowComponent.assignment.w'));
+                            }
                         }
                     }
                     if(!self.isDown){ self.isDown = 1; }

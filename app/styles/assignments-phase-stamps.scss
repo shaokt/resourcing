@@ -21,6 +21,11 @@
             &:after { display:none; }
         }
 
+        &.customize {
+            border:1px solid #ff0000 !important;
+            box-shadow:0 0 5px 5px rgba(255,0,0,.5);
+        }
+
         span {
             &.text {
                 &:before {
