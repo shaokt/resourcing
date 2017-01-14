@@ -241,18 +241,31 @@ export default Ember.Mixin.create(CalendarWidget, {
                         } else {
                             self.handle = Ember.$(e.target).hasClass('handle') ? Ember.$(e.target).hasClass('left') ? "left" : "right" : false;
                             if(!self.handle) {
-                                const stamp = Ember.$(e.target).closest(`[data-type="tile"]`);
-                                try {
-                                    self.stampCusto.removeClass('customize');
-                                }catch(e){}
+                                const stamp = Ember.$(e.target).closest(`[data-phase]`);
+                                const rowStamp = self.rowComponent.get('stampCustomize');
+                                if(stamp[0]) {
+                                    if(!rowStamp){
+                                        stamp.addClass('customize');
+                                        self.rowComponent.set('stampCustomize', stamp);
+                                        return;
+                                    }
+                                    if(rowStamp[0] !== stamp[0]){
+                                        rowStamp.removeClass('customize');
+                                        stamp.addClass('customize');
+                                        self.rowComponent.set('stampCustomize', stamp);
+                                    } else { // same stamp clicked
+                                        rowStamp.removeClass('customize');
+                                        self.rowComponent.set('stampCustomize', null);
+                                    }
 
-                                if(self.stampCusto != stamp){
-                                    self.stampCusto = Ember.$(e.target).closest(`[data-type="tile"]`);
-                                    self.stampCusto.toggleClass('customize');
-                                } else {
-                                    self.stampCusto = null;
+                                }  // if clicked on a stamp
+                                else {
+                                    try { // no stamps to customize
+                                        rowStamp.removeClass('customize');
+                                        self.rowComponent.set('stampCustomize', stamp);
+                                    }catch(error){}
                                 }
-                            } else {
+                            } else { // user is dragging the assignment handle to resize left or right
                                 self.downX = self.get('rowComponent.assignment.x');
                                 if(self.handle === "right"){ self.downX += self.get('rowComponent.assignment.w') - self.constants.DIM; }
                                 self.set('rowComponent.assignment.originalWidth', self.get('rowComponent.assignment.w'));

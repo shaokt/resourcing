@@ -4,47 +4,7 @@
 <div class="{{assignmentViewContainer}}">
 {{#each model as |assignment index|}}
     {{#if (assignment-view-people settings.view assignment.id currentAssignment)}}
-    <section class="resourceRow{{if assignment.hidden ' hidden'}}"
-        data-active="{{assignment.active}}"
-        data-id="{{assignment.id}}"
-        data-index="{{index}}"
-        data-name="{{assignment.short}}"
-        data-type="assignment"
-        draggable="{{if constants.draggable 'true'}}"
-        ondragenter={{action "dragEnter"}}
-        ondragstart={{action "dragStart"}}
-        ondragend={{action "dragEnd"}}
-        ondragover={{action "dragOver"}}
-    >
-    	<div class="row" data-view="roadmap" data-phase-action="{{phaseAction}}">
-            {{#if settings.isDailyCalendar}}
-                {{calendar-holiday-tiles}}
-            {{/if}}
-            {{#if assignment.active}}
-                <div class="pointer"></div>
-                <div class="sizer"></div>
-            {{/if}}
-            {{assignment-block assignment=assignment phaseAction=phaseAction}}
-            <div class="phases">{{{assignment.phases}}}</div>
-        </div>
-        {{assignment-info
-            togglePhaseLink="togglePhaseLink"
-            resource=assignment
-            assignment=assignment
-            currentAssignment=currentAssignment
-            viewPeopleAssigned=viewPeopleAssigned
-            persons=persons
-            phaseToShift=phaseToShift
-            phaseAction=phaseAction
-            readOnly=readOnly
-            row=row
-            rowComponent=rowComponent
-        }}
-        <style>
-            [data-phaselink]{ margin-left:{{rowComponent.shiftHorizontal}}px; }
-            [data-phaselink].active{ margin-top:{{rowComponent.shiftVertical}}px; }
-        </style>
-    </section>
+        {{assignment-row assignment=assignment index=index}}
     {{/if}}
 {{/each}}
 </div>

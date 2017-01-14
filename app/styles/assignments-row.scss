@@ -63,6 +63,7 @@
                     height:40px;
 
                     [data-type="tile"] {
+                        &[data-y="0"]{ top:0; }
                         &[data-y="15"]{ top:10px; }
                         &[data-y="30"]{ top:20px; }
                         &[data-y="45"]{ top:30px; }
@@ -117,3 +118,5 @@
         }
     }
 }
+
+@import "assignments-phase-customization.scss";
