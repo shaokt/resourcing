@@ -21,7 +21,7 @@ export default Ember.Component.extend({
     }),
 
     getWeeks: Ember.computed('rowComponent.stampCustomize', function(){
-        const weeks = Ember.$(this.get('stamp')).attr('data-weeks');
+        const weeks = Ember.$(this.get('stamp')).find('.weeks').attr('data-weeks');
         return weeks ? weeks : '';
     }),
 
@@ -67,11 +67,23 @@ export default Ember.Component.extend({
             Ember.$(this.get('stamp')).find('.desc').attr('data-long', event.target.value);
         },
 
+        checkWeeks(){
+            if(this.get('getWeeks') === ''){
+                Ember.$(this.get('stamp')).find('.weeks').remove();
+            }
+        },
+
+        createWeeks(){
+            if(!Ember.$(this.get('stamp')).find('.weeks').length) {
+                const span = Ember.$('<span class="weeks"></span>');
+                Ember.$(this.get('stamp')).append(span);
+            }
+        },
+
         updateWeeks(){
-            Ember.$(this.get('stamp')).attr('data-weeks', event.target.value);
+            Ember.$(this.get('stamp')).find('.weeks').attr('data-weeks', event.target.value);
             if(event.target.value < 1) {
                 Ember.$(this.get('stamp')).removeAttr('style');
-                Ember.$(this.get('stamp')).removeAttr('data-weeks');
             }
             else {
                 Ember.$(this.get('stamp')).css({width:event.target.value * 15});
