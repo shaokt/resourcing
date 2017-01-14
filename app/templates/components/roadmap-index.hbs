@@ -4,7 +4,15 @@
 <div class="{{assignmentViewContainer}}">
 {{#each model as |assignment index|}}
     {{#if (assignment-view-people settings.view assignment.id currentAssignment)}}
-        {{assignment-row assignment=assignment index=index}}
+        {{assignment-row
+            index=index
+            resource=assignment
+            assignment=assignment
+            currentAssignment=currentAssignment
+            persons=persons
+            row=row
+            rowComponent=rowComponent
+        }}
     {{/if}}
 {{/each}}
 </div>
