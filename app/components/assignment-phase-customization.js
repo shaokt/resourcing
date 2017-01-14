@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+    showLongDesc: Ember.computed('rowComponent.stampCustomize', function(){
+        return this.get('getShortDesc') !== '';
+    }),
+
     left: Ember.computed('rowComponent.stampCustomize', function(){
         const obj = this.get('rowComponent.stampCustomize')[0];
         this.set('stamp', obj);
@@ -16,12 +20,46 @@ export default Ember.Component.extend({
         return number ? number : '';
     }),
 
+    getShortDesc: Ember.computed('rowComponent.stampCustomize', function(){
+        const desc = Ember.$(this.get('stamp')).find('.desc').html();
+        return desc ? desc : '';
+    }),
+
+    getLongDesc: Ember.computed('rowComponent.stampCustomize', function(){
+        const desc = Ember.$(this.get('stamp')).find('.desc').attr('data-long');
+        return desc ? desc : '';
+    }),
+
     actions: {
         updateSPR(){
             Ember.$(this.get('stamp')).attr('data-num', event.target.value);
         },
 
-        updateText(){
+        checkShortDesc(){
+            if(this.get('getShortDesc') === ''){
+                Ember.$(this.get('stamp')).find('.desc').remove();
+            }
+        },
+
+        createShortDesc(){
+            if(!Ember.$(this.get('stamp')).find('.desc').length) {
+                const span = Ember.$('<span class="desc"></span>');
+                Ember.$(this.get('stamp')).append(span);
+            }
+        },
+
+        updateShortDesc(){
+            Ember.$(this.get('stamp')).find('.desc').html(event.target.value);
+            if(event.target.value === '') {
+                this.set('showLongDesc', false);
+            }
+            else {
+                this.set('showLongDesc', true);
+            }
+        },
+
+        updateLongDesc(){
+            Ember.$(this.get('stamp')).find('.desc').attr('data-long', event.target.value);
         },
 
         submit(){

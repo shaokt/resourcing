@@ -35,6 +35,17 @@
                     }
                 }
             }//tileOptions
+            [data-type="tile"] {
+                &[data-phase] {
+                    span.desc {
+                        &:hover {
+                            &:after {
+                                display:none; // do not display long description of phase when active
+                            }
+                        }
+                    }
+                }
+            }
 
             @import "assignments-phase-list.scss";
             @import "assignments-phase-edit.scss";

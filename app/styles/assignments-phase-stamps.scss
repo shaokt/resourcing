@@ -18,6 +18,8 @@
         }
 
         &:hover {
+            background:#000;
+            z-index:2 !important;
             &:after { display:none; }
         }
 
@@ -27,9 +29,24 @@
         }
 
         span {
-            &.text {
+            &.desc {
                 &:before {
-                    content:': ';
+                    content:' ';
+                }
+                &:hover {
+                    position:relative;
+                    &[data-long]:not([data-long=""]){
+                        &:after {
+                            background:#ff0000;
+                            color:#fff;
+                            content:attr(data-long);
+                            cursor:none;
+                            margin-left:2px;
+                            padding:0 2px;
+                            position:absolute;
+                            left:0;
+                        }
+                    }
                 }
             }
         }
@@ -44,9 +61,9 @@
     &[data-phase="SIT"] { &:before { content:"SIT"; } }
     &[data-phase="SPR"] {
         &:before { content:"Spr"; }
-        &[data-num] {
+        &[data-num]:not([data-num=""]) {
             &:before {
-                content:'Spr: ' attr(data-num);
+                content:'Spr ' attr(data-num);
             }
 
         }

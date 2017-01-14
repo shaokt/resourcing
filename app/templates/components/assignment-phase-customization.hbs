@@ -9,14 +9,21 @@
     {{#if spr}}
         <div class="form-group">
             <label for="sprintNumber">Sprint Number</label>
-            {{input type="text" id="sprintNumber" key-up="updateSPR" value=getNum bubbles="false"}}
+            {{input type="text" id="sprintNumber" key-up="updateSPR" value=getNum}}
         </div>
     {{/if}}
 
     <div class="form-group">
-        <label for="customText">Custom Text</label>
-        {{input type="text" id="customText" key-up="updateText" value=getText}}
+        <label for="customShortDesc">Short Description</label>
+        {{input type="text" id="customShortDesc" focus-in="createShortDesc" focus-out="checkShortDesc" key-up="updateShortDesc" value=getShortDesc}}
     </div>
+
+    {{#if showLongDesc}}
+        <div class="form-group">
+            <label for="customLongDesc">Long Description</label>
+            {{input type="text" id="customLongDesc" key-up="updateLongDesc" value=getLongDesc}}
+        </div>
+    {{/if}}
 
     <input type="submit" {{action "back" on="keyDown"}} {{action "submit" on="click"}} value="OK">
 </form>
