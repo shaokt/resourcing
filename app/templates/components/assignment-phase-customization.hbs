@@ -5,11 +5,18 @@
         top:{{top}}px;
     }
 </style>
-{{#if spr}}
-    <label for="sprintNumber">Sprint Number</label>
-    {{input type="text" id="sprintNumber" key-up="updateSPR" value=getNum}}
-{{else}}
-    Some other custo
-    <br />
-    ok
-{{/if}}
+<form {{action "submit" on="submit"}}>
+    {{#if spr}}
+        <div class="form-group">
+            <label for="sprintNumber">Sprint Number</label>
+            {{input type="text" id="sprintNumber" key-up="updateSPR" value=getNum bubbles="false"}}
+        </div>
+    {{/if}}
+
+    <div class="form-group">
+        <label for="customText">Custom Text</label>
+        {{input type="text" id="customText" key-up="updateText" value=getText}}
+    </div>
+
+    <input type="submit" {{action "back" on="keyDown"}} {{action "submit" on="click"}} value="OK">
+</form>

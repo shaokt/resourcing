@@ -1,17 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    tagName:'div',
-    attributeBindings: ['id', 'tabindex'],
-    id:'phaseStampCustomization',
-    tabindex:0,
-
-    setup:function(){
-        Ember.run.scheduleOnce("afterRender",this,()=>{
-            this.$().focus();
-        });
-    }.on('init'),
-
     left: Ember.computed('rowComponent.stampCustomize', function(){
         const obj = this.get('rowComponent.stampCustomize')[0];
         this.set('stamp', obj);
@@ -23,13 +12,28 @@ export default Ember.Component.extend({
     }),
 
     getNum: Ember.computed('rowComponent.stampCustomize', function(){
-        const number = $(this.get('stamp')).attr('data-num');
+        const number = Ember.$(this.get('stamp')).attr('data-num');
         return number ? number : '';
     }),
 
     actions: {
-        updateSPR() {
-            $(this.get('stamp')).attr('data-num', event.target.value);
-        }
+        updateSPR(){
+            Ember.$(this.get('stamp')).attr('data-num', event.target.value);
+        },
+
+        updateText(){
+        },
+
+        submit(){
+            this.get('rowComponent').updateStamp();
+        },
+
+        back(){
+            if(event.keyCode === 13){
+                this.send('submit');
+            }else{
+                this.get('parentView').send('back');
+            }
+        },
     }
 });

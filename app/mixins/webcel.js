@@ -262,8 +262,7 @@ export default Ember.Mixin.create(CalendarWidget, {
                                 }  // if clicked on a stamp
                                 else {
                                     try { // no stamps to customize
-                                        rowStamp.removeClass('customize');
-                                        self.rowComponent.set('stampCustomize', null);
+                                        self.rowComponent.updateStamp();
                                     }catch(error){}
                                 }
                             } else { // user is dragging the assignment handle to resize left or right

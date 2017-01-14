@@ -40,6 +40,8 @@
     </style>
 
     {{#if rowComponent.stampCustomize}}
-        {{assignment-phase-customization rowComponent=rowComponent row=row}}
+        {{#overlay-component id='phaseStampCustomization'}}
+            {{assignment-phase-customization rowComponent=rowComponent row=row}}
+        {{/overlay-component}}
     {{/if}}
 </section>
