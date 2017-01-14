@@ -27,7 +27,7 @@
 
     <div class="form-group">
         <label for="numWeeks">Duration (Weeks)</label>
-        {{input type="number" id="numWeeks" focus-in="createWeeks" focus-out="checkWeeks" key-up="updateWeeks" value=getWeeks min="1"}}
+        <input type="number" id="numWeeks" onfocus={{action 'createWeeks'}} onblur={{action 'checkWeeks'}} onkeyup={{action 'updateWeeks'}} onclick={{action 'updateWeeks'}} value={{getWeeks}} min="1">
     </div>
 
     <input type="submit" {{action "back" on="keyDown"}} {{action "submit" on="click"}} value="OK">
