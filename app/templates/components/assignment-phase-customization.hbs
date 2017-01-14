@@ -25,5 +25,10 @@
         </div>
     {{/if}}
 
+    <div class="form-group">
+        <label for="numWeeks">Duration (Weeks)</label>
+        {{input type="number" id="numWeeks" key-up="updateWeeks" value=getWeeks min="1"}}
+    </div>
+
     <input type="submit" {{action "back" on="keyDown"}} {{action "submit" on="click"}} value="OK">
 </form>

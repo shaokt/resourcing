@@ -20,6 +20,11 @@ export default Ember.Component.extend({
         return number ? number : '';
     }),
 
+    getWeeks: Ember.computed('rowComponent.stampCustomize', function(){
+        const weeks = Ember.$(this.get('stamp')).attr('data-weeks');
+        return weeks ? weeks : '';
+    }),
+
     getShortDesc: Ember.computed('rowComponent.stampCustomize', function(){
         const desc = Ember.$(this.get('stamp')).find('.desc').html();
         return desc ? desc : '';
@@ -60,6 +65,18 @@ export default Ember.Component.extend({
 
         updateLongDesc(){
             Ember.$(this.get('stamp')).find('.desc').attr('data-long', event.target.value);
+        },
+
+        updateWeeks(){
+            Ember.$(this.get('stamp')).attr('data-weeks', event.target.value);
+            if(event.target.value < 1) {
+                Ember.$(this.get('stamp')).removeAttr('style');
+                Ember.$(this.get('stamp')).removeAttr('data-weeks');
+            }
+            else {
+                Ember.$(this.get('stamp')).css({width:event.target.value * 15});
+            }
+
         },
 
         submit(){
