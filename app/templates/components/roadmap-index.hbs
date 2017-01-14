@@ -5,13 +5,10 @@
 {{#each model as |assignment index|}}
     {{#if (assignment-view-people settings.view assignment.id currentAssignment)}}
         {{assignment-row
-            index=index
-            resource=assignment
             assignment=assignment
-            currentAssignment=currentAssignment
+            index=index
             persons=persons
-            row=row
-            rowComponent=rowComponent
+            currentAssignment=currentAssignment
         }}
     {{/if}}
 {{/each}}
