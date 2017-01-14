@@ -50,6 +50,7 @@ export default Ember.Component.extend(KeyDownMixin, {
 
         done() {
             Ember.$('body').removeAttr('data-overlay');
+            Ember.$('body')[0].onclick = function() { }
         }
     }
 });

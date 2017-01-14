@@ -243,6 +243,8 @@ export default Ember.Mixin.create(CalendarWidget, {
                             if(!self.handle) {
                                 const stamp = Ember.$(e.target).closest(`[data-phase]`);
                                 const rowStamp = self.rowComponent.get('stampCustomize');
+                                self.rowComponent.set('originalPhases', (Ember.$(self.row).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim()).htmlSafe());
+
                                 if(stamp[0]) {
                                     if(!rowStamp){
                                         stamp.addClass('customize');

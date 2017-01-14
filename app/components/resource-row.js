@@ -55,6 +55,7 @@ export default Ember.Component.extend(Webcel, {
         if(this.stampCustomize) {
             Ember.$(this.stampCustomize).removeAttr('class');
             this.set('stampCustomize', null);
+            this.get('constants.webcel').data.set('phases', this.get('originalPhases'));
         }
     },
 
