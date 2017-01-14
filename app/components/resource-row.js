@@ -50,6 +50,14 @@ export default Ember.Component.extend(Webcel, {
         });
     },
 
+    cancelOverlay: function(){
+        // dismiss overlay for stamp customizations
+        if(this.stampCustomize) {
+            Ember.$(this.stampCustomize).removeAttr('class');
+            this.set('stampCustomize', null);
+        }
+    },
+
     updateStamp: function(){
         if(this.stampCustomize) {
             Ember.$(this.stampCustomize).removeAttr('class');

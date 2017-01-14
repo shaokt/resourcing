@@ -38,7 +38,7 @@
     </style>
 
     {{#if rowComponent.stampCustomize}}
-        {{#overlay-component id='phaseStampCustomization'}}
+        {{#overlay-component id='phaseStampCustomization' initiator=rowComponent}}
             {{assignment-phase-customization rowComponent=rowComponent row=row}}
         {{/overlay-component}}
     {{/if}}

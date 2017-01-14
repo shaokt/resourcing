@@ -26,6 +26,7 @@ export default Ember.Component.extend({
 
         submit(){
             this.get('rowComponent').updateStamp();
+            this.get('parentView').send('done');
         },
 
         back(){
