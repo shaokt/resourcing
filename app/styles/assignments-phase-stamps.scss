@@ -42,7 +42,15 @@
     &[data-phase="PRD"] { &:before { content:"PRD"; } }
     &[data-phase="REQ"] { &:before { content:"Req"; } }
     &[data-phase="SIT"] { &:before { content:"SIT"; } }
-    &[data-phase="SPR"] { &:before { content:"Spr"; } }
+    &[data-phase="SPR"] {
+        &:before { content:"Spr"; }
+        &[data-num] {
+            &:before {
+                content:'Spr: ' attr(data-num);
+            }
+
+        }
+    }
     &[data-phase="UAT"] { &:before { content:"UAT"; } }
     &[data-phase="WTY"] { &:before { content:"WTY"; } }
 }//data-type

@@ -5,13 +5,11 @@
         top:{{top}}px;
     }
 </style>
-<div id="phaseStampCustomization">
-    {{#if spr}}
-        sprint number
-    {{else}}
-        Some other custo
-        <br />
-        ok
-    {{/if}}
-
-</div>
+{{#if spr}}
+    <label for="sprintNumber">Sprint Number</label>
+    {{input type="text" id="sprintNumber" key-up="updateSPR" value=getNum}}
+{{else}}
+    Some other custo
+    <br />
+    ok
+{{/if}}
