@@ -50,7 +50,27 @@ export default Ember.Component.extend(Webcel, {
         });
     },
 
+    cancelOverlay: function(){
+        // dismiss overlay for stamp customizations
+        if(this.stampCustomize) {
+            Ember.$(this.stampCustomize).removeAttr('class');
+            this.set('stampCustomize', null);
+            this.get('constants.webcel').data.set('phases', this.get('originalPhases'));
+        }
+    },
+
+    updateStamp: function(){
+        if(this.stampCustomize) {
+            Ember.$(this.stampCustomize).removeAttr('class');
+    		var stamp = (Ember.$(this.row).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim()).htmlSafe();
+            this.set('stampCustomize', null);
+            this.get('constants.webcel').data.set('phases', stamp);
+        }
+
+    },
+
     save: function(){
+        this.updateStamp();
         this.constants.save(this.get('resource'));
         this.constants.webcel.done();
     },

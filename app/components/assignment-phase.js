@@ -4,6 +4,7 @@ import KeyDownMixin from "../mixins/keydown";
 export default Ember.Component.extend(KeyDownMixin, {
     tagName: 'li',
     classNameBindings: ['id'],
+    additionalRows:0,
     id: Ember.computed('label', function() {
         return 'phase' + this.get('label');
     }),
@@ -31,32 +32,42 @@ export default Ember.Component.extend(KeyDownMixin, {
                     case 37: { // left
                         if(x > 0){
                             this.set('rowComponent.shiftHorizontal', this.get('rowComponent.shiftHorizontal') - this.constants.DIM);
-                            //$(ph).attr('data-x', x -= this.constants.DIM);
                         }
                         break;
                     }
                     case 38: { // up
                         if(y > 0){
                             this.set('rowComponent.shiftVertical', this.get('rowComponent.shiftVertical') - this.constants.DIM);
-                            //$(ph).attr('data-y', y -= this.constants.DIM);
+                        }
+                        if(y > this.constants.DIM*3) {
+                            this.additionalRows--;
                         }
                         break;
                     }
                     case 39: { // right
                         if(x < this.constants.calWidth - this.constants.DIM){
                             this.set('rowComponent.shiftHorizontal', this.get('rowComponent.shiftHorizontal') + this.constants.DIM);
-                            //$(ph).attr('data-x', x += this.constants.DIM);
                         }
                         break;
                     }
                     case 40: { // down
                         if(y < this.constants.DIM*3){
                             this.set('rowComponent.shiftVertical', this.get('rowComponent.shiftVertical') + this.constants.DIM);
-                            //$(ph).attr('data-y', y += this.constants.DIM);
+                        }
+                        else if(this.additionalRows < 10){ // maximum 10 extra rows for a total of 14 rows
+                            this.set('rowComponent.shiftVertical', this.get('rowComponent.shiftVertical') + this.constants.DIM);
+                            this.additionalRows++;
                         }
                         break;
                     }
                 }// switch
+
+                if(this.additionalRows > 0) {
+                    Ember.$(this.get('rowComponent.row')).attr('data-rows', this.additionalRows);
+                }
+                else{
+                    //Ember.$(this.get('rowComponent.row')).removeAttr('data-rows');
+                }
             }// if length
         }// if arrow keys
     },// keyDown
@@ -73,6 +84,9 @@ export default Ember.Component.extend(KeyDownMixin, {
             var editedPhases = (Ember.$(this.get('row')).find('.phases')[0].innerHTML.replace(/<!---->/g, '')).htmlSafe();
             this.set('assignment.phases', editedPhases);
         }catch(e){} // no action taken, nothing to update
+        if(this.additionalRows) {
+            this.set('assignment.rows', this.additionalRows);
+        }
     },
 
     actions: {

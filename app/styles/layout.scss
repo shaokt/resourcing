@@ -2,11 +2,22 @@ html { font:62.5% Helvetica, Arial, sans-serif; }
 
 body {
     float:left;font-size:1.2rem;
-    /*
-    > .ember-view{
-        overflow:hidden;
+
+    &[data-overlay="true"] {
+        &:before {
+            content:'';
+            background:rgba(0,0,0,.3);
+            display:block;
+            height:100%;
+            position:fixed;
+            width:100%;
+            z-index:99;
+        }
+
+        section.resourceRow[data-active="true"] {
+            z-index:inherit;
+        }
     }
-    */
 }
 
 button {

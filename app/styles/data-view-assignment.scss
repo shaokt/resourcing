@@ -48,24 +48,25 @@
 
     [data-stamp="true"] {
         border:none;
+        box-sizing:border-box;
         color:#fff;
         font-size:.8rem;
         line-height:180%;
         text-align:center;
 
-        &:after {
+        &:before {
             content:"???";
         }
-        &:before {
+        &:after {
             content:"Assignment was removed";
         }
 
         &:hover {
-            &:before {
+            &:after {
                 display:block;
             }
         }
-        &:before {
+        &:after {
             background:#000;
             cursor:none;
             display: none;
@@ -76,7 +77,7 @@
             z-index:2;
         }
         &[data-y="45"]{
-            &:before{
+            &:after {
                 top:-8px;
             }
         }
@@ -98,6 +99,17 @@
                     &[data-y="30"]{ top:30px; }
                     &[data-y="45"]{ top:45px; }
 
+                    &[data-y="60"]{ top:60px; }
+                    &[data-y="75"]{ top:75px; }
+                    &[data-y="90"]{ top:90px; }
+                    &[data-y="105"]{ top:105px; }
+                    &[data-y="120"]{ top:120px; }
+                    &[data-y="135"]{ top:135px; }
+                    &[data-y="150"]{ top:150px; }
+                    &[data-y="165"]{ top:165px; }
+                    &[data-y="180"]{ top:180px; }
+                    &[data-y="195"]{ top:195px; }
+
                     height:15px;
 
                     &[data-assignment] {
@@ -115,7 +127,7 @@
                                 background:rgba(0,0,0,.3);
                                 opacity:.8;
 
-                                &:before {
+                                &:after {
                                     display:table-cell;
                                     text-align:center;
                                     vertical-align:middle;
@@ -128,7 +140,7 @@
                                 &:hover {
                                     margin-left:-5px;
 
-                                    &:before {
+                                    &:after {
                                         content:"\25C0";
                                     }
                                 }
@@ -141,7 +153,7 @@
                                 &:hover {
                                     margin-right:-5px;
 
-                                    &:before {
+                                    &:after {
                                         content:"\25B6";
                                     }
                                 }
@@ -151,7 +163,7 @@
                 }// data-type tile
 
                 [data-stamp="true"]{
-                    &:hover:before {
+                    &:hover:after {
                         background:none;
                         content:"";
                     }
@@ -160,7 +172,7 @@
         }
 
         .tiles [data-stamp="true"]{
-            &:after {
+            &:before {
                 background:rgba(0,0,0,.4);
                 cursor:none;
                 left:0;

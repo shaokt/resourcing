@@ -1,0 +1,47 @@
+<style>
+    #phaseStampCustomization {
+        left:{{left}}px;
+        margin-left:5px;
+        top:{{top}}px;
+    }
+</style>
+<form {{action "submit" on="submit"}}>
+    {{#if spr}}
+        <div class="form-group">
+            <label for="sprintNumber">Sprint Number</label>
+            {{input type="text" id="sprintNumber" key-up="updateSPR" value=getNum}}
+        </div>
+    {{/if}}
+
+    <div class="form-group">
+        <label for="customShortDesc">Short Description</label>
+        {{input type="text" id="customShortDesc" focus-in="createShortDesc" focus-out="checkShortDesc" key-up="updateShortDesc" value=getShortDesc}}
+    </div>
+
+    {{#if showLongDesc}}
+        <div class="form-group">
+            <label for="customLongDesc">Long Description</label>
+            {{input type="text" id="customLongDesc" key-up="updateLongDesc" value=getLongDesc}}
+        </div>
+    {{/if}}
+
+    <div class="form-group">
+        <label for="numWeeks">Duration (Weeks)</label>
+        <input type="number" id="numWeeks" onfocus={{action 'createWeeks'}} onblur={{action 'checkWeeks'}} onkeyup={{action 'updateWeeks'}} onclick={{action 'updateWeeks'}} value={{getWeeks}} min="1">
+    </div>
+
+    <div class="form-group">
+        <label for="startsOn">Starts On</label>
+        <select id="startsOn" onchange={{action 'updateStartsOn'}} onfocus={{action 'createStartsOn'}} onblur={{action 'checkStartsOn'}} value={{getStartsOn}}>
+            <option value="S">Sat</option>
+            <option value="N">Sun</option>
+            <option value="M">Mon</option>
+            <option value="T">Tues</option>
+            <option value="W">Wed</option>
+            <option value="R">Thu</option>
+            <option value="F">Fri</option>
+        </select>
+    </div>
+
+    <input type="submit" {{action "back" on="keyDown"}} {{action "submit" on="click"}} value="OK">
+</form>

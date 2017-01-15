@@ -218,12 +218,12 @@ export default Ember.Mixin.create(CalendarWidget, {
 		mouseDown = function(e){
             // clicking on the stamp that you want to move around
             if(self.rowComponent.get('phaseAction').match(/shift|delete/)){
-                self.downX = self.upX = Ember.$(e.target).attr('data-x');
-                self.downY = self.upY = Ember.$(e.target).attr('data-y');
+                const obj = Ember.$(e.target).closest(`[data-type="tile"]`);
+                self.downX = self.upX = obj.attr('data-x');
+                self.downY = self.upY = obj.attr('data-y');
             }
             else {
     			self.downX = e.pageX - Ember.$(this).offset().left;
-                //if(self.downX < self.constants.prevYear && self.get('router.currentRouteName') === 'home'){ return; }
     			self.upX = self.downX = self.downX - self.downX%self.constants.DIM;
     			self.downY = e.pageY  - Ember.$(this).offset().top;
     			self.downY = self.downY - self.downY%self.constants.DIM;
@@ -238,11 +238,36 @@ export default Ember.Mixin.create(CalendarWidget, {
                     if(self.get('router.currentRouteName') === 'roadmap.index'){
                         if(self.rowComponent.get('phaseAction') === 'stamp') { // stamp the roadmap with phases
                             self.setPhase(e); // stamps limited to phases of the project defined in the assignment-phases component
-                        } else {
+                        }
+                        else if (self.rowComponent.get('phaseAction') === 'delete') { return; }
+                        else {
                             self.handle = Ember.$(e.target).hasClass('handle') ? Ember.$(e.target).hasClass('left') ? "left" : "right" : false;
-                            self.downX = self.get('rowComponent.assignment.x');
-                            if(self.handle === "right"){ self.downX += self.get('rowComponent.assignment.w') - self.constants.DIM; }
-                            self.set('rowComponent.assignment.originalWidth', self.get('rowComponent.assignment.w'));
+                            if(!self.handle) {
+                                const stamp = Ember.$(e.target).closest(`[data-phase]`);
+                                const rowStamp = self.rowComponent.get('stampCustomize');
+                                self.rowComponent.set('originalPhases', (Ember.$(self.row).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim()).htmlSafe());
+
+                                if(stamp[0]) {
+                                    if(!rowStamp){
+                                        stamp.addClass('customize');
+                                        self.rowComponent.set('stampCustomize', stamp);
+                                        return;
+                                    }
+                                    if(rowStamp[0] !== stamp[0]){
+                                        rowStamp.removeClass('customize');
+                                        stamp.addClass('customize');
+                                        self.rowComponent.set('stampCustomize', null);
+                                        setTimeout(function(){ self.rowComponent.set('stampCustomize', stamp); },0);
+                                    } else { // same stamp clicked
+                                        rowStamp.removeClass('customize');
+                                        self.rowComponent.set('stampCustomize', null);
+                                    }
+                                }  // if clicked on a stamp
+                            } else { // user is dragging the assignment handle to resize left or right
+                                self.downX = self.get('rowComponent.assignment.x');
+                                if(self.handle === "right"){ self.downX += self.get('rowComponent.assignment.w') - self.constants.DIM; }
+                                self.set('rowComponent.assignment.originalWidth', self.get('rowComponent.assignment.w'));
+                            }
                         }
                     }
                     if(!self.isDown){ self.isDown = 1; }

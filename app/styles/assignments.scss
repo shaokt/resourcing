@@ -103,7 +103,7 @@
                     li {
                         float:none;
                         height:100%;
-                        
+
                         a {
                             opacity:1;
                         }
@@ -113,7 +113,7 @@
                 .tileOptions {
                     display:block;
                     &:hover {
-                        [data-assignment]:before {
+                        [data-assignment]:after {
                             display:block;
                         }
                     }

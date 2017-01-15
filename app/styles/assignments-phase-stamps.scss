@@ -1,33 +1,96 @@
 [data-type="tile"] {
     &[data-phase] {
-        background:transparent;
+        background:rgba(0, 0, 0, 0.4);
+        height:auto !important;
+        line-height:100%;
+        padding:0 2px;
+        width:auto;
 
-        &:after {
-            background:rgba(0, 0, 0, 0.4);
+        &:before {
             content:"";
             cursor:none;
             left:0;
             line-height:100%;
-            padding:0 2px;
-            position:absolute;
             top:0;
-            white-space:nowrap;
             z-index:1;
         }
 
         &:hover {
-            &:before { display:none; }
+            background:#000;
+            z-index:4 !important;
+
+            &:after { display:none; }
+
+            span {
+                &.weeks {
+                    &:before {
+                        background:#ff0000;
+                        border:1px solid #fff;
+                        box-shadow:0 0 5px 2px rgba(0,0,0,.6);
+                        color:#fff;
+                        content:attr(data-weeks) ' Week(s)';
+                        display:block;
+                        margin-right:2px;
+                        padding:2px;
+                        position:absolute;
+                        right:100%;
+                        white-space:nowrap;
+                        top:0;
+
+                    }
+                }
+            }
+        }
+
+        &.customize {
+            border:1px solid #ff0000 !important;
+            box-shadow:0 0 5px 5px rgba(255,0,0,.5);
+        }
+
+        span {
+            &.desc {
+                cursor:none;
+                &:before {
+                    content:' ';
+                }
+                &:hover {
+                    position:relative;
+                    &[data-long]:not([data-long=""]){
+                        &:after {
+                            background:#ff0000;
+                            border:1px solid #fff;
+                            box-shadow:0 0 5px 2px rgba(0,0,0,.6);
+                            color:#fff;
+                            content:attr(data-long);
+                            cursor:none;
+                            display:block;
+                            left:0;
+                            margin-left:2px;
+                            padding:2px 5px;
+                            position:absolute;
+                        }
+                    }
+                }
+            }
         }
     }//data-phase
 
-    &[data-phase="BAT"] { &:after { content:"BAT"; } }
-    &[data-phase="DIT"] { &:after { content:"DIT"; } }
-    &[data-phase="FRZ"] { &:after { content:"FRZ"; } }
-    &[data-phase="PLT"] { &:after { content:"PLT"; } }
-    &[data-phase="PRD"] { &:after { content:"PRD"; } }
-    &[data-phase="REQ"] { &:after { content:"Req"; } }
-    &[data-phase="SIT"] { &:after { content:"SIT"; } }
-    &[data-phase="SPR"] { &:after { content:"Spr"; } }
-    &[data-phase="UAT"] { &:after { content:"UAT"; } }
-    &[data-phase="WTY"] { &:after { content:"WTY"; } }
+    &[data-phase="BAT"] { &:before { content:"BAT"; } }
+    &[data-phase="DIT"] { &:before { content:"DIT"; } }
+    &[data-phase="FRZ"] { &:before { content:"FRZ"; } }
+    &[data-phase="PLT"] { &:before { content:"PLT"; } }
+    &[data-phase="PRD"] { &:before { content:"PRD"; } }
+    &[data-phase="REQ"] { &:before { content:"Req"; } }
+    &[data-phase="SIT"] { &:before { content:"SIT"; } }
+    &[data-phase="SPR"] {
+        &:before { content:"Spr"; }
+        &[data-num]:not([data-num=""]) {
+            &:before {
+                content:'Spr ' attr(data-num);
+            }
+
+        }
+    }
+    &[data-phase="UAT"] { &:before { content:"UAT"; } }
+    &[data-phase="WTY"] { &:before { content:"WTY"; } }
 }//data-type
