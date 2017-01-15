@@ -238,7 +238,9 @@ export default Ember.Mixin.create(CalendarWidget, {
                     if(self.get('router.currentRouteName') === 'roadmap.index'){
                         if(self.rowComponent.get('phaseAction') === 'stamp') { // stamp the roadmap with phases
                             self.setPhase(e); // stamps limited to phases of the project defined in the assignment-phases component
-                        } else {
+                        }
+                        else if (self.rowComponent.get('phaseAction') === 'delete') { return; }
+                        else {
                             self.handle = Ember.$(e.target).hasClass('handle') ? Ember.$(e.target).hasClass('left') ? "left" : "right" : false;
                             if(!self.handle) {
                                 const stamp = Ember.$(e.target).closest(`[data-phase]`);
