@@ -129,3 +129,24 @@
         }
     }
 }
+
+// if the Quarter doesn't start on Monday, need to offset the phases during the daily view
+#pageContainer[data-view-team="true"]{
+    &[data-q1-start] {
+        .phases {
+            position:relative;
+        }
+    }
+    &[data-q1-start="T"] { // Q1 starts on Tuesday,
+        .phases { left:-15px; }
+    }
+    &[data-q1-start="W"] { // Q1 starts on Wednesday
+        .phases { left:-30px; }
+    }
+    &[data-q1-start="R"] { // Q1 starts on Thursday
+        .phases { left:-45px; }
+    }
+    &[data-q1-start="F"] { // Q1 starts on Friday
+        .phases { left:-60px; }
+    }
+}

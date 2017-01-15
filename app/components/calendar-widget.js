@@ -167,10 +167,11 @@ export default Ember.Component.extend(WebcelMixin, {
 
     // customize page after calendar loads
     onload() {
+        const cal = Ember.$('.calendar');
         this.constants.webcel = this.Webcel();
         this.set('constants.calWidth', ((this.constants.numDays) * this.constants.DIM));
-        Ember.$('#pageContainer').css({width:this.constants.calWidth});
-        Ember.$('.calendar').css({width:this.constants.calWidth});
+        Ember.$('#pageContainer').css({width:this.constants.calWidth}).attr('data-q1-start', cal.find('.day').attr('data-day-name'));
+        cal.css({width:this.constants.calWidth});
 
         this.calendar = Ember.$('#' + this.attrs.elementId);
         this.highlightToday();
