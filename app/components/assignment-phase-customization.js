@@ -38,6 +38,9 @@ export default Ember.Component.extend({
     actions: {
         updateSPR(){
             Ember.$(this.get('stamp')).attr('data-num', event.target.value);
+            if(event.target.value === '') {
+                Ember.$(this.get('stamp')).removeAttr('data-num');
+            }
         },
 
         checkShortDesc(){
@@ -68,7 +71,7 @@ export default Ember.Component.extend({
         },
 
         checkWeeks(){
-            if(this.get('getWeeks') === ''){
+            if(Ember.$(this.get('stamp')).find('.weeks').attr('data-weeks') === ''){
                 Ember.$(this.get('stamp')).find('.weeks').remove();
             }
         },
@@ -83,12 +86,11 @@ export default Ember.Component.extend({
         updateWeeks(){
             Ember.$(this.get('stamp')).find('.weeks').attr('data-weeks', event.target.value);
             if(event.target.value < 1) {
-                Ember.$(this.get('stamp')).removeAttr('style');
+                Ember.$(this.get('stamp')).removeAttr('data-width');
             }
             else {
-                Ember.$(this.get('stamp')).css({width:event.target.value * 15});
+                Ember.$(this.get('stamp')).attr('data-width', event.target.value * 15);
             }
-
         },
 
         submit(){
@@ -102,6 +104,6 @@ export default Ember.Component.extend({
             }else{
                 this.get('parentView').send('back');
             }
-        },
+        }
     }
 });
