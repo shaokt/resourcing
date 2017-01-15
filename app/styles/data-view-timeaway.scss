@@ -45,7 +45,7 @@
         text-align:center;
     }
 
-    [data-type="tile"] {
+    [data-type="tile"]:not([data-phase]) {
         z-index:1;
         &:hover {
             &:before {
