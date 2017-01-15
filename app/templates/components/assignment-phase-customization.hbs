@@ -30,5 +30,18 @@
         <input type="number" id="numWeeks" onfocus={{action 'createWeeks'}} onblur={{action 'checkWeeks'}} onkeyup={{action 'updateWeeks'}} onclick={{action 'updateWeeks'}} value={{getWeeks}} min="1">
     </div>
 
+    <div class="form-group">
+        <label for="startsOn">Starts On</label>
+        <select id="startsOn" onchange={{action 'updateStartsOn'}} onfocus={{action 'createStartsOn'}} onblur={{action 'checkStartsOn'}} value={{getStartsOn}}>
+            <option value="S">Sat</option>
+            <option value="N">Sun</option>
+            <option value="M">Mon</option>
+            <option value="T">Tues</option>
+            <option value="W">Wed</option>
+            <option value="R">Thu</option>
+            <option value="F">Fri</option>
+        </select>
+    </div>
+
     <input type="submit" {{action "back" on="keyDown"}} {{action "submit" on="click"}} value="OK">
 </form>

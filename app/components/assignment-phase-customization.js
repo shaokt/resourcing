@@ -35,6 +35,11 @@ export default Ember.Component.extend({
         return desc ? desc : '';
     }),
 
+    getStartsOn: Ember.computed('rowComponent.stampCustomize', function(){
+        const startsOn = Ember.$(this.get('stamp')).find('.startsOn').attr('data-startson');
+        return startsOn ? startsOn : '';
+    }),
+
     actions: {
         updateSPR(){
             Ember.$(this.get('stamp')).attr('data-num', event.target.value);
@@ -91,6 +96,25 @@ export default Ember.Component.extend({
             else {
                 Ember.$(this.get('stamp')).attr('data-width', event.target.value * 15);
             }
+        },
+
+        checkStartsOn(){
+            if(Ember.$(this.get('stamp')).find('.startsOn').attr('data-startson') === 'M'){
+                Ember.$(this.get('stamp')).find('.startsOn').remove();
+                Ember.$(this.get('stamp')).removeAttr('data-startson');
+            }
+        },
+
+        createStartsOn(){
+            if(!Ember.$(this.get('stamp')).find('.startsOn').length) {
+                const span = Ember.$('<span class="startsOn"></span>');
+                Ember.$(this.get('stamp')).append(span);
+            }
+        },
+
+        updateStartsOn(){
+            Ember.$(this.get('stamp')).find('.startsOn').attr('data-startson', event.target.value);
+            Ember.$(this.get('stamp')).attr('data-startson', event.target.value);
         },
 
         submit(){
