@@ -66,7 +66,7 @@ export default Ember.Component.extend(KeyDownMixin, {
                     Ember.$(this.get('rowComponent.row')).attr('data-rows', this.additionalRows);
                 }
                 else{
-                    Ember.$(this.get('rowComponent.row')).removeAttr('data-rows');
+                    //Ember.$(this.get('rowComponent.row')).removeAttr('data-rows');
                 }
             }// if length
         }// if arrow keys
