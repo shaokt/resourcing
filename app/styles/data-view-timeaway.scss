@@ -27,7 +27,7 @@
             height:15px;
         }
 
-        &:not(.hidden):hover:after {
+        &:not(.hidden):hover:before {
             display:none;
         }
 
@@ -48,7 +48,7 @@
     [data-type="tile"]:not([data-phase]) {
         z-index:1;
         &:hover {
-            &:before {
+            &:after {
                 background:#000;
                 border-radius:2px;
                 bottom:-20px;
@@ -66,52 +66,52 @@
 
     .bereavement {
         background:#871C00;
-        &[data-stamp="true"]:after { content: "B"; }
+        &[data-stamp="true"]:before { content: "B"; }
     }
 
     .conference {
         background:#9C9E30;
-        &[data-stamp="true"]:after { content: "C"; }
+        &[data-stamp="true"]:before { content: "C"; }
     }
 
     .firstDay {
         background:#718C00;
-        &[data-stamp="true"]:after { content: "FD"; }
+        &[data-stamp="true"]:before { content: "FD"; }
     }
 
     .jury {
         background:#1A8007;
-        &[data-stamp="true"]:after { content: "J"; }
+        &[data-stamp="true"]:before { content: "J"; }
     }
 
     .lastDay {
         background:#C82829;
-        &[data-stamp="true"]:after { content: "LD"; }
+        &[data-stamp="true"]:before { content: "LD"; }
     }
 
     .lieu {
         background:#8959A8;
-        &[data-stamp="true"]:after { content: "L"; }
+        &[data-stamp="true"]:before { content: "L"; }
     }
 
     .parentalLeave {
         background:#b44970;
-        &[data-stamp="true"]:after { content:'PL'; }
+        &[data-stamp="true"]:before { content:'PL'; }
     }
 
     .personal {
         background:#B798BF;
-        &[data-stamp="true"]:after { content: "P"; }
+        &[data-stamp="true"]:before { content: "P"; }
     }
 
     .personalHalf {
         background:linear-gradient(to right bottom, #2f3414 50%, #B798BF 50%);
-        &[data-stamp="true"]:after { content: "P"; }
+        &[data-stamp="true"]:before { content: "P"; }
     }
 
     .vacation {
         background:#4271AE;
-        &[data-stamp="true"]:after { content:'V'; }
+        &[data-stamp="true"]:before { content:'V'; }
 
         span.taken {
             border-left:7px solid rgba(255,255,255,.5);
@@ -122,42 +122,42 @@
 
     .vacationHalf {
         background:linear-gradient(to right bottom, #2f3414 50%, #4271AE 50%);
-        &[data-stamp="true"]:after { content:'V'; }
+        &[data-stamp="true"]:before { content:'V'; }
     }
 
     .vacationCarryover {
         background:#3E999F;
-        &[data-stamp="true"]:after { content: "VC"; }
+        &[data-stamp="true"]:before { content: "VC"; }
     }
 
     .vacationTentative {
         background:#9F3E99;
-        &[data-stamp="true"]:after { content: "V?"; }
+        &[data-stamp="true"]:before { content: "V?"; }
     }
 
     .shortTermDisability {
         background:#deaddd;
-        &[data-stamp="true"]:after { content: "SD"; }
+        &[data-stamp="true"]:before { content: "SD"; }
     }
 
     .sick {
         background:#c1a;
-        &[data-stamp="true"]:after { content: "S"; }
+        &[data-stamp="true"]:before { content: "S"; }
     }
 
     .training {
         background:#C99E00;
-        &[data-stamp="true"]:after { content: "T"; }
+        &[data-stamp="true"]:before { content: "T"; }
     }
 
     .unofficial {
         background:#515151;
-        &[data-stamp="true"]:after { content: "\263C"; }
+        &[data-stamp="true"]:before { content: "\263C"; }
     }
 
     .wfh {
         background:#F5871F;
-        &[data-stamp="true"]:after { content:'R'; }
+        &[data-stamp="true"]:before { content:'R'; }
     }
 
     .tileOptions:hover {
@@ -178,30 +178,30 @@
 
         :hover { z-index:3; }
 
-        .vacation:hover:before { content:"Vacation"; }
-        .vacationCarryover:hover:before { content:"Carryover"; }
-        .vacationTentative:hover:before { content:"Tentative Vacation"; }
-        .unofficial:hover:before { content:"Unofficial Lieu Day"; }
-        .vacationHalf:hover:before { content:"Vacation Half Day"; }
+        .vacation:hover:after { content:"Vacation"; }
+        .vacationCarryover:hover:after { content:"Carryover"; }
+        .vacationTentative:hover:after { content:"Tentative Vacation"; }
+        .unofficial:hover:after { content:"Unofficial Lieu Day"; }
+        .vacationHalf:hover:after { content:"Vacation Half Day"; }
 
         .sick { clear:left; }
-        .sick:hover:before { content:"Sick Day"; }
-        .personal:hover:before { content:"Personal Day"; }
-        .lieu:hover:before { content:"Lieu Day"; }
-        .wfh:hover:before { content:"Remote Work (WFH)"; }
-        .personalHalf:hover:before { content:"Personal Half Day"; }
+        .sick:hover:after { content:"Sick Day"; }
+        .personal:hover:after { content:"Personal Day"; }
+        .lieu:hover:after { content:"Lieu Day"; }
+        .wfh:hover:after { content:"Remote Work (WFH)"; }
+        .personalHalf:hover:after { content:"Personal Half Day"; }
 
         .conference { clear:left; }
-        .conference:hover:before { content:"Conference"; }
-        .training:hover:before { content:"Training"; }
-        .bereavement:hover:before { content:"Bereavement"; }
-        .shortTermDisability:hover:before { content:"Short Term Disability"; }
+        .conference:hover:after { content:"Conference"; }
+        .training:hover:after { content:"Training"; }
+        .bereavement:hover:after { content:"Bereavement"; }
+        .shortTermDisability:hover:after { content:"Short Term Disability"; }
 
         .parentalLeave { clear:left; }
-        .parentalLeave:hover:before { content:"Parental Leave"; }
-        .jury:hover:before { content:"Jury Duty"; }
-        .firstDay:hover:before { content:"First Day"; }
-        .lastDay:hover:before { content:"Last Day"; }
+        .parentalLeave:hover:after { content:"Parental Leave"; }
+        .jury:hover:after { content:"Jury Duty"; }
+        .firstDay:hover:after { content:"First Day"; }
+        .lastDay:hover:after { content:"Last Day"; }
     }
     .info {
         .tileOptions li {
