@@ -23,12 +23,17 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     // determines which assignment to show while viewing employees
     showAssignment: function(){
         var self = this;
+        let height = 0;
         this.set('viewAssignment',[]);
         this.get('model.assignment').forEach(function(item){
-            if(Ember.$.inArray(item.id, self.get('constants.assArray')) !== -1){ self.viewAssignment.push(item); }
+            if(Ember.$.inArray(item.id, self.get('constants.assArray')) !== -1){
+                const rowHeight = item.get('rows');
+                height += rowHeight ? (rowHeight*10)+40 : 40; // 40=height of each assignment row
+                self.viewAssignment.push(item);
+            }
         });
 
-        this.set('numAssignmentsViewing', this.get('viewAssignment').length * 40); // 40=height of each assignment row
+        this.set('numAssignmentsViewing', height);
         return this.get('settings.isWeeklyCalendar') && this.get('viewAssignment').length > 0;
 
     }.property('settings.isWeeklyCalendar', 'constants.assArray'),
