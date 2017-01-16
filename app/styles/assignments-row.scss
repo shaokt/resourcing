@@ -49,6 +49,7 @@
 
             @import "assignments-phase-list.scss";
             @import "assignments-phase-edit.scss";
+            @import "assignments-row-management.scss";
 
             > [data-phase-action=""].row,
             > [data-phase-action="delete"].row,
