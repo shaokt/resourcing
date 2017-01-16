@@ -25,7 +25,8 @@ export default Ember.Component.extend(KeyDownMixin, {
      */
     keyDown: function(event, fromBinding) {
         // do not allow scrolling when pressing arrow keys
-        if(fromBinding && !event.target.type && [32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+        // event.target.type --> don't remember why this is being checked
+        if(fromBinding && (!event.target.type || event.target.type ==='submit') && [32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
             event.preventDefault();
             if(this.get('phaseToShift')){
                 var x = parseInt(Ember.$(this.get('phaseToShift')).attr('data-x')) + this.get('rowComponent.shiftHorizontal');

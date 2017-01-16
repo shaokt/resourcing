@@ -1,7 +1,10 @@
 import Ember from 'ember';
+import AssignmentPhaseComponent from "./assignment-phase";
 
-export default Ember.Component.extend({
-    tagName:'',
+export default AssignmentPhaseComponent.extend({
+    tagName:'div',
+    classNames:['rowManagement'],
+    id:'',
     maxRows:10,
     showAdd: function(){
         return !this.get('assignment.rows') || this.get('assignment.rows') < this.maxRows;
