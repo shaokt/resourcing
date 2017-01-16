@@ -15,6 +15,10 @@ export default Ember.Component.extend(KeyDownMixin, {
         return this.get('phaseAction') === 'shift';
     }.property('phaseAction'),
 
+    maxDown: function(){ // maximum a phase can be shifted down
+        return this.constants.DIM*3 + (this.get('assignment.rows') > 0 ? (this.get('assignment.rows') * this.constants.DIM) : 0);
+    },
+
     /* move the phases around when active
      * @event   the event
      * @fromBinding     checks if this is being trigged from the keydown mixin
@@ -47,7 +51,7 @@ export default Ember.Component.extend(KeyDownMixin, {
                         break;
                     }
                     case 40: { // down
-                        if(y < this.constants.DIM*3){
+                        if(y < this.maxDown()){
                             this.set('rowComponent.shiftVertical', this.get('rowComponent.shiftVertical') + this.constants.DIM);
                         }
                         break;
