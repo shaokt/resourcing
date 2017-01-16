@@ -29,7 +29,7 @@ export default Ember.Component.extend(KeyDownMixin, {
             event.preventDefault();
             if(this.get('phaseToShift')){
                 var x = parseInt(Ember.$(this.get('phaseToShift')).attr('data-x')) + this.get('rowComponent.shiftHorizontal');
-                var y = parseInt(Ember.$(this.get('phaseToShift')).attr('data-y')) + this.get('rowComponent.shiftVertical');
+                var y = parseInt(Ember.$(this.get('phaseToShift')).attr('data-y'));
 
     			switch (event.keyCode){
                     case 37: { // left
@@ -40,7 +40,7 @@ export default Ember.Component.extend(KeyDownMixin, {
                     }
                     case 38: { // up
                         if(y > 0){
-                            this.set('rowComponent.shiftVertical', this.get('rowComponent.shiftVertical') - this.constants.DIM);
+                            Ember.$(this.get('phaseToShift')).attr('data-y', y - this.constants.DIM);
                         }
                         break;
                     }
@@ -52,7 +52,7 @@ export default Ember.Component.extend(KeyDownMixin, {
                     }
                     case 40: { // down
                         if(y < this.maxDown()){
-                            this.set('rowComponent.shiftVertical', this.get('rowComponent.shiftVertical') + this.constants.DIM);
+                            Ember.$(this.get('phaseToShift')).attr('data-y', y + this.constants.DIM);
                         }
                         break;
                     }

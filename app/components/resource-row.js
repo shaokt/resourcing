@@ -11,7 +11,6 @@ export default Ember.Component.extend(Webcel, {
     dragSource: null,
     store: service(),
     shiftHorizontal: 0, // how many pixels left or right to move the related phases during shifting
-    shiftVertical: 0, // how many pixels up or down to move the related phases during shifting
 
     // row available for editing/painting
     edit: function(){
@@ -153,9 +152,7 @@ export default Ember.Component.extend(Webcel, {
     resetPhaseToShiftPosition: function(){
         var pts = Ember.$(this.get('phaseToShift'));
         pts.attr('data-x', parseInt(pts.attr('data-x')) + this.get('shiftHorizontal'));
-        pts.attr('data-y', parseInt(pts.attr('data-y')) + this.get('shiftVertical'));
         this.set('shiftHorizontal', 0);
-        this.set('shiftVertical', 0);
     },
 
     // update the vacation/personal counters
