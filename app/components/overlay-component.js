@@ -12,7 +12,7 @@ export default Ember.Component.extend(KeyDownMixin, {
         Ember.run.scheduleOnce("afterRender",this,()=>{
             var self = this;
             this.set('constants.overlay', this.$());
-            this.$()[0].onclick = function(){ event.stopPropagation(); }
+            this.$()[0].onclick = function(){ event.stopPropagation(); };
             this.$()[0].onfocus = function(){
                 this.onkeydown = function(){
                     if(event.keyCode === 9 && event.shiftKey) {
@@ -28,14 +28,14 @@ export default Ember.Component.extend(KeyDownMixin, {
             Ember.$('body').attr('data-overlay', true);
             Ember.$('body')[0].onclick = function() {
                 self.$().focus();
-            }
+            };
         });
     }.on('init'),
 
     keyDown: function(event){
         if(event.keyCode === 27) {
             event.preventDefault();
-            this.get('initiator').cancelOverlay()
+            this.get('initiator').cancelOverlay();
             this.send('done');
         }
     },
@@ -50,7 +50,7 @@ export default Ember.Component.extend(KeyDownMixin, {
 
         done() {
             Ember.$('body').removeAttr('data-overlay');
-            Ember.$('body')[0].onclick = function() { }
+            Ember.$('body')[0].onclick = function() { };
         }
     }
 });

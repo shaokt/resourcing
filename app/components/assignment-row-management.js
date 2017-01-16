@@ -22,7 +22,7 @@ export default AssignmentPhaseComponent.extend({
             if(y === newRow){
                 Ember.$(this).attr('data-y',y-self.constants.DIM);
             }
-        })
+        });
     },
 
     actions: {
