@@ -159,7 +159,7 @@
                             height:30px;
                             left:-10px;
                             position:absolute;
-                            top:-5px;
+                            top:-5px !important;
                             width:30px;
                             z-index:9;
                         }
@@ -221,7 +221,7 @@
             bottom:-25px;
         }
         &:before {
-            top:-7px;
+            top:-7px !important;
         }
     }
 }
