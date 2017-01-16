@@ -8,6 +8,11 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     settings: storageFor("settings"),
     queryParams: ['year'],
     year: null,
+    numAssignmentsViewing: function(){
+        let height = this.get('constants.teamAssignment.rows');
+        height = height ? (height*10)+40 : 40; // 40=height of each assignment row
+        return height;
+    }.property('constants.teamAssignment'),
 
     hasFile: Ember.computed('model.resource', function(){
         return this.get('model.length') > 0;

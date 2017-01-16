@@ -24,6 +24,7 @@
         </li>
     </ul>
     {{assignment-phases assignment=assignment shift="assignment.phases" phaseAction=phaseAction phaseToShift=phaseToShift row=row rowComponent=rowComponent}}
+    {{assignment-row-management assignment=assignment row=row}}
 {{else}}
     <div class="name short" data-type="value">{{assignment.short}}</div>
 {{/if}}

@@ -4,7 +4,6 @@ import KeyDownMixin from "../mixins/keydown";
 export default Ember.Component.extend(KeyDownMixin, {
     tagName: 'li',
     classNameBindings: ['id'],
-    additionalRows:0,
     id: Ember.computed('label', function() {
         return 'phase' + this.get('label');
     }),
@@ -16,17 +15,22 @@ export default Ember.Component.extend(KeyDownMixin, {
         return this.get('phaseAction') === 'shift';
     }.property('phaseAction'),
 
+    maxDown: function(){ // maximum a phase can be shifted down
+        return this.constants.DIM*3 + (this.get('assignment.rows') > 0 ? (this.get('assignment.rows') * this.constants.DIM) : 0);
+    },
+
     /* move the phases around when active
      * @event   the event
      * @fromBinding     checks if this is being trigged from the keydown mixin
      */
     keyDown: function(event, fromBinding) {
         // do not allow scrolling when pressing arrow keys
-        if(fromBinding && !event.target.type && [32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+        // event.target.type --> don't remember why this is being checked
+        if(fromBinding && (!event.target.type || event.target.type ==='submit') && [32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
             event.preventDefault();
             if(this.get('phaseToShift')){
                 var x = parseInt(Ember.$(this.get('phaseToShift')).attr('data-x')) + this.get('rowComponent.shiftHorizontal');
-                var y = parseInt(Ember.$(this.get('phaseToShift')).attr('data-y')) + this.get('rowComponent.shiftVertical');
+                var y = parseInt(Ember.$(this.get('phaseToShift')).attr('data-y'));
 
     			switch (event.keyCode){
                     case 37: { // left
@@ -37,10 +41,7 @@ export default Ember.Component.extend(KeyDownMixin, {
                     }
                     case 38: { // up
                         if(y > 0){
-                            this.set('rowComponent.shiftVertical', this.get('rowComponent.shiftVertical') - this.constants.DIM);
-                        }
-                        if(y > this.constants.DIM*3) {
-                            this.additionalRows--;
+                            Ember.$(this.get('phaseToShift')).attr('data-y', y - this.constants.DIM);
                         }
                         break;
                     }
@@ -51,23 +52,12 @@ export default Ember.Component.extend(KeyDownMixin, {
                         break;
                     }
                     case 40: { // down
-                        if(y < this.constants.DIM*3){
-                            this.set('rowComponent.shiftVertical', this.get('rowComponent.shiftVertical') + this.constants.DIM);
-                        }
-                        else if(this.additionalRows < 10){ // maximum 10 extra rows for a total of 14 rows
-                            this.set('rowComponent.shiftVertical', this.get('rowComponent.shiftVertical') + this.constants.DIM);
-                            this.additionalRows++;
+                        if(y < this.maxDown()){
+                            Ember.$(this.get('phaseToShift')).attr('data-y', y + this.constants.DIM);
                         }
                         break;
                     }
                 }// switch
-
-                if(this.additionalRows > 0) {
-                    Ember.$(this.get('rowComponent.row')).attr('data-rows', this.additionalRows);
-                }
-                else{
-                    //Ember.$(this.get('rowComponent.row')).removeAttr('data-rows');
-                }
             }// if length
         }// if arrow keys
     },// keyDown
@@ -84,9 +74,6 @@ export default Ember.Component.extend(KeyDownMixin, {
             var editedPhases = (Ember.$(this.get('row')).find('.phases')[0].innerHTML.replace(/<!---->/g, '')).htmlSafe();
             this.set('assignment.phases', editedPhases);
         }catch(e){} // no action taken, nothing to update
-        if(this.additionalRows) {
-            this.set('assignment.rows', this.additionalRows);
-        }
     },
 
     actions: {

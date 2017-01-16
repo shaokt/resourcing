@@ -1,0 +1,46 @@
+.rowManagement {
+    float:left;
+    margin:-14px 0 0 10px;
+    padding-right:5px;
+    user-select: none;
+
+    button {
+        background:#fff;
+        border:1px solid #3B3FFC;
+        border-radius:2px;
+        color:#3B3FFC;
+        display:block;
+        padding:1px 5px;
+
+        &:focus, &:hover {
+            outline:none;
+            background:#3B3FFC;
+            color:#fff;
+
+            span {
+                background:#fff;
+                color:#3B3FFC;
+            }
+        }
+
+        &.rowMinus {
+            margin-top:1px;
+        }
+
+        &[data-visible="false"] {
+            visibility:hidden;
+        }
+
+        span{
+            background:#3b3ffc;
+            border-radius:100%;
+            color:#fff;
+            display:inline-block;
+            font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+            font-weight:bold;
+            height:.8em;
+            width:.8em;
+            text-align:center;
+        }
+    }
+}
