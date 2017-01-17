@@ -104,14 +104,15 @@ export default Ember.Component.extend({
         },
 
         updateWeeks(){
-            if(this.isEmpty(event.target.value)){
-                Ember.$(this.get('stamp')).find('.duration').removeAttr('data-weeks');
-            }
-            else {
-                Ember.$(this.get('stamp')).find('.duration').attr('data-weeks', parseInt(event.target.value) || 0);
-            }
-            if(event.target.value < 1) {
-                Ember.$(this.get('stamp')).removeAttr('data-width');
+            const duration = Ember.$(this.get('stamp')).find('.duration');
+            duration.attr('data-weeks', parseInt(event.target.value) || 0);
+            if(event.target.value === '') {
+                if(this.isEmpty(duration.attr('data-days'))){
+                    Ember.$(this.get('stamp')).removeAttr('data-width');
+                }
+                else {
+                    Ember.$(this.get('stamp')).attr('data-width', 0);
+                }
             }
             else {
                 Ember.$(this.get('stamp')).attr('data-width', event.target.value * 15);
