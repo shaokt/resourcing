@@ -122,15 +122,10 @@ export default Ember.Component.extend({
         updateDays(){
             if(event.target.value === '0'){
                 Ember.$(this.get('stamp')).find('.duration').removeAttr('data-days');
+                Ember.$(this.get('stamp')).removeAttr('data-padding');
             }
             else{
                 Ember.$(this.get('stamp')).find('.duration').attr('data-days', event.target.value);
-            }
-            /*1-4 days only*/
-            if(event.target.value < 1) {
-                Ember.$(this.get('stamp')).removeAttr('data-padding');
-            }
-            else {
                 Ember.$(this.get('stamp')).attr('data-padding', event.target.value);
             }
         },
