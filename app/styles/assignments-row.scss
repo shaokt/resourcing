@@ -37,12 +37,9 @@
             }//tileOptions
             [data-type="tile"] {
                 &[data-phase] {
-                    span.desc {
-                        &:hover {
-                            &:after {
-                                display:none; // do not display long description of phase when active
-                            }
-                        }
+                    &:hover span.duration:before,
+                    span.desc:hover:after {
+                        display:none; // do not display custom phase info active
                     }
                 }
             }

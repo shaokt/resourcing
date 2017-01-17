@@ -41,6 +41,13 @@
         &[data-y="30"]{ top:16px; }
         &[data-y="45"]{ top:24px; }
 
+        // css for days duration in weekly view
+        &[data-padding]:not([data-padding=""]){ box-sizing:content-box; }
+        &[data-padding="1"]{ padding:0 2px 0 1px !important; }
+        &[data-padding="2"]{ padding:0 3px !important; }
+        &[data-padding="3"]{ padding:0 5px 0 4px !important; }
+        &[data-padding="4"]{ padding:0 6px !important; }
+
         &[data-assignment] {
             height:8px;
         }
@@ -194,5 +201,15 @@
 
     .tileOptions li {
         :hover { z-index:3; }
+    }
+}
+
+[data-view="timeaway"] {
+    [data-type="tile"] {
+        // css for days duration in daily view
+        &[data-padding="1"]{ padding:0 8px 0 7px !important; }
+        &[data-padding="2"]{ padding:0 15px !important; }
+        &[data-padding="3"]{ padding:0 23px 0 22px !important; }
+        &[data-padding="4"]{ padding:0 30px !important; }
     }
 }
