@@ -62,6 +62,10 @@
      }
 
      .dateSummary {
-         margin-bottom:10px;
+        font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+        
+         div {
+             margin-bottom:5px;
+         }
      }
  }// form

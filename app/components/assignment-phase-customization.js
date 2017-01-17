@@ -7,6 +7,18 @@ export default Ember.Component.extend({
         return sd;
     }),
 
+    updatedWeeks: Ember.computed('rowComponent.stampCustomize', function(){
+        let d = Ember.$(this.get('rowComponent.stampCustomize')).find('.duration');
+        d = d.attr('data-weeks') || 0; // assume monday if no start day specified
+        return d;
+    }),
+
+    updatedDays: Ember.computed('rowComponent.stampCustomize', function(){
+        let d = Ember.$(this.get('rowComponent.stampCustomize')).find('.duration');
+        d = d.attr('data-days') || 0; // assume monday if no start day specified
+        return d;
+    }),
+
     showLongDesc: Ember.computed('rowComponent.stampCustomize', function(){
         return this.get('getShortDesc') !== '';
     }),
@@ -58,8 +70,17 @@ export default Ember.Component.extend({
         if(!this.get('calDate')){ this.setCalendarDay(); }
         let sd = new Date(this.get('calDate'));
         sd.setDate(sd.getDate() + shiftDay);
+        this.set('fromDate', sd.toDateString());
         return sd.toDateString();
     }.property('updatedStartDate'),
+
+    getToDay: function(){
+        const fromDate = new Date(this.get('fromDate'));
+        let duration = parseInt(this.get('updatedWeeks'))*7 + parseInt(this.get('updatedDays'));
+        if(duration){ --duration; }
+        fromDate.setDate(fromDate.getDate() + duration);
+        return fromDate.toDateString();
+    }.property('updatedWeeks', 'updatedDays', 'updatedStartDate'),
 
     setCalendarDay: function(col){
         const x = Ember.$(this.get('stamp')).attr('data-x');
@@ -126,7 +147,9 @@ export default Ember.Component.extend({
 
         updateWeeks(){
             const duration = Ember.$(this.get('stamp')).find('.duration');
-            duration.attr('data-weeks', parseInt(event.target.value) || 0);
+            const value = parseInt(event.target.value) || 0;
+            duration.attr('data-weeks', value);
+            this.set('updatedWeeks', value);
             if(event.target.value === '') {
                 if(this.isEmpty(duration.attr('data-days'))){
                     Ember.$(this.get('stamp')).removeAttr('data-width');
@@ -144,10 +167,12 @@ export default Ember.Component.extend({
             if(event.target.value === '0'){
                 Ember.$(this.get('stamp')).find('.duration').removeAttr('data-days');
                 Ember.$(this.get('stamp')).removeAttr('data-padding');
+                this.set('updatedDays', 0);
             }
             else{
                 Ember.$(this.get('stamp')).find('.duration').attr('data-days', event.target.value);
                 Ember.$(this.get('stamp')).attr('data-padding', event.target.value);
+                this.set('updatedDays', event.target.value);
             }
         },
 

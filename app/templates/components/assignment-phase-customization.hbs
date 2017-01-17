@@ -55,11 +55,12 @@
                 <option value="F">Fri</option>
             </select>
         </div>
-    </fieldset>
 
-    <div class="dateSummary">
-        {{getFromDay}}
-    </div>
+        <div class="dateSummary">
+            <div>{{getFromDay}}</div>
+            <div>{{getToDay}}</div>
+        </div>
+    </fieldset>
 
     <input type="submit" {{action "back" on="keyDown"}} {{action "submit" on="click"}} value="OK">
 </form>
