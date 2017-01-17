@@ -46,8 +46,8 @@ export default Ember.Component.extend({
     }),
 
 
-    checkEmpty: function(attr){
-        return typeof attr !== typeof undefined && attr !== 0 && attr !== '';
+    isEmpty: function(attr){
+        return typeof attr === typeof undefined || parseInt(attr) === 0 || attr === '';
     },
 
     actions: {
@@ -91,7 +91,7 @@ export default Ember.Component.extend({
             const weeks = duration.attr('data-weeks');
             const days = duration.attr('data-days');
 
-            if(!(this.checkEmpty(weeks) && this.checkEmpty(days))){
+            if(this.isEmpty(weeks) && this.isEmpty(days)){
                 Ember.$(this.get('stamp')).find('.duration').remove();
             }
         },
@@ -104,7 +104,12 @@ export default Ember.Component.extend({
         },
 
         updateWeeks(){
-            Ember.$(this.get('stamp')).find('.duration').attr('data-weeks', parseInt(event.target.value) || 0);
+            if(this.isEmpty(event.target.value)){
+                Ember.$(this.get('stamp')).find('.duration').removeAttr('data-weeks');
+            }
+            else {
+                Ember.$(this.get('stamp')).find('.duration').attr('data-weeks', parseInt(event.target.value) || 0);
+            }
             if(event.target.value < 1) {
                 Ember.$(this.get('stamp')).removeAttr('data-width');
             }
@@ -114,7 +119,12 @@ export default Ember.Component.extend({
         },
 
         updateDays(){
-            Ember.$(this.get('stamp')).find('.duration').attr('data-days', event.target.value);
+            if(event.target.value === '0'){
+                Ember.$(this.get('stamp')).find('.duration').removeAttr('data-days');
+            }
+            else{
+                Ember.$(this.get('stamp')).find('.duration').attr('data-days', event.target.value);
+            }
             /*1-4 days only*/
             if(event.target.value < 1) {
                 Ember.$(this.get('stamp')).removeAttr('data-padding');
