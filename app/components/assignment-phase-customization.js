@@ -45,6 +45,11 @@ export default Ember.Component.extend({
         return startsOn ? startsOn : '';
     }),
 
+
+    checkEmpty: function(attr){
+        return typeof attr !== typeof undefined && attr !== 0 && attr !== '';
+    },
+
     actions: {
         updateSPR(){
             Ember.$(this.get('stamp')).attr('data-num', event.target.value);
@@ -80,13 +85,18 @@ export default Ember.Component.extend({
             Ember.$(this.get('stamp')).find('.desc').attr('data-long', event.target.value);
         },
 
-        checkWeeks(){
-            if(Ember.$(this.get('stamp')).find('.duration').attr('data-weeks') === ''){
+        // check if weeks & days are empty - remove duration if so
+        checkDuration(){
+            const duration = Ember.$(this.get('stamp')).find('.duration');
+            const weeks = duration.attr('data-weeks');
+            const days = duration.attr('data-days');
+
+            if(!(this.checkEmpty(weeks) && this.checkEmpty(days))){
                 Ember.$(this.get('stamp')).find('.duration').remove();
             }
         },
 
-        createWeeks(){
+        createDuration(){
             if(!Ember.$(this.get('stamp')).find('.duration').length) {
                 const span = Ember.$('<span class="duration"></span>');
                 Ember.$(this.get('stamp')).append(span);
@@ -94,12 +104,23 @@ export default Ember.Component.extend({
         },
 
         updateWeeks(){
-            Ember.$(this.get('stamp')).find('.duration').attr('data-weeks', event.target.value);
+            Ember.$(this.get('stamp')).find('.duration').attr('data-weeks', parseInt(event.target.value) || 0);
             if(event.target.value < 1) {
                 Ember.$(this.get('stamp')).removeAttr('data-width');
             }
             else {
                 Ember.$(this.get('stamp')).attr('data-width', event.target.value * 15);
+            }
+        },
+
+        updateDays(){
+            Ember.$(this.get('stamp')).find('.duration').attr('data-days', event.target.value);
+            /*1-4 days only*/
+            if(event.target.value < 1) {
+                Ember.$(this.get('stamp')).removeAttr('data-padding');
+            }
+            else {
+                Ember.$(this.get('stamp')).attr('data-padding', event.target.value);
             }
         },
 
