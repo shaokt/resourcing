@@ -1,6 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+    updatedStartDate: Ember.computed('rowComponent.stampCustomize', function(){
+        let sd = Ember.$(this.get('rowComponent.stampCustomize')).attr('data-startson');
+        sd = sd || "M"; // assume monday if no start day specified
+        return sd;
+    }),
+
     showLongDesc: Ember.computed('rowComponent.stampCustomize', function(){
         return this.get('getShortDesc') !== '';
     }),
@@ -45,6 +51,21 @@ export default Ember.Component.extend({
         return startsOn ? startsOn : '';
     }),
 
+    shiftStartDay: {S:-2, N:-1, M:0, T:1, W:2, R:3, F:4},
+
+    getFromDay: function(){
+        let shiftDay = this.shiftStartDay[this.get('updatedStartDate')];
+        if(!this.get('calDate')){ this.setCalendarDay(); }
+        let sd = new Date(this.get('calDate'));
+        sd.setDate(sd.getDate() + shiftDay);
+        return sd.toDateString();
+    }.property('updatedStartDate'),
+
+    setCalendarDay: function(col){
+        const x = Ember.$(this.get('stamp')).attr('data-x');
+        const calDate = Ember.$('.calendar').find(`[data-column="${x}"]`).attr('data-date');
+        this.set('calDate', calDate);
+    },
 
     isEmpty: function(attr){
         return typeof attr === typeof undefined || parseInt(attr) === 0 || attr === '';
@@ -147,6 +168,7 @@ export default Ember.Component.extend({
         updateStartsOn(){
             Ember.$(this.get('stamp')).find('.startsOn').attr('data-startson', event.target.value);
             Ember.$(this.get('stamp')).attr('data-startson', event.target.value);
+            this.set('updatedStartDate', event.target.value);
         },
 
         submit(){
