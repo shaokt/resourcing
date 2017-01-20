@@ -77,7 +77,10 @@ export default Ember.Component.extend({
     getToDay: function(){
         const fromDate = new Date(this.get('fromDate'));
         let duration = parseInt(this.get('updatedWeeks'))*7 + parseInt(this.get('updatedDays'));
-        if(duration){ --duration; }
+        if(fromDate.getDay() === 1 && duration%7 === 0){ //if Monday & perfect weeks
+            duration = duration - 2; // assume we do not end phases on the weekend
+        }
+        if(duration){ --duration; } // this ensures it shows the proper end date for duration
         fromDate.setDate(fromDate.getDate() + duration);
         return fromDate.toDateString();
     }.property('updatedWeeks', 'updatedDays', 'updatedStartDate'),
