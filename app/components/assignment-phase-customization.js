@@ -29,10 +29,7 @@ export default Ember.Component.extend({
         this.set('top', obj.offsetTop + obj.offsetHeight);
         return obj.offsetLeft;
     }),
-    spr: Ember.computed('assignment.stampCustomize', function(){
-        return Ember.$(this.get('assignment.stampCustomize')).attr('data-phase') === 'SPR';
-    }),
-
+    
     getNum: Ember.computed('assignment.stampCustomize', function(){
         const number = Ember.$(this.get('stamp')).attr('data-num');
         return number ? number : '';
@@ -112,7 +109,7 @@ export default Ember.Component.extend({
     },
 
     actions: {
-        updateSPR(){
+        updateNum(){
             Ember.$(this.get('stamp')).attr('data-num', event.target.value);
             if(event.target.value === '') {
                 Ember.$(this.get('stamp')).removeAttr('data-num');
