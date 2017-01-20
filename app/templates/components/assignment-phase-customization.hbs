@@ -34,7 +34,7 @@
 
         <div class="form-group">
             <label for="numDays">Days</label>
-            <select id="startsOn" onfocus={{action 'createDuration'}} onblur={{action 'checkDuration'}} onchange={{action 'updateDays'}} value={{getDays}}>
+            <select id="numDays" onfocus={{action 'createDuration'}} onblur={{action 'checkDuration'}} onchange={{action 'updateDays'}} value={{getDays}}>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -57,8 +57,8 @@
         </div>
 
         <div class="dateSummary">
-            <div>{{getFromDay}}</div>
-            <div>{{getToDay}}</div>
+            <div>Fr: {{getFromDay}}</div>
+            <div>To: {{getToDay}}</div>
         </div>
     </fieldset>
 
