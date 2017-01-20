@@ -2,17 +2,15 @@
     {{date-line}}
 {{/unless}}
 <div class="{{assignmentViewContainer}}">
-{{#each model as |assignment index|}}
-    {{#if (assignment-view-people settings.view assignment.id currentAssignment)}}
-        {{assignment-row
-            assignment=assignment
-            index=index
-            persons=persons
-            currentAssignment=currentAssignment
-            readOnly=readOnly
-        }}
-    {{/if}}
-{{/each}}
+    {{assignment-row
+        model=model
+        assignment=assignment
+        index=index
+        persons=persons
+        currentAssignment=currentAssignment
+        readOnly=readOnly
+        settings=settings
+    }}
 </div>
 {{#if settings.isDailyCalendar}}
     <div class="rowContainer">

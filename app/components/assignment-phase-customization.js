@@ -1,64 +1,64 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    updatedStartDate: Ember.computed('rowComponent.stampCustomize', function(){
-        let sd = Ember.$(this.get('rowComponent.stampCustomize')).attr('data-startson');
+    updatedStartDate: Ember.computed('assignment.stampCustomize', function(){
+        let sd = Ember.$(this.get('assignment.stampCustomize')).attr('data-startson');
         sd = sd || "M"; // assume monday if no start day specified
         return sd;
     }),
 
-    updatedWeeks: Ember.computed('rowComponent.stampCustomize', function(){
-        let d = Ember.$(this.get('rowComponent.stampCustomize')).find('.duration');
+    updatedWeeks: Ember.computed('assignment.stampCustomize', function(){
+        let d = Ember.$(this.get('assignment.stampCustomize')).find('.duration');
         d = d.attr('data-weeks') || 0; // assume monday if no start day specified
         return d;
     }),
 
-    updatedDays: Ember.computed('rowComponent.stampCustomize', function(){
-        let d = Ember.$(this.get('rowComponent.stampCustomize')).find('.duration');
+    updatedDays: Ember.computed('assignment.stampCustomize', function(){
+        let d = Ember.$(this.get('assignment.stampCustomize')).find('.duration');
         d = d.attr('data-days') || 0; // assume monday if no start day specified
         return d;
     }),
 
-    showLongDesc: Ember.computed('rowComponent.stampCustomize', function(){
+    showLongDesc: Ember.computed('assignment.stampCustomize', function(){
         return this.get('getShortDesc') !== '';
     }),
 
-    left: Ember.computed('rowComponent.stampCustomize', function(){
-        const obj = this.get('rowComponent.stampCustomize')[0];
+    left: Ember.computed('assignment.stampCustomize', function(){
+        const obj = this.get('assignment.stampCustomize')[0];
         this.set('stamp', obj);
         this.set('top', obj.offsetTop + obj.offsetHeight);
         return obj.offsetLeft;
     }),
-    spr: Ember.computed('rowComponent.stampCustomize', function(){
-        return Ember.$(this.get('rowComponent.stampCustomize')).attr('data-phase') === 'SPR';
+    spr: Ember.computed('assignment.stampCustomize', function(){
+        return Ember.$(this.get('assignment.stampCustomize')).attr('data-phase') === 'SPR';
     }),
 
-    getNum: Ember.computed('rowComponent.stampCustomize', function(){
+    getNum: Ember.computed('assignment.stampCustomize', function(){
         const number = Ember.$(this.get('stamp')).attr('data-num');
         return number ? number : '';
     }),
 
-    getWeeks: Ember.computed('rowComponent.stampCustomize', function(){
+    getWeeks: Ember.computed('assignment.stampCustomize', function(){
         const weeks = Ember.$(this.get('stamp')).find('.duration').attr('data-weeks');
         return weeks ? weeks : '';
     }),
 
-    getDays: Ember.computed('rowComponent.stampCustomize', function(){
+    getDays: Ember.computed('assignment.stampCustomize', function(){
         const days = Ember.$(this.get('stamp')).find('.duration').attr('data-days');
         return days ? days : '';
     }),
 
-    getShortDesc: Ember.computed('rowComponent.stampCustomize', function(){
+    getShortDesc: Ember.computed('assignment.stampCustomize', function(){
         const desc = Ember.$(this.get('stamp')).find('.desc').html();
         return desc ? desc : '';
     }),
 
-    getLongDesc: Ember.computed('rowComponent.stampCustomize', function(){
+    getLongDesc: Ember.computed('assignment.stampCustomize', function(){
         const desc = Ember.$(this.get('stamp')).find('.desc').attr('data-long');
         return desc ? desc : '';
     }),
 
-    getStartsOn: Ember.computed('rowComponent.stampCustomize', function(){
+    getStartsOn: Ember.computed('assignment.stampCustomize', function(){
         const startsOn = Ember.$(this.get('stamp')).find('.startsOn').attr('data-startson');
         return startsOn ? startsOn : '';
     }),

@@ -1,44 +1,48 @@
-<section class="resourceRow{{if assignment.hidden ' hidden'}}"
-    data-active="{{assignment.active}}"
-    data-id="{{assignment.id}}"
-    data-index="{{index}}"
-    data-name="{{assignment.short}}"
-    data-type="assignment"
-    draggable="{{if constants.draggable 'true'}}"
-    ondragenter={{action "dragEnter"}}
-    ondragstart={{action "dragStart"}}
-    ondragend={{action "dragEnd"}}
-    ondragover={{action "dragOver"}}
->
-	<div class="row" data-view="roadmap" data-phase-action="{{phaseAction}}" data-rows="{{assignment.rows}}">
-        {{#if settings.isDailyCalendar}}
-            {{calendar-holiday-tiles}}
-        {{/if}}
-        {{#if assignment.active}}
-            <div class="pointer"></div>
-            <div class="sizer"></div>
-        {{/if}}
-        {{assignment-block assignment=assignment phaseAction=phaseAction}}
-        <div class="phases">{{{assignment.phases}}}</div>
-    </div>
-    {{assignment-info
-        resource=assignment
-        assignment=assignment
-        currentAssignment=currentAssignment
-        persons=persons
-        phaseToShift=phaseToShift
-        phaseAction=phaseAction
-        readOnly=readOnly
-        row=row
-        rowComponent=rowComponent
-    }}
-    <style>
-        [data-phaselink]{ margin-left:{{rowComponent.shiftHorizontal}}px; }
-    </style>
+{{#each model as |assignment index|}}
+    {{#if (assignment-view-people settings.view assignment.id currentAssignment)}}
+        <section class="resourceRow{{if assignment.hidden ' hidden'}}"
+            data-active="{{assignment.active}}"
+            data-id="{{assignment.id}}"
+            data-index="{{index}}"
+            data-name="{{assignment.short}}"
+            data-type="assignment"
+            draggable="{{if constants.draggable 'true'}}"
+            ondragenter={{action "dragEnter"}}
+            ondragstart={{action "dragStart"}}
+            ondragend={{action "dragEnd"}}
+            ondragover={{action "dragOver"}}
+        >
+        	<div class="row" data-view="roadmap" data-phase-action="{{phaseAction}}" data-rows="{{assignment.rows}}">
+                {{#if settings.isDailyCalendar}}
+                    {{calendar-holiday-tiles}}
+                {{/if}}
+                {{#if assignment.active}}
+                    <div class="pointer"></div>
+                    <div class="sizer"></div>
+                {{/if}}
+                {{assignment-block assignment=assignment phaseAction=phaseAction}}
+                <div class="phases">{{{assignment.phases}}}</div>
+            </div>
+            {{assignment-info
+                resource=assignment
+                assignment=assignment
+                currentAssignment=currentAssignment
+                persons=persons
+                phaseToShift=phaseToShift
+                phaseAction=phaseAction
+                readOnly=readOnly
+                row=row
+                rowComponent=rowComponent
+            }}
+            <style>
+                [data-phaselink]{ margin-left:{{rowComponent.shiftHorizontal}}px; }
+            </style>
 
-    {{#if rowComponent.stampCustomize}}
-        {{#overlay-component id='phaseStampCustomization' initiator=rowComponent}}
-            {{assignment-phase-customization rowComponent=rowComponent row=row}}
-        {{/overlay-component}}
+            {{#if assignment.stampCustomize}}
+                {{#overlay-component id='phaseStampCustomization' initiator=rowComponent}}
+                    {{assignment-phase-customization assignment=assignment rowComponent=rowComponent}}
+                {{/overlay-component}}
+            {{/if}}
+        </section>
     {{/if}}
-</section>
+{{/each}}
