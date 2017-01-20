@@ -51,26 +51,30 @@ export default Ember.Component.extend(Webcel, {
 
     cancelOverlay: function(){
         // dismiss overlay for stamp customizations
-        if(this.stampCustomize) {
-            Ember.$(this.stampCustomize).removeAttr('class');
-            this.set('stampCustomize', null);
+        if(this.assignment.stampCustomize) {
+            Ember.$(this.assignment.stampCustomize).removeAttr('class');
+            this.set('assignment.stampCustomize', null);
             this.get('constants.webcel').data.set('phases', this.get('originalPhases'));
         }
     },
 
     updateStamp: function(){
-        if(this.stampCustomize) {
-            Ember.$(this.stampCustomize).removeAttr('class');
-    		var stamp = (Ember.$(this.row).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim()).htmlSafe();
-            this.set('stampCustomize', null);
-            this.get('constants.webcel').data.set('phases', stamp);
-        }
+        try{
+            if(this.assignment.stampCustomize) {
+                Ember.$(this.assignment.stampCustomize).removeAttr('class');
+        		var stamp = (Ember.$(this.row).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim()).htmlSafe();
+                this.set('assignment.stampCustomize', null);
+                this.get('constants.webcel').data.set('phases', stamp);
+            }
+        }catch(e){}
 
     },
 
     save: function(){
         this.updateStamp();
+        this.set('deletingTiles', 0);
         this.constants.save(this.get('resource'));
+        this.constants.webcel.deleteTile(false);
         this.constants.webcel.done();
     },
 
@@ -193,9 +197,9 @@ export default Ember.Component.extend(Webcel, {
                         this.dragSource.ghost.remove();
                     }
                     else{
-                        this.dragSource.ghost = document.createElement("section");
-                        Ember.$(this.dragSource.ghost).addClass('resourceRow ghost');
-                        Ember.$(this.dragSource.ghost).html(this.dragSource.innerHTML);
+                        this.dragSource.ghost = Ember.$(this.dragSource).clone()
+                        .removeClass('moving')
+                        .addClass('ghost')[0];
                     }
 
                     var isBefore = this.isbefore(this.dragSource, drop);

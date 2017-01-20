@@ -6,12 +6,10 @@
     }
 </style>
 <form {{action "submit" on="submit"}}>
-    {{#if spr}}
-        <div class="form-group">
-            <label for="sprintNumber">Sprint Number</label>
-            {{input type="text" id="sprintNumber" key-up="updateSPR" value=getNum}}
-        </div>
-    {{/if}}
+    <div class="form-group">
+        <label for="phaseNumber">Number</label>
+        {{input type="text" id="phaseNumber" key-up="updateNum" value=getNum}}
+    </div>
 
     <div class="form-group">
         <label for="customShortDesc">Short Description</label>
@@ -34,7 +32,7 @@
 
         <div class="form-group">
             <label for="numDays">Days</label>
-            <select id="startsOn" onfocus={{action 'createDuration'}} onblur={{action 'checkDuration'}} onchange={{action 'updateDays'}} value={{getDays}}>
+            <select id="numDays" onfocus={{action 'createDuration'}} onblur={{action 'checkDuration'}} onchange={{action 'updateDays'}} value={{getDays}}>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -54,6 +52,11 @@
                 <option value="R">Thu</option>
                 <option value="F">Fri</option>
             </select>
+        </div>
+
+        <div class="dateSummary">
+            <div>Fr: {{getFromDay}}</div>
+            <div>To: {{getToDay}}</div>
         </div>
     </fieldset>
 

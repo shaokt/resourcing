@@ -244,23 +244,23 @@ export default Ember.Mixin.create(CalendarWidget, {
                             self.handle = Ember.$(e.target).hasClass('handle') ? Ember.$(e.target).hasClass('left') ? "left" : "right" : false;
                             if(!self.handle) {
                                 const stamp = Ember.$(e.target).closest(`[data-phase]`);
-                                const rowStamp = self.rowComponent.get('stampCustomize');
+                                const rowStamp = self.rowComponent.get('assignment.stampCustomize');
                                 self.rowComponent.set('originalPhases', (Ember.$(self.row).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim()).htmlSafe());
 
                                 if(stamp[0]) {
                                     if(!rowStamp){
                                         stamp.addClass('customize');
-                                        self.rowComponent.set('stampCustomize', stamp);
+                                        self.rowComponent.set('assignment.stampCustomize', stamp);
                                         return;
                                     }
                                     if(rowStamp[0] !== stamp[0]){
                                         rowStamp.removeClass('customize');
                                         stamp.addClass('customize');
-                                        self.rowComponent.set('stampCustomize', null);
-                                        setTimeout(function(){ self.rowComponent.set('stampCustomize', stamp); },0);
+                                        self.rowComponent.set('assignment.stampCustomize', null);
+                                        setTimeout(function(){ self.rowComponent.set('assignment.stampCustomize', stamp); },0);
                                     } else { // same stamp clicked
                                         rowStamp.removeClass('customize');
-                                        self.rowComponent.set('stampCustomize', null);
+                                        self.rowComponent.set('assignment.stampCustomize', null);
                                     }
                                 }  // if clicked on a stamp
                             } else { // user is dragging the assignment handle to resize left or right

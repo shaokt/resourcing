@@ -5,6 +5,7 @@
         line-height:100%;
         padding:0 2px;
         width:auto;
+        z-index:1;
 
         &:before {
             content:"";
@@ -88,22 +89,17 @@
         }//span
     }//data-phase
 
-    &[data-phase="BAT"] { &:before { content:"BAT"; } }
-    &[data-phase="DIT"] { &:before { content:"DIT"; } }
-    &[data-phase="FRZ"] { &:before { content:"FRZ"; } }
-    &[data-phase="PLT"] { &:before { content:"PLT"; } }
-    &[data-phase="PRD"] { &:before { content:"PRD"; } }
-    &[data-phase="REQ"] { &:before { content:"Req"; } }
-    &[data-phase="SIT"] { &:before { content:"SIT"; } }
-    &[data-phase="SPR"] {
-        &:before { content:"Spr"; }
+    &[data-phase]:not([data-phase=""]) {
+        &:before {
+            content:attr(data-phase);
+        }
         &[data-num]:not([data-num=""]) {
             &:before {
-                content:'Spr ' attr(data-num);
+                content:attr(data-phase) ' ' attr(data-num);
             }
-
         }
     }
+
     &[data-phase="UAT"] { &:before { content:"UAT"; } }
     &[data-phase="WTY"] { &:before { content:"WTY"; } }
 }//data-type
