@@ -193,7 +193,7 @@ export default Ember.Component.extend(Webcel, {
                         this.dragSource.ghost.remove();
                     }
                     else{
-                        this.dragSource.ghost = $(this.dragSource).clone()
+                        this.dragSource.ghost = Ember.$(this.dragSource).clone()
                         .removeClass('moving')
                         .addClass('ghost')[0];
                     }
