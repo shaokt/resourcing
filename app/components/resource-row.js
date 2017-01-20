@@ -59,18 +59,22 @@ export default Ember.Component.extend(Webcel, {
     },
 
     updateStamp: function(){
-        if(this.assignment.stampCustomize) {
-            Ember.$(this.assignment.stampCustomize).removeAttr('class');
-    		var stamp = (Ember.$(this.row).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim()).htmlSafe();
-            this.set('assignment.stampCustomize', null);
-            this.get('constants.webcel').data.set('phases', stamp);
-        }
+        try{
+            if(this.assignment.stampCustomize) {
+                Ember.$(this.assignment.stampCustomize).removeAttr('class');
+        		var stamp = (Ember.$(this.row).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim()).htmlSafe();
+                this.set('assignment.stampCustomize', null);
+                this.get('constants.webcel').data.set('phases', stamp);
+            }
+        }catch(e){}
 
     },
 
     save: function(){
         this.updateStamp();
+        this.set('deletingTiles', 0);
         this.constants.save(this.get('resource'));
+        this.constants.webcel.deleteTile(false);
         this.constants.webcel.done();
     },
 
