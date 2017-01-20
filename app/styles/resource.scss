@@ -13,8 +13,12 @@
     top:155px;
     z-index:5;
 
-    section.resourceRow:last-child {
-        border-bottom:1px solid #aaa;
+    section.resourceRow {
+        &:last-child {
+            border-bottom:1px solid #aaa;
+        }
+
+        .row:after { display:none !important; }
     }
 }
 section.resourceRow {
