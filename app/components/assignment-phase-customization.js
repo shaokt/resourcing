@@ -76,16 +76,32 @@ export default Ember.Component.extend({
 
     getToDay: function(){
         const fromDate = new Date(this.get('fromDate'));
-        let duration = parseInt(this.get('updatedWeeks'))*7 + parseInt(this.get('updatedDays'));
-        if(fromDate.getDay() === 1 && duration%7 === 0){ //if Monday & perfect weeks
-            duration = duration - 2; // assume we do not end phases on the weekend
-        }
-        if(duration){ --duration; } // this ensures it shows the proper end date for duration
-        fromDate.setDate(fromDate.getDate() + duration);
+        let extraDays = this.skipWeekends(fromDate.getDay(), parseInt(this.get('updatedWeeks'))*7 + parseInt(this.get('updatedDays')));
+        if(extraDays){ --extraDays; } // this ensures it shows the proper end date for extraDays
+        fromDate.setDate(fromDate.getDate() + extraDays);
         return fromDate.toDateString();
     }.property('updatedWeeks', 'updatedDays', 'updatedStartDate'),
 
-    setCalendarDay: function(col){
+    /* logic to skip over Saturday & Sunday depending on which weekday the phase starts on
+     *  i.e. if start is on Thursday with 4 extra days, they should be Fri, Mon, Tues, Wed
+     */
+    skipWeekends: function(weekDay, extraDays){
+        const remainder = extraDays%7;
+
+        if(weekDay === 1 && remainder === 0 && extraDays > 0){
+            extraDays = extraDays - 2;
+        }
+        else if(
+            (weekDay === 3 && remainder === 4) ||
+            (weekDay === 4 && remainder >= 3) ||
+            (weekDay === 5 && remainder >= 2)
+        ){
+            extraDays = extraDays + 2;
+        }
+        return extraDays;
+    },
+
+    setCalendarDay: function(){
         const x = Ember.$(this.get('stamp')).attr('data-x');
         const calDate = Ember.$('.calendar').find(`[data-column="${x}"]`).attr('data-date');
         this.set('calDate', calDate);
