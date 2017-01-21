@@ -58,7 +58,7 @@ section.resourceRow {
          }
 
          &:hover {
-            z-index:3;
+            z-index:6;
 
             .holidayLine {
                 border-bottom:1px solid #AAA;
@@ -103,7 +103,7 @@ section.resourceRow {
         display:inline-block;
         position:absolute;
         top:0;
-        z-index:3;
+        z-index:6;
 
         &:focus, &:hover {
             outline:none;
