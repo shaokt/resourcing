@@ -1,5 +1,6 @@
 <fieldset class="details">
     <legend>Details</legend>
-    <section contenteditable="true" onkeyup={{action 'keyup'}} onfocus={{action 'checkEmpty'}} onpaste={{action 'paste'}}>
+    <section contenteditable="true" onkeyup={{action 'keyup'}} onfocus={{action 'checkEmpty'}} onblur={{action 'updateDetails'}} onpaste={{action 'paste'}}>
+        {{{getDetails}}}
     </section>
 </fieldset>

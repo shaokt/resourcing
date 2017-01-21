@@ -29,7 +29,7 @@ export default Ember.Component.extend({
         this.set('top', obj.offsetTop + obj.offsetHeight);
         return obj.offsetLeft;
     }),
-    
+
     getNum: Ember.computed('assignment.stampCustomize', function(){
         const number = Ember.$(this.get('stamp')).attr('data-num');
         return number ? number : '';
@@ -37,7 +37,7 @@ export default Ember.Component.extend({
 
     getWeeks: Ember.computed('assignment.stampCustomize', function(){
         const weeks = Ember.$(this.get('stamp')).find('.duration').attr('data-weeks');
-        return weeks ? weeks : '';
+        return weeks;
     }),
 
     getDays: Ember.computed('assignment.stampCustomize', function(){
@@ -163,8 +163,13 @@ export default Ember.Component.extend({
 
         updateWeeks(){
             const duration = Ember.$(this.get('stamp')).find('.duration');
-            const value = parseInt(event.target.value) || 0;
-            duration.attr('data-weeks', value);
+            const value = parseInt(event.target.value);
+            if(isNaN(value)){
+                duration.removeAttr('data-weeks');
+            }
+            else{
+                duration.attr('data-weeks', value);
+            }
             this.set('updatedWeeks', value);
             if(event.target.value === '') {
                 if(this.isEmpty(duration.attr('data-days'))){
