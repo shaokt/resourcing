@@ -23,7 +23,7 @@
 
             &:after { display:none; }
 
-            span {
+            div {
                 &.duration {
                     white-space:pre;
                     &:before {
@@ -75,7 +75,9 @@
             box-shadow:0 0 5px 5px rgba(255,0,0,.5);
         }
 
-        span {
+        div {
+            display:inline;
+
             &.desc {
                 cursor:none;
                 text-shadow:2px 1px 5px #000;
@@ -103,7 +105,7 @@
                     }
                 }//hover
             }//desc
-        }//span
+        }//div
 
         .details {
             display:none;
