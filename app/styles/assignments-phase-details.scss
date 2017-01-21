@@ -1,0 +1,31 @@
+.details {
+    section {
+        padding:3px 0 0 10px;
+
+        b {
+            font-weight:bold;
+        }
+
+        div {
+            line-height:130%;
+            padding:3px 5px 5px 10px;
+            position:relative;
+
+            &:not([contenteditable]) {
+                margin-left:-10px;
+            }
+
+            &:before {
+                background:#2D91FD;
+                border-radius:100%;
+                content:'';
+                display:block;
+                height:5px;
+                left:0;
+                position:absolute;
+                top:7px;
+                width:5px;
+            }
+        }//div
+    }//section
+}//details
