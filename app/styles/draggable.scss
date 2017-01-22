@@ -101,6 +101,6 @@
 
         #dateLine,
         .dateMarker { display:none; }
-        #todayDateLine { box-shadow:none; }
+        [data-type="todayDateLine"] { box-shadow:none; }
     }
 }

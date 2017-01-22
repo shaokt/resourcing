@@ -18,7 +18,15 @@
             border-bottom:1px solid #aaa;
         }
 
+        &:hover {
+            z-index:7;
+        }
+
         .row:after { display:none !important; }
+    }
+
+    [data-type="todayDateLine"]:before {
+        display:none;
     }
 }
 section.resourceRow {

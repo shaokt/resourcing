@@ -121,7 +121,7 @@
         }
     }//main
 
-    #todayDateLine {
+    [data-type="todayDateLine"] {
         &:before {
             height:20px;
         }
@@ -147,7 +147,9 @@
             }
 
             .dateLine {
-                height:41px;
+                box-sizing:content-box;
+                height:100%;
+                padding-bottom:1px;
 
                 &:after, &:before {
                     display:none;

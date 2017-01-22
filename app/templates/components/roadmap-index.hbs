@@ -2,6 +2,9 @@
     {{date-line}}
 {{/unless}}
 <div class="{{assignmentViewContainer}}">
+    {{#if assignmentViewContainer}}
+        <div class="dateLine" data-type="todayDateLine"></div>
+    {{/if}}
     {{assignment-row
         model=model
         assignment=assignment

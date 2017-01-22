@@ -92,11 +92,10 @@ export default Ember.Component.extend(WebcelMixin, {
             this.set('constants.todayColumn', date.week.attr("data-column"));
             this.setTeamDate(date);
             if(!this.get('constants.teamAssignmentView')){ this.scrollToday(500); }
-            Ember.$('#todayDateLine').css({left:parseInt(date.week.attr('data-column'))});
             this.set('viewingCurrentYear', true);
         }catch(e){
             // viewing earlier / future years where "today" doesn't exist in that calendar
-            Ember.$('#todayDateLine').css({display:'none'});
+            Ember.$('[data-type="todayDateLine"]').css({display:'none'});
             this.set('viewingCurrentYear', false);
         }
     },
