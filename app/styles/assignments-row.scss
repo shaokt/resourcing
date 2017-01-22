@@ -1,5 +1,5 @@
 [data-route='roadmap.index'] {
-    .resourceRow {
+    .resourceRow[data-type="assignment"] {
         background:none;
         border:none;
 
@@ -92,8 +92,9 @@
             }//tileOptions
             [data-type="tile"] {
                 &[data-phase] {
-                    &:hover span.duration:before,
-                    span.desc:hover:after {
+                    &:hover div.duration:before,
+                    &:hover div.details,
+                    div.desc:hover:after {
                         display:none; // do not display custom phase info active
                     }
                 }
@@ -204,7 +205,7 @@
             .dateLine {
                 box-sizing:content-box;
                 height:100%;
-                padding-bottom:1px;
+                padding-bottom:2px;
 
                 &:after, &:before {
                     display:none;

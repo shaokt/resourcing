@@ -27,8 +27,8 @@
 {{else}}
     <div class="name short" data-type="value">{{assignment.short}}</div>
 {{/if}}
-<div class="name long" data-type="value">{{assignment.long}}</div>
 
 {{#if readOnly}}
     <input type="checkbox" checked=checked onclick={{action "select" event=event}} class="viewAssignment" style="" />
 {{/if}}
+<div class="name long" data-type="value">{{assignment.long}}</div>
