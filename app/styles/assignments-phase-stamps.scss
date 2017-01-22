@@ -88,20 +88,23 @@
                 }
                 &:hover {
                     position:relative;
+                    z-index:1;
                     &[data-long]:not([data-long=""]){
                         &:after {
                             background:#ff0000;
                             border:1px solid #fff;
-                            box-shadow:0 0 5px 2px rgba(0,0,0,.6);
+                            box-shadow:2px 0 2px 2px rgba(0,0,0,.6);
                             color:#fff;
                             content:attr(data-long);
                             cursor:none;
                             display:block;
                             left:0;
-                            margin-left:2px;
+                            margin:-1px 0 0 3px;
                             padding:2px 5px;
                             position:absolute;
+                            top:0;
                             text-shadow:none;
+                            white-space:nowrap;
                         }
                     }
                 }//hover

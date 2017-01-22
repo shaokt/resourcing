@@ -125,7 +125,13 @@ export default Ember.Component.extend({
         createShortDesc(){
             if(!Ember.$(this.get('stamp')).find('.desc').length) {
                 const div = Ember.$('<div class="desc"></div>');
-                Ember.$(this.get('stamp')).append(div);
+                const details = Ember.$(this.get('stamp')).find('.details');
+                if(details.length){
+                    Ember.$(this.get('stamp'))[0].insertBefore(div[0], details[0]);
+                }
+                else {
+                    Ember.$(this.get('stamp')).append(div);
+                }
             }
         },
 
