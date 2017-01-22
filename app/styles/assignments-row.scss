@@ -1,3 +1,46 @@
+[data-route='roadmap.index'] {
+    .resourceRow {
+        background:none;
+        border:none;
+
+        &[data-active="true"]{
+            &:before {
+                display:none;
+            }
+        }
+
+        &:before {
+            content:'';
+            height:20px;
+            display:block;
+        }
+        &:hover {
+            &:before {
+                //background:#000;
+            }
+            .info {
+                .name {
+                    box-shadow:none;
+                }
+            }
+        }
+
+        .row {
+            border:1px solid #aaa;
+        }
+
+        .info {
+            top:5px;
+            z-index:5;
+
+            .name {
+                border:none;
+                box-shadow:none;
+                font-size:15px;
+            }
+        }
+    }
+}
 [data-view='roadmap'],
 [data-view='timeaway'] {
     main {
