@@ -30,6 +30,7 @@ export default AssignmentPhaseComponent.extend({
             let numRows = this.get('assignment.rows') || 0;
             if(numRows < this.maxRows) {
                 this.set('assignment.rows', ++numRows);
+                this.set('constants.webcel.maxY', this.get('constants.webcel.maxY')+15);
             }
         },
 
@@ -38,6 +39,7 @@ export default AssignmentPhaseComponent.extend({
             if(numRows > 0) {
                 this.movePhasesUp(numRows);
                 this.set('assignment.rows', --numRows);
+                this.set('constants.webcel.maxY', this.get('constants.webcel.maxY')-15);
             }
         }
     }

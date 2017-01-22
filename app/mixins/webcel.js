@@ -184,6 +184,10 @@ export default Ember.Mixin.create(CalendarWidget, {
         }, 0);
         this.maxY = this.constants.daily ? 0 : 45;
 
+        if(this.rowComponent.assignment){
+            this.maxY += (parseInt(this.rowComponent.assignment.get('rows'))*15 || 0);
+        }
+
         movePointer = function(e){
     		self.x = e.pageX - Ember.$(this).offset().left;
     		self.x = self.x - self.x%self.constants.DIM;
