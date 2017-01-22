@@ -7,6 +7,12 @@
             &:before {
                 display:none;
             }
+
+            .info {
+                .name {
+                    background:none;
+                }
+            }
         }
 
         &:before {
@@ -14,12 +20,11 @@
             height:20px;
             display:block;
         }
+
         &:hover {
-            &:before {
-                //background:#000;
-            }
             .info {
                 .name {
+                    background:#000;
                     box-shadow:none;
                 }
             }
@@ -35,6 +40,8 @@
 
             .name {
                 border:none;
+                border-bottom-left-radius:0;
+                border-bottom-right-radius:0;
                 box-shadow:none;
                 font-size:15px;
             }

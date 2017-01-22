@@ -124,8 +124,8 @@ export default Ember.Component.extend({
 
         createShortDesc(){
             if(!Ember.$(this.get('stamp')).find('.desc').length) {
-                const span = Ember.$('<span class="desc"></span>');
-                Ember.$(this.get('stamp')).append(span);
+                const div = Ember.$('<div class="desc"></div>');
+                Ember.$(this.get('stamp')).append(div);
             }
         },
 
@@ -156,8 +156,8 @@ export default Ember.Component.extend({
 
         createDuration(){
             if(!Ember.$(this.get('stamp')).find('.duration').length) {
-                const span = Ember.$('<span class="duration"></span>');
-                Ember.$(this.get('stamp')).append(span);
+                const div = Ember.$('<div class="duration"></div>');
+                Ember.$(this.get('stamp')).append(div);
             }
         },
 
@@ -206,8 +206,8 @@ export default Ember.Component.extend({
 
         createStartsOn(){
             if(!Ember.$(this.get('stamp')).find('.startsOn').length) {
-                const span = Ember.$('<span class="startsOn"></span>');
-                Ember.$(this.get('stamp')).append(span);
+                const div = Ember.$('<div class="startsOn"></div>');
+                Ember.$(this.get('stamp')).append(div);
             }
         },
 
