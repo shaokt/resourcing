@@ -7,6 +7,10 @@
     {{!  still render the style for hidden assignments so painted tiles get the proper styles}}
     {{#unless paint}}
         <style>
+            [data-route='roadmap.index'] [data-id='{{item.id}}'][data-active="true"] {
+                border-top-color:#{{item.background}};
+            }
+            [data-route='roadmap.index'] [data-id='{{item.id}}'] .info .name,
             .tileContainer[data-container="{{item.id}}"]:after,
             [data-assignment="{{item.id}}"] { background:#{{item.background}} !important; }
             [data-assignment="{{item.id}}"][data-stamp="true"]:before { content:'{{item.short}}' }

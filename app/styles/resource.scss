@@ -82,6 +82,7 @@ section.resourceRow {
          }
         .phases {
             background:none !important;
+            border:none !important;
         }
     }// row
 
@@ -173,10 +174,11 @@ section.resourceRow {
         						rgba(255,255,255,.3));
         	background-position: 0 0, 15px 15px;
         	background-size: 30px 30px;
-        	cursor:none;
-            outline:3px solid #fff;
         	box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5);
+            border-top:3px solid #fff;
+        	cursor:none;
             height:60px;
+            outline:3px solid #fff;
             z-index:5;
 
             /*
@@ -241,7 +243,6 @@ section.resourceRow {
                 background:#c55500;
                 box-shadow:none;
                 color:#fff;
-                font-size:120%;
                 padding:2px 5px 0 5px;
                 text-shadow:none;
             }
