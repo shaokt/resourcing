@@ -6,6 +6,13 @@
     }
 </style>
 <form {{action "submit" on="submit"}}>
+    {{#if isCustomPhase}}
+        <div class="form-group">
+            <label for="phaseCustomText">Custom Phase Text</label>
+            {{input type="text" id="phaseCustomText" key-up="updatePhaseText" value=getPhaseText}}
+        </div>
+    {{/if}}
+
     <div class="form-group">
         <label for="phaseNumber">Number</label>
         {{input type="text" id="phaseNumber" key-up="updateNum" value=getNum}}

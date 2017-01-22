@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+    isCustomPhase: Ember.computed('assignment.stampCustomize', function(){
+        return Ember.$(this.get('assignment.stampCustomize')).attr('data-customphase');
+    }),
+
     updatedStartDate: Ember.computed('assignment.stampCustomize', function(){
         let sd = Ember.$(this.get('assignment.stampCustomize')).attr('data-startson');
         sd = sd || "M"; // assume monday if no start day specified
@@ -28,6 +32,11 @@ export default Ember.Component.extend({
         this.set('stamp', obj);
         this.set('top', obj.offsetTop + obj.offsetHeight);
         return obj.offsetLeft;
+    }),
+
+    getPhaseText: Ember.computed('assignment.stampCustomize', function(){
+        const text = Ember.$(this.get('stamp')).attr('data-phase');
+        return text ? text : '???';
     }),
 
     getNum: Ember.computed('assignment.stampCustomize', function(){
@@ -109,6 +118,13 @@ export default Ember.Component.extend({
     },
 
     actions: {
+        updatePhaseText(){
+            Ember.$(this.get('stamp')).attr('data-phase', event.target.value);
+            if(event.target.value === '') {
+                Ember.$(this.get('stamp')).removeAttr('data-phase');
+            }
+        },
+
         updateNum(){
             Ember.$(this.get('stamp')).attr('data-num', event.target.value);
             if(event.target.value === '') {

@@ -140,11 +140,12 @@ export default Ember.Mixin.create(CalendarWidget, {
 
             // remove any existing phases so that they do not overlap
             if(exists.length){ Ember.$(exists)[0].remove(); }
+            const isCustom = this.data.get('stampPhase') === "???" ? ' data-customphase="true"' : '';
 
             var stamp = "";
             var phase = 'data-phase="' + this.data.get('stampPhase') + '"';
     		stamp+=
-                '<div data-type="tile" data-stamp="true"' + phase + ' data-x="' + this.downX + '" data-y="' + this.downY + '"></div>';
+                '<div data-type="tile" data-stamp="true"' + phase + isCustom + ' data-x="' + this.downX + '" data-y="' + this.downY + '"></div>';
 
     		stamp = (Ember.$(clone).find(".phases")[0].innerHTML.replace(/<!---->/g, '').trim() + stamp).htmlSafe();
             this.data.set('phases', stamp);
