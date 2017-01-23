@@ -193,7 +193,7 @@
         }
     }
 
-    #todayDateLine {
+    [data-type="todayDateLine"] {
         &:before {
             top:147px;
         }

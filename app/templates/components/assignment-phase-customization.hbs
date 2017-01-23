@@ -6,6 +6,13 @@
     }
 </style>
 <form {{action "submit" on="submit"}}>
+    {{#if isCustomPhase}}
+        <div class="form-group">
+            <label for="phaseCustomText">Custom Phase Text</label>
+            {{input type="text" id="phaseCustomText" key-up="updatePhaseText" value=getPhaseText}}
+        </div>
+    {{/if}}
+
     <div class="form-group">
         <label for="phaseNumber">Number</label>
         {{input type="text" id="phaseNumber" key-up="updateNum" value=getNum}}
@@ -22,6 +29,8 @@
             {{input type="text" id="customLongDesc" key-up="updateLongDesc" value=getLongDesc}}
         </div>
     {{/if}}
+
+    {{assignment-phase-details assignment=assignment}}
 
     <fieldset class="duration">
         <legend>Duration</legend>
@@ -59,6 +68,8 @@
             <div>To: {{getToDay}}</div>
         </div>
     </fieldset>
+
+    {{assignment-phase-colours assignment=assignment}}
 
     <input type="submit" {{action "back" on="keyDown"}} {{action "submit" on="click"}} value="OK">
 </form>

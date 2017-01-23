@@ -16,7 +16,6 @@
     {{/unless}}
 </ul>
 
-<div class="name long" data-type="value">{{assignment.long}}</div>
 {{#if editing}}
     <ul class="tileOptions">
         <li class="assignments">
@@ -32,3 +31,4 @@
 {{#if readOnly}}
     <input type="checkbox" checked=checked onclick={{action "select" event=event}} class="viewAssignment" style="" />
 {{/if}}
+<div class="name long" data-type="value">{{assignment.long}}</div>

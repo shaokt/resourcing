@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+    isCustomPhase: Ember.computed('assignment.stampCustomize', function(){
+        return Ember.$(this.get('assignment.stampCustomize')).attr('data-customphase');
+    }),
+
     updatedStartDate: Ember.computed('assignment.stampCustomize', function(){
         let sd = Ember.$(this.get('assignment.stampCustomize')).attr('data-startson');
         sd = sd || "M"; // assume monday if no start day specified
@@ -29,7 +33,12 @@ export default Ember.Component.extend({
         this.set('top', obj.offsetTop + obj.offsetHeight);
         return obj.offsetLeft;
     }),
-    
+
+    getPhaseText: Ember.computed('assignment.stampCustomize', function(){
+        const text = Ember.$(this.get('stamp')).attr('data-phase');
+        return text ? text : '???';
+    }),
+
     getNum: Ember.computed('assignment.stampCustomize', function(){
         const number = Ember.$(this.get('stamp')).attr('data-num');
         return number ? number : '';
@@ -37,7 +46,7 @@ export default Ember.Component.extend({
 
     getWeeks: Ember.computed('assignment.stampCustomize', function(){
         const weeks = Ember.$(this.get('stamp')).find('.duration').attr('data-weeks');
-        return weeks ? weeks : '';
+        return weeks;
     }),
 
     getDays: Ember.computed('assignment.stampCustomize', function(){
@@ -109,6 +118,13 @@ export default Ember.Component.extend({
     },
 
     actions: {
+        updatePhaseText(){
+            Ember.$(this.get('stamp')).attr('data-phase', event.target.value);
+            if(event.target.value === '') {
+                Ember.$(this.get('stamp')).removeAttr('data-phase');
+            }
+        },
+
         updateNum(){
             Ember.$(this.get('stamp')).attr('data-num', event.target.value);
             if(event.target.value === '') {
@@ -124,8 +140,14 @@ export default Ember.Component.extend({
 
         createShortDesc(){
             if(!Ember.$(this.get('stamp')).find('.desc').length) {
-                const span = Ember.$('<span class="desc"></span>');
-                Ember.$(this.get('stamp')).append(span);
+                const div = Ember.$('<div class="desc"></div>');
+                const details = Ember.$(this.get('stamp')).find('.details');
+                if(details.length){
+                    Ember.$(this.get('stamp'))[0].insertBefore(div[0], details[0]);
+                }
+                else {
+                    Ember.$(this.get('stamp')).append(div);
+                }
             }
         },
 
@@ -156,15 +178,20 @@ export default Ember.Component.extend({
 
         createDuration(){
             if(!Ember.$(this.get('stamp')).find('.duration').length) {
-                const span = Ember.$('<span class="duration"></span>');
-                Ember.$(this.get('stamp')).append(span);
+                const div = Ember.$('<div class="duration"></div>');
+                Ember.$(this.get('stamp')).append(div);
             }
         },
 
         updateWeeks(){
             const duration = Ember.$(this.get('stamp')).find('.duration');
-            const value = parseInt(event.target.value) || 0;
-            duration.attr('data-weeks', value);
+            const value = parseInt(event.target.value);
+            if(isNaN(value)){
+                duration.removeAttr('data-weeks');
+            }
+            else{
+                duration.attr('data-weeks', value);
+            }
             this.set('updatedWeeks', value);
             if(event.target.value === '') {
                 if(this.isEmpty(duration.attr('data-days'))){
@@ -201,8 +228,8 @@ export default Ember.Component.extend({
 
         createStartsOn(){
             if(!Ember.$(this.get('stamp')).find('.startsOn').length) {
-                const span = Ember.$('<span class="startsOn"></span>');
-                Ember.$(this.get('stamp')).append(span);
+                const div = Ember.$('<div class="startsOn"></div>');
+                Ember.$(this.get('stamp')).append(div);
             }
         },
 

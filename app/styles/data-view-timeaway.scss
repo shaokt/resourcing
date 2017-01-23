@@ -27,10 +27,6 @@
             height:15px;
         }
 
-        &:not(.hidden):hover:before {
-            display:none;
-        }
-
         &[data-active="true"] {
             .row { height:15px; }
         }

@@ -47,9 +47,7 @@ section.resourceRow {
 
             li {
                 border-radius:2px;
-                left:-15px;
-                top:9px;
-                transform:scale(2);
+                left:-5px;
 
                 a:focus,
                 a:hover {
@@ -67,10 +65,6 @@ section.resourceRow {
                 }//hover
             }//li
         }//viewOptions
-
-        [data-view="roadmap"] + .info {
-            .name { margin-top:7px; }
-        }
     }//resourceRow
 }//data-view-team
 

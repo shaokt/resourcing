@@ -11,14 +11,22 @@
     padding-bottom:10px;
     position:fixed;
     top:155px;
-    z-index:5;
+    z-index:7;
 
     section.resourceRow {
         &:last-child {
             border-bottom:1px solid #aaa;
         }
 
+        &:hover {
+            z-index:7;
+        }
+
         .row:after { display:none !important; }
+    }
+
+    [data-type="todayDateLine"]:before {
+        display:none;
     }
 }
 section.resourceRow {
@@ -58,7 +66,7 @@ section.resourceRow {
          }
 
          &:hover {
-            z-index:3;
+            z-index:6;
 
             .holidayLine {
                 border-bottom:1px solid #AAA;
@@ -72,6 +80,10 @@ section.resourceRow {
                 }
             }
          }
+        .phases {
+            background:none !important;
+            border:none !important;
+        }
     }// row
 
     // only add row shadow if it is not already active
@@ -103,7 +115,7 @@ section.resourceRow {
         display:inline-block;
         position:absolute;
         top:0;
-        z-index:3;
+        z-index:6;
 
         &:focus, &:hover {
             outline:none;
@@ -162,22 +174,12 @@ section.resourceRow {
         						rgba(255,255,255,.3));
         	background-position: 0 0, 15px 15px;
         	background-size: 30px 30px;
-        	cursor:none;
-            outline:3px solid #fff;
         	box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5);
+            border-top:3px solid #fff;
+        	cursor:none;
             height:60px;
+            outline:3px solid #fff;
             z-index:5;
-
-            /*
-            &:before {
-                background:repeating-linear-gradient(-45deg, #222, #222 10px, #333 10px, #333 20px);
-                content:"";
-                cursor:not-allowed;
-                height:100%;
-                opacity:.8;
-                position:absolute;
-            }
-            */
 
             .pointer {
                 display:block;
@@ -230,7 +232,6 @@ section.resourceRow {
                 background:#c55500;
                 box-shadow:none;
                 color:#fff;
-                font-size:120%;
                 padding:2px 5px 0 5px;
                 text-shadow:none;
             }

@@ -2,6 +2,7 @@
     {{input type="radio" id=id name="phase" focus-in="delete"}}
     <label for="phase{{label}}">
         <span>X</span>
+        <span class="tooltip">{{tooltip}}</span>
     </label>
 {{else}}
     {{#if shift}}
@@ -9,6 +10,7 @@
         <label for="phase{{label}}">
             <span class="verticalArrow"></span>
             <span class="horizontalArrow"></span>
+            <span class="tooltip">{{tooltip}}</span>
         </label>
 
         {{#if shiftPhase}}
@@ -21,7 +23,8 @@
     {{else}}
         {{input type="radio" id=id name="phase" focus-in="setStamp"}}
         <label for="phase{{label}}">
-            <span>{{label}}</span>
+            <span>{{{label}}}</span>
+            <span class="tooltip">{{tooltip}}</span>
         </label>
     {{/if}}
 {{/if}}
