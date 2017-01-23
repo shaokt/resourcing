@@ -1,6 +1,9 @@
 [data-type="tile"] {
     &[data-phase] {
         background:rgba(0, 0, 0, 0.4);
+        border-left:2px solid rgba(0,0,0,.4);
+        border-right:2px solid rgba(0,0,0,.4);
+        box-sizing:border-box !important;
         height:auto !important;
         line-height:100%;
         padding:0 2px;
@@ -17,26 +20,35 @@
             z-index:1;
         }
 
-        &[data-colour="gry"] {
-            background:rgba(164,164,164,.6);
-        }
         &[data-colour="red"] {
-            background:rgba(252,99,96,.6);
+            background:rgba(252,99,96,.8);
+            border-left:2px solid #FC3D39;
+            border-right:2px solid #FC3D39;
         }
         &[data-colour="org"] {
-            background:rgba(247,165,80,.6);
+            background:rgba(247,165,80,.8);
+            border-left:2px solid #F58F25;
+            border-right:2px solid #F58F25;
         }
         &[data-colour="ylw"] {
-            background:rgba(243,205,86,.6);
+            background:rgba(243,205,86,.8);
+            border-left:2px solid #F1C230;
+            border-right:2px solid #F1C230;
         }
         &[data-colour="grn"] {
-            background:rgba(112,202,87,.6);
+            background:rgba(112,202,87,.8);
+            border-left:2px solid #4DBD2E;
+            border-right:2px solid #4DBD2E;
         }
         &[data-colour="blu"] {
-            background:rgba(81,185,241,.6);
+            background:rgba(81,185,241,.8);
+            border-left:2px solid #26A8EE;
+            border-right:2px solid #26A8EE;
         }
         &[data-colour="ppl"] {
-            background:rgba(207,139,223,.6);
+            background:rgba(207,139,223,.8);
+            border-left:2px solid #CA7FDC;
+            border-right:2px solid #CA7FDC;
         }
 
         &:hover {
