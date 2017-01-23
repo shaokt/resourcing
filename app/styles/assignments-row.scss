@@ -239,15 +239,19 @@
         }
     }
     &[data-q1-start="T"] { // Q1 starts on Tuesday,
-        .phases { left:-15px; }
+        .phases { left:60px; }
+        [data-assignment] { padding-left:60px; }
     }
     &[data-q1-start="W"] { // Q1 starts on Wednesday
-        .phases { left:-30px; }
+        .phases { left:45px; }
+        [data-assignment] { padding-left:45px; }
     }
     &[data-q1-start="R"] { // Q1 starts on Thursday
-        .phases { left:-45px; }
+        .phases { left:30px; }
+        [data-assignment] { padding-left:30px; }
     }
     &[data-q1-start="F"] { // Q1 starts on Friday
-        .phases { left:-60px; }
+        .phases { left:15px; }
+        [data-assignment] { padding-left:15px; }
     }
 }
