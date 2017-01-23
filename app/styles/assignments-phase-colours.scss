@@ -1,0 +1,36 @@
+input[data-colour] {
+    background:rgba(0,0,0,.4);
+    border-radius:100%;
+    height:15px;
+    margin-right:5px;
+    width:15px;
+
+    &[data-colour="gry"] {
+        background:rgba(164,164,164,1);
+        border:2px solid #8E8E91;
+    }
+    &[data-colour="red"] {
+        background:rgba(252,99,96,1);
+        border:2px solid #FC3D39;
+    }
+    &[data-colour="org"] {
+        background:rgba(247,165,80,1);
+        border:2px solid #F58F25;
+    }
+    &[data-colour="ylw"] {
+        background:rgba(243,205,86,1);
+        border:2px solid #F1C230;
+    }
+    &[data-colour="grn"] {
+        background:rgba(112,202,87,1);
+        border:2px solid #4DBD2E;
+    }
+    &[data-colour="blu"] {
+        background:rgba(81,185,241,1);
+        border:2px solid #26A8EE;
+    }
+    &[data-colour="ppl"] {
+        background:rgba(207,139,223,1);
+        border:2px solid #CA7FDC;
+    }
+}

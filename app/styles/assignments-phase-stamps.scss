@@ -17,6 +17,28 @@
             z-index:1;
         }
 
+        &[data-colour="gry"] {
+            background:rgba(164,164,164,.6);
+        }
+        &[data-colour="red"] {
+            background:rgba(252,99,96,.6);
+        }
+        &[data-colour="org"] {
+            background:rgba(247,165,80,.6);
+        }
+        &[data-colour="ylw"] {
+            background:rgba(243,205,86,.6);
+        }
+        &[data-colour="grn"] {
+            background:rgba(112,202,87,.6);
+        }
+        &[data-colour="blu"] {
+            background:rgba(81,185,241,.6);
+        }
+        &[data-colour="ppl"] {
+            background:rgba(207,139,223,.6);
+        }
+
         &:hover {
             background:#000;
             z-index:4 !important;
