@@ -20,6 +20,7 @@
 }
 
 // shift phases left/right depending on which weekday they start on : weekly view
+:not([data-route])[data-view="roadmap"] [data-type="assignment"] [data-view=roadmap] .phases, // from the home/manager view, looking at assignments
 [data-route="roadmap.index"][data-view="roadmap"] [data-type="assignment"] [data-view="roadmap"] .phases {
     [data-type="tile"][data-startson="S"]{margin-left:-4px;}
     [data-type="tile"][data-startson="N"]{margin-left:-3px;}
