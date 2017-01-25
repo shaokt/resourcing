@@ -22,10 +22,9 @@
 // shift phases left/right depending on which weekday they start on : weekly view
 :not([data-route])[data-view="roadmap"] [data-type="assignment"] [data-view=roadmap] .phases, // from the home/manager view, looking at assignments
 [data-route="roadmap.index"][data-view="roadmap"] [data-type="assignment"] [data-view="roadmap"] .phases {
-    [data-type="tile"][data-startson="S"]{margin-left:-4px;}
-    [data-type="tile"][data-startson="N"]{margin-left:-3px;}
-    [data-type="tile"][data-startson="T"]{margin-left:3px;}
-    [data-type="tile"][data-startson="W"]{margin-left:6px;}
-    [data-type="tile"][data-startson="R"]{margin-left:9px;}
-    [data-type="tile"][data-startson="F"]{margin-left:12px;}
+    [data-type="tile"][data-startson]{background-clip:padding-box;border:none;border-color:transparent;}
+    [data-type="tile"][data-startson="T"]{border-left:3px solid transparent;}
+    [data-type="tile"][data-startson="W"]{border-left:6px solid transparent;}
+    [data-type="tile"][data-startson="R"]{border-left:9px solid transparent;}
+    [data-type="tile"][data-startson="F"]{border-left:12px solid transparent;}
 }
