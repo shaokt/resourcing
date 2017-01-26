@@ -150,8 +150,13 @@
         }
 
         &.customize {
-            border:1px solid #ff0000 !important;
-            box-shadow:0 0 5px 5px rgba(255,0,0,.5);
+            z-index:2;
+            
+            &:after {
+                box-shadow:
+                    0 0 4px 2px hsl(50, 100%, 50%),
+                    0 0 4px 3px hsl(1, 100%, 60%);
+            }
         }
 
         div {

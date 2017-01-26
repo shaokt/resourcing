@@ -13,7 +13,6 @@
             &:after {
                 border:1px solid rgba(255,255,255,.7);
                 border-radius:2px;
-                cursor:pointer;
                 padding-top:2px;
             }
 
@@ -28,15 +27,33 @@
                 }
 
                 &:before {
-                    text-shadow:none;
+                    text-shadow:1px 1px 5px #fff;
+                }
+
+                &:hover {
+                    &:after {
+                        display:block;
+                        box-shadow:
+                            0 0 4px 2px hsl(50, 100%, 50%),
+                            0 0 4px 3px hsl(1, 100%, 60%);
+                    }
                 }
 
                 &.active {
+                    z-index:2;
+
                     &:after {
-                        box-shadow:0 0 2px 2px #fffc00;
+                        box-shadow:
+                            0 0 2px 2px hsl(1, 100%, 50%),
+                            0 0 2px 3px hsl(50, 100%, 60%);
+                        text-shadow:1px 1px 5px #fff;
                     }
                 }
-            }
+
+                .desc {
+                    text-shadow: 2px 1px 5px #fff;
+                }
+            }//data-phaselink
         }
     }// phases
 
