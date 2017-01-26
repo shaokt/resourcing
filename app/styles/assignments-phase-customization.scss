@@ -13,7 +13,14 @@
             padding:0 5px 0 0;
         }
 
-     }
+        &.colours {
+            div {
+                margin-top:5px;
+
+                &:first-child { margin-top:0; }
+            }
+        }
+    }// fieldset
 
      input, select {
          border:1px solid #2D91FD;

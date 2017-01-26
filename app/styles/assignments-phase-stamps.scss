@@ -34,66 +34,7 @@
             z-index:1;
         }
 
-        &[data-colour="red"] {
-            background:rgba(252,99,96,.8);
-            &:after {
-                border-left:2px solid #FC3D39;
-                border-right:2px solid #FC3D39;
-            }
-            &:hover {
-                background:#FC3D39;
-            }
-        }
-        &[data-colour="org"] {
-            background:rgba(247,165,80,.8);
-            &:after {
-                border-left:2px solid #F58F25;
-                border-right:2px solid #F58F25;
-            }
-            &:hover {
-                background:#F58F25;
-            }
-        }
-        &[data-colour="ylw"] {
-            background:rgba(243,205,86,.8);
-            &:after {
-                border-left:2px solid #F1C230;
-                border-right:2px solid #F1C230;
-            }
-            &:hover {
-                background:#F1C230;
-            }
-        }
-        &[data-colour="grn"] {
-            background:rgba(112,202,87,.8);
-            &:after {
-                border-left:2px solid #4DBD2E;
-                border-right:2px solid #4DBD2E;
-            }
-            &:hover {
-                background:#4DBD2E;
-            }
-        }
-        &[data-colour="blu"] {
-            background:rgba(81,185,241,.8);
-            &:after {
-                border-left:2px solid #26A8EE;
-                border-right:2px solid #26A8EE;
-            }
-            &:hover {
-                background:#26A8EE;
-            }
-        }
-        &[data-colour="ppl"] {
-            background:rgba(207,139,223,.8);
-            &:after {
-                border-left:2px solid #CA7FDC;
-                border-right:2px solid #CA7FDC;
-            }
-            &:hover {
-                background:#CA7FDC;
-            }
-        }
+        @import "assignments-phase-colour-tags.scss";
 
         &:hover {
             background:#000;
@@ -151,7 +92,7 @@
 
         &.customize {
             z-index:2;
-            
+
             &:after {
                 box-shadow:
                     0 0 4px 2px hsl(50, 100%, 50%),
