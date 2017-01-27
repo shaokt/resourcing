@@ -70,13 +70,14 @@ input[data-colour] {
 
 .cont {
     position:relative;
+    margin:0 auto;
+    width:110px;
 }
 .wheel {
     background:#ffffbf;
     border-radius:100%;
-    height:100px;
-    margin:10px;
-    width:100px;
+    height:110px;
+    width:110px;
     overflow:hidden;
     position:relative;
     &:hover {
@@ -90,8 +91,8 @@ input[data-colour] {
     height:75px;
     left:15px;
     top:6px;
-    left:12px;
-    top:3px;
+    left:18px;
+    top:9px;
     border:1px solid #fff;
     box-sizing:border-box;
 }
@@ -132,13 +133,16 @@ input[data-colour] {
     box-sizing:border-box;
     border:1px solid #fff;
     cursor:pointer;
+    margin:6px 0 0 6px;
 
+    //clip-path: polygon(100% 0%, 100% 100%, 00% 100%);
     &:focus {
-
+        background:red;
     }
 
     &:hover {
         //background:red;
+        outline:none;
         z-index:1;
     }
 }
@@ -161,32 +165,32 @@ input[data-colour] {
     background:#AB4189;
     left:63px;
     top:-13px;
-    transform:rotate(90deg) skew(30deg, 30deg);
+    transform:rotate(-90deg) skew(30deg, 30deg);
 }
 
 .five {
     background:#E63E71;
     left:78px;
     top:12px;
-    transform:rotate(120deg) skew(30deg, 30deg);
+    transform:rotate(-60deg) skew(30deg, 30deg);
 }
 .six{
     background:#E94345;
     left:78px;
     top:41px;
-    transform:rotate(150deg) skew(30deg, 30deg);
+    transform:rotate(-30deg) skew(30deg, 30deg);
 }
 .seven{
     background:#D16C34;
     left:64px;
     top:66px;
-    transform:rotate(180deg) skew(30deg, 30deg);
+    transform:rotate(90deg) skew(-30deg, -30deg);
 }
 .eight{
     background:#FE7B23;
     left:39px;
     top:80px;
-    transform:rotate(210deg) skew(30deg, 30deg);
+    transform:rotate(120deg) skew(-30deg, -30deg);
 }
 .nine{
     background:#FEC037;
