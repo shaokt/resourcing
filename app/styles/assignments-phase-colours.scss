@@ -1,3 +1,4 @@
+/*
 input[data-colour] {
     background:rgba(0,0,0,.4);
     border-radius:100%;
@@ -63,4 +64,151 @@ input[data-colour] {
         background:rgba(204,175,231,1);
         border:2px solid #CCA5E7;
     }
+}
+
+*/
+
+.cont {
+    position:relative;
+}
+.wheel {
+    background:#ffffbf;
+    border-radius:100%;
+    height:100px;
+    margin:10px;
+    width:100px;
+    overflow:hidden;
+    position:relative;
+    &:hover {
+    }
+}
+.wheel2 {
+    position:absolute;left:0;top:-10px;
+    width:70px;
+    height:70px;
+    width:75px;
+    height:75px;
+    left:15px;
+    top:6px;
+    left:12px;
+    top:3px;
+    border:1px solid #fff;
+    box-sizing:border-box;
+}
+
+.wheel3 {
+    position:absolute;left:0;top:-10px;background:#fff;
+    top: 23px;
+    top:18px;
+    width: 35px;
+    height: 35px;
+    width:45px;
+    height:45px;
+    left: 32px;
+    left:27px;
+}
+
+.wheel2 .sector { background:#ABCEEE;margin:-17px 0 0 -16px;margin:-14px 0 0 -13px; }
+.wheel2 .two{ background:#ADD2E2;}
+.wheel2 .three { background:#B97CA6;}
+.wheel2 .four { background:#D773B3;}
+.wheel2 .five { background:#F677A4;}
+.wheel2 .six { background:#F86D72;}
+.wheel2 .seven { background:#E69A68;}
+.wheel2 .eight{ background:#FFA956;}
+.wheel2 .nine{ background:#FFD970;}
+.wheel2 .ten{ background:#FFEC83;}
+.wheel2 .eleven{ background:#B9DC82;}
+.wheel2 .twelve{ background:#93C4C1;}
+
+.sector {
+    background:#3E97CF;
+    height:50px;
+    width:50px;
+    position:absolute;
+    left:-15px;
+    top:-13px;
+    transform:skew(30deg, 30deg);
+    box-sizing:border-box;
+    border:1px solid #fff;
+    cursor:pointer;
+
+    &:focus {
+
+    }
+
+    &:hover {
+        //background:red;
+        z-index:1;
+    }
+}
+
+.two {
+    background:#0094AE;
+    left:10px;
+    top:-28px;
+    transform:rotate(30deg) skew(30deg, 30deg);
+}
+
+.three {
+    background:#783F68;
+    left:39px;
+    top:-28px;
+    transform:rotate(60deg) skew(30deg, 30deg);
+}
+
+.four {
+    background:#AB4189;
+    left:63px;
+    top:-13px;
+    transform:rotate(90deg) skew(30deg, 30deg);
+}
+
+.five {
+    background:#E63E71;
+    left:78px;
+    top:12px;
+    transform:rotate(120deg) skew(30deg, 30deg);
+}
+.six{
+    background:#E94345;
+    left:78px;
+    top:41px;
+    transform:rotate(150deg) skew(30deg, 30deg);
+}
+.seven{
+    background:#D16C34;
+    left:64px;
+    top:66px;
+    transform:rotate(180deg) skew(30deg, 30deg);
+}
+.eight{
+    background:#FE7B23;
+    left:39px;
+    top:80px;
+    transform:rotate(210deg) skew(30deg, 30deg);
+}
+.nine{
+    background:#FEC037;
+    left:10px;
+    top:79px;
+    transform:rotate(240deg) skew(30deg, 30deg);
+}
+.ten{
+    background:#FFE32F;
+    left:-15px;
+    top:65px;
+    transform:rotate(270deg) skew(30deg, 30deg);
+}
+.eleven{
+    background:#8CBA19;
+    left:-30px;
+    top:41px;
+    transform:rotate(300deg) skew(30deg, 30deg);
+}
+.twelve{
+    background:#3BA6A0;
+    left:-30px;
+    top:12px;
+    transform:rotate(330deg) skew(30deg, 30deg);
 }
