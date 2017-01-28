@@ -1,17 +1,71 @@
 .cont {
     position:relative;
     margin:0 auto;
-    width:110px;
+    width:140px;
 }
 .wheel {
-    background:#ffffbf;
     border-radius:100%;
-    height:110px;
-    width:110px;
     overflow:hidden;
     position:relative;
-    &:hover {
+    height:140px;
+    width:140px;
+}
+.wheela{
+    .sector {
+        margin:15px 0 0 15px;
+        &:after {
+            background:rgba(62,151,207,.8);
+            content:'';
+            display:block;
+            height:100%;
+            position:absolute;
+            width:100%;
+        }
+
+
+        &.two:after {
+            background:rgba(0,148,174,.5);
+        }
+        &.three:after {
+            background:rgba(120,63,104,.5);
+        }
+        &.four:after {
+            background:rgba(171,65,137,.5);
+        }
+        &.five:after {
+            background:rgba(230,62,113,.5);
+        }
+        &.six:after {
+            background:rgba(233,67,69,.5);
+        }
+        &.seven:after {
+            background:rgba(209,108,52,.5);
+        }
+        &.eight:after {
+            background:rgba(254,123,35,.5);
+        }
+        &.nine:after {
+            background:rgba(254,192,55,.5);
+        }
+        &.ten:after {
+            background:rgba(255,227,47,.5);
+        }
+        &.eleven:after {
+            background:rgba(140,186,25,.5);
+        }
+        &.twelve:after {
+            background:rgba(59,166,160,.5);
+        }
     }
+}
+.wheelb {
+    border:2px solid #fff;
+    height:110px;
+    width:110px;
+    position:absolute;
+    left:calc(calc(100% - 110px)/2 - 2px);
+    top:calc(calc(100% - 110px)/2 - 2px);
+
 }
 .wheel2 {
     border:2px solid #fff;
