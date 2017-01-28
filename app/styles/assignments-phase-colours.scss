@@ -1,73 +1,3 @@
-/*
-input[data-colour] {
-    background:rgba(0,0,0,.4);
-    border-radius:100%;
-    height:15px;
-    margin-right:5px;
-    width:15px;
-
-    &[data-colour="A4A4A7"] { // apple grey
-        background:rgba(164,164,164,1);
-        border:2px solid #8E8E91;
-    }
-    &[data-colour="FC6360"] { // apple red
-        background:rgba(252,99,96,1);
-        border:2px solid #FC3D39;
-    }
-    &[data-colour="F7A550"] { // apple orange
-        background:rgba(247,165,80,1);
-        border:2px solid #F58F25;
-    }
-    &[data-colour="F3CD56"] { // apple yellow
-        background:rgba(243,205,86,1);
-        border:2px solid #F1C230;
-    }
-    &[data-colour="70CA57"] { // apple green
-        background:rgba(112,202,87,1);
-        border:2px solid #4DBD2E;
-    }
-    &[data-colour="51B9F1"] { // apple blue
-        background:rgba(81,185,241,1);
-        border:2px solid #26A8EE;
-    }
-    &[data-colour="CF8BDF"] { // apple purple
-        background:rgba(207,139,223,1);
-        border:2px solid #CA7FDC;
-    }
-
-    //pastels
-    &[data-colour="BAB9C3"] { // grey
-        background:rgba(186,185,195,1);
-        border:2px solid #ADADB8;
-    }
-    &[data-colour="FFAEAE"] { // red
-        background:rgba(255,174,174,1);
-        border:2px solid #FF9AAE;
-    }
-    &[data-colour="FFBB94"] { // orange
-        background:rgba(255,187,148,1);
-        border:2px solid #FFAC94;
-    }
-    &[data-colour="FFF0AA"] { // yellow
-        background:rgba(255,240,170,1);
-        border:2px solid #FFE6AA;
-    }
-    &[data-colour="B0E57C"] { // green
-        background:rgba(176,229,124,1);
-        border:2px solid #B0DB7C;
-    }
-    &[data-colour="B4D8E7"] { // blue
-        background:rgba(180,216,231,1);
-        border:2px solid #A0D8E7;
-    }
-    &[data-colour="CCAFE7"] { // purple
-        background:rgba(204,175,231,1);
-        border:2px solid #CCA5E7;
-    }
-}
-
-*/
-
 .cont {
     position:relative;
     margin:0 auto;
@@ -84,60 +14,89 @@ input[data-colour] {
     }
 }
 .wheel2 {
-    position:absolute;left:0;top:-10px;
-    width:70px;
-    height:70px;
-    width:75px;
-    height:75px;
-    left:15px;
-    top:6px;
-    left:18px;
-    top:9px;
-    border:1px solid #fff;
+    border:2px solid #fff;
     box-sizing:border-box;
+    height:80px;
+    left:calc(calc(100% - 75px)/2 - 2px);
+    position:absolute;
+    top:calc(calc(100% - 75px)/2 - 2px);
+    width:80px;
 }
 
 .wheel3 {
     position:absolute;left:0;top:-10px;background:#fff;
-    top: 23px;
-    top:18px;
-    width: 35px;
-    height: 35px;
     width:45px;
     height:45px;
-    left: 32px;
-    left:27px;
+    left:calc(calc(100% - 45px)/2);
+    top:calc(calc(100% - 45px)/2);
 }
 
-.wheel2 .sector { background:#ABCEEE;margin:-17px 0 0 -16px;margin:-14px 0 0 -13px; }
-.wheel2 .two{ background:#ADD2E2;}
-.wheel2 .three { background:#B97CA6;}
-.wheel2 .four { background:#D773B3;}
-.wheel2 .five { background:#F677A4;}
-.wheel2 .six { background:#F86D72;}
-.wheel2 .seven { background:#E69A68;}
-.wheel2 .eight{ background:#FFA956;}
-.wheel2 .nine{ background:#FFD970;}
-.wheel2 .ten{ background:#FFEC83;}
-.wheel2 .eleven{ background:#B9DC82;}
-.wheel2 .twelve{ background:#93C4C1;}
+.wheel2 .sector { background:#ABCEEE;
+    width:35px;
+    height:35px;
+ }
+.wheel2 .two{ background:#ADD2E2;
+    left:10px;
+    top:-16px;
+}
+.wheel2 .three { background:#B97CA6;
+    left:30px;
+    top:-16px;
+}
+.wheel2 .four { background:#D773B3;
+    left:47px;
+    top:-6px;
+}
+.wheel2 .five { background:#F677A4;
+    left:55px;
+    top:12px;
+}
+.wheel2 .six { background:#F86D72;
+    left:57px;
+    top:30px;
+}
+.wheel2 .seven { background:#E69A68;
+    left:46px;
+    top:46px;
+}
+.wheel2 .eight{ background:#FFA956;
+    left:31px;
+    top:56px;
+}
+.wheel2 .nine{ background:#FFD970;
+    left:11px;
+    top:56px;
+}
+.wheel2 .ten{ background:#FFEC83;
+    left:-7px;
+    top:48px;
+}
+.wheel2 .eleven{ background:#B9DC82;
+    left:-19px;
+    top:32px;
+}
+.wheel2 .twelve{ background:#93C4C1;
+    left:-16px;
+    top:12px;
+}
 
 .sector {
     background:#3E97CF;
     height:50px;
     width:50px;
     position:absolute;
-    left:-15px;
-    top:-13px;
+    left:-8px;
+    top:-7px;
     transform:skew(30deg, 30deg);
     box-sizing:border-box;
     border:1px solid #fff;
     cursor:pointer;
-    margin:6px 0 0 6px;
+    //margin:-5px 0 0 0;
 
     //clip-path: polygon(100% 0%, 100% 100%, 00% 100%);
     &:focus {
-        background:red;
+        outline:none;
+        z-index:1;
     }
 
     &:hover {
@@ -149,70 +108,70 @@ input[data-colour] {
 
 .two {
     background:#0094AE;
-    left:10px;
-    top:-28px;
+    left:16px;
+    top:-22px;
     transform:rotate(30deg) skew(30deg, 30deg);
 }
 
 .three {
     background:#783F68;
-    left:39px;
-    top:-28px;
+    left:45px;
+    top:-22px;
     transform:rotate(60deg) skew(30deg, 30deg);
 }
 
 .four {
     background:#AB4189;
-    left:63px;
-    top:-13px;
+    left:69px;
+    top:-7px;
     transform:rotate(-90deg) skew(30deg, 30deg);
 }
 
 .five {
     background:#E63E71;
-    left:78px;
-    top:12px;
+    left:82px;
+    top:18px;
     transform:rotate(-60deg) skew(30deg, 30deg);
 }
 .six{
     background:#E94345;
-    left:78px;
-    top:41px;
+    left:81px;
+    top:45px;
     transform:rotate(-30deg) skew(30deg, 30deg);
 }
 .seven{
     background:#D16C34;
-    left:64px;
-    top:66px;
+    left:68px;
+    top:68px;
     transform:rotate(90deg) skew(-30deg, -30deg);
 }
 .eight{
     background:#FE7B23;
-    left:39px;
-    top:80px;
+    left:45px;
+    top:81px;
     transform:rotate(120deg) skew(-30deg, -30deg);
 }
 .nine{
     background:#FEC037;
-    left:10px;
-    top:79px;
-    transform:rotate(240deg) skew(30deg, 30deg);
+    left:17px;
+    top:81px;
+    transform:rotate(-30deg) skew(-30deg, -30deg);
 }
 .ten{
     background:#FFE32F;
-    left:-15px;
-    top:65px;
-    transform:rotate(270deg) skew(30deg, 30deg);
+    left:-7px;
+    top:69px;
+    transform:rotate(0deg) skew(-30deg, -30deg);
 }
 .eleven{
     background:#8CBA19;
-    left:-30px;
-    top:41px;
+    left:-22px;
+    top:45px;
     transform:rotate(300deg) skew(30deg, 30deg);
 }
 .twelve{
     background:#3BA6A0;
-    left:-30px;
-    top:12px;
+    left:-22px;
+    top:18px;
     transform:rotate(330deg) skew(30deg, 30deg);
 }
