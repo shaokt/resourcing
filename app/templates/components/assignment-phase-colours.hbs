@@ -47,7 +47,7 @@
     </div>
 
     <style>
-    .preview { background:#{{assignment.background}}; }
+        .preview { background:#{{assignment.background}}; }
     </style>
 
     <div class="preview">
@@ -55,4 +55,8 @@
             Preview
         </div>
     </div>
+
+    {{#if assignment.stampCustomize.colour}}
+        <input type="button" class="reset" value="Reset" onclick={{action 'resetColour'}}>
+    {{/if}}
 </fieldset>
