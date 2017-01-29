@@ -1,51 +1,285 @@
 .preview {
     padding:10px;
+    position:absolute;
+    right:20px;
+    top:20px;
 
     .phase {
         color:#fff;
-        padding:2px;
+        display:inline-block;
+        padding:2px 8px;
+        position:relative;
         text-shadow:2px 1px 5px #000;
 
+        &:after {
+            border-left:2px solid;
+            border-right:2px solid;
+            box-sizing:border-box;
+            content:'';
+            display:block;
+            height:100%;
+            left:0;
+            position:absolute;
+            top:0;
+            width:100%;
+        }
+
         // outer wheel: transparency
-        &[data-colour="783F68T"] { background:rgba(120,63,104,.5); }
-        &[data-colour="AB4189T"] { background:rgba(171,65,137,.5); }
-        &[data-colour="E63E71T"] { background:rgba(230,62,113,.5); }
-        &[data-colour="E94345T"] { background:rgba(233,67,69,.5); }
-        &[data-colour="D16C34T"] { background:rgba(209,108,52,.5); }
-        &[data-colour="FE7B23T"] { background:rgba(254,123,35,.5); }
-        &[data-colour="FEC037T"] { background:rgba(254,192,55,.5); }
-        &[data-colour="FFE32FT"] { background:rgba(255,227,47,.5); }
-        &[data-colour="8CBA19T"] { background:rgba(140,186,25,.5); }
-        &[data-colour="3BA6A0T"] { background:rgba(59,166,160,.5); }
-        &[data-colour="3E97CFT"] { background:rgba(62,151,207,.8); }
-        &[data-colour="0094AET"] { background:rgba(0,148,174,.5); }
+        &[data-colour="783F68T"] {
+            background:rgba(120,63,104,.5);
+            &:after {
+                border-left-color:#783F68;
+                border-right-color:#783F68;
+            }
+        }
+        &[data-colour="AB4189T"] {
+            background:rgba(171,65,137,.5);
+            &:after {
+                border-left-color:#AB4189;
+                border-right-color:#AB4189;
+            }
+        }
+        &[data-colour="E63E71T"] {
+            background:rgba(230,62,113,.5);
+            &:after {
+                border-left-color:#E63E71;
+                border-right-color:#E63E71;;
+            }
+        }
+        &[data-colour="E94345T"] {
+            background:rgba(233,67,69,.5);
+            &:after {
+                border-left-color:#E94345;
+                border-right-color:#E94345;
+            }
+        }
+        &[data-colour="D16C34T"] {
+            background:rgba(209,108,52,.5);
+            &:after {
+                border-left-color:#D16C34;
+                border-right-color:#D16C34;
+            }
+        }
+        &[data-colour="FE7B23T"] {
+            background:rgba(254,123,35,.5);
+            &:after {
+                border-left-color:#FE7B23;
+                border-right-color:#FE7B23;;
+            }
+        }
+        &[data-colour="FEC037T"] {
+            background:rgba(254,192,55,.5);
+            &:after {
+                border-left-color:#FEC037;
+                border-right-color:#FEC037;
+            }
+        }
+        &[data-colour="FFE32FT"] {
+            background:rgba(255,227,47,.5);
+            &:after {
+                border-left-color:#FFE32F;
+                border-right-color:#FFE32F;
+            }
+        }
+        &[data-colour="8CBA19T"] {
+            background:rgba(140,186,25,.5);
+            &:after {
+                border-left-color:#8CBA19;
+                border-right-color:#8CBA19;
+            }
+        }
+        &[data-colour="3BA6A0T"] {
+            background:rgba(59,166,160,.5);
+            &:after {
+                border-left-color:#3BA6A0;
+                border-right-color:#3BA6A0;
+            }
+        }
+        &[data-colour="3E97CFT"] {
+            background:rgba(62,151,207,.8);
+            &:after {
+                border-left-color:#45AAEC;
+                border-right-color:#45AAEC;
+            }
+        }
+        &[data-colour="0094AET"] {
+            background:rgba(0,148,174,.5);
+            &:after {
+                border-left-color:#0094AE;
+                border-right-color:#0094AE;
+            }
+        }
 
         // middle wheel
-        &[data-colour="783F68"] { background:#783F68; }
-        &[data-colour="AB4189"] { background:#AB4189; }
-        &[data-colour="E63E71"] { background:#E63E71; }
-        &[data-colour="E94345"] { background:#E94345; }
-        &[data-colour="D16C34"] { background:#D16C34; }
-        &[data-colour="FE7B23"] { background:#FE7B23; }
-        &[data-colour="FEC037"] { background:#FEC037; }
-        &[data-colour="FFE32F"] { background:#FFE32F; }
-        &[data-colour="8CBA19"] { background:#8CBA19; }
-        &[data-colour="3BA6A0"] { background:#3BA6A0; }
-        &[data-colour="3E97CF"] { background:#3E97CF; }
-        &[data-colour="0094AE"] { background:#0094AE; }
+        &[data-colour="783F68"] {
+            background:#783F68;
+            &:after {
+                border-left-color:#A0558D;
+                border-right-color:#A0558D;
+            }
+        }
+        &[data-colour="AB4189"] {
+            background:#AB4189;
+            &:after {
+                border-left-color:#AB0589;
+                border-right-color:#AB0589;
+            }
+        }
+        &[data-colour="E63E71"] {
+            background:#E63E71;
+            &:after {
+                border-left-color:#FF4680;
+                border-right-color:#FF4680;;
+            }
+        }
+        &[data-colour="E94345"] {
+            background:#E94345;
+            &:after {
+                border-left-color:#FF5B5A;
+                border-right-color:#FF5B5A;;
+            }
+        }
+        &[data-colour="D16C34"] {
+            background:#D16C34;
+            &:after {
+                border-left-color:#F8803F;
+                border-right-color:#F8803F;
+            }
+        }
+        &[data-colour="FE7B23"] {
+            background:#FE7B23;
+            &:after {
+                border-left-color:#EA7022;
+                border-right-color:#EA7022;
+            }
+        }
+        &[data-colour="FEC037"] {
+            background:#FEC037;
+            &:after {
+                border-left-color:#FEA327;
+                border-right-color:#FEA327;
+            }
+        }
+        &[data-colour="FFE32F"] {
+            background:#FFE32F;
+            &:after {
+                border-left-color:#FFC11E;
+                border-right-color:#FFC11E;
+            }
+        }
+        &[data-colour="8CBA19"] {
+            background:#8CBA19;
+            &:after {
+                border-left-color:#9ACE1C;
+                border-right-color:#9ACE1C;;
+            }
+        }
+        &[data-colour="3BA6A0"] {
+            background:#3BA6A0;
+            &:after {
+                border-left-color:#44C7C4;
+                border-right-color:#44C7C4;
+            }
+        }
+        &[data-colour="3E97CF"] {
+            background:#3E97CF;
+            &:after {
+                border-left-color:#47AFF7;
+                border-right-color:#47AFF7;
+            }
+        }
+        &[data-colour="0094AE"] {
+            background:#0094AE;
+            &:after {
+                border-left-color:#00B3D3;
+                border-right-color:#00B3D3;
+            }
+        }
 
         // inner wheel
-        &[data-colour="B97CA6"] { background:#B97CA6; }
-        &[data-colour="D773B3"] { background:#D773B3; }
-        &[data-colour="F677A4"] { background:#F677A4; }
-        &[data-colour="F86D72"] { background:#F86D72; }
-        &[data-colour="E69A68"] { background:#E69A68; }
-        &[data-colour="FFA956"] { background:#FFA956; }
-        &[data-colour="FFD970"] { background:#FFD970; }
-        &[data-colour="FFEC83"] { background:#FFEC83; }
-        &[data-colour="B9DC82"] { background:#B9DC82; }
-        &[data-colour="93C4C1"] { background:#93C4C1; }
-        &[data-colour="ABCEEE"] { background:#ABCEEE; }
-        &[data-colour="ADD2E2"] { background:#ADD2E2; }
+        &[data-colour="B97CA6"] {
+            background:#B97CA6;
+            &:after {
+                border-left-color:#783F68;
+                border-right-color:#783F68;
+            }
+        }
+        &[data-colour="D773B3"] {
+            background:#D773B3;
+            &:after {
+                border-left-color:#AB4189;
+                border-right-color:#AB4189;
+            }
+        }
+        &[data-colour="F677A4"] {
+            background:#F677A4;
+            &:after {
+                border-left-color:#E63E71;
+                border-right-color:#E63E71;
+            }
+        }
+        &[data-colour="F86D72"] {
+            background:#F86D72;
+            &:after {
+                border-left-color:#E94345;
+                border-right-color:#E94345;
+            }
+        }
+        &[data-colour="E69A68"] {
+            background:#E69A68;
+            &:after {
+                border-left-color:#D16C34;
+                border-right-color:#D16C34;
+            }
+        }
+        &[data-colour="FFA956"] {
+            background:#FFA956;
+            &:after {
+                border-left-color:#FE7B23;
+                border-right-color:#FE7B23;
+            }
+        }
+        &[data-colour="FFD970"] {
+            background:#FFD970;
+            &:after {
+                border-left-color:#FEC037;
+                border-right-color:#FEC037;
+            }
+        }
+        &[data-colour="FFEC83"] {
+            background:#FFEC83;
+            &:after {
+                border-left-color:#FFCF2F;
+                border-right-color:#FFCF2F;
+            }
+        }
+        &[data-colour="B9DC82"] {
+            background:#B9DC82;
+            &:after {
+                border-left-color:#8CBA19;
+                border-right-color:#8CBA19;
+            }
+        }
+        &[data-colour="93C4C1"] {
+            background:#93C4C1;
+            &:after {
+                border-left-color:#3BA6A0;
+                border-right-color:#3BA6A0;
+            }
+        }
+        &[data-colour="ABCEEE"] {
+            background:#ABCEEE;
+            &:after {
+                border-left-color:#3E97CF;
+                border-right-color:#3E97CF;
+            }
+        }
+        &[data-colour="ADD2E2"] {
+            background:#ADD2E2;
+            &:after {
+                border-left-color:#0094AE;
+                border-right-color:#0094AE;
+            }
+        }
     }
 }

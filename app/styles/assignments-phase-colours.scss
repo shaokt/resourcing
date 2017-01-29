@@ -1,5 +1,5 @@
 .wheelContainer {
-    margin:0 auto;
+    margin:0 0 0 20px;
     position:relative;
     width:140px;
 
@@ -32,7 +32,7 @@
             &:hover {
                 border:3px solid #fff;
                 outline:none;
-                z-index:1;
+                z-index:2;
             }
 
             &:nth-child(1) {
