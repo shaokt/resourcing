@@ -1,0 +1,51 @@
+.preview {
+    padding:10px;
+
+    .phase {
+        color:#fff;
+        padding:2px;
+        text-shadow:2px 1px 5px #000;
+
+        // outer wheel: transparency
+        &[data-colour="783F68T"] { background:rgba(120,63,104,.5); }
+        &[data-colour="AB4189T"] { background:rgba(171,65,137,.5); }
+        &[data-colour="E63E71T"] { background:rgba(230,62,113,.5); }
+        &[data-colour="E94345T"] { background:rgba(233,67,69,.5); }
+        &[data-colour="D16C34T"] { background:rgba(209,108,52,.5); }
+        &[data-colour="FE7B23T"] { background:rgba(254,123,35,.5); }
+        &[data-colour="FEC037T"] { background:rgba(254,192,55,.5); }
+        &[data-colour="FFE32FT"] { background:rgba(255,227,47,.5); }
+        &[data-colour="8CBA19T"] { background:rgba(140,186,25,.5); }
+        &[data-colour="3BA6A0T"] { background:rgba(59,166,160,.5); }
+        &[data-colour="3E97CFT"] { background:rgba(62,151,207,.8); }
+        &[data-colour="0094AET"] { background:rgba(0,148,174,.5); }
+
+        // middle wheel
+        &[data-colour="783F68"] { background:#783F68; }
+        &[data-colour="AB4189"] { background:#AB4189; }
+        &[data-colour="E63E71"] { background:#E63E71; }
+        &[data-colour="E94345"] { background:#E94345; }
+        &[data-colour="D16C34"] { background:#D16C34; }
+        &[data-colour="FE7B23"] { background:#FE7B23; }
+        &[data-colour="FEC037"] { background:#FEC037; }
+        &[data-colour="FFE32F"] { background:#FFE32F; }
+        &[data-colour="8CBA19"] { background:#8CBA19; }
+        &[data-colour="3BA6A0"] { background:#3BA6A0; }
+        &[data-colour="3E97CF"] { background:#3E97CF; }
+        &[data-colour="0094AE"] { background:#0094AE; }
+
+        // inner wheel
+        &[data-colour="B97CA6"] { background:#B97CA6; }
+        &[data-colour="D773B3"] { background:#D773B3; }
+        &[data-colour="F677A4"] { background:#F677A4; }
+        &[data-colour="F86D72"] { background:#F86D72; }
+        &[data-colour="E69A68"] { background:#E69A68; }
+        &[data-colour="FFA956"] { background:#FFA956; }
+        &[data-colour="FFD970"] { background:#FFD970; }
+        &[data-colour="FFEC83"] { background:#FFEC83; }
+        &[data-colour="B9DC82"] { background:#B9DC82; }
+        &[data-colour="93C4C1"] { background:#93C4C1; }
+        &[data-colour="ABCEEE"] { background:#ABCEEE; }
+        &[data-colour="ADD2E2"] { background:#ADD2E2; }
+    }
+}

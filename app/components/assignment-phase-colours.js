@@ -5,6 +5,7 @@ export default Ember.Component.extend({
     actions: {
         updateColour() {
             const colour = Ember.$(event.target).attr('data-colour');
+            this.set('assignment.stampCustomize.colour', colour);
             if(colour === 'A4A4A7') {
                 Ember.$(this.get('assignment.stampCustomize')[0]).removeAttr('data-colour');
             }

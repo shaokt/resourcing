@@ -19,11 +19,18 @@
             width:50px;
 
             &:focus {
+                border:3px solid #fff;
                 outline:none;
                 z-index:1;
             }
 
+            &[data-selected=true]{
+                border:3px solid #fff;
+                z-index:1;
+            }
+
             &:hover {
+                border:3px solid #fff;
                 outline:none;
                 z-index:1;
             }
