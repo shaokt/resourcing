@@ -1,133 +1,185 @@
-&[data-colour="FC6360"] { // apple red
-    background:rgba(252,99,96,.8);
-    &:after {
-        border-left:2px solid #FC3D39;
-        border-right:2px solid #FC3D39;
-    }
-    &:hover {
-        background:#FC3D39;
-    }
+// outer wheel: transparency
+&[data-colour="783F68T"] {
+    background:rgba(120,63,104,.5);
+    &:after { border-color:#783F68; }
+    &:hover { background:#783F68; }
 }
-&[data-colour="F7A550"] { // apple orange
-    background:rgba(247,165,80,.8);
-    &:after {
-        border-left:2px solid #F58F25;
-        border-right:2px solid #F58F25;
-    }
-    &:hover {
-        background:#F58F25;
-    }
+&[data-colour="AB4189T"] {
+    background:rgba(171,65,137,.5);
+    &:after { border-color:#AB4189; }
+    &:hover { background:#AB4189; }
 }
-&[data-colour="F3CD56"] { // apple yellow
-    background:rgba(243,205,86,.8);
-    &:after {
-        border-left:2px solid #F1C230;
-        border-right:2px solid #F1C230;
-    }
-    &:hover {
-        background:#F1C230;
-    }
+&[data-colour="E63E71T"] {
+    background:rgba(230,62,113,.5);
+    &:after { border-color:#E63E71; }
+    &:hover { background:#E63E71; }
 }
-&[data-colour="70CA57"] { // apple green
-    background:rgba(112,202,87,.8);
-    &:after {
-        border-left:2px solid #4DBD2E;
-        border-right:2px solid #4DBD2E;
-    }
-    &:hover {
-        background:#4DBD2E;
-    }
+&[data-colour="E94345T"] {
+    background:rgba(233,67,69,.5);
+    &:after { border-color:#E94345; }
+    &:hover { background:#E94345; }
 }
-&[data-colour="51B9F1"] { // apple blue
-    background:rgba(81,185,241,.8);
-    &:after {
-        border-left:2px solid #26A8EE;
-        border-right:2px solid #26A8EE;
-    }
-    &:hover {
-        background:#26A8EE;
-    }
+&[data-colour="D16C34T"] {
+    background:rgba(209,108,52,.5);
+    &:after { border-color:#D16C34; }
+    &:hover { background:#D16C34; }
 }
-&[data-colour="CF8BDF"] { // apple purple
-    background:rgba(207,139,223,.8);
-    &:after {
-        border-left:2px solid #CA7FDC;
-        border-right:2px solid #CA7FDC;
-    }
-    &:hover {
-        background:#CA7FDC;
-    }
+&[data-colour="FE7B23T"] {
+    background:rgba(254,123,35,.5);
+    &:after { border-color:#FE7B23; }
+    &:hover { background:#FE7B23; }
+}
+&[data-colour="FEC037T"] {
+    background:rgba(254,192,55,.5);
+    &:after { border-color:#FEC037; }
+    &:hover { background:#FEC037; }
+}
+&[data-colour="FFE32FT"] {
+    background:rgba(255,227,47,.5);
+    &:after { border-color:#FFE32F; }
+    &:hover { background:#FFE32F; }
+}
+&[data-colour="8CBA19T"] {
+    background:rgba(140,186,25,.5);
+    &:after { border-color:#8CBA19; }
+    &:hover { background:#8CBA19; }
+}
+&[data-colour="3BA6A0T"] {
+    background:rgba(59,166,160,.5);
+    &:after { border-color:#3BA6A0; }
+    &:hover { background:#3BA6A0; }
+}
+&[data-colour="3E97CFT"] {
+    background:rgba(62,151,207,.8);
+    &:after { border-color:#45AAEC; }
+    &:hover { background:#45AAEC; }
+}
+&[data-colour="0094AET"] {
+    background:rgba(0,148,174,.5);
+    &:after { border-color:#0094AE; }
+    &:hover { background:#0094AE; }
 }
 
+// middle wheel
+&[data-colour="783F68"] {
+    background:#783F68;
+    &:after { border-color:#A0558D; }
+    &:hover { background:#A0558D; }
+}
+&[data-colour="AB4189"] {
+    background:#AB4189;
+    &:after { border-color:#AB0589; }
+    &:hover { background:#AB0589; }
+}
+&[data-colour="E63E71"] {
+    background:#E63E71;
+    &:after { border-color:#FF4680; }
+    &:hover { background:#FF4680; }
+}
+&[data-colour="E94345"] {
+    background:#E94345;
+    &:after { border-color:#FF5B5A; }
+    &:hover { background:#FF5B5A; }
+}
+&[data-colour="D16C34"] {
+    background:#D16C34;
+    &:after { border-color:#F8803F; }
+    &:hover { background:#F8803F; }
+}
+&[data-colour="FE7B23"] {
+    background:#FE7B23;
+    &:after { border-color:#EA7022; }
+    &:hover { background:#EA7022; }
+}
+&[data-colour="FEC037"] {
+    background:#FEC037;
+    &:after { border-color:#FEA327; }
+    &:hover { background:#FEA327; }
+}
+&[data-colour="FFE32F"] {
+    background:#FFE32F;
+    &:after { border-color:#FFC11E; }
+    &:hover { background:#FFC11E; }
+}
+&[data-colour="8CBA19"] {
+    background:#8CBA19;
+    &:after { border-color:#9ACE1C;; }
+    &:hover { background:#9ACE1C; }
+}
+&[data-colour="3BA6A0"] {
+    background:#3BA6A0;
+    &:after { border-color:#44C7C4; }
+    &:hover { background:#44C7C4; }
+}
+&[data-colour="3E97CF"] {
+    background:#3E97CF;
+    &:after { border-color:#47AFF7; }
+    &:hover { background:#47AFF7; }
+}
+&[data-colour="0094AE"] {
+    background:#0094AE;
+    &:after { border-color:#00B3D3; }
+    &:hover { background:#00B3D3; }
+}
 
-//pastels
-&[data-colour="BAB9C3"] { // grey
-    background:rgba(186,185,195,1);
-    &:after {
-        border-left:2px solid #ADADB8;
-        border-right:2px solid #ADADB8;
-        &:hover {
-            background:#ADADB8;
-        }
-    }
+// inner wheel
+&[data-colour="B97CA6"] {
+    background:#B97CA6;
+    &:after { border-color:#783F68; }
+    &:hover { background:#783F68; }
 }
-&[data-colour="FFAEAE"] { // red
-    background:rgba(255,174,174,1);
-    &:after {
-        border-left:2px solid #FF9AAE;
-        border-right:2px solid #FF9AAE;
-    }
-    &:hover {
-        background:#FF9AAE;
-    }
+&[data-colour="D773B3"] {
+    background:#D773B3;
+    &:after { border-color:#AB4189; }
+    &:hover { background:#AB4189; }
 }
-&[data-colour="FFBB94"] { // orange
-    background:rgba(255,187,148,1);
-    &:after {
-        border-left:2px solid #FFAC94;
-        border-right:2px solid #FFAC94;
-    }
-    &:hover {
-        background:#FFAC94;
-    }
+&[data-colour="F677A4"] {
+    background:#F677A4;
+    &:after { border-color:#E63E71; }
+    &:hover { background:#E63E71; }
 }
-&[data-colour="FFF0AA"] { // yellow
-    background:rgba(255,240,170,1);
-    &:after {
-        border-left:2px solid #FFE6AA;
-        border-right:2px solid #FFE6AA;
-    }
-    &:hover {
-        background:#FFE6AA;
-    }
+&[data-colour="F86D72"] {
+    background:#F86D72;
+    &:after { border-color:#E94345; }
+    &:hover { background:#E94345; }
 }
-&[data-colour="B0E57C"] { // green
-    background:rgba(176,229,124,1);
-    &:after {
-        border-left:2px solid #B0DB7C;
-        border-right:2px solid #B0DB7C;
-    }
-    &:after {
-        background:#B0DB7C;
-    }
+&[data-colour="E69A68"] {
+    background:#E69A68;
+    &:after { border-color:#D16C34; }
+    &:hover { background:#D16C34; }
 }
-&[data-colour="B4D8E7"] { // blue
-    background:rgba(180,216,231,1);
-    &:after {
-        border-left:2px solid #A0D8E7;
-        border-right:2px solid #A0D8E7;
-    }
-    &:hover {
-        background:#A0D8E7;
-    }
+&[data-colour="FFA956"] {
+    background:#FFA956;
+    &:after { border-color:#FE7B23; }
+    &:hover { background:#FE7B23; }
 }
-&[data-colour="CCAFE7"] { // purple
-    background:rgba(204,175,231,1);
-    &:after {
-        border-left:2px solid #CCA5E7;
-        border-right:2px solid #CCA5E7;
-    }
-    &:hover {
-        background:#CCA5E7;
-    }
+&[data-colour="FFD970"] {
+    background:#FFD970;
+    &:after { border-color:#FEC037; }
+    &:hover { background:#FEC037; }
+}
+&[data-colour="FFEC83"] {
+    background:#FFEC83;
+    &:after { border-color:#FFCF2F; }
+    &:hover { background:#FFCF2F; }
+}
+&[data-colour="B9DC82"] {
+    background:#B9DC82;
+    &:after { border-color:#8CBA19; }
+    &:hover { background:#8CBA19; }
+}
+&[data-colour="93C4C1"] {
+    background:#93C4C1;
+    &:after { border-color:#3BA6A0; }
+    &:hover { background:#3BA6A0; }
+}
+&[data-colour="ABCEEE"] {
+    background:#ABCEEE;
+    &:after { border-color:#3E97CF; }
+    &:hover { background:#3E97CF; }
+}
+&[data-colour="ADD2E2"] {
+    background:#ADD2E2;
+    &:after { border-color:#0094AE; }
+    &:hover { background:#0094AE; }
 }
