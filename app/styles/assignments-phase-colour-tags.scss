@@ -1,185 +1,200 @@
+&:not([data-colour]) {
+    .details { background:#000; }
+}
+
+.details div {
+    font-size:150%;
+    text-shadow:0 0 5px #000;
+
+    &:before {
+        background:#fff !important;
+        box-shadow:0 0 1px 1px rgba(0,0,0,.4);
+        top:9px !important;
+     }
+}
+
 // outer wheel: transparency
 &[data-colour="783F68T"] {
     background:rgba(120,63,104,.5);
     &:after { border-color:#783F68; }
-    &:hover { background:#783F68; }
+    &:hover, .details { background:#783F68; }
 }
 &[data-colour="AB4189T"] {
     background:rgba(171,65,137,.5);
     &:after { border-color:#AB4189; }
-    &:hover { background:#AB4189; }
+    &:hover, .details { background:#AB4189; }
 }
 &[data-colour="E63E71T"] {
     background:rgba(230,62,113,.5);
     &:after { border-color:#E63E71; }
-    &:hover { background:#E63E71; }
+    &:hover, .details { background:#E63E71; }
 }
 &[data-colour="E94345T"] {
     background:rgba(233,67,69,.5);
     &:after { border-color:#E94345; }
-    &:hover { background:#E94345; }
+    &:hover, .details { background:#E94345; }
 }
 &[data-colour="D16C34T"] {
     background:rgba(209,108,52,.5);
     &:after { border-color:#D16C34; }
-    &:hover { background:#D16C34; }
+    &:hover, .details { background:#D16C34; }
 }
 &[data-colour="FE7B23T"] {
     background:rgba(254,123,35,.5);
     &:after { border-color:#FE7B23; }
-    &:hover { background:#FE7B23; }
+    &:hover, .details { background:#FE7B23; }
 }
 &[data-colour="FEC037T"] {
     background:rgba(254,192,55,.5);
     &:after { border-color:#FEC037; }
-    &:hover { background:#FEC037; }
+    &:hover, .details { background:#FEC037; }
 }
 &[data-colour="FFE32FT"] {
     background:rgba(255,227,47,.5);
     &:after { border-color:#FFE32F; }
-    &:hover { background:#FFE32F; }
+    &:hover, .details { background:#FFE32F; }
 }
 &[data-colour="8CBA19T"] {
     background:rgba(140,186,25,.5);
     &:after { border-color:#8CBA19; }
-    &:hover { background:#8CBA19; }
+    &:hover, .details { background:#8CBA19; }
 }
 &[data-colour="3BA6A0T"] {
     background:rgba(59,166,160,.5);
     &:after { border-color:#3BA6A0; }
-    &:hover { background:#3BA6A0; }
+    &:hover, .details { background:#3BA6A0; }
 }
 &[data-colour="3E97CFT"] {
     background:rgba(62,151,207,.8);
     &:after { border-color:#45AAEC; }
-    &:hover { background:#45AAEC; }
+    &:hover, .details { background:#45AAEC; }
 }
 &[data-colour="0094AET"] {
     background:rgba(0,148,174,.5);
     &:after { border-color:#0094AE; }
-    &:hover { background:#0094AE; }
+    &:hover, .details { background:#0094AE; }
 }
 
 // middle wheel
 &[data-colour="783F68"] {
     background:#783F68;
     &:after { border-color:#A0558D; }
-    &:hover { background:#A0558D; }
+    &:hover, .details { background:#A0558D; }
 }
 &[data-colour="AB4189"] {
     background:#AB4189;
     &:after { border-color:#AB0589; }
-    &:hover { background:#AB0589; }
+    &:hover, .details { background:#AB0589; }
 }
 &[data-colour="E63E71"] {
     background:#E63E71;
     &:after { border-color:#FF4680; }
-    &:hover { background:#FF4680; }
+    &:hover, .details { background:#FF4680; }
 }
 &[data-colour="E94345"] {
     background:#E94345;
     &:after { border-color:#FF5B5A; }
-    &:hover { background:#FF5B5A; }
+    &:hover, .details { background:#FF5B5A; }
 }
 &[data-colour="D16C34"] {
     background:#D16C34;
     &:after { border-color:#F8803F; }
-    &:hover { background:#F8803F; }
+    &:hover, .details { background:#F8803F; }
 }
 &[data-colour="FE7B23"] {
     background:#FE7B23;
     &:after { border-color:#EA7022; }
-    &:hover { background:#EA7022; }
+    &:hover, .details { background:#EA7022; }
 }
 &[data-colour="FEC037"] {
     background:#FEC037;
     &:after { border-color:#FEA327; }
-    &:hover { background:#FEA327; }
+    &:hover, .details { background:#FEA327; }
 }
 &[data-colour="FFE32F"] {
     background:#FFE32F;
     &:after { border-color:#FFC11E; }
-    &:hover { background:#FFC11E; }
+    &:hover, .details { background:#FFC11E; }
 }
 &[data-colour="8CBA19"] {
     background:#8CBA19;
     &:after { border-color:#9ACE1C;; }
-    &:hover { background:#9ACE1C; }
+    &:hover, .details { background:#9ACE1C; }
 }
 &[data-colour="3BA6A0"] {
     background:#3BA6A0;
     &:after { border-color:#44C7C4; }
-    &:hover { background:#44C7C4; }
+    &:hover, .details { background:#44C7C4; }
 }
 &[data-colour="3E97CF"] {
     background:#3E97CF;
     &:after { border-color:#47AFF7; }
-    &:hover { background:#47AFF7; }
+    &:hover, .details { background:#47AFF7; }
 }
 &[data-colour="0094AE"] {
     background:#0094AE;
     &:after { border-color:#00B3D3; }
-    &:hover { background:#00B3D3; }
+    &:hover, .details { background:#00B3D3; }
 }
 
 // inner wheel
 &[data-colour="B97CA6"] {
     background:#B97CA6;
     &:after { border-color:#783F68; }
-    &:hover { background:#783F68; }
+    &:hover, .details { background:#783F68; }
 }
 &[data-colour="D773B3"] {
     background:#D773B3;
     &:after { border-color:#AB4189; }
-    &:hover { background:#AB4189; }
+    &:hover, .details { background:#AB4189; }
 }
 &[data-colour="F677A4"] {
     background:#F677A4;
     &:after { border-color:#E63E71; }
-    &:hover { background:#E63E71; }
+    &:hover, .details { background:#E63E71; }
 }
 &[data-colour="F86D72"] {
     background:#F86D72;
     &:after { border-color:#E94345; }
-    &:hover { background:#E94345; }
+    &:hover, .details { background:#E94345; }
 }
 &[data-colour="E69A68"] {
     background:#E69A68;
     &:after { border-color:#D16C34; }
-    &:hover { background:#D16C34; }
+    &:hover, .details { background:#D16C34; }
 }
 &[data-colour="FFA956"] {
     background:#FFA956;
     &:after { border-color:#FE7B23; }
-    &:hover { background:#FE7B23; }
+    &:hover, .details { background:#FE7B23; }
 }
 &[data-colour="FFD970"] {
     background:#FFD970;
     &:after { border-color:#FEC037; }
-    &:hover { background:#FEC037; }
+    &:hover, .details { background:#FEC037; }
 }
 &[data-colour="FFEC83"] {
     background:#FFEC83;
     &:after { border-color:#FFCF2F; }
-    &:hover { background:#FFCF2F; }
+    &:hover, .details { background:#FFCF2F; }
 }
 &[data-colour="B9DC82"] {
     background:#B9DC82;
     &:after { border-color:#8CBA19; }
-    &:hover { background:#8CBA19; }
+    &:hover, .details { background:#8CBA19; }
 }
 &[data-colour="93C4C1"] {
     background:#93C4C1;
     &:after { border-color:#3BA6A0; }
-    &:hover { background:#3BA6A0; }
+    &:hover, .details { background:#3BA6A0; }
 }
 &[data-colour="ABCEEE"] {
     background:#ABCEEE;
     &:after { border-color:#3E97CF; }
-    &:hover { background:#3E97CF; }
+    &:hover, .details { background:#3E97CF; }
 }
 &[data-colour="ADD2E2"] {
     background:#ADD2E2;
     &:after { border-color:#0094AE; }
-    &:hover { background:#0094AE; }
+    &:hover, .details { background:#0094AE; }
 }
