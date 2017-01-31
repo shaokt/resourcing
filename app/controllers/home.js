@@ -45,7 +45,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
             this.setTitle();
             var self = this;
             var result = "";
-            var vacationCounters = ['lieu', 'personal', 'sick', 'unofficial'];
+            var vacationCounters = ['lieu', 'personal', 'unofficial'];
             var vacationCountersPrevious = ['vacationCarryover'];
             Ember.$.each(vacationCounters, function(i, val){
             	result += '.tiles .' + val + '[data-year="' + self.get('year')+ '"] { counter-increment:' + val + 'Counter } ';

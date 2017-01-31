@@ -1,4 +1,4 @@
-.row { counter-reset: lieuCounter personalCounter sickCounter unofficialCounter vacationCounter vacationCarryoverCounter; }
+.row { counter-reset: lieuCounter personalCounter unofficialCounter vacationCarryoverCounter; }
 
 .counters {
     background:#fff;
@@ -20,7 +20,6 @@
 
         &.lieu:before { content: "L : " counter(lieuCounter); }
         &.personal:before { content: "P : "; }
-        &.sick:before { content: "S : " counter(sickCounter); }
         &.unofficial:before { content: "\263C  : " counter(unofficialCounter); }
         &.vacation:before { content: "V : "; }
         &.vacationToDate:before { content: "V To Date: "; }

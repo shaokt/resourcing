@@ -174,9 +174,14 @@ export default Ember.Component.extend(Webcel, {
 
         var p1 = Ember.$(div).find(`.personal${dataYear}`).length;
         var p2 = Ember.$(div).find(`.personalHalf${dataYear}`).length/2;
+
+        var s1 = Ember.$(div).find(`.sick${dataYear}`).length;
+        var s2 = Ember.$(div).find(`.sickHalf${dataYear}`).length/2;
+
         this.set('resource.vacation', v1.length + v2.length/2);
         this.set('resource.vacationToDate', v1TD.length + v2TD.length/2);
         this.set('resource.personal', p1+p2);
+        this.set('resource.sick', s1+s2);
     },
 
     actions:{
