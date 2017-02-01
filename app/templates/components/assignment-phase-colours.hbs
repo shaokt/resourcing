@@ -1,5 +1,12 @@
-<fieldset class="colours">
+<fieldset class="colours" data-dots={{dots}}>
     <legend>Tags</legend>
+    <button class="tagView" type="button" onclick={{action 'toggleDots'}}>
+        {{#if dots}}
+            Colour Wheels
+        {{else}}
+            Colour Dots
+        {{/if}}
+    </button>
     <div class="wheelContainer">
         <div class="wheel">
             {{assignment-phase-colours-sector colour="783F68T" assignment=assignment}}

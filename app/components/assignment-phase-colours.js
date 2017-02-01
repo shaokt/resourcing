@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     tagName:'',
+    dots:false,
     actions: {
         // add tagging colour on the phase
         updateColour() {
@@ -16,6 +17,10 @@ export default Ember.Component.extend({
             this.set('assignment.stampCustomize.colour', '');
             Ember.$(this.get('assignment.stampCustomize')[0]).removeAttr('data-colour');
             Ember.$('#doneCustomize').focus();
+        },
+
+        toggleDots() {
+            this.toggleProperty('dots');
         }
     }
 });

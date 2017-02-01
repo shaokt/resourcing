@@ -34,20 +34,16 @@
          }
      }// div
 
-     input {
+     button, input {
+         &.tagView,
          &[type="submit"] {
              background:#3B3FFC;
              border:1px solid #ddd;
              border-radius:5px;
              color:#fff;
+             cursor:pointer;
+             padding:2px 6px;
              opacity:.7;
-
-             &:focus {
-                 border-color:#fff;
-                 box-shadow:0 0 2px 2px rgba(0,0,0,.5);
-                 opacity:1;
-                 outline:none;
-             }
          }
 
          &.reset {
@@ -55,9 +51,17 @@
             border:2px solid rgba(0,0,0,.8);
             bottom:20px;
             color:#fff;
+            cursor:pointer;
             position:absolute;
             right:20px;
             text-shadow:2px 1px 5px #000;
+         }
+
+         &:focus, &:hover {
+             border-color:#fff;
+             box-shadow:0 0 2px 2px rgba(0,0,0,.5);
+             opacity:1;
+             outline:none;
          }
      }
 
@@ -75,7 +79,9 @@
      }
 
      .colours {
+         padding:15px;
          position:relative;
+        legend { margin-left:-10px; }
      }
 
      .dateSummary {
