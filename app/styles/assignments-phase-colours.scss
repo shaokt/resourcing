@@ -18,6 +18,8 @@
             position:absolute;
             width:50px;
 
+            @import "assignments-phase-colour-tags.scss";
+
             &:focus {
                 border:3px solid #fff;
                 outline:none;
@@ -302,6 +304,32 @@
         left:calc(calc(100% - 45px)/2);
         top:calc(calc(100% - 45px)/2);
         width:45px;
+
+        .sector {
+            background:none;
+            border-radius:100%;
+            border:none;
+            content:'';
+            display:block;
+            height:15px;
+            left:50%;
+            top:50%;
+            transform:translate(-50%,-50%);
+            width:15px;
+            z-index:2;
+
+            &:after {
+                border-radius:100%;
+                border-width:5px;
+                border-style:solid;
+                content:'';
+                display:block;
+                left:50%;
+                position:absolute;
+                top:50%;
+                transform:translate(-50%,-50%);
+            }
+        }
     }//wheel4
 }
 
@@ -338,6 +366,10 @@
                 &[data-selected="true"] {
                     box-shadow:0 0 2px 2px rgba(0,0,0,.2);
                 }
+            }
+
+            &:nth-child(4) {
+                .sector { display:none; }
             }
         }
     }
