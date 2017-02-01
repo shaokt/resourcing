@@ -143,12 +143,20 @@ export default Ember.Component.extend(WebcelMixin, {
 
     // figure out which column in the calendar to select
     getDate:function(year, month, day){
-    	month = this.calendar.find("[data-date='" + year + " " + month + "']");
+    	month = this.calendar.find(".quarter .month[data-date='" + year + " " + month + "']");
     	var week = null;
     	Ember.$(month).find(".day").each(function(){
-            if(week == null){ week = Ember.$(this); }
     		if(day >= +(Ember.$(this).text().match(/\d+/)[0])){ week = Ember.$(this); }
     	});
+
+        /* the current day preceeds the first Monday of the month in weekly view
+         * i.e. Mon Jan 30, Tues Jan 31, Wed Feb 1, whereas the logic above would find Mon Feb 6th which isn't the current week
+        */
+        if(week === null) {
+            month = Ember.$(month).parent().prev().find('.month').last();
+            week = month.find('.day').last();
+        }
+
     	return {month:month, week:week};
     },
 
