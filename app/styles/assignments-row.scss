@@ -5,9 +5,15 @@
             background:none;
             border:none;
 
+            &:hover {
+                .info {
+                    z-index:6;
+                }
+            }
+
             .info {
                 top:3px;
-                z-index:6;
+                z-index:5;
 
                 .name {
                     border:1px solid #aaa;

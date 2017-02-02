@@ -1,0 +1,30 @@
+.preview {
+    padding:10px;
+    position:absolute;
+    right:20px;
+    top:80px;
+
+    .phase {
+        background:rgba(0,0,0,.4);
+        color:#fff;
+        display:inline-block;
+        padding:2px 8px;
+        position:relative;
+        text-shadow:2px 1px 5px #000;
+
+        &:after {
+            border-left:2px solid;
+            border-right:2px solid;
+            border-color:rgba(0,0,0,.4);
+            box-sizing:border-box;
+            content:'';
+            display:block;
+            height:100%;
+            left:0;
+            position:absolute;
+            top:0;
+            width:100%;
+        }
+        @import "assignments-phase-colour-tags.scss";
+    }
+}

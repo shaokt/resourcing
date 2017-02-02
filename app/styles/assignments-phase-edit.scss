@@ -13,23 +13,47 @@
             &:after {
                 border:1px solid rgba(255,255,255,.7);
                 border-radius:2px;
-                cursor:pointer;
                 padding-top:2px;
             }
 
             &[data-phaselink="true"] {
-                border:2px solid rgba(0,0,0,.7);
                 background:#fff;
+                background-clip:padding-box;
+                border-color:transparent;
                 color:#000;
-                
+
+                &:after {
+                    box-shadow:0 0 2px 2px rgba(255,255,255,.7);
+                }
+
                 &:before {
-                    text-shadow:none;
+                    text-shadow:1px 1px 5px #fff;
+                }
+
+                &:hover {
+                    &:after {
+                        display:block;
+                        box-shadow:
+                            0 0 4px 2px hsl(50, 100%, 50%),
+                            0 0 4px 3px hsl(1, 100%, 60%);
+                    }
                 }
 
                 &.active {
-                    box-shadow:0 0 2px 2px #fffc00;
+                    z-index:2;
+
+                    &:after {
+                        box-shadow:
+                            0 0 2px 2px hsl(1, 100%, 50%),
+                            0 0 2px 3px hsl(50, 100%, 60%);
+                        text-shadow:1px 1px 5px #fff;
+                    }
                 }
-            }
+
+                .desc {
+                    text-shadow: 2px 1px 5px #fff;
+                }
+            }//data-phaselink
         }
     }// phases
 
@@ -60,8 +84,10 @@
         padding-top:1px;
 
         &:hover {
-            border-color:#fff;
-            box-shadow:0 0 2px 5px rgba(0,0,0,.5);
+            &:after {
+                border-color:#fff;
+                box-shadow:0 0 2px 5px rgba(0,0,0,.5);
+            }
         }
     }
 }

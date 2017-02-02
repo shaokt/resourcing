@@ -1,10 +1,69 @@
-<fieldset class="colours">
+<fieldset class="colours" data-dots={{dots}}>
     <legend>Tags</legend>
-    <input type="button" data-colour="gry" onclick={{action 'updateColour'}} />
-    <input type="button" data-colour="red" onclick={{action 'updateColour'}} />
-    <input type="button" data-colour="org" onclick={{action 'updateColour'}} />
-    <input type="button" data-colour="ylw" onclick={{action 'updateColour'}} />
-    <input type="button" data-colour="grn" onclick={{action 'updateColour'}} />
-    <input type="button" data-colour="blu" onclick={{action 'updateColour'}} />
-    <input type="button" data-colour="ppl" onclick={{action 'updateColour'}} />
+    <button class="tagView" type="button" onclick={{action 'toggleDots'}}>
+        {{#if dots}}
+            Colour Wheels
+        {{else}}
+            Colour Dots
+        {{/if}}
+    </button>
+    <div class="wheelContainer">
+        <div class="wheel">
+            {{assignment-phase-colours-sector colour="783F68T" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="AB4189T" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="E63E71T" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="E94345T" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="D16C34T" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="FE7B23T" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="FEC037T" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="FFE32FT" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="8CBA19T" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="3BA6A0T" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="3E97CFT" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="0094AET" assignment=assignment}}
+        </div>
+        <div class="wheel">
+            {{assignment-phase-colours-sector colour="783F68" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="AB4189" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="E63E71" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="E94345" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="D16C34" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="FE7B23" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="FEC037" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="FFE32F" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="8CBA19" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="3BA6A0" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="3E97CF" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="0094AE" assignment=assignment}}
+        </div>
+        <div class="wheel">
+            {{assignment-phase-colours-sector colour="B97CA6" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="D773B3" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="F677A4" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="F86D72" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="E69A68" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="FFA956" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="FFD970" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="FFEC83" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="B9DC82" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="93C4C1" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="ABCEEE" assignment=assignment}}
+            {{assignment-phase-colours-sector colour="ADD2E2" assignment=assignment}}
+        </div>
+        <div class="wheel"><div class="sector" data-colour="{{assignment.stampCustomize.colour}}"></div></div>
+    </div>
+
+    <style>
+        .preview { background:#{{assignment.background}}; }
+    </style>
+
+    <div class="preview">
+        <div class="phase" data-colour={{assignment.stampCustomize.colour}}>
+            Preview
+        </div>
+    </div>
+
+    {{#if assignment.stampCustomize.colour}}
+        <input type="button" class="reset" value="Reset" onclick={{action 'resetColour'}}>
+    {{/if}}
 </fieldset>

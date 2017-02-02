@@ -31,6 +31,7 @@ export default Ember.Component.extend({
         const obj = this.get('assignment.stampCustomize')[0];
         this.set('stamp', obj);
         this.set('top', obj.offsetTop + obj.offsetHeight);
+        this.set('assignment.stampCustomize.colour', Ember.$(obj).attr('data-colour'));
         return obj.offsetLeft;
     }),
 

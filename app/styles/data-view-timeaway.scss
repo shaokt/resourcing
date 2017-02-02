@@ -141,6 +141,11 @@
         &[data-stamp="true"]:before { content: "S"; }
     }
 
+    .sickHalf {
+        background:linear-gradient(to right bottom, #2f3414 50%, #c1a 50%);
+        &[data-stamp="true"]:before { content: "S"; }
+    }
+
     .training {
         background:#C99E00;
         &[data-stamp="true"]:before { content: "T"; }
@@ -182,6 +187,7 @@
 
         .sick { clear:left; }
         .sick:hover:after { content:"Sick Day"; }
+        .sickHalf:hover:after { content:"Sick Half Day"; }
         .personal:hover:after { content:"Personal Day"; }
         .lieu:hover:after { content:"Lieu Day"; }
         .wfh:hover:after { content:"Remote Work (WFH)"; }
@@ -201,7 +207,7 @@
     }
     .info {
         .tileOptions li {
-            .vacationHalf, .personalHalf { margin-left:20px; }
+            .vacationHalf, .personalHalf, .sickHalf { margin-left:20px; }
         }
     }
 }//data-view=timeaway

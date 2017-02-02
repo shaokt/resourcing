@@ -20,6 +20,7 @@ export default Ember.Component.extend({
         	"training",
         	"bereavement",
             "shortTermDisability",
+            "sickHalf",
             "parentalLeave",
         	"jury",
         	"firstDay",

@@ -12,8 +12,7 @@
             background:#fff;
             padding:0 5px 0 0;
         }
-
-     }
+    }// fieldset
 
      input, select {
          border:1px solid #2D91FD;
@@ -35,24 +34,40 @@
          }
      }// div
 
-     input {
+     button, input {
+         &.tagView,
          &[type="submit"] {
              background:#3B3FFC;
              border:1px solid #ddd;
              border-radius:5px;
              color:#fff;
+             cursor:pointer;
+             padding:2px 6px;
              opacity:.7;
+         }
 
-             &:focus {
-                 border-color:#fff;
-                 box-shadow:0 0 2px 2px rgba(0,0,0,.5);
-                 opacity:1;
-                 outline:none;
-             }
+         &.reset {
+            background:rgba(0,0,0,.4);
+            border:2px solid rgba(0,0,0,.8);
+            bottom:20px;
+            color:#fff;
+            cursor:pointer;
+            position:absolute;
+            right:20px;
+            text-shadow:2px 1px 5px #000;
+         }
+
+         &:focus, &:hover {
+             border-color:#fff;
+             box-shadow:0 0 2px 2px rgba(0,0,0,.5);
+             opacity:1;
+             outline:none;
          }
      }
 
      .duration {
+         float:left;
+
          .form-group {
              float:left;
              margin-right:10px;
@@ -61,6 +76,12 @@
                  margin-right:0;
              }
          }
+     }
+
+     .colours {
+         padding:15px;
+         position:relative;
+        legend { margin-left:-10px; }
      }
 
      .dateSummary {
@@ -72,6 +93,8 @@
              margin-bottom:5px;
          }
      }
+
+     @import "assignments-phase-colours-preview.scss";
      @import "assignments-phase-details.scss";
      @import "assignments-phase-colours.scss";
  }// form
