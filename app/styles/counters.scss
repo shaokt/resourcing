@@ -20,6 +20,7 @@
 
         &.lieu:before { content: "L : " counter(lieuCounter); }
         &.personal:before { content: "P : "; }
+        &.sick:before { content: "S : "; }
         &.unofficial:before { content: "\263C  : " counter(unofficialCounter); }
         &.vacation:before { content: "V : "; }
         &.vacationToDate:before { content: "V To Date: "; }
