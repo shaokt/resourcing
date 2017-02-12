@@ -35,6 +35,7 @@ export default Ember.Component.extend({
             this.set('showOrg', true);
             this.set('showTeam', true);
             this.set('showToggleRows', true);
+            this.set('assignmentModel', this.get('model'));
         }
         else if(route === 'roadmap.edit') {
             this.set('showAddEmployee', false);
@@ -44,6 +45,7 @@ export default Ember.Component.extend({
             this.set('showTeam', false);
             this.set('showRoadmap', true);
             this.set('showToggleRows', true);
+            this.set('assignmentModel', this.get('model'));
 
         }
         else if(route === 'home') {
@@ -54,6 +56,7 @@ export default Ember.Component.extend({
             this.set('showTeam', false);
             this.set('showRoadmap', true);
             this.set('showToggleRows', true);
+            this.set('assignmentModel', this.get('model.assignment'));
         }
 
         if(!this.get('viewingCurrentYear')) {
@@ -78,8 +81,8 @@ export default Ember.Component.extend({
 
     // determine whether to show assignment tiles or not
     showAssignmentTiles: Ember.computed(function(){
-        return this.get('settings.isWeeklyCalendar') || this.get('constants.teamAssignmentView');
-    }).property('settings.isWeeklyCalendar'),
+        return this.get('router.currentRouteName') !== 'roadmap.edit';
+    }),
 
     // determine whether to show timeoff tiles or not
     showTimeoffTiles: Ember.computed(function(){
