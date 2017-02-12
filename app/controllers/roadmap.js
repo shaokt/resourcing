@@ -18,6 +18,19 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         return this.get('model.length') > 0;
     }),
 
+    showInRoadmap: function(){
+        let list = '';
+        this.get('model').forEach((item)=> {
+            if(Ember.$.inArray(item.id, this.get('constants.assArray')) !== -1){
+                list += `[data-id="${item.id}"],`;
+            }
+        });
+        this.set('roadmapList', list.replace(/,$/, ''));
+
+        return list !== '';
+
+    }.property('constants.assArray'),
+
     init: function () {
         Ember.run.scheduleOnce("afterRender",this,()=> {
             this.set('constants.dataView', 'roadmap');
