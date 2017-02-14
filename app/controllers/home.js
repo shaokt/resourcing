@@ -28,7 +28,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         this.get('model.assignment').forEach(function(item){
             if(Ember.$.inArray(item.id, self.get('constants.assArray')) !== -1){
                 const rowHeight = item.get('rows');
-                height += rowHeight ? (rowHeight*10)+40 : 40; // 40=height of each assignment row
+                height += 20 + (rowHeight ? (rowHeight*10)+40 : 40); // 40=height of each assignment row, 20 = :before pseudo element used for displaying project info
                 self.viewAssignment.push(item);
             }
         });

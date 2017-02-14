@@ -77,6 +77,9 @@ section.resourceRow {
             .phases {
                 [data-type="tile"] {
                     z-index:1;
+                    &:hover {
+                        z-index:6 !important;
+                    }
                 }
             }
          }
