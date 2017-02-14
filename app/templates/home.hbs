@@ -13,13 +13,11 @@
     {{#if hasFile}}
     <main>
         {{date-line}}
-        {{#if settings.isWeeklyCalendar}}
-            {{#if numAssignmentsViewing}}
-                <div class="assignmentViewContainer">
-                    <div class="dateLine" data-type="todayDateLine"></div>
-                    {{roadmap-index model=viewAssignment nodate=true readOnly=true}}
-                </div>
-            {{/if}}
+        {{#if numAssignmentsViewing}}
+            <div class="assignmentViewContainer">
+                <div class="dateLine" data-type="todayDateLine"></div>
+                {{roadmap-index model=viewAssignment nodate=true readOnly=true}}
+            </div>
         {{/if}}
         <div class="rowContainer">
             {{resource-row model=model settings=settings updateName="updateName"}}

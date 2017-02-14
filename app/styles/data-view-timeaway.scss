@@ -5,10 +5,6 @@
                 background:#1f74f2;
                 border:2px solid #0b3f92;
             }
-
-            .assignment {
-                margin-left:61px;
-            }
         }
     }
 
@@ -29,6 +25,10 @@
 
         &[data-active="true"] {
             .row { height:15px; }
+        }
+
+        .tileOptions:hover {
+            max-width:100%;
         }
     }//resourceRow
 
@@ -159,10 +159,6 @@
     .wfh {
         background:#F5871F;
         &[data-stamp="true"]:before { content:'R'; }
-    }
-
-    .tileOptions:hover {
-        max-width:100%;
     }
 
     .tileOptions li {

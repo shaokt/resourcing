@@ -34,7 +34,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         });
 
         this.set('numAssignmentsViewing', height);
-        return this.get('settings.isWeeklyCalendar') && this.get('viewAssignment').length > 0;
+        return this.get('viewAssignment').length > 0;
 
     }.property('settings.isWeeklyCalendar', 'constants.assArray'),
 
