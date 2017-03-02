@@ -150,10 +150,12 @@ export default Ember.Component.extend(WebcelMixin, {
     	});
 
         /* the current day preceeds the first Monday of the month in weekly view
-         * i.e. Mon Jan 30, Tues Jan 31, Wed Feb 1, whereas the logic above would find Mon Feb 6th which isn't the current week
+         * i.e. Today is Wed Feb 1:  The week starts as Mon Jan 30, Tues Jan 31, Wed Feb 1 : the logic above would find Mon Feb 6th which isn't the current week
+         * if there is a previous month, find the last week; if not, go to previous quarter's last week
         */
         if(week === null) {
-            month = Ember.$(month).parent().prev().find('.month').last();
+            const prev = Ember.$(month).prev();
+            month = prev.length ? prev : Ember.$(month).parent().prev().find('.month').last();
             week = month.find('.day').last();
         }
 

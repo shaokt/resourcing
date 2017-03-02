@@ -16,6 +16,8 @@
         </style>
     {{/unless}}
 {{/each}}
-{{#if constants.assArray}}
-    <button class="clear" {{action "clear" on="click" event=event}}>Clear All</button>
-{{/if}}
+{{#unless paint}}
+    {{#if constants.assArray}}
+        <button class="clear" {{action "clear" on="click" event=event}}>Clear All</button>
+    {{/if}}
+{{/unless}}

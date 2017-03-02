@@ -32,7 +32,7 @@
     <ul class="tileOptions" data-deletingTiles="{{deletingTiles}}">
         {{#if settings.isWeeklyCalendar}}
             <li class="assignments">
-                {{assignment-tile model=model paint=true}}
+                {{assignment-tile model=model.assignment paint=true}}
             </li>
         {{else if settings.isDailyCalendar}}
             <li class="timeAway">
