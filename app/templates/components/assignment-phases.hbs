@@ -1,19 +1,21 @@
-{{assignment-phase label="S&Euml;D" tooltip="Seed Phase" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{assignment-phase label="BUS" tooltip="Business Case" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{assignment-phase label="REQ" tooltip="Requirements" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{assignment-phase label="SPR" tooltip="Sprint" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{assignment-phase label="DIT" tooltip="Development Integration Testing" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{assignment-phase label="SIT" tooltip="System Integration Testing" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{assignment-phase label="UAT" tooltip="User Acceptance Testing" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
+{{assignment-phase label="???" tooltip="Custom" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+{{assignment-phase label="SËD" tooltip="Seed Phase" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+{{assignment-phase label="BUS" tooltip="Business Case" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+{{assignment-phase label="REQ" tooltip="Requirements" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+{{assignment-phase label="SPR" tooltip="Sprint" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+{{assignment-phase label="DIT" tooltip="Development Integration Testing" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+{{assignment-phase label="SIT" tooltip="System Integration Testing" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+{{assignment-phase label="UAT" tooltip="User Acceptance Testing" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
 
-{{assignment-phase label="PAT" tooltip="Production Acceptance Testing" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{assignment-phase label="BAT" tooltip="Business Acceptance Testing" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{assignment-phase label="PLT" tooltip="Pilot" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{assignment-phase label="FRZ" tooltip="Freeze" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{assignment-phase label="PRD" tooltip="Production" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{assignment-phase label="WTY" tooltip="Warranty" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{assignment-phase label="???" tooltip="Custom" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{#if hasPhases}}
-    {{assignment-phase label="DEL" tooltip="Delete phases" assignment=assignment delete=true labelText="X" phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-    {{assignment-phase label="Shift" tooltip="Shift timelines" assignment=assignment shift=true phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent}}
-{{/if}}
+{{assignment-phase label="PAT" tooltip="Production Acceptance Testing" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+{{assignment-phase label="BAT" tooltip="Business Acceptance Testing" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+{{assignment-phase label="PLT" tooltip="Pilot" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+{{assignment-phase label="FRZ" tooltip="Freeze" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+{{assignment-phase label="PRD" tooltip="Production" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+{{assignment-phase label="WTY" tooltip="Warranty" assignment=assignment phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+{{#unless isSelect}}
+    {{#if hasPhases}}
+        {{assignment-phase label="DEL" tooltip="Delete phases" assignment=assignment delete=true labelText="X" phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+        {{assignment-phase label="Shift" tooltip="Shift timelines" assignment=assignment shift=true phaseAction=phaseAction phaseToShift=phaseToShift row=row current=current rowComponent=rowComponent tagName=childTag}}
+    {{/if}}
+{{/unless}}

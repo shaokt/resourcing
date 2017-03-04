@@ -2,7 +2,17 @@ import Ember from 'ember';
 import KeyDownMixin from "../mixins/keydown";
 
 export default Ember.Component.extend(KeyDownMixin, {
-    tagName: 'li',
+    isSelect: Ember.computed('tagName', function(){
+        return this.get('tagName').cache === 'option';
+    }),
+    attributeBindings: ['label:value', 'selected'],
+    selected:Ember.computed('assignment.stampCustomize', function(){
+        try{
+            if(this.get('assignment.stampCustomize').attr('data-phase') === this.get('label')){
+                return 'selected'
+            }
+        }catch(e){}
+    }),
     classNameBindings: ['id'],
     id: Ember.computed('label', function() {
         return 'phase' + this.get('label');

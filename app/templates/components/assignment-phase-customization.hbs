@@ -10,6 +10,12 @@
 </style>
 <form {{action "submit" on="submit"}}>
     <div style="float:left;margin-right:15px;">
+        <div class="form-group">
+            <select id="phaseType" onchange={{action 'updatePhase'}}>
+                {{assignment-phases assignment=assignment tagName="" isSelect="true"}}
+            </select>
+        </div>
+
         {{#if isCustomPhase}}
             <div class="form-group">
                 <label for="phaseCustomText">Custom Phase Text</label>
