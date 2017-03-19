@@ -12,6 +12,8 @@
             background:#fff;
             padding:0 5px 0 0;
         }
+
+        &.details:before { display:none; }
     }// fieldset
 
      input, select {
