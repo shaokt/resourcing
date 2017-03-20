@@ -16,11 +16,12 @@ export default ResourceRowComponent.extend({
     settings: storageFor("settings"),
 
     didRender(){
+        const url = this.get('store').adapterFor('assignment').host;
         if(this.get('router.currentRouteName') === 'home'){
             this._super(...arguments);
             var self = this;
 
-            var exists = Ember.$.getJSON(`http://localhost:3000/exists/${this.get('constants.year')}/${this.get('resource.ad')}`, function() {})
+            var exists = Ember.$.getJSON(`${url}/exists/${this.get('constants.year')}/${this.get('resource.ad')}`, function() {})
             .done(function() {
                 self.set('hasDirects', exists.responseJSON ? true : false);
             });

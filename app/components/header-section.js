@@ -11,6 +11,9 @@ export default Ember.Component.extend({
     showRoadmap: false,
     currentYear: (new Date()).getFullYear(),
     yearNextFile: true,
+    url: Ember.computed(function(){
+        return this.get('store').adapterFor('assignment').host;
+    }),
     viewingCurrentYear: Ember.computed(function(){
         return this.get('year') === this.get('currentYear');
     }),
@@ -71,7 +74,7 @@ export default Ember.Component.extend({
     // check if the next year's file exists
     getNextYearFile: function() {
         var filename = this.get('showAddEmployee') ? this.get('settings.lastManager') : 'assignments';
-        var exists = Ember.$.getJSON(`http://localhost:3000/exists/${this.get('yearNext')}/${filename}`, ()=> {})
+        var exists = Ember.$.getJSON(`${this.get('url')}/exists/${this.get('yearNext')}/${filename}`, ()=> {})
         .done(()=> {
             if(!exists.responseJSON) { // file doesn't exist
                 this.set('yearNextFile', false);
@@ -159,15 +162,15 @@ export default Ember.Component.extend({
 
             // if exporting a manager to next year but roadmap isn't exported yet, export roadmap first
             if(this.get('router.currentRouteName') === 'home') {
-                var exists = Ember.$.getJSON(`http://localhost:3000/exists/${this.get('yearNext')}/assignments`, ()=> {})
+                var exists = Ember.$.getJSON(`${this.get('url')}/exists/${this.get('yearNext')}/assignments`, ()=> {})
                 .done(()=>{
                     if(!exists.responseJSON){
-                        Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/assignments`, ()=> {});
+                        Ember.$.getJSON(`${this.get('url')}/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/assignments`, ()=> {});
                     }
                 });
             }
 
-            var create = Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/${filename}`, ()=> {})
+            var create = Ember.$.getJSON(`${this.get('url')}/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/${filename}`, ()=> {})
             .done(()=> {
                 if(create.responseJSON) { // file successfully created
                     this.set('yearNextFile', true);
