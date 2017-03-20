@@ -99,16 +99,7 @@
                     }
                 }
             }//tileOptions
-            [data-type="tile"] {
-                &[data-phase] {
-                    &:hover div.duration:before,
-                    &:hover div.details,
-                    div.desc:hover:after {
-                        display:none; // do not display custom phase info active
-                    }
-                }
-            }
-
+            
             @import "assignments-phase-list.scss";
             @import "assignments-phase-edit.scss";
             @import "assignments-row-management.scss";
