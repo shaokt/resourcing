@@ -15,14 +15,37 @@
             z-index:5;
 
             .name {
-                border:1px solid #aaa;
-                border-bottom:0;
-                border-bottom-left-radius:0;
-                border-bottom-right-radius:0;
+                background:none;
+                border:none;
                 box-shadow:none;
                 font-size:15px;
                 padding:0 8px 2px 4px;
                 text-shadow:1px 1px 5px #000;
+            }
+
+            .transit {
+                float:left;
+                &:before {
+                    content:"Transit: ";
+                }
+            }
+
+            section {
+                border:1px solid #aaa;
+                border-bottom:0;
+                border-radius:2px;
+                border-bottom-left-radius:0;
+                border-bottom-right-radius:0;
+                color:#fff;
+                padding:2px 7px;
+                margin:1px 2px 0 0;
+                text-shadow:0 0 5px #000;
+
+                &.nameContainer {
+                    float:left;
+                    margin-top:0;
+                    padding:0;
+                }
             }
         }
     }
@@ -67,7 +90,7 @@
     main {
         padding-top:165px;
 
-        .resourceRow:not([data-active="true"]) .info {
+        .resourceRow:not([data-active="true"]) .info .nameContainer {
 
             .long { display:none; }
 
@@ -99,7 +122,7 @@
                     }
                 }
             }//tileOptions
-            
+
             @import "assignments-phase-list.scss";
             @import "assignments-phase-edit.scss";
             @import "assignments-row-management.scss";

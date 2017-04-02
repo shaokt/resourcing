@@ -27,6 +27,7 @@
         {{#if editing}}
             {{content-editable class="short" value=assignment.short allowNewlines=false focus-in=constants.focusInContentEditable}}
             {{content-editable class="long" value=assignment.long allowNewlines=false focus-in=constants.focusInContentEditable}}
+            {{content-editable class="transit" value=assignment.transit allowNewlines=false focus-in=constants.focusInContentEditable}}
             {{content-editable class="background"
                 value=assignment.background
                 allowNewlines=false
@@ -38,6 +39,7 @@
         {{else}}
             <div class="short" data-type="value">{{assignment.short}}</div>
             <div class="long" data-type="value">{{assignment.long}}</div>
+            <div class="transit" data-type="value">{{assignment.transit}}</div>
             <div class="background" data-type="value">{{assignment.background}}</div>
         {{/if}}
     </td>
