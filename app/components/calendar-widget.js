@@ -66,7 +66,7 @@ export default Ember.Component.extend(WebcelMixin, {
                 quarter: "Q3",
                 months: {"May":1, "Jun":1, "Jul":1}
             }
-        ]
+        ];
     }).property('year'),
 
     // determines the last day in the given month

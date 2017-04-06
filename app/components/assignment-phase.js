@@ -9,7 +9,7 @@ export default Ember.Component.extend(KeyDownMixin, {
     selected:Ember.computed('assignment.stampCustomize', function(){
         try{
             if(this.get('assignment.stampCustomize').attr('data-phase') === this.get('label')){
-                return 'selected'
+                return 'selected';
             }
         }catch(e){}
     }),

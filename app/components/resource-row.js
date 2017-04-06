@@ -165,7 +165,7 @@ export default Ember.Component.extend(Webcel, {
 
     // based on horizontal movement of phases, update the start & end dates for that phase
     updatePhaseDates: function(obj, days){
-        const details = Ember.$(obj).find('.details')
+        const details = Ember.$(obj).find('.details');
         const frDate = new Date(details.attr('data-date-fr'));
         const toDate = new Date(details.attr('data-date-to'));
         frDate.setDate(frDate.getDate() + days);
