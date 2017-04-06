@@ -20,8 +20,8 @@ export default Ember.Component.extend({
     }),
     yearPrevPath: Ember.computed(function(){
         return this.get('path') + (parseInt(this.get('yearPrev')) === this.currentYear ? '' : this.get("qp") + this.get('yearPrev'));
-    }),
+    }).property('yearPrev'),
     yearNextPath: Ember.computed(function(){
         return this.get('path') + (parseInt(this.get('yearNext')) === this.currentYear ? '' : this.get("qp") + this.get('yearNext'));
-    }),
+    }).property('yearNext'),
 });

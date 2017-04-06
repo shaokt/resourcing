@@ -14,11 +14,5 @@ export default Ember.Route.extend({
 
     model() {
         return this.get('store').query('assignment', {year:this.get('year')});
-    },
-    actions:{
-        refreshModel: function() {
-            console.log(this.get('year'))
-            this.refresh();
-        }
     }
 });
