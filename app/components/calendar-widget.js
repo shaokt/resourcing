@@ -29,43 +29,45 @@ export default Ember.Component.extend(WebcelMixin, {
     },
     monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     weekdays: ["M", "T", "W", "R", "F"],
-    quarters: [
-        {
-            year: 0,
-            quarter: "Q1",
-            months:{"Nov":-1, "Dec":-1, "Jan":0 }
-        },
-        {
-            year: 0,
-            quarter: "Q2",
-            months: {"Feb":0, "Mar":0, "Apr":0}
-        },
-        {
-            year: 0,
-            quarter: "Q3",
-            months: {"May":0, "Jun":0, "Jul":0}
-        },
-        {
-            year: 0,
-            quarter: "Q4",
-            months: {"Aug":0, "Sep":0, "Oct":0}
-        },
-        {
-            year: 1,
-            quarter: "Q1",
-            months: {"Nov":0, "Dec":0, "Jan":1}
-        },
-        {
-            year: 1,
-            quarter: "Q2",
-            months: {"Feb":1, "Mar":1, "Apr":1}
-        },
-        {
-            year: 1,
-            quarter: "Q3",
-            months: {"May":1, "Jun":1, "Jul":1}
-        }
-    ],
+    quarters: Ember.computed(function(){
+        return [
+            {
+                year: 0,
+                quarter: "Q1",
+                months:{"Nov":-1, "Dec":-1, "Jan":0 }
+            },
+            {
+                year: 0,
+                quarter: "Q2",
+                months: {"Feb":0, "Mar":0, "Apr":0}
+            },
+            {
+                year: 0,
+                quarter: "Q3",
+                months: {"May":0, "Jun":0, "Jul":0}
+            },
+            {
+                year: 0,
+                quarter: "Q4",
+                months: {"Aug":0, "Sep":0, "Oct":0}
+            },
+            {
+                year: 1,
+                quarter: "Q1",
+                months: {"Nov":0, "Dec":0, "Jan":1}
+            },
+            {
+                year: 1,
+                quarter: "Q2",
+                months: {"Feb":1, "Mar":1, "Apr":1}
+            },
+            {
+                year: 1,
+                quarter: "Q3",
+                months: {"May":1, "Jun":1, "Jul":1}
+            }
+        ]
+    }).property('year'),
 
     // determines the last day in the given month
     getLastDayInMonth:function(year, month){
