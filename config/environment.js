@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'resourcing',
     environment: environment,
-    baseURL: 'hash',
+    baseURL: '/',
     locationType: 'hash',
     contentSecurityPolicy: {
       'default-src': "'none'",
@@ -49,7 +49,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.baseURL = 'hash';
+    ENV.baseURL = '/';
     ENV.locationType = 'hash';
   }
 

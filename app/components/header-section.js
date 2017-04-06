@@ -15,7 +15,7 @@ export default Ember.Component.extend({
         return this.get('store').adapterFor('assignment').host;
     }),
     viewingCurrentYear: Ember.computed(function(){
-        return this.get('year') === this.get('currentYear');
+        return parseInt(this.get('year')) === parseInt(this.get('currentYear'));
     }),
     lastManager1: Ember.computed(function(){
         return this.get('settings.lastManager').split("", 1);
