@@ -11,11 +11,11 @@ export default Ember.Component.extend({
         var route = this.get('router.currentRouteName');
         if(route.match(/roadmap/gi)){
             this.set('qp', '?year=');
-            return "/roadmap";
+            return "roadmap";
         }
         else {
             this.set('qp', '&year=');
-            return `/home?id=${this.get('settings.lastManager')}`;
+            return `home?id=${this.get('settings.lastManager')}`;
         }
     }),
     yearPrevPath: Ember.computed(function(){

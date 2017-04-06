@@ -4,13 +4,13 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'resourcing',
     environment: environment,
-    baseURL: '/',
+    baseURL: 'hash',
     locationType: 'hash',
     contentSecurityPolicy: {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline'",
       'font-src': "'self'",
-      'connect-src': "'self' http://G:3000",
+      'connect-src': "'self' http://localhost:3000",
       'img-src': "'self' data:",
       'style-src': "'self' 'unsafe-inline'",
       'media-src': "'self'"
