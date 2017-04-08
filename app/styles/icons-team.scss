@@ -10,11 +10,12 @@
 
             .member {
                 position:absolute;
+                left:1px;
                 top:-1px;
 
-                &:nth-of-type(2) { left:26px; }
+                &:nth-of-type(2) { left:27px; }
                 &:nth-of-type(3) {
-                    left:50px;
+                    left:51px;
 
                     .body { border-top-color:#ABC123; }
                     &:after { border-right-color:#ABC123; }

@@ -28,13 +28,13 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         this.get('model.assignment').forEach(function(item){
             if(Ember.$.inArray(item.id, self.get('constants.assArray')) !== -1){
                 const rowHeight = item.get('rows');
-                height += rowHeight ? (rowHeight*10)+40 : 40; // 40=height of each assignment row
+                height += 25 + (rowHeight ? (rowHeight*15)+60 : 60); // 60=height of each assignment row, 25 = :before pseudo element used for displaying project info
                 self.viewAssignment.push(item);
             }
         });
 
         this.set('numAssignmentsViewing', height);
-        return this.get('settings.isWeeklyCalendar') && this.get('viewAssignment').length > 0;
+        return this.get('viewAssignment').length > 0;
 
     }.property('settings.isWeeklyCalendar', 'constants.assArray'),
 

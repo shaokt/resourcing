@@ -1,75 +1,96 @@
-[data-route='roadmap.index'] {// customization for roadmap on edit
-    .resourceRow[data-type="assignment"] {
+.resourceRow[data-type="assignment"] {
 
-        &:not([data-active="true"]){
-            background:none;
-            border:none;
-
-            &:hover {
-                .info {
-                    z-index:6;
-                }
-            }
-
-            .info {
-                top:3px;
-                z-index:5;
-
-                .name {
-                    border:1px solid #aaa;
-                    border-bottom:0;
-                    border-bottom-left-radius:0;
-                    border-bottom-right-radius:0;
-                    box-shadow:none;
-                    font-size:15px;
-                    padding:0 8px 2px 4px;
-                    text-shadow:1px 1px 5px #000;
-                }
-            }
-        }
-
-        &[data-active="true"]{
-            &:before {
-                display:none;
-            }
-
-            .info {
-                .name {
-                    background:none;
-                    border:none;
-                    font-size:15px;
-                    margin-top:-2px;
-                    text-shadow:1px 1px 5px #000;
-                }
-            }
-        }
-
-        &:before {
-            content:'';
-            height:20px;
-            display:block;
-        }
+    &:not([data-active="true"]){
+        background:none;
+        border:none;
 
         &:hover {
             .info {
-                .name {
-                    text-shadow:1px 1px 5px #000;
-                }
+                z-index:6;
             }
         }
 
-        .row {
-            border:1px solid #aaa;
+        .info {
+            top:3px;
+            z-index:5;
+
+            .name {
+                background:none;
+                border:none;
+                box-shadow:none;
+                font-size:15px;
+                padding:0 8px 2px 4px;
+                text-shadow:1px 1px 5px #000;
+            }
+
+            .transit {
+                float:left;
+                &:before {
+                    content:"Transit: ";
+                }
+            }
+
+            section {
+                border:1px solid #aaa;
+                border-bottom:0;
+                border-radius:2px;
+                border-bottom-left-radius:0;
+                border-bottom-right-radius:0;
+                color:#fff;
+                padding:2px 7px;
+                margin:1px 2px 0 0;
+                text-shadow:0 0 5px #000;
+
+                &.nameContainer {
+                    float:left;
+                    margin-top:0;
+                    padding:0;
+                }
+            }
         }
     }
-}//data-route roadmap.index
+
+    &[data-active="true"]{
+        &:before {
+            display:none;
+        }
+
+        .info {
+            .name {
+                background:none;
+                border:none;
+                font-size:15px;
+                margin-top:-2px;
+                text-shadow:1px 1px 5px #000;
+            }
+        }
+    }
+
+    &:before {
+        content:'';
+        height:20px;
+        display:block;
+    }
+
+    &:hover {
+        .info {
+            .name {
+                text-shadow:1px 1px 5px #000;
+            }
+        }
+    }
+
+    .row {
+        border:1px solid #aaa;
+    }
+}
 
 [data-view='roadmap'],
 [data-view='timeaway'] {
     main {
         padding-top:165px;
 
-        .resourceRow:not([data-active="true"]) .info {
+        .resourceRow:not([data-active="true"]) .info .nameContainer {
 
             .long { display:none; }
 
@@ -101,15 +122,6 @@
                     }
                 }
             }//tileOptions
-            [data-type="tile"] {
-                &[data-phase] {
-                    &:hover div.duration:before,
-                    &:hover div.details,
-                    div.desc:hover:after {
-                        display:none; // do not display custom phase info active
-                    }
-                }
-            }
 
             @import "assignments-phase-list.scss";
             @import "assignments-phase-edit.scss";
@@ -134,57 +146,40 @@
                     height:100%;
                 }
             }
-            &:not([data-active="true"]) {
-                .row {
-                    height:40px;
+            .row {
+                height:60px;
 
-                    // height for extra rows when not actively editing assignment
-                    &[data-rows="1"] { height:50px; }
-                    &[data-rows="2"] { height:60px; }
-                    &[data-rows="3"] { height:70px; }
-                    &[data-rows="4"] { height:80px; }
-                    &[data-rows="5"] { height:90px; }
-                    &[data-rows="6"] { height:100px; }
-                    &[data-rows="7"] { height:110px; }
-                    &[data-rows="8"] { height:120px; }
-                    &[data-rows="9"] { height:130px; }
-                    &[data-rows="10"] { height:140px; }
+                // height for extra rows
+                &[data-rows="1"] { height:75px; }
+                &[data-rows="2"] { height:90px; }
+                &[data-rows="3"] { height:105px; }
+                &[data-rows="4"] { height:120px; }
+                &[data-rows="5"] { height:135px; }
+                &[data-rows="6"] { height:150px; }
+                &[data-rows="7"] { height:165px; }
+                &[data-rows="8"] { height:180px; }
+                &[data-rows="9"] { height:195px; }
+                &[data-rows="10"] { height:210px; }
 
-                    // vertical position of tiles
-                    [data-type="tile"] {
-                        &[data-y="0"]{ top:0; }
-                        &[data-y="15"]{ top:10px; }
-                        &[data-y="30"]{ top:20px; }
-                        &[data-y="45"]{ top:30px; }
-                        &[data-y="60"]{ top:40px; }
-                        &[data-y="75"]{ top:50px; }
-                        &[data-y="90"]{ top:60px; }
-                        &[data-y="105"]{ top:70px; }
-                        &[data-y="120"]{ top:80px; }
-                        &[data-y="135"]{ top:90px; }
-                        &[data-y="150"]{ top:100px; }
-                        &[data-y="165"]{ top:110px; }
-                        &[data-y="180"]{ top:120px; }
-                        &[data-y="195"]{ top:130px; }
-                    }
+                // vertical position of tiles
+                [data-type="tile"] {
+                    &[data-y="0"]{ top:0; }
+                    &[data-y="15"]{ top:15px; }
+                    &[data-y="30"]{ top:30px; }
+                    &[data-y="45"]{ top:45px; }
+
+                    &[data-y="60"]{ top:60px; }
+                    &[data-y="75"]{ top:75px; }
+                    &[data-y="90"]{ top:90px; }
+                    &[data-y="105"]{ top:105px; }
+                    &[data-y="120"]{ top:120px; }
+                    &[data-y="135"]{ top:135px; }
+                    &[data-y="150"]{ top:150px; }
+                    &[data-y="165"]{ top:165px; }
+                    &[data-y="180"]{ top:180px; }
+                    &[data-y="195"]{ top:195px; }
                 }
-            }// ot active
-
-            // height for extra rows when actively editing assignment
-            &[data-active="true"] {
-                .row {
-                    &[data-rows="1"] { height:75px; }
-                    &[data-rows="2"] { height:90px; }
-                    &[data-rows="3"] { height:105px; }
-                    &[data-rows="4"] { height:120px; }
-                    &[data-rows="5"] { height:135px; }
-                    &[data-rows="6"] { height:150px; }
-                    &[data-rows="7"] { height:165px; }
-                    &[data-rows="8"] { height:180px; }
-                    &[data-rows="9"] { height:195px; }
-                    &[data-rows="10"] { height:210px; }
-                }
-            }// active row
+            }
         }
     }//main
 
@@ -196,7 +191,7 @@
 
 }//data-view
 
-[data-view='timeaway'][data-route="roadmap.index"] {
+[data-view='timeaway'] {
     main {
         [data-view="roadmap"] {
             background: repeating-linear-gradient(
@@ -210,6 +205,7 @@
             &:hover {
                 .dateLine {
                     border:none;
+                    height:100%;
                 }
             }
 
@@ -225,7 +221,7 @@
 
             .phases {
                 [data-type="tile"] {
-                    z-index:2;
+                    z-index:2 !important;
                 }
             }
         }//data-view

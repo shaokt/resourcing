@@ -10,13 +10,26 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
     year: null,
     numAssignmentsViewing: function(){
         let height = this.get('constants.teamAssignment.rows');
-        height = height ? (height*10)+40 : 40; // 40=height of each assignment row
-        return height + 20; // 20px to account for the project name now being on top of the row
+        height = height ? (height*15)+60 : 60; // 60=height of each assignment row
+        return height + 25; // 25px to account for the project name now being on top of the row
     }.property('constants.teamAssignment'),
 
     hasFile: Ember.computed('model.resource', function(){
         return this.get('model.length') > 0;
     }),
+
+    showInRoadmap: function(){
+        let list = '';
+        this.get('model').forEach((item)=> {
+            if(Ember.$.inArray(item.id, this.get('constants.assArray')) !== -1){
+                list += `[data-id="${item.id}"],`;
+            }
+        });
+        this.set('roadmapList', list.replace(/,$/, ''));
+
+        return list !== '';
+
+    }.property('constants.assArray'),
 
     init: function () {
         Ember.run.scheduleOnce("afterRender",this,()=> {

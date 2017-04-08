@@ -141,11 +141,14 @@ export default Ember.Component.extend(Webcel, {
     // update the x positions of the related phases being moved
     updateRelatedPhasesPosition: function(){
         var self = this;
+        const hor = this.get('shiftHorizontal');
+        const days = hor/15 * 7;
         Ember.$(this.get('phaseToShift')).parent().find('[data-phaselink]').filter(function(){
             if(this !== self.get('phaseToShift')){
                 Ember.$(this).removeAttr('data-phaselink');
                 var x = parseInt(Ember.$(this).attr('data-x'));
-                Ember.$(this).attr('data-x', x + self.get('shiftHorizontal'));
+                Ember.$(this).attr('data-x', x + hor);
+                self.updatePhaseDates(this, days);
             }
             return true;
         });
@@ -156,7 +159,19 @@ export default Ember.Component.extend(Webcel, {
     resetPhaseToShiftPosition: function(){
         var pts = Ember.$(this.get('phaseToShift'));
         pts.attr('data-x', parseInt(pts.attr('data-x')) + this.get('shiftHorizontal'));
+        this.updatePhaseDates(pts, this.get('shiftHorizontal')/15 * 7);
         this.set('shiftHorizontal', 0);
+    },
+
+    // based on horizontal movement of phases, update the start & end dates for that phase
+    updatePhaseDates: function(obj, days){
+        const details = Ember.$(obj).find('.details');
+        const frDate = new Date(details.attr('data-date-fr'));
+        const toDate = new Date(details.attr('data-date-to'));
+        frDate.setDate(frDate.getDate() + days);
+        toDate.setDate(toDate.getDate() + days);
+        details.attr('data-date-fr', frDate.toDateString());
+        details.attr('data-date-to', toDate.toDateString());
     },
 
     // update the vacation/personal counters

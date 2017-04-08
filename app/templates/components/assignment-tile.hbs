@@ -1,8 +1,6 @@
 {{#each model as |item|}}
-    {{#unless omit}}
-        {{#unless item.hidden}}
-            {{assignment-tile-item item=item paint=paint}}
-        {{/unless}}
+    {{#unless item.hidden}}
+        {{assignment-tile-item item=item paint=paint model=model}}
     {{/unless}}
     {{!  still render the style for hidden assignments so painted tiles get the proper styles}}
     {{#unless paint}}
@@ -10,7 +8,7 @@
             [data-route='roadmap.index'] [data-id='{{item.id}}'][data-active="true"] {
                 border-top-color:#{{item.background}};
             }
-            [data-route='roadmap.index'] [data-id='{{item.id}}'] .info .name,
+            [data-id='{{item.id}}'] .info section,
             .tileContainer[data-container="{{item.id}}"]:after,
             [data-assignment="{{item.id}}"] { background:#{{item.background}} !important; }
             [data-assignment="{{item.id}}"][data-stamp="true"]:before { content:'{{item.short}}' }
@@ -18,3 +16,8 @@
         </style>
     {{/unless}}
 {{/each}}
+{{#unless paint}}
+    {{#if constants.assArray}}
+        <button class="clear" {{action "clear" on="click" event=event}}>Clear All</button>
+    {{/if}}
+{{/unless}}

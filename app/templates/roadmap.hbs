@@ -1,4 +1,4 @@
-{{dynamic-styles showAssignment=true numAssignmentsViewing=numAssignmentsViewing}}
+{{dynamic-styles showAssignment=true showInRoadmap=showInRoadmap roadmapList=roadmapList numAssignmentsViewing=numAssignmentsViewing}}
 
 <div id="pageContainer"
     data-route={{router.currentRouteName}}
@@ -9,7 +9,7 @@
     data-view="{{constants.dataView}}"
     data-view-team={{constants.teamAssignmentView}}
 >
-    {{header-section model=model year=year hasFile=hasFile addAssignment="addAssignment" settings=settings}}
+    {{header-section model=model store=store year=year hasFile=hasFile addAssignment="addAssignment" settings=settings}}
     {{#if hasFile}}
     <main>
         {{outlet}}

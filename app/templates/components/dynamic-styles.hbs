@@ -6,6 +6,11 @@
         .rowContainer { padding-top:{{numAssignmentsViewing}}px;}
     {{/if}}
 
+    {{#if showInRoadmap}}
+        [data-type="assignment"] { display:none; }
+        {{roadmapList}} { display:block; }
+    {{/if}}
+
     {{counterCSS}}
 </style>
 

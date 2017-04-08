@@ -201,6 +201,11 @@
                         content:"Short Description";
                         font-style:italic;
                     }
+
+                    .transit:empty:before {
+                        content:"Transit";
+                        font-style:italic;
+                    }
                 }//td.value
 
                 &.arrow {

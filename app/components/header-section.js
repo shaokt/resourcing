@@ -11,8 +11,11 @@ export default Ember.Component.extend({
     showRoadmap: false,
     currentYear: (new Date()).getFullYear(),
     yearNextFile: true,
+    url: Ember.computed(function(){
+        return this.get('store').adapterFor('assignment').host;
+    }),
     viewingCurrentYear: Ember.computed(function(){
-        return this.get('year') === this.get('currentYear');
+        return parseInt(this.get('year')) === parseInt(this.get('currentYear'));
     }),
     lastManager1: Ember.computed(function(){
         return this.get('settings.lastManager').split("", 1);
@@ -35,6 +38,7 @@ export default Ember.Component.extend({
             this.set('showOrg', true);
             this.set('showTeam', true);
             this.set('showToggleRows', true);
+            this.set('assignmentModel', this.get('model'));
         }
         else if(route === 'roadmap.edit') {
             this.set('showAddEmployee', false);
@@ -44,6 +48,7 @@ export default Ember.Component.extend({
             this.set('showTeam', false);
             this.set('showRoadmap', true);
             this.set('showToggleRows', true);
+            this.set('assignmentModel', this.get('model'));
 
         }
         else if(route === 'home') {
@@ -54,6 +59,7 @@ export default Ember.Component.extend({
             this.set('showTeam', false);
             this.set('showRoadmap', true);
             this.set('showToggleRows', true);
+            this.set('assignmentModel', this.get('model.assignment'));
         }
 
         if(!this.get('viewingCurrentYear')) {
@@ -68,7 +74,7 @@ export default Ember.Component.extend({
     // check if the next year's file exists
     getNextYearFile: function() {
         var filename = this.get('showAddEmployee') ? this.get('settings.lastManager') : 'assignments';
-        var exists = Ember.$.getJSON(`http://localhost:3000/exists/${this.get('yearNext')}/${filename}`, ()=> {})
+        var exists = Ember.$.getJSON(`${this.get('url')}/exists/${this.get('yearNext')}/${filename}`, ()=> {})
         .done(()=> {
             if(!exists.responseJSON) { // file doesn't exist
                 this.set('yearNextFile', false);
@@ -78,8 +84,8 @@ export default Ember.Component.extend({
 
     // determine whether to show assignment tiles or not
     showAssignmentTiles: Ember.computed(function(){
-        return this.get('settings.isWeeklyCalendar') || this.get('constants.teamAssignmentView');
-    }).property('settings.isWeeklyCalendar'),
+        return this.get('router.currentRouteName') !== 'roadmap.edit';
+    }),
 
     // determine whether to show timeoff tiles or not
     showTimeoffTiles: Ember.computed(function(){
@@ -156,15 +162,15 @@ export default Ember.Component.extend({
 
             // if exporting a manager to next year but roadmap isn't exported yet, export roadmap first
             if(this.get('router.currentRouteName') === 'home') {
-                var exists = Ember.$.getJSON(`http://localhost:3000/exists/${this.get('yearNext')}/assignments`, ()=> {})
+                var exists = Ember.$.getJSON(`${this.get('url')}/exists/${this.get('yearNext')}/assignments`, ()=> {})
                 .done(()=>{
                     if(!exists.responseJSON){
-                        Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/assignments`, ()=> {});
+                        Ember.$.getJSON(`${this.get('url')}/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/assignments`, ()=> {});
                     }
                 });
             }
 
-            var create = Ember.$.getJSON(`http://localhost:3000/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/${filename}`, ()=> {})
+            var create = Ember.$.getJSON(`${this.get('url')}/makefile/${this.get('yearNext')}/${q1Weekly}/${q1Daily}/${filename}`, ()=> {})
             .done(()=> {
                 if(create.responseJSON) { // file successfully created
                     this.set('yearNextFile', true);

@@ -3,6 +3,9 @@ import { storageFor } from 'ember-local-storage';
 
 export default Ember.Route.extend({
     settings: storageFor("settings"),
+    queryParams: {
+        year: { refreshModel: true }
+    },
 
     beforeModel: function(transition){
         transition.queryParams.year = transition.queryParams.year || (new Date().getFullYear());

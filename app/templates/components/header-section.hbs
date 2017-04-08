@@ -5,7 +5,7 @@
     <ul class="tileOptions">
         {{#if showAssignmentTiles}}
             <li class="assignments">
-                {{assignment-tile model=model settings=settings}}
+                {{assignment-tile model=assignmentModel settings=settings}}
             </li>
         {{/if}}
     </ul>
@@ -39,7 +39,7 @@
 
         {{#if showRoadmap}}
             <li class="roadmap">
-                <a href="/roadmap{{yearRoadmap}}">
+                <a href="#/roadmap{{yearRoadmap}}">
                     <span class="item"></span>
                     <span class="item"></span>
                     <span class="item"></span>
@@ -87,7 +87,7 @@
 
         {{#if showOrg}}
             <li class="org">
-                <a href="/home?id={{settings.lastManager}}{{yearHome}}">
+                <a href="#/home?id={{settings.lastManager}}{{yearHome}}">
                     <span class="member"></span>
                     <span class="member"></span>
                     <span class="member"></span>
@@ -247,8 +247,8 @@
         <p>Either:</p>
         <ul>
             <li>Choose another year on the left</li>
-            <li>Go to: <a href="/roadmap">{{currentYear}} Roadmap view</a></li>
-            <li>Go to: <a href="/home?id={{settings.lastManager}}">{{currentYear}} {{settings.lastManager}} manager view</a></li>
+            <li>Go to: <a href="#/roadmap">{{currentYear}} Roadmap view</a></li>
+            <li>Go to: <a href="#/home?id={{settings.lastManager}}">{{currentYear}} {{settings.lastManager}} manager view</a></li>
         </ul>
     </div>
 {{/if}}

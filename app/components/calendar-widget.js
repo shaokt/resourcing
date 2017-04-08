@@ -29,43 +29,45 @@ export default Ember.Component.extend(WebcelMixin, {
     },
     monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     weekdays: ["M", "T", "W", "R", "F"],
-    quarters: [
-        {
-            year: 0,
-            quarter: "Q1",
-            months:{"Nov":-1, "Dec":-1, "Jan":0 }
-        },
-        {
-            year: 0,
-            quarter: "Q2",
-            months: {"Feb":0, "Mar":0, "Apr":0}
-        },
-        {
-            year: 0,
-            quarter: "Q3",
-            months: {"May":0, "Jun":0, "Jul":0}
-        },
-        {
-            year: 0,
-            quarter: "Q4",
-            months: {"Aug":0, "Sep":0, "Oct":0}
-        },
-        {
-            year: 1,
-            quarter: "Q1",
-            months: {"Nov":0, "Dec":0, "Jan":1}
-        },
-        {
-            year: 1,
-            quarter: "Q2",
-            months: {"Feb":1, "Mar":1, "Apr":1}
-        },
-        {
-            year: 1,
-            quarter: "Q3",
-            months: {"May":1, "Jun":1, "Jul":1}
-        }
-    ],
+    quarters: Ember.computed(function(){
+        return [
+            {
+                year: 0,
+                quarter: "Q1",
+                months:{"Nov":-1, "Dec":-1, "Jan":0 }
+            },
+            {
+                year: 0,
+                quarter: "Q2",
+                months: {"Feb":0, "Mar":0, "Apr":0}
+            },
+            {
+                year: 0,
+                quarter: "Q3",
+                months: {"May":0, "Jun":0, "Jul":0}
+            },
+            {
+                year: 0,
+                quarter: "Q4",
+                months: {"Aug":0, "Sep":0, "Oct":0}
+            },
+            {
+                year: 1,
+                quarter: "Q1",
+                months: {"Nov":0, "Dec":0, "Jan":1}
+            },
+            {
+                year: 1,
+                quarter: "Q2",
+                months: {"Feb":1, "Mar":1, "Apr":1}
+            },
+            {
+                year: 1,
+                quarter: "Q3",
+                months: {"May":1, "Jun":1, "Jul":1}
+            }
+        ];
+    }).property('year'),
 
     // determines the last day in the given month
     getLastDayInMonth:function(year, month){
@@ -150,10 +152,12 @@ export default Ember.Component.extend(WebcelMixin, {
     	});
 
         /* the current day preceeds the first Monday of the month in weekly view
-         * i.e. Mon Jan 30, Tues Jan 31, Wed Feb 1, whereas the logic above would find Mon Feb 6th which isn't the current week
+         * i.e. Today is Wed Feb 1:  The week starts as Mon Jan 30, Tues Jan 31, Wed Feb 1 : the logic above would find Mon Feb 6th which isn't the current week
+         * if there is a previous month, find the last week; if not, go to previous quarter's last week
         */
         if(week === null) {
-            month = Ember.$(month).parent().prev().find('.month').last();
+            const prev = Ember.$(month).prev();
+            month = prev.length ? prev : Ember.$(month).parent().prev().find('.month').last();
             week = month.find('.day').last();
         }
 
@@ -176,9 +180,11 @@ export default Ember.Component.extend(WebcelMixin, {
     onload() {
         const cal = Ember.$('.calendar');
         this.constants.webcel = this.Webcel();
-        this.set('constants.calWidth', ((this.constants.numDays) * this.constants.DIM));
-        Ember.$('#pageContainer').css({width:this.constants.calWidth}).attr('data-q1-start', cal.find('.day').attr('data-day-name'));
-        cal.css({width:this.constants.calWidth});
+        if(this.constants.numDays) {
+            this.set('constants.calWidth', ((this.constants.numDays) * this.constants.DIM));
+            Ember.$('#pageContainer').css({width:this.constants.calWidth}).attr('data-q1-start', cal.find('.day').attr('data-day-name'));
+            cal.css({width:this.constants.calWidth});
+        }
 
         this.calendar = Ember.$('#' + this.attrs.elementId);
         this.highlightToday();

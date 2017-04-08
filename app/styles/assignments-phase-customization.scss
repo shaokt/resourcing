@@ -12,6 +12,8 @@
             background:#fff;
             padding:0 5px 0 0;
         }
+
+        &.details:before { display:none; }
     }// fieldset
 
      input, select {
@@ -63,6 +65,13 @@
              opacity:1;
              outline:none;
          }
+     }
+
+     #phaseType {
+         background:#000;
+         color:#fff;
+         font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+         width:4.1em;
      }
 
      .duration {

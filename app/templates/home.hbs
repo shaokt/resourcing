@@ -8,18 +8,16 @@
     data-show-hidden={{settings.showHiddenEmployees}}
     data-view="{{settings.view}}"
 >
-    {{header-section model=model year=year hasFile=hasFile settings=settings updateName="updateName" addEmployee="addEmployee" showAssignment=showAssignment viewAssignment=viewAssignment}}
+    {{header-section model=model store=store year=year hasFile=hasFile settings=settings updateName="updateName" addEmployee="addEmployee" showAssignment=showAssignment viewAssignment=viewAssignment}}
 
     {{#if hasFile}}
     <main>
         {{date-line}}
-        {{#if settings.isWeeklyCalendar}}
-            {{#if numAssignmentsViewing}}
-                <div class="assignmentViewContainer">
-                    <div class="dateLine" data-type="todayDateLine"></div>
-                    {{roadmap-index model=viewAssignment nodate=true readOnly=true}}
-                </div>
-            {{/if}}
+        {{#if numAssignmentsViewing}}
+            <div class="assignmentViewContainer">
+                <div class="dateLine" data-type="todayDateLine"></div>
+                {{roadmap-index model=viewAssignment nodate=true readOnly=true}}
+            </div>
         {{/if}}
         <div class="rowContainer">
             {{resource-row model=model settings=settings updateName="updateName"}}

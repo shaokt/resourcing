@@ -16,19 +16,27 @@
     {{/unless}}
 </ul>
 
-{{#if editing}}
-    <ul class="tileOptions">
-        <li class="assignments">
-            <div data-assignment="{{assignment.id}}" data-stamp="true" data-active="true"><span></span></div>
-        </li>
-    </ul>
-    {{assignment-phases assignment=assignment shift="assignment.phases" phaseAction=phaseAction phaseToShift=phaseToShift row=row rowComponent=rowComponent}}
-    {{assignment-row-management assignment=assignment row=row}}
-{{else}}
-    <div class="name short" data-type="value">{{assignment.short}}</div>
-{{/if}}
+<section class="nameContainer">
+    {{#if editing}}
+        <ul class="tileOptions">
+            <li class="assignments">
+                <div data-assignment="{{assignment.id}}" data-stamp="true" data-active="true"><span></span></div>
+            </li>
+        </ul>
+        {{assignment-phases assignment=assignment shift="assignment.phases" phaseAction=phaseAction phaseToShift=phaseToShift row=row rowComponent=rowComponent}}
+        {{assignment-row-management assignment=assignment row=row}}
+    {{else}}
+        <div class="name short" data-type="value">{{assignment.short}}</div>
+    {{/if}}
 
-{{#if readOnly}}
-    <input type="checkbox" checked=checked onclick={{action "select" event=event}} class="viewAssignment" style="" />
-{{/if}}
-<div class="name long" data-type="value">{{assignment.long}}</div>
+    {{#if readOnly}}
+        <input type="checkbox" checked=checked onclick={{action "select" event=event}} class="viewAssignment" style="" />
+    {{/if}}
+    <div class="name long" data-type="value">{{assignment.long}}</div>
+</section>
+
+{{#unless editing}}
+    {{#if assignment.transit}}
+        <section class="transit" data-type="value">{{assignment.transit}}</section>
+    {{/if}}
+{{/unless}}

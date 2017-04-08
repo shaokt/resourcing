@@ -11,17 +11,17 @@ export default Ember.Component.extend({
         var route = this.get('router.currentRouteName');
         if(route.match(/roadmap/gi)){
             this.set('qp', '?year=');
-            return "/roadmap";
+            return "roadmap";
         }
         else {
             this.set('qp', '&year=');
-            return `/home?id=${this.get('settings.lastManager')}`;
+            return `home?id=${this.get('settings.lastManager')}`;
         }
     }),
     yearPrevPath: Ember.computed(function(){
         return this.get('path') + (parseInt(this.get('yearPrev')) === this.currentYear ? '' : this.get("qp") + this.get('yearPrev'));
-    }),
+    }).property('yearPrev'),
     yearNextPath: Ember.computed(function(){
         return this.get('path') + (parseInt(this.get('yearNext')) === this.currentYear ? '' : this.get("qp") + this.get('yearNext'));
-    }),
+    }).property('yearNext'),
 });

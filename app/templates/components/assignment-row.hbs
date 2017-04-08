@@ -1,5 +1,5 @@
 {{#each model as |assignment index|}}
-    {{#if (assignment-view-people settings.view assignment.id currentAssignment)}}
+    {{#if (assignment-view-people settings.view router.currentRouteName assignment.id currentAssignment)}}
         <section class="resourceRow{{if assignment.hidden ' hidden'}}"
             data-active="{{assignment.active}}"
             data-id="{{assignment.id}}"

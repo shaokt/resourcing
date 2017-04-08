@@ -1,9 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    isCustomPhase: Ember.computed('assignment.stampCustomize', function(){
+    phaseChanged: false,
+    isCustomPhase: function(){
         return Ember.$(this.get('assignment.stampCustomize')).attr('data-customphase');
-    }),
+    }.property('phaseChanged'),
 
     updatedStartDate: Ember.computed('assignment.stampCustomize', function(){
         let sd = Ember.$(this.get('assignment.stampCustomize')).attr('data-startson');
@@ -119,6 +120,19 @@ export default Ember.Component.extend({
     },
 
     actions: {
+        // when changing the phase via dropdown during stamp customization
+        updatePhase(){
+            this.toggleProperty('phaseChanged');
+            if(event.target.value === '???'){
+                Ember.$(this.get('assignment.stampCustomize')).attr('data-customphase', true);
+            }
+            else {
+                Ember.$(this.get('assignment.stampCustomize')).removeAttr('data-customphase');
+            }
+            Ember.$(this.get('stamp')).attr('data-phase', event.target.value);
+        },
+
+        // when set to ??? for custom phase text
         updatePhaseText(){
             Ember.$(this.get('stamp')).attr('data-phase', event.target.value);
             if(event.target.value === '') {

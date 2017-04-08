@@ -4,7 +4,8 @@ import Ember from 'ember';
 // if viewing people assigned, only render the current assignment
 export function assignmentViewPeople(params/*, hash*/) {
     return params[0] === 'roadmap' ? true :
-        params[1] === params[2] ? true :
+        params[0] === 'timeaway' && params[1] === 'home' ? true : // support for when viewing assignments from out of office view
+        params[2] === params[3] ? true :
         false;
 }
 
