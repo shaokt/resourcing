@@ -13,6 +13,7 @@ export default Ember.Route.extend({
         this.set('id', transition.queryParams.id);
         this.set('year', transition.queryParams.year);
         this.set('settings.lastManager', this.id);
+        this.set('constants.assArray', []);
     },
 
     model() {
