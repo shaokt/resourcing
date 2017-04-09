@@ -218,14 +218,16 @@
 
     <div id="currentlyViewing">
         <div class="container">
-            {{#if showAddEmployee}}
-                <span class="shadow" data-first-letter="{{lastManager1}}" data-last-letters="{{lastManager2}}"></span>
-                <span>{{lastManager1}}</span><span><span>{{lastManager2}}</span></span>
-            {{/if}}
-            {{#if showOrg}}
-                <span class="shadow" data-first-letter="R" data-last-letters="oadmap"></span>
-                <span>R</span><span><span>oadmap</span></span>
-            {{/if}}
+            {{#link-to "manager-listing" (query-params year=year)}}
+                {{#if showAddEmployee}}
+                    <span class="shadow" data-first-letter="{{lastManager1}}" data-last-letters="{{lastManager2}}"></span>
+                    <span>{{lastManager1}}</span><span><span>{{lastManager2}}</span></span>
+                    {{/if}}
+                {{#if showOrg}}
+                    <span class="shadow" data-first-letter="R" data-last-letters="oadmap"></span>
+                    <span>R</span><span><span>oadmap</span></span>
+                {{/if}}
+            {{/link-to}}
         </div>
         <span class="year">{{year}}</span>
     </div>

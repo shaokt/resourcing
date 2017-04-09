@@ -237,7 +237,7 @@ header {
         }//viewOptions
 
         #currentlyViewing {
-            animation:slide 2500ms 1 linear;
+            animation:slide 2000ms 1 linear;
             background:#fff;
             position:fixed;
             right:20px;
@@ -248,6 +248,12 @@ header {
             }
 
             .container {
+                a {
+                    text-decoration:none;
+                    &:visited {
+                        color:#000;
+                    }
+                }
                 span {
                     &.shadow {
                         background:#000;
