@@ -177,6 +177,12 @@
             }
         }
 
+        &[data-type="person"] {
+            [data-stamp="true"] {
+                font-size:.8rem;
+            }
+        }
+
         .tiles [data-stamp="true"]{
             &:before {
                 background:rgba(0,0,0,.4);

@@ -257,6 +257,12 @@
             li {
                 margin-right:0;
                 padding:0;
+
+                [data-stamp="true"] {
+                    &:before {
+                        top:1.7em;
+                    }
+                }
             }
 
             &:hover {
