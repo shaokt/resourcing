@@ -21,8 +21,11 @@
         {{/if}}
         <div class="rowContainer">
             {{#if isEmpty}}
-                <div class="message emptyTeam">
-                    You currently have no Employees registered.
+                <div class="emptyFile">
+                    <div>
+                        <p>You currently have no Employees registered.</p>
+                        <p>Click on the "Add Employee" Icon above to get started.</p>
+                    </div>
                 </div>
             {{else}}
                 {{resource-row model=model settings=settings updateName="updateName"}}
