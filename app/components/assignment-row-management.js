@@ -5,7 +5,7 @@ export default AssignmentPhaseComponent.extend({
     tagName:'div',
     classNames:['rowManagement'],
     id:'',
-    maxRows:10,
+    maxRows:20,
     showAdd: function(){
         return !this.get('assignment.rows') || this.get('assignment.rows') < this.maxRows;
     }.property('assignment.rows'),

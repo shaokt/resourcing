@@ -160,6 +160,16 @@
                 &[data-rows="8"] { height:180px; }
                 &[data-rows="9"] { height:195px; }
                 &[data-rows="10"] { height:210px; }
+                &[data-rows="11"] { height:225px; }
+                &[data-rows="12"] { height:240px; }
+                &[data-rows="13"] { height:255px; }
+                &[data-rows="14"] { height:270px; }
+                &[data-rows="15"] { height:285px; }
+                &[data-rows="16"] { height:300px; }
+                &[data-rows="17"] { height:315px; }
+                &[data-rows="18"] { height:330px; }
+                &[data-rows="19"] { height:345px; }
+                &[data-rows="20"] { height:360px; }
 
                 // vertical position of tiles
                 [data-type="tile"] {
@@ -167,7 +177,6 @@
                     &[data-y="15"]{ top:15px; }
                     &[data-y="30"]{ top:30px; }
                     &[data-y="45"]{ top:45px; }
-
                     &[data-y="60"]{ top:60px; }
                     &[data-y="75"]{ top:75px; }
                     &[data-y="90"]{ top:90px; }
@@ -178,6 +187,16 @@
                     &[data-y="165"]{ top:165px; }
                     &[data-y="180"]{ top:180px; }
                     &[data-y="195"]{ top:195px; }
+                    &[data-y="210"]{ top:210px; }
+                    &[data-y="225"]{ top:225px; }
+                    &[data-y="240"]{ top:240px; }
+                    &[data-y="255"]{ top:255px; }
+                    &[data-y="270"]{ top:270px; }
+                    &[data-y="285"]{ top:285px; }
+                    &[data-y="300"]{ top:300px; }
+                    &[data-y="315"]{ top:315px; }
+                    &[data-y="330"]{ top:330px; }
+                    &[data-y="345"]{ top:345px; }
                 }
             }
         }
