@@ -16,7 +16,7 @@ export default Ember.Component.extend({
     }),
     viewingCurrentYear: Ember.computed(function(){
         return parseInt(this.get('year')) === parseInt(this.get('currentYear'));
-    }),
+    }).property('year'),
     lastManager1: Ember.computed(function(){
         return this.get('settings.lastManager').split("", 1);
     }),
@@ -34,7 +34,7 @@ export default Ember.Component.extend({
         if(route === 'roadmap.index'){
             this.set('showAddEmployee', false);
             this.set('showEmployeeTracking', false);
-            this.set('showSort', true);
+            this.set('showSort', false);
             this.set('showOrg', true);
             this.set('showTeam', true);
             this.set('showToggleRows', true);
