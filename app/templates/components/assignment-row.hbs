@@ -1,4 +1,4 @@
-{{#each model as |assignment index|}}
+{{#each model.assignment as |assignment index|}}
     {{#if (assignment-view-people settings.view router.currentRouteName assignment.id currentAssignment)}}
         <section class="resourceRow{{if assignment.hidden ' hidden'}}"
             data-active="{{assignment.active}}"

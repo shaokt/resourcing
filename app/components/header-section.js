@@ -38,7 +38,7 @@ export default Ember.Component.extend({
             this.set('showOrg', true);
             this.set('showTeam', true);
             this.set('showToggleRows', true);
-            this.set('assignmentModel', this.get('model'));
+            this.set('assignmentModel', this.get('model.assignment'));
         }
         else if(route === 'roadmap.edit') {
             this.set('showAddEmployee', false);
@@ -48,7 +48,7 @@ export default Ember.Component.extend({
             this.set('showTeam', false);
             this.set('showRoadmap', true);
             this.set('showToggleRows', true);
-            this.set('assignmentModel', this.get('model'));
+            this.set('assignmentModel', this.get('model.assignment'));
 
         }
         else if(route === 'home') {

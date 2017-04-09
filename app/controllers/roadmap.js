@@ -14,13 +14,13 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
         return height + 25; // 25px to account for the project name now being on top of the row
     }.property('constants.teamAssignment'),
 
-    hasFile: Ember.computed('model.resource', function(){
-        return this.get('model.length') > 0;
-    }),
+    isEmpty: Ember.computed('model.assignment', function(){
+        return this.get('model.length') === 0;
+    }).property('model.assignment.length'),
 
     showInRoadmap: function(){
         let list = '';
-        this.get('model').forEach((item)=> {
+        this.get('model.assignment').forEach((item)=> {
             if(Ember.$.inArray(item.id, this.get('constants.assArray')) !== -1){
                 list += `[data-id="${item.id}"],`;
             }

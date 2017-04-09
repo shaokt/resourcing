@@ -9,8 +9,8 @@
     data-view="{{constants.dataView}}"
     data-view-team={{constants.teamAssignmentView}}
 >
-    {{header-section model=model store=store year=year hasFile=hasFile addAssignment="addAssignment" settings=settings}}
-    {{#if hasFile}}
+    {{header-section model=model store=store year=year addAssignment="addAssignment" settings=settings}}
+    {{#if model.exists}}
     <main>
         {{outlet}}
     </main>

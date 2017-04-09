@@ -1,0 +1,14 @@
+#pageContainer[data-view="manager-listing"] {
+    margin:30px 0 0 30px;
+    ol.listing {
+        margin:10px 0 0 15px;
+        li {
+            list-style:decimal;
+            margin:10px 0;
+
+            a {
+                text-decoration:none;
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+<div id="pageContainer"
+    data-view="manager-listing"
+>
+    <div>{{year}}</div>
+    <ol class="listing">
+        {{#each model.assignment as |item|}}
+            <li data-name="{{item.ad}}">
+                {{#link-to "home" (query-params id=item.ad year=year)}}
+                    {{item.ad}}
+                {{/link-to}}
+            </li>
+        {{/each}}
+    </ol>
+</div>

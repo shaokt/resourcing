@@ -19,6 +19,7 @@ export default Ember.Route.extend({
     model() {
         return Ember.RSVP.hash({
             resource: this.get('store').query('user', {year: this.get('year'), manager: this.get('id')}),
+            exists: Ember.$.getJSON(`${this.get('store').adapterFor('assignment').host}/exists/${this.get('year')}/${this.get('settings.lastManager')}`, ()=> {}),
             assignment: this.get('store').query('assignment', {year:this.get('year')})
         });
     },

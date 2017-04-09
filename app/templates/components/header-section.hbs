@@ -1,6 +1,5 @@
+{{#if model.exists}}
 {{year-nav year=year settings=settings}}
-
-{{#if hasFile}}
 <div class="menu">
     <ul class="tileOptions">
         {{#if showAssignmentTiles}}
@@ -244,11 +243,12 @@
 {{else}}
     <div class="message notFound">
         <p>There are no files for the year / user / view you chose.</p>
-        <p>Either:</p>
         <ul>
-            <li>Choose another year on the left</li>
-            <li>Go to: <a href="#/roadmap">{{currentYear}} Roadmap view</a></li>
-            <li>Go to: <a href="#/home?id={{settings.lastManager}}">{{currentYear}} {{settings.lastManager}} manager view</a></li>
+            <li>Go to: {{#link-to "roadmap"}}{{currentYear}} Roadmap view{{/link-to}}</li>
+            {{#if settings.lastManager}}
+                <li>Go to: <a href="#/home?id={{settings.lastManager}}">{{currentYear}} {{settings.lastManager}} manager view</a></li>
+            {{/if}}
+            <li>Go to: {{#link-to "manager-listing" (query-params year=year)}}{{year}} Manager Listing{{/link-to}}</li>
         </ul>
     </div>
 {{/if}}
