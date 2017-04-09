@@ -56,7 +56,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
             self.set('counterCSS', result);
 
             if(!this.get('model.exists')){
-                this.get('router').transitionTo('manager-listing', {queryParams: {year:this.get('year')}})
+                this.get('router').transitionTo('manager-listing', {queryParams: {year:this.get('year')}});
             }
         });
 

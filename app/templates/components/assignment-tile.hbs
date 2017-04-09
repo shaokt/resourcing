@@ -11,6 +11,7 @@
             [data-id='{{item.id}}'] .info section,
             .tileContainer[data-container="{{item.id}}"]:after,
             [data-assignment="{{item.id}}"] { background:#{{item.background}} !important; }
+            [data-type="person"] [data-assignment="{{item.id}}"]:hover:before,
             [data-assignment="{{item.id}}"][data-stamp="true"]:before { content:'{{item.short}}' }
             [data-assignment="{{item.id}}"][data-stamp="true"]:hover:after { content:'{{item.long}}' }
         </style>
