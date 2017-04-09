@@ -55,7 +55,7 @@ section.resourceRow {
         }
     }// directs
 
-    &[data-expanded="true"]:last-child {
+    &[data-expanded="true"]:last-child:not(:first-child) {
         &:before { display:none; }
         > .row {
             &:before {
