@@ -1,11 +1,8 @@
 import Ember from 'ember';
-import ScrollingMixin from "../mixins/scrolling";
-import MouseMoveMixin from "../mixins/mousemove";
 import { storageFor } from 'ember-local-storage';
 
-export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
+export default Ember.Controller.extend({
     counterCSS: '',
-    minLeft: 0, // the minimum left position to show names when scrolling
     settings: storageFor("settings"),
     queryParams: ['id', 'year'],
     id:null,
@@ -59,15 +56,7 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
                 this.get('router').transitionTo('manager-listing', {queryParams: {year:this.get('year')}});
             }
         });
-
-        this.minLeft = 22 * this.constants.DIM; // assume 22 business days in a month
-        this.bindScrolling();
-        this.bindMouseMove();
     },
-
-    scrolled: function(){ this.constants.scrolled(this.minLeft); },
-
-    mouseMoved: function(event){ this.constants.mouseMoved(event); },
 
     actions: {
         addEmployee(){

@@ -13,6 +13,11 @@ export default Ember.Component.extend({
         return new Ember.String.htmlSafe(color);
     }).property('assignment.background'),
 
+    init(){
+        this._super();
+        document.title = `Roadmap | Edit`;
+    },
+
     actions: {
         // if the current assignment is being edited
         editing() {

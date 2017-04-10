@@ -1,9 +1,7 @@
 import Ember from 'ember';
-import ScrollingMixin from "../mixins/scrolling";
-import MouseMoveMixin from "../mixins/mousemove";
 import { storageFor } from 'ember-local-storage';
 
-export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
+export default Ember.Controller.extend({
     needs:['application'],
     settings: storageFor("settings"),
     queryParams: ['year'],
@@ -36,20 +34,10 @@ export default Ember.Controller.extend(ScrollingMixin, MouseMoveMixin, {
             this.set('constants.dataView', 'roadmap');
             var route = this.get('router.currentPath');
             if(route === 'roadmap.index'){
-                document.title = `${this.get('year')} Roadmap`;
                 this.get('settings').set('view', 'roadmap');
-                this.bindScrolling();
-                this.bindMouseMove();
-            }
-            else{
-                document.title = `${this.get('year')} Roadmap | Edit`;
             }
         });
     },
-
-    scrolled: function(){ this.constants.scrolled(); },
-
-    mouseMoved: function(event){ this.constants.mouseMoved(event); },
 
     actions: {
         addAssignment(){
