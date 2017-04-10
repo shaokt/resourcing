@@ -201,8 +201,10 @@ export default Ember.Component.extend(Webcel, {
 
     actions:{
         findAssignment() {
-            var assignment = Ember.$(event.target).attr('data-assignment');
-            Ember.$('header .tileOptions .assignments').find('[data-assignment="' + assignment + '"]').click();
+            if(!this.get('constants.editingRow')){
+                var assignment = Ember.$(event.target).attr('data-assignment');
+                Ember.$('header .tileOptions .assignments').find('[data-assignment="' + assignment + '"]').click();
+            }
         },
 
         dragEnter(e) {

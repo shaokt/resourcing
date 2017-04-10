@@ -22,7 +22,8 @@ export default AssignmentTileComponent.extend({
         if(this.headerAssignments === null){ this.headerAssignments = Ember.$('header .tileOptions .assignments'); }
         setTimeout(function(){
             var item = self.headerAssignments.find('[data-assignment="' + self.get('settings.assignmentTile') + '"]');
-            if(item.attr('data-active') === 'false'){ item.click(); }
+            //TODO: shift key to activate
+            //if(item.attr('data-active') === 'false'){ item.click(); }
         }, 0);
         return true;
     },
