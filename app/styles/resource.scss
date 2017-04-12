@@ -98,6 +98,10 @@ section.resourceRow {
                     }
                 }
             }
+
+            &:after {
+                background:none !important;
+            }
          }
         .phases {
             background:none !important;
@@ -121,10 +125,6 @@ section.resourceRow {
                 &:hover {
                     background:none;
                 }
-            }
-
-            &:hover:after {
-                background:none;
             }
         }
     }
