@@ -22,8 +22,8 @@
                         <span class="time" data-time="6"></span>
                         <span class="time" data-time="9"></span>
                         <span class="time" data-time="12"></span>
-                        <span class="text">Track Out of Office</span>
                     </a>
+                    <span class="text">Track Out of Office</span>
                 </li>
             {{/if}}
 
@@ -31,8 +31,8 @@
                 <li class="assignment">
                     <a href="track assignments" {{action "toggleView" 'roadmap' on="click"}}>
                         <span class="pencil"><span class="wood"></span></span>
-                        <span class="text">Track Assignments</span>
                     </a>
+                    <span class="text">Track Assignments</span>
                 </li>
             {{/if}}
         {{/if}}
@@ -43,8 +43,8 @@
                     <span class="item"></span>
                     <span class="item"></span>
                     <span class="item"></span>
-                    <span class="text">Roadmap</span>
                 </a>
+                <span class="text">Roadmap</span>
             </li>
         {{/if}}
 
@@ -55,12 +55,12 @@
                 <a href="scroll calendar" {{action "scrollToday" on="click"}}>
                     <span class="date"><span>{{constants.todayDate}}</span></span>
                     <span class="page"></span>
-                    {{#if settings.isDailyCalendar}}
-                        <span class="text daily">Scroll to Today</span>
-                    {{else}}
-                        <span class="text">Scroll to This Week</span>
-                    {{/if}}
                 </a>
+                {{#if settings.isDailyCalendar}}
+                    <span class="text daily">Scroll to Today</span>
+                {{else}}
+                    <span class="text">Scroll to This Week</span>
+                {{/if}}
             </li>
             {{/if}}
             {{#if showAddEmployee}}
@@ -78,8 +78,8 @@
                             <span class="neck"></span>
                         </span>
                         <span class="plus"></span>
-                        <span class="text">New Employee</span>
                     </a>
+                    <span class="text">New Employee</span>
                 </li>
             {{/if}}
         {{/if}}
@@ -91,8 +91,8 @@
                     <span class="member"></span>
                     <span class="member"></span>
                     <span class="member"></span>
-                    <span class="text">View Org</span>
                 </a>
+                <span class="text">View Org</span>
             </li>
         {{/if}}
 
@@ -102,8 +102,8 @@
                     <span class="member"><span class="body"></span></span>
                     <span class="member female"><span class="body"><span class="dress"></span></span></span>
                     <span class="member"><span class="body"></span></span>
-                    <span class="text">View Team</span>
                 </a>
+                <span class="text">View Team</span>
                 {{#if constants.teamAssignmentView}}
                     <div class="specs">
                         <div class="date">
@@ -146,8 +146,8 @@
                 <a href="Toggle grid lines" {{action "toggleGrid" on="click"}}>
                     <span class="grid"></span>
                     <span class="column"></span>
-                    <span class="text">Toggle Grid Lines</span>
                 </a>
+                <span class="text">Toggle Grid Lines</span>
             </li>
         {{/unless}}
 
@@ -155,12 +155,14 @@
             <li class="toggle showWhileDragging">
                 <a href="toggle hidden rows" {{action "toggleViewHiddenRows" on="click"}}>
                     <span class="eye"></span>
-                    {{#if settings.isHiddenRows}}
-                        <span class="text">Hide Hidden Rows</span>
-                    {{else}}
-                        <span class="text">Show Hidden Rows</span>
-                    {{/if}}
                 </a>
+                <span class="text">
+                {{#if settings.isHiddenRows}}
+                    Hide Hidden Rows
+                {{else}}
+                    Show Hidden Rows
+                {{/if}}
+                </span>
             </li>
         {{/if}}
 
@@ -170,12 +172,14 @@
                 <a href="drag &amp; drop sorting" class="drag" {{action "toggleDrag" on="click"}} data-active="{{constants.draggable}}">
                     <span class="leftArrow"></span>
                     <span class="rightArrow"></span>
-                    {{#if this.constants.draggable}}
-                        <span class="text">Done Sorting</span>
-                    {{else}}
-                        <span class="text">Sort Rows</span>
-                    {{/if}}
                 </a>
+                <span class="text">
+                {{#if this.constants.draggable}}
+                    Done Sorting
+                {{else}}
+                    Sort Rows
+                {{/if}}
+                </span>
             </li>
         {{/if}}
         {{/unless}}
@@ -184,8 +188,8 @@
             <li class="assignment">
                 <a href="add assignment" {{action "addAssignment" on="click"}}>
                     <span class="pencil"><span class="wood"></span></span>
-                    <span class="text">Add Assignment</span>
                 </a>
+                <span class="text">Add Assignment</span>
             </li>
         {{/if}}
     </ul>
