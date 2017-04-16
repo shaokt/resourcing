@@ -208,6 +208,7 @@
 
             .delete {
                 float:left;
+                margin-left:15px;
 
                 label {
                     background:#000;
@@ -220,10 +221,6 @@
                 input {
                     float:left;
                     position:relative;
-                }
-
-                &.user {
-                    margin-left:30px;
                 }
 
                 .message {
@@ -268,7 +265,7 @@
         .tileOptions {
             float:left;
             max-width:33%;
-            margin:-4px 0 0 10px;
+            margin:-3px 0 0 10px;
 
             li {
                 margin-right:0;

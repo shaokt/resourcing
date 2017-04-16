@@ -254,12 +254,22 @@ section.resourceRow {
                 }//li
             }//.viewOptions
 
-            .name {
+            [contenteditable="true"] {
                 background:#c55500;
                 box-shadow:none;
                 color:#fff;
+                font-size:14px;
+                margin-left:10px;
                 padding:2px 5px 0 5px;
                 text-shadow:none;
+
+                &.ad {
+                    &:before {
+                        content:'AD: ';
+                        display:inline-block;
+                        margin-right:.5em;
+                    }
+                }
             }
         }
 
