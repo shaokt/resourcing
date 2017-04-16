@@ -1,18 +1,1 @@
-{{dynamic-styles showAssignment=true showInRoadmap=showInRoadmap roadmapList=roadmapList numAssignmentsViewing=numAssignmentsViewing}}
-
-<div id="pageContainer"
-    data-route={{router.currentRouteName}}
-    data-dragging={{constants.draggable}}
-    data-editing="{{constants.editingRow}}"
-    data-gridLines="{{settings.gridLines}}"
-    data-show-hidden={{settings.showHiddenAssignments}}
-    data-view="{{constants.dataView}}"
-    data-view-team={{constants.teamAssignmentView}}
->
-    {{header-section model=model store=store year=year addAssignment="addAssignment" settings=settings}}
-    {{#if model.exists}}
-    <main>
-        {{outlet}}
-    </main>
-    {{/if}}
-</div>
+{{outlet}}

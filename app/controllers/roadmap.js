@@ -4,17 +4,16 @@ import { storageFor } from 'ember-local-storage';
 export default Ember.Controller.extend({
     needs:['application'],
     settings: storageFor("settings"),
-    queryParams: ['year'],
-    year: null,
+
+    init(){
+        this.set('constants.dataView', 'roadmap')
+    },
+
     numAssignmentsViewing: function(){
         let height = this.get('constants.teamAssignment.rows');
         height = height ? (height*15)+60 : 60; // 60=height of each assignment row
         return height + 25; // 25px to account for the project name now being on top of the row
     }.property('constants.teamAssignment'),
-
-    isEmpty: Ember.computed('model.assignment', function(){
-        return this.get('model.length') === 0;
-    }).property('model.assignment.length'),
 
     showInRoadmap: function(){
         let list = '';
@@ -28,16 +27,6 @@ export default Ember.Controller.extend({
         return list !== '';
 
     }.property('constants.assArray'),
-
-    init: function () {
-        Ember.run.scheduleOnce("afterRender",this,()=> {
-            this.set('constants.dataView', 'roadmap');
-            var route = this.get('router.currentPath');
-            if(route === 'roadmap.index'){
-                this.get('settings').set('view', 'roadmap');
-            }
-        });
-    },
 
     actions: {
         addAssignment(){

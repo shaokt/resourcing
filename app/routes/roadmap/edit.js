@@ -1,7 +1,15 @@
-import Ember from 'ember';
+import RoadmapIndex from "./index";
+import { storageFor } from 'ember-local-storage';
 
-export default Ember.Route.extend({
-    init:function(){
-          this.set('constants.editAssignments', true);
-    }.on('init')
+export default RoadmapIndex.extend({
+    settings: storageFor("settings"),
+
+    queryParams: {
+        year: { refreshModel: true }
+    },
+
+    afterModel: function(){
+        document.title = `Roadmap | Edit ${this.get('year')}`;
+        this.set('constants.editAssignments', true);
+    }
 });
