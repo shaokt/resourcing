@@ -188,6 +188,22 @@
                         display:none;
                     }
                 }
+
+                &:not(:hover) {
+                    [data-stamp="true"] {
+                        border:1px solid #fff;
+                        line-height:100%;
+                        padding:3px 5px 2px 5px;
+                        text-shadow:0 0 5px #000;
+
+                        &:before {
+                            padding:0;
+                            top:0;
+                        }
+
+                        span { display:none; }
+                    }
+                }
             }
 
             .delete {
@@ -252,7 +268,7 @@
         .tileOptions {
             float:left;
             max-width:33%;
-            margin:-20px 0 0 10px;
+            margin:-4px 0 0 10px;
 
             li {
                 margin-right:0;

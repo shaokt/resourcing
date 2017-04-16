@@ -1,6 +1,5 @@
 .rowContainer {
     position:relative;
-    margin-top:15px;
 
     .emptyFile {
         margin:20px 0 0 -70px;
@@ -44,6 +43,10 @@
 
     [data-type="todayDateLine"]:before {
         display:none;
+    }
+
+    + .rowContainer {
+        margin-top:15px;
     }
 }
 section.resourceRow {
@@ -175,6 +178,10 @@ section.resourceRow {
     &[data-active="true"] {
         border-top:25px solid #000;
         z-index:6;
+
+        &[data-type="assignment"] {
+            border-top-width:35px;
+        }
 
         &:after {
             display:none;
