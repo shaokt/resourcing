@@ -64,8 +64,6 @@ export default Ember.Component.extend({
 
         if(!this.get('viewingCurrentYear')) {
             this.set('constants.disableEditing', true);
-            this.set('yearHome', `&year=${this.get('year')}`);
-            this.set('yearRoadmap', `?year=${this.get('year')}`);
             this.set('yearNext', parseInt(this.get('year'))+1);
             this.getNextYearFile();
         }

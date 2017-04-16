@@ -149,20 +149,34 @@ ul.viewOptions {
             + .text {
                 background:#fff;
                 border:1px solid #000;
-                border-radius:5px;
+                border-radius:2px;
                 box-shadow:5px 5px 10px 2px rgba(0,0,0,.5);
                 color:#C55500;
                 display:none;
                 font-size:15px;
                 font-weight:bold;
-                left:-50px;
+                left:-10px;
                 line-height:150%;
-                padding:5px;
+                padding:5px 10px;
                 position:absolute;
-                text-align:center;
-                top:60px;
+                top:65px;
                 white-space:nowrap;
-                width:150px;
+                background:#000;
+                color:#fff;
+
+                &:before {
+                    border:10px solid #000;
+                    border-bottom-color:transparent;
+                    border-left-color:transparent;
+                    content:'';
+                    display:block;
+                    height:0;
+                    left:10px;
+                    position:absolute;
+                    top:-8px;
+                    transform:rotate(-45deg);
+                    width:0;
+                }
             }
         } // a
     }// ul.viewOptions
