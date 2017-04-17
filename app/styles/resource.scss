@@ -54,7 +54,7 @@ section.resourceRow {
     border:1px solid #aaa;
     box-sizing: border-box;
     border-bottom:none;
-    margin-left:-2px;
+    left:-1px;
     position:relative;
 
     .row {
@@ -335,6 +335,5 @@ section.resourceRow {
             #feefee 15px,
             #feefee 30px
         ) !important;
-        background-position-x:1px !important;
     }
 }
