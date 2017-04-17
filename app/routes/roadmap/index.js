@@ -37,7 +37,7 @@ export default Ember.Route.extend(ScrollingMixin, MouseMoveMixin, {
         });
     },
 
-    afterModel: function(model){
+    afterModel: function(){
         this.bindScrolling();
         this.bindMouseMove();
         document.title = `Roadmap | ${this.get('year')}`;

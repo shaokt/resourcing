@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
     settings: storageFor("settings"),
 
     init(){
-        this.set('constants.dataView', 'roadmap')
+        this.set('constants.dataView', 'roadmap');
     },
 
     numAssignmentsViewing: function(){
