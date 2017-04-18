@@ -186,7 +186,7 @@
                     z-index:4;
                     &:before {
                         background:rgba(255,255,255,.8);
-                        font-size:.8rem;
+                        font-size:11px;
                         padding:2px 5px;
                         position:absolute;
                         left:15px;
@@ -204,6 +204,9 @@
             }
             [data-stamp="true"] {
                 font-size:.8rem;
+                &:hover {
+                    font-size:11px;
+                }
             }
         }
 
