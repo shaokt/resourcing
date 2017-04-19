@@ -252,7 +252,7 @@
 }
 
 // if the Quarter doesn't start on Monday, need to offset the phases during the daily view
-#pageContainer[data-view-team="true"]{
+#pageContainer[data-view="timeaway"]{
     &[data-q1-start] {
         .phases {
             position:relative;
@@ -260,18 +260,18 @@
     }
     &[data-q1-start="T"] { // Q1 starts on Tuesday,
         .phases { left:60px; }
-        [data-assignment] { padding-left:60px; }
+        .resourceRow [data-assignment] { padding-left:60px; }
     }
     &[data-q1-start="W"] { // Q1 starts on Wednesday
         .phases { left:45px; }
-        [data-assignment] { padding-left:45px; }
+        .resourceRow [data-assignment] { padding-left:45px; }
     }
     &[data-q1-start="R"] { // Q1 starts on Thursday
         .phases { left:30px; }
-        [data-assignment] { padding-left:30px; }
+        .resourceRow [data-assignment] { padding-left:30px; }
     }
     &[data-q1-start="F"] { // Q1 starts on Friday
         .phases { left:15px; }
-        [data-assignment] { padding-left:15px; }
+        .resourceRow [data-assignment] { padding-left:15px; }
     }
 }
