@@ -8,9 +8,9 @@
     data-show-hidden={{settings.showHiddenEmployees}}
     data-view="{{settings.view}}"
 >
-    {{header-section model=model store=store year=year hasFile=hasFile settings=settings updateName="updateName" addEmployee="addEmployee" showAssignment=showAssignment viewAssignment=viewAssignment}}
+    {{header-section model=model store=store year=year settings=settings updateName="updateName" addEmployee="addEmployee" showAssignment=showAssignment viewAssignment=viewAssignment}}
 
-    {{#if hasFile}}
+    {{#if model.exists}}
     <main>
         {{date-line}}
         {{#if numAssignmentsViewing}}
@@ -20,7 +20,16 @@
             </div>
         {{/if}}
         <div class="rowContainer">
-            {{resource-row model=model settings=settings updateName="updateName"}}
+            {{#if isEmpty}}
+                <div class="emptyFile">
+                    <div>
+                        <p>You currently have no Employees registered.</p>
+                        <p>Click on the "Add Employee" Icon above to get started.</p>
+                    </div>
+                </div>
+            {{else}}
+                {{resource-row model=model settings=settings updateName="updateName"}}
+            {{/if}}
         </div>
     </main>
     {{/if}}

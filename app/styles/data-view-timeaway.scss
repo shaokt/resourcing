@@ -36,9 +36,10 @@
         background:none;
         border:none;
         color:#fff;
-        font-size:.8rem;
-        line-height:180%;
+        font-size:11px;
+        line-height:150%;
         text-align:center;
+        text-shadow:0 0 5px #000;
     }
 
     [data-type="tile"]:not([data-phase]) {

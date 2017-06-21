@@ -59,11 +59,7 @@
         [data-stamp="true"] { display:inline-block; }
 
         + .viewOptions {
-            display:none;
-
-            ~ .message {
-                display:none;
-            }
+            margin-left:86px;
         }
     }
 
@@ -117,7 +113,7 @@
             &:before {
                 padding:5px;
                 position:relative;
-                top:1.6em;
+                top:1.3em;
             }
 
             &[data-active="true"],
@@ -133,19 +129,20 @@
                      padding:10px;
                 }
                 &:after {
-                    background:#fff;
+                    background:#000;
                     border:1px solid #000;
-                    border-radius:5px;
+                    border-radius:2px;
                     bottom:-2.8em;
                     box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
-                    color:#000;
+                    color:#fff;
                     float:left;
                     font-size:1.5em;
-                    left:0%;
+                    left:50%;
                     line-height:125%;
-                    padding:5px;
+                    padding:5px 10px;
                     position:absolute;
                     white-space:nowrap;
+                    text-shadow:none;
                 }
             }
 
@@ -191,24 +188,39 @@
                         display:none;
                     }
                 }
+
+                &:not(:hover) {
+                    [data-stamp="true"] {
+                        border:1px solid #fff;
+                        line-height:100%;
+                        padding:3px 5px 2px 5px;
+                        text-shadow:0 0 5px #000;
+
+                        &:before {
+                            padding:0;
+                            top:0;
+                        }
+
+                        span { display:none; }
+                    }
+                }
             }
 
             .delete {
                 float:left;
+                margin-left:15px;
 
-                &.user {
-                    margin-left:30px;
+                label {
+                    background:#000;
+                    padding:3px 6px 3px 20px;
+                    border-radius:5px;
+                    float:left;
+                    margin-left:-20px;
+                }
 
-                    label {
-                        background:#000;
-                        padding:3px 6px 3px 20px;
-                        border-radius:5px;
-                        margin-left:-20px;
-                    }
-
-                    input {
-                        position:relative;
-                    }
+                input {
+                    float:left;
+                    position:relative;
                 }
 
                 .message {
@@ -216,6 +228,8 @@
                     box-shadow: 0 0 10px 5px rgba(25,25,25,.5);
                     border:2px solid #fff;
                     border-radius:10px;
+                    clear:both;
+                    float:left;
                     margin-top:5px;
                     padding:15px 20px;
 
@@ -251,12 +265,18 @@
         .tileOptions {
             float:left;
             max-width:33%;
-            margin:-13px 0 0 10px;
-            transform:scale(.8);
+            margin:-3px 0 0 10px;
 
             li {
                 margin-right:0;
                 padding:0;
+
+                [data-stamp="true"] {
+                    font-size:11px !important;
+                    &:before {
+                        top:1.4em;
+                    }
+                }
             }
 
             &:hover {

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { storageFor } from 'ember-local-storage';
 
 export default Ember.Component.extend({
     tagName:'tbody',
@@ -6,6 +7,9 @@ export default Ember.Component.extend({
     attributeBindings: ['assignment.id:data-assignment-id'],
     editing: false,
     isHidden: Ember.computed.alias('assignment.hidden'),
+    queryParams: ['year'],
+    year: null,
+    settings: storageFor("settings"),
 
     // background for assignment row based on hex value assigned
     hexbackground: Ember.computed('background', function() {

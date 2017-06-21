@@ -201,12 +201,10 @@ export default Ember.Component.extend(Webcel, {
 
     actions:{
         findAssignment() {
-            var x = this.get('constants').getMousePos(event);
-    		var y = event.pageY  - Ember.$(event.target).offset().top;
-            y = y - y%8; // 8 = height of tile of painted assignment
-
-            var assignment = Ember.$(event.target).find('.tiles [data-x="' + x +'"][data-y="' + y*1.875 + '"]').attr('data-assignment');
-            Ember.$('header .tileOptions .assignments').find('[data-assignment="' + assignment + '"]').click();
+            if(!this.get('constants.editingRow')){
+                var assignment = Ember.$(event.target).attr('data-assignment');
+                Ember.$('header .tileOptions .assignments').find('[data-assignment="' + assignment + '"]').click();
+            }
         },
 
         dragEnter(e) {

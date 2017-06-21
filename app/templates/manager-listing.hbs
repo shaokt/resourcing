@@ -1,0 +1,21 @@
+<div id="pageContainer"
+    data-view="manager-listing"
+>
+    <main>
+    <h1>{{year}} Manager Listing</h1>
+    <ol class="listing">
+        <li data-name="roadmap">
+            {{#link-to "roadmap" (query-params year=year)}}
+            {{year}} - Roadmap
+            {{/link-to}}
+        </li>
+        {{#each model.assignment as |item|}}
+            <li data-name="{{item.ad}}">
+                {{#link-to "home" (query-params id=item.ad year=year)}}
+                    {{year}} - {{item.ad}}
+                {{/link-to}}
+            </li>
+        {{/each}}
+    </ol>
+    </main>
+</div>

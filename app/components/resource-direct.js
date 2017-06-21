@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import ResourceRowComponent from "./resource-row";
 
-export default Ember.Component.extend({
+export default ResourceRowComponent.extend({
     tagName:'',
     needs:['index']
 });

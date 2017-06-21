@@ -18,10 +18,12 @@ export default Ember.Component.extend({
             return `home?id=${this.get('settings.lastManager')}`;
         }
     }),
+    
     yearPrevPath: Ember.computed(function(){
-        return this.get('path') + (parseInt(this.get('yearPrev')) === this.currentYear ? '' : this.get("qp") + this.get('yearPrev'));
+        return this.get('path') +  this.get("qp") + this.get('yearPrev');
     }).property('yearPrev'),
+
     yearNextPath: Ember.computed(function(){
-        return this.get('path') + (parseInt(this.get('yearNext')) === this.currentYear ? '' : this.get("qp") + this.get('yearNext'));
-    }).property('yearNext'),
+        return this.get('path') +  this.get("qp") + this.get('yearNext');
+    }).property('yearNext')
 });

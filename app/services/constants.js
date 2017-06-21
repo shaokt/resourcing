@@ -5,6 +5,8 @@ export default Ember.Service.extend({
     DIM: 15,            // width of each day
     _DIM: -15,
     dataView: '',       // a way to set the view based on user actions
+    reloadManager:0,    // reload route if changing years
+    reloadRoadmap:0,    // reload route if changing years
     calWidth: 0,        // calendar width
     numDays: 0,         // number of days rendered on calendar
     year: 0,            // current year

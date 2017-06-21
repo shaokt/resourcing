@@ -1,10 +1,10 @@
+{{#if model.exists}}
 {{year-nav year=year settings=settings}}
-
-{{#if hasFile}}
 <div class="menu">
     <ul class="tileOptions">
         {{#if showAssignmentTiles}}
             <li class="assignments">
+                <div class="arrow"></div>
                 {{assignment-tile model=assignmentModel settings=settings}}
             </li>
         {{/if}}
@@ -39,12 +39,12 @@
 
         {{#if showRoadmap}}
             <li class="roadmap">
-                <a href="#/roadmap{{yearRoadmap}}">
+                <a href="#/roadmap?year={{year}}">
                     <span class="item"></span>
                     <span class="item"></span>
                     <span class="item"></span>
                 </a>
-                <span class="text">Roadmap</span>
+                <span class="text">Roadmap: {{year}}</span>
             </li>
         {{/if}}
 
@@ -63,36 +63,48 @@
                 {{/if}}
             </li>
             {{/if}}
-            {{#if showAddEmployee}}
-                <li class="profile">
-                    <a href="add employee" {{action "addEmployee"}}>
-                        <span class="person female">
-                            <span class="hair"></span>
-                            <span class="face"></span>
-                            <span class="neck"></span>
-                        </span>
 
-                        <span class="person male">
-                            <span class="hair"></span>
-                            <span class="face"></span>
-                            <span class="neck"></span>
-                        </span>
-                        <span class="plus"></span>
-                    </a>
-                    <span class="text">New Employee</span>
-                </li>
-            {{/if}}
+            {{#unless constants.disableEditing}}
+                {{#if showAddEmployee}}
+                    <li class="profile">
+                        <a href="add employee" {{action "addEmployee"}}>
+                            <span class="person female">
+                                <span class="hair"></span>
+                                <span class="face"></span>
+                                <span class="neck"></span>
+                            </span>
+
+                            <span class="person male">
+                                <span class="hair"></span>
+                                <span class="face"></span>
+                                <span class="neck"></span>
+                            </span>
+                            <span class="plus"></span>
+                        </a>
+                        <span class="text">New Employee</span>
+                    </li>
+                {{/if}}
+            {{/unless}}
         {{/if}}
         {{/unless}}
 
         {{#if showOrg}}
             <li class="org">
-                <a href="#/home?id={{settings.lastManager}}{{yearHome}}">
-                    <span class="member"></span>
-                    <span class="member"></span>
-                    <span class="member"></span>
-                </a>
-                <span class="text">View Org</span>
+                {{#if settings.lastManager}}
+                    <a href="#/home?id={{settings.lastManager}}&year={{year}}">
+                        <span class="member"></span>
+                        <span class="member"></span>
+                        <span class="member"></span>
+                    </a>
+                    <span class="text">View Org: <span class="managerName">{{settings.lastManager}} {{year}}</span></span>
+                {{else}}
+                    <a href="#/manager-listing?year={{year}}">
+                        <span class="member"></span>
+                        <span class="member"></span>
+                        <span class="member"></span>
+                    </a>
+                    <span class="text">View Org: <span class="managerName">Choose Manager {{year}}</span></span>
+                {{/if}}
             </li>
         {{/if}}
 
@@ -103,7 +115,7 @@
                     <span class="member female"><span class="body"><span class="dress"></span></span></span>
                     <span class="member"><span class="body"></span></span>
                 </a>
-                <span class="text">View Team</span>
+                <span class="text">View Assigned Team</span>
                 {{#if constants.teamAssignmentView}}
                     <div class="specs">
                         <div class="date">
@@ -177,7 +189,7 @@
                 {{#if this.constants.draggable}}
                     Done Sorting
                 {{else}}
-                    Sort Rows
+                    Rearrange Rows
                 {{/if}}
                 </span>
             </li>
@@ -223,14 +235,16 @@
 
     <div id="currentlyViewing">
         <div class="container">
-            {{#if showAddEmployee}}
-                <span class="shadow" data-first-letter="{{lastManager1}}" data-last-letters="{{lastManager2}}"></span>
-                <span>{{lastManager1}}</span><span><span>{{lastManager2}}</span></span>
-            {{/if}}
-            {{#if showOrg}}
-                <span class="shadow" data-first-letter="R" data-last-letters="oadmap"></span>
-                <span>R</span><span><span>oadmap</span></span>
-            {{/if}}
+            {{#link-to "manager-listing" (query-params year=year)}}
+                {{#if showAddEmployee}}
+                    <span class="shadow" data-first-letter="{{lastManager1}}" data-last-letters="{{lastManager2}}"></span>
+                    <span>{{lastManager1}}</span><span><span>{{lastManager2}}</span></span>
+                    {{/if}}
+                {{#if showOrg}}
+                    <span class="shadow" data-first-letter="R" data-last-letters="oadmap"></span>
+                    <span>R</span><span><span>oadmap</span></span>
+                {{/if}}
+            {{/link-to}}
         </div>
         <span class="year">{{year}}</span>
     </div>
@@ -248,11 +262,12 @@
 {{else}}
     <div class="message notFound">
         <p>There are no files for the year / user / view you chose.</p>
-        <p>Either:</p>
         <ul>
-            <li>Choose another year on the left</li>
-            <li>Go to: <a href="#/roadmap">{{currentYear}} Roadmap view</a></li>
-            <li>Go to: <a href="#/home?id={{settings.lastManager}}">{{currentYear}} {{settings.lastManager}} manager view</a></li>
+            <li>Go to: {{#link-to "roadmap"}}{{currentYear}} Roadmap view{{/link-to}}</li>
+            {{#if settings.lastManager}}
+                <li>Go to: <a href="#/home?id={{settings.lastManager}}">{{currentYear}} {{settings.lastManager}} manager view</a></li>
+            {{/if}}
+            <li>Go to: {{#link-to "manager-listing" (query-params year=year)}}{{year}} Manager Listing{{/link-to}}</li>
         </ul>
     </div>
 {{/if}}

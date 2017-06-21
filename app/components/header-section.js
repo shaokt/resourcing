@@ -16,7 +16,7 @@ export default Ember.Component.extend({
     }),
     viewingCurrentYear: Ember.computed(function(){
         return parseInt(this.get('year')) === parseInt(this.get('currentYear'));
-    }),
+    }).property('year'),
     lastManager1: Ember.computed(function(){
         return this.get('settings.lastManager').split("", 1);
     }),
@@ -34,11 +34,11 @@ export default Ember.Component.extend({
         if(route === 'roadmap.index'){
             this.set('showAddEmployee', false);
             this.set('showEmployeeTracking', false);
-            this.set('showSort', true);
+            this.set('showSort', false);
             this.set('showOrg', true);
             this.set('showTeam', true);
             this.set('showToggleRows', true);
-            this.set('assignmentModel', this.get('model'));
+            this.set('assignmentModel', this.get('model.assignment'));
         }
         else if(route === 'roadmap.edit') {
             this.set('showAddEmployee', false);
@@ -48,7 +48,7 @@ export default Ember.Component.extend({
             this.set('showTeam', false);
             this.set('showRoadmap', true);
             this.set('showToggleRows', true);
-            this.set('assignmentModel', this.get('model'));
+            this.set('assignmentModel', this.get('model.assignment'));
 
         }
         else if(route === 'home') {
@@ -64,8 +64,6 @@ export default Ember.Component.extend({
 
         if(!this.get('viewingCurrentYear')) {
             this.set('constants.disableEditing', true);
-            this.set('yearHome', `&year=${this.get('year')}`);
-            this.set('yearRoadmap', `?year=${this.get('year')}`);
             this.set('yearNext', parseInt(this.get('year'))+1);
             this.getNextYearFile();
         }

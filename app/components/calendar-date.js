@@ -4,13 +4,12 @@ export default Ember.Component.extend({
     tagName: '',
     dayInMonth: function(){
         if(this.constants._nextYear === 0){
-            if(this.year === this.constants.year+1){
+            if(parseInt(this.year) === parseInt(this.constants.year)+1){
                 this.constants.nextYear = this.constants._nextYear = this.constants._DIM + this.constants.DIM;
             }
         }
         if(this.constants._prevYear === 0){
-            if(this.year === this.constants.year){
-                //Ember.set(this.constants, 'prevYear', this.constants._DIM)
+            if(parseInt(this.year) === parseInt(this.constants.year)){
                 this.set('constants.prevYear', this.constants._DIM + this.constants.DIM);
                 this.constants._prevYear = this.constants._DIM;
             }

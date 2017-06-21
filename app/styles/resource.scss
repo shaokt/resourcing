@@ -1,6 +1,22 @@
 .rowContainer {
     position:relative;
-    margin-top:15px;
+
+    .emptyFile {
+        margin:20px 0 0 -70px;
+        position:fixed;
+        text-align:center;
+        width:100%;
+        div {
+            border:2px solid #ff0000;
+            border-radius:5px;
+            display:inline-block;
+            padding:5px;
+
+            p {
+                margin:5px;
+            }
+        }
+    }
 }
 .assignmentViewContainer {
     background:#fff;
@@ -28,13 +44,17 @@
     [data-type="todayDateLine"]:before {
         display:none;
     }
+
+    + .rowContainer {
+        margin-top:15px;
+    }
 }
 section.resourceRow {
     background:#eee;
     border:1px solid #aaa;
     box-sizing: border-box;
     border-bottom:none;
-    margin-left:-2px;
+    left:-1px;
     position:relative;
 
     .row {
@@ -42,16 +62,15 @@ section.resourceRow {
     	height:32px;
 
         .pointer {
-            background:#fffc00;
-            border:1px solid #000;
-            box-shadow:0 0 10px 5px rgba(197,85,0,.7);
+            background:#fff;
+            outline:4px dotted #000;
             display:none;
             height:12px;
             margin:1px 0 0 1px;
             opacity:.5;
             position:absolute;
             width:12px;
-            z-index:4;
+            z-index:5;
         }
 
         .sizer {
@@ -62,7 +81,7 @@ section.resourceRow {
             outline:4px dotted #000;
             position:absolute;
             width:12px;
-            z-index:1;
+            z-index:4;
          }
 
          &:hover {
@@ -81,6 +100,10 @@ section.resourceRow {
                         z-index:6 !important;
                     }
                 }
+            }
+
+            &:after {
+                background:none !important;
             }
          }
         .phases {
@@ -105,10 +128,6 @@ section.resourceRow {
                 &:hover {
                     background:none;
                 }
-            }
-
-            &:hover:after {
-                background:none;
             }
         }
     }
@@ -159,6 +178,10 @@ section.resourceRow {
     &[data-active="true"] {
         border-top:25px solid #000;
         z-index:6;
+
+        &[data-type="assignment"] {
+            border-top-width:35px;
+        }
 
         &:after {
             display:none;
@@ -231,12 +254,22 @@ section.resourceRow {
                 }//li
             }//.viewOptions
 
-            .name {
+            [contenteditable="true"] {
                 background:#c55500;
                 box-shadow:none;
                 color:#fff;
+                font-size:14px;
+                margin-left:10px;
                 padding:2px 5px 0 5px;
                 text-shadow:none;
+
+                &.ad {
+                    &:before {
+                        content:'AD: ';
+                        display:inline-block;
+                        margin-right:.5em;
+                    }
+                }
             }
         }
 
@@ -294,7 +327,7 @@ section.resourceRow {
 }//resourceRow
 
 [data-gridLines=true] {
-    .row {
+    section {
         background: repeating-linear-gradient(
             90deg,
             #fff,
@@ -302,6 +335,5 @@ section.resourceRow {
             #feefee 15px,
             #feefee 30px
         ) !important;
-        background-position-x:1px !important;
     }
 }

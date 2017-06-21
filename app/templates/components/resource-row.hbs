@@ -14,12 +14,12 @@
         data-deleteUser={{resource.toDelete}}
     >
         {{#if settings.isWeeklyCalendar}}
-        	<div class="row" data-view="roadmap" {{action "findAssignment"}}>
+        	<div class="row" data-view="roadmap">
                 {{#if resource.active}}
                     <div class="pointer"></div>
                     <div class="sizer"></div>
                 {{/if}}
-                <div class="tiles">{{{resource.assignment}}}</div>
+                <div class="tiles" {{action "findAssignment"}}>{{{resource.assignment}}}</div>
             </div>
         {{/if}}
 

@@ -1,6 +1,5 @@
 section.resourceRow {
     .directs { // 1 level down
-        margin-left:1px;
         position:relative;
 
         .resourceRow {
@@ -55,7 +54,7 @@ section.resourceRow {
         }
     }// directs
 
-    &[data-expanded="true"]:last-child {
+    &[data-expanded="true"]:last-child:not(:first-child) {
         &:before { display:none; }
         > .row {
             &:before {
