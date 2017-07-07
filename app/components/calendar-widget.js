@@ -34,37 +34,37 @@ export default Ember.Component.extend(WebcelMixin, {
             {
                 year: 0,
                 quarter: "Q1",
-                months:{"Nov":-1, "Dec":-1, "Jan":0 }
+                months:{"Jan":0, "Feb":0, "Mar":0 }
             },
             {
                 year: 0,
                 quarter: "Q2",
-                months: {"Feb":0, "Mar":0, "Apr":0}
+                months: {"Apr":0, "May":0, "Jun":0 }
             },
             {
                 year: 0,
                 quarter: "Q3",
-                months: {"May":0, "Jun":0, "Jul":0}
+                months: {"Jul":0, "Aug":0, "Sep":0 }
             },
             {
                 year: 0,
                 quarter: "Q4",
-                months: {"Aug":0, "Sep":0, "Oct":0}
+                months: {"Oct":0, "Nov":0, "Dec":0 }
             },
             {
                 year: 1,
                 quarter: "Q1",
-                months: {"Nov":0, "Dec":0, "Jan":1}
+                months: {"Jan":1, "Feb":1, "Mar":1 }
             },
             {
                 year: 1,
                 quarter: "Q2",
-                months: {"Feb":1, "Mar":1, "Apr":1}
+                months: {"Apr":1, "May":1, "Jun":1 }
             },
             {
                 year: 1,
                 quarter: "Q3",
-                months: {"May":1, "Jun":1, "Jul":1}
+                months: {"Jul":1, "Aug":1, "Sep":1 }
             }
         ];
     }).property('year'),
