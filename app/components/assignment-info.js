@@ -15,7 +15,8 @@ export default ResourceInfoComponent.extend({
         var self = this;
         org.forEach(function(person){
             ++self.counter;
-            var exists = Ember.$.getJSON(`${self.get('store').adapterFor('assignment').host}/exists/${self.get('constants.year')}/${person.get('ad')}`, ()=> {})
+            console.log(person.get('ad') || 'null')
+            var exists = Ember.$.getJSON(`${self.get('store').adapterFor('assignment').host}/exists/${self.get('constants.year')}/${person.get('ad') || null}`, ()=> {})
             .done(function() {
                 var ad = person.get('ad');
                 if(exists.responseJSON) { // has direct reports
