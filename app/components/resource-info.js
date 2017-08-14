@@ -21,10 +21,12 @@ export default ResourceRowComponent.extend({
             this._super(...arguments);
             var self = this;
 
-            var exists = Ember.$.getJSON(`${url}/exists/${this.get('constants.year')}/${this.get('resource.ad')}`, function() {})
-            .done(function() {
-                self.set('hasDirects', exists.responseJSON ? true : false);
-            });
+            if(this.get('resource.ad')){
+                var exists = Ember.$.getJSON(`${url}/exists/${this.get('constants.year')}/${this.get('resource.ad')}`, function() {})
+                .done(function() {
+                    self.set('hasDirects', exists.responseJSON ? true : false);
+                });
+            }
         }
     },
 
