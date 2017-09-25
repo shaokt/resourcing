@@ -14,7 +14,7 @@ export default Ember.Component.extend({
             "sick",
             "personal",
         	"lieu",
-        	"wfh",
+        	"pd",
             "personalHalf",
         	"conference",
         	"training",

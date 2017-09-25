@@ -157,9 +157,9 @@
         &[data-stamp="true"]:before { content: "\263C"; }
     }
 
-    .wfh {
+    .pd {
         background:#F5871F;
-        &[data-stamp="true"]:before { content:'R'; }
+        &[data-stamp="true"]:before { content:'PD'; }
     }
 
     .tileOptions li {
@@ -179,7 +179,7 @@
         .vacation:hover:after { content:"Vacation"; }
         .vacationCarryover:hover:after { content:"Carryover"; }
         .vacationTentative:hover:after { content:"Tentative Vacation"; }
-        .unofficial:hover:after { content:"Unofficial Lieu Day"; }
+        .unofficial:hover:after { content:"Arranged Time Off / India Holiday"; }
         .vacationHalf:hover:after { content:"Vacation Half Day"; }
 
         .sick { clear:left; }
@@ -187,7 +187,7 @@
         .sickHalf:hover:after { content:"Sick Half Day"; }
         .personal:hover:after { content:"Personal Day"; }
         .lieu:hover:after { content:"Lieu Day"; }
-        .wfh:hover:after { content:"Remote Work (WFH)"; }
+        .pd:hover:after { content:"Pens Down"; }
         .personalHalf:hover:after { content:"Personal Half Day"; }
 
         .conference { clear:left; }
