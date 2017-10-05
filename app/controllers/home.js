@@ -42,7 +42,7 @@ export default Ember.Controller.extend({
             this.setTitle();
             var self = this;
             var result = "";
-            var vacationCounters = ['lieu', 'personal', 'unofficial'];
+            var vacationCounters = ['lieu', 'unofficial'];
             var vacationCountersPrevious = ['vacationCarryover'];
             Ember.$.each(vacationCounters, function(i, val){
             	result += '.tiles .' + val + '[data-year="' + self.get('year')+ '"] { counter-increment:' + val + 'Counter } ';
