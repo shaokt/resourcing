@@ -76,7 +76,6 @@ export default Ember.Service.extend({
     },
 
     mouseMoved: function(event){
-        var pos = this.getMousePos(event);
-        Ember.$('#dynamicMousePosition').html(".dateMarker, #dateLine { left:" + pos + "px; }"); // if setting via ember, very slow response
+        Ember.$('#dynamicMousePosition').html(`.dateMarker, #dateLine { left:${this.getMousePos(event)}px; }`); // if setting via ember, very slow response
     },
 });

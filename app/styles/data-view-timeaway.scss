@@ -76,6 +76,16 @@
         &[data-stamp="true"]:before { content: "FD"; }
     }
 
+    .floaterDay {
+        background:#30BBE3;
+        &[data-stamp="true"]:before { content: "FL"; }
+    }
+
+    .floaterDayHalf {
+        background:linear-gradient(to right bottom, #2f3414 50%, #30BBE3 50%);
+        &[data-stamp="true"]:before { content: "FL"; }
+    }
+
     .jury {
         background:#1A8007;
         &[data-stamp="true"]:before { content: "J"; }
@@ -182,9 +192,9 @@
         .unofficial:hover:after { content:"Arranged Time Off / India Holiday"; }
         .vacationHalf:hover:after { content:"Vacation Half Day"; }
 
-        .sick { clear:left; }
         .sick:hover:after { content:"Sick Day"; }
         .sickHalf:hover:after { content:"Sick Half Day"; }
+        .personal { clear:left; }
         .personal:hover:after { content:"Personal Day"; }
         .lieu:hover:after { content:"Lieu Day"; }
         .pd:hover:after { content:"Pens Down"; }
@@ -196,15 +206,19 @@
         .bereavement:hover:after { content:"Bereavement"; }
         .shortTermDisability:hover:after { content:"Short Term Disability"; }
 
-        .parentalLeave { clear:left; }
+        .floaterDay { clear:left; }
+        .floaterDay:hover:after { content:"Floater Day"; }
         .parentalLeave:hover:after { content:"Parental Leave"; }
-        .jury:hover:after { content:"Jury Duty"; }
         .firstDay:hover:after { content:"First Day"; }
         .lastDay:hover:after { content:"Last Day"; }
+        .floaterDayHalf:hover:after { content:"Floater Half Day"; }
+
+        .jury { clear:left }
+        .jury:hover:after { content:"Jury Duty"; }
     }
     .info {
         .tileOptions li {
-            .vacationHalf, .personalHalf, .sickHalf { margin-left:20px; }
+            .vacationHalf, .personalHalf, .sickHalf, .floaterDayHalf { margin-left:20px; }
         }
     }
 }//data-view=timeaway

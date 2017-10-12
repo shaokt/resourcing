@@ -187,6 +187,9 @@ export default Ember.Component.extend(Webcel, {
         var v1TD = Ember.$(v1).filter(function(){ return parseInt(Ember.$(this).attr('data-x')) <= col; });
         var v2TD = Ember.$(v2).filter(function(){ return parseInt(Ember.$(this).attr('data-x')) <= col; });
 
+        var f1 = Ember.$(div).find(`.floaterDay${dataYear}`).length;
+        var f2 = Ember.$(div).find(`.floaterDayHalf${dataYear}`).length/2;
+
         var p1 = Ember.$(div).find(`.personal${dataYear}`).length;
         var p2 = Ember.$(div).find(`.personalHalf${dataYear}`).length/2;
 
@@ -195,6 +198,7 @@ export default Ember.Component.extend(Webcel, {
 
         this.set('resource.vacation', v1.length + v2.length/2);
         this.set('resource.vacationToDate', v1TD.length + v2TD.length/2);
+        this.set('resource.floaterDay', f1+f2);
         this.set('resource.personal', p1+p2);
         this.set('resource.sick', s1+s2);
     },

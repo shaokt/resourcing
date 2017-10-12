@@ -11,8 +11,8 @@ export default Ember.Component.extend({
             "vacationTentative",
         	"unofficial",
             "vacationHalf",
-            "sick",
             "personal",
+            "sick",
         	"lieu",
         	"pd",
             "personalHalf",
@@ -21,10 +21,12 @@ export default Ember.Component.extend({
         	"bereavement",
             "shortTermDisability",
             "sickHalf",
+            "floaterDay",
             "parentalLeave",
-        	"jury",
         	"firstDay",
-        	"lastDay"
+        	"lastDay",
+            "floaterDayHalf",
+        	"jury"
     ],
 
     // remove active state on selected item if it exists
