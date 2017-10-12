@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+	boxingDay:0,
+	christmasEve:0,
 	// get next weekday for holidays on weekends
 	getHolidayWeekday: function(date){
 		var date2 = new Date(date);
@@ -41,10 +43,6 @@ export default Ember.Component.extend({
 		easter.setDate(easter.getDate() - 2);
 		easterNext.setDate(easterNext.getDate() - 2);
         this.collection = {
-			remembranceDayLast: { name:"Remembrance Day", date: this.getHolidayWeekday(this.year-1 + " 11 11")},
-			christmasLast: { name:"Christmas", date: this.getHolidayWeekday(this.year-1 + " 12 25") },
-			boxingDayLast: { name:"Boxing Day", date: this.getHolidayWeekday(this.year-1 + " 12 26") },
-
 			newYear: { name:"New Year", date: this.getHolidayWeekday(this.year + " 01 1") },
 			familyDay: { name:"Family Day", date: this.year + " 02 " + this.getMonday(this.year, 2, 3)}, // 3rd Monday in February
 			goodFriday: { name:"Good Friday", date: this.year + " " + ("0" + (easter.getMonth() + 1)).slice(-2) + " " + easter.getDate()},
@@ -53,15 +51,15 @@ export default Ember.Component.extend({
 			civicHoliday: { name:"Civic Holiday", date: this.year + " 08 " + this.getMonday(this.year, 8, 1)}, // 1st Monday in August
 			labourDay: { name:"Labour Day", date: this.year + " 09 " + this.getMonday(this.year, 9, 1)}, // 1st Monday in September
 			thanksgiving: { name:"Thanksgiving", date: this.year + " 10 " + this.getMonday(this.year, 10, 2)}, // 2nd Monday in October
-			remembranceDay: { name:"Remembrance Day", date: this.getHolidayWeekday(this.year + " 11 11")},
-			christmas: { name:"Christmas", date: this.getHolidayWeekday(this.year + " 12 25") },
-			boxingDay: { name:"Boxing Day", date: this.getHolidayWeekday(this.year + " 12 26") },
+
+			christmas: { name:"Christmas", date: this.Christmas(this.year) },
+			boxingDay: { name:"Boxing Day", date: this.boxingDay},
+			christmasEve: { name:"Christmas Eve", date: this.christmasEve },
 
 			newYearNext: { name:"New Year", date: this.getHolidayWeekday(this.year+1 + " 01 1") },
 			familyDayNext: { name:"Family Day", date: this.year+1 + " 02 " + this.getMonday(this.year+1, 2, 3)}, // 3rd Monday in February
 			goodFridayNext: { name:"Good Friday", date: this.year+1 + " " + ("0" + (easterNext.getMonth() + 1)).slice(-2) + " " + easterNext.getDate()},
 			victoriaDayNext: { name:"Victoria Day", date: this.VictoriaDay(this.year+1)}, // Monday before May 25
-			canadaDayNext: { name:"Canada Day", date: this.getHolidayWeekday(this.year+1 + " 07 1") }
         };
     },
 
@@ -91,6 +89,37 @@ export default Ember.Component.extend({
 			theDay = date.getDay();
 		}
 		return(date.getFullYear() + " 05 " + date.getDate());
+	},
+
+	// calculate holdays for Dec 24, 25, 26 which can be on weekends and overlap with each other
+	Christmas: function(year){
+		var xmas = new Date(year, "11", "25");
+		var xmasDay = xmas.getDay();
+
+		if(xmasDay == 1){ // Xmas is on a Monday
+			this.boxingDay = this.getHolidayWeekday(year + " 12 26");
+			this.christmasEve= this.getHolidayWeekday(year + " 12 27");
+		}
+		else if(xmasDay >= 2 && xmasDay <= 4){ // Xmas is on a Tuesday, Wednesday, Thursday
+			this.christmasEve= this.getHolidayWeekday(year + " 12 24");
+			this.boxingDay = this.getHolidayWeekday(year + " 12 26");
+		}
+		else if(xmasDay == 5){ // Xmas is on a Friday
+			this.christmasEve= this.getHolidayWeekday(year + " 12 24");
+			this.boxingDay = this.getHolidayWeekday(year + " 12 28");
+		}
+		else if(xmasDay == 6){ // Xmas is on a Saturday
+			this.christmasEve= this.getHolidayWeekday(year + " 12 24");
+			this.boxingDay = this.getHolidayWeekday(year + " 12 28");
+			return this.getHolidayWeekday(year + " 12 27");
+		}
+		else{ // Xmas is on a Sunday
+			this.boxingDay = this.getHolidayWeekday(year + " 12 26");
+			this.christmasEve= this.getHolidayWeekday(year + " 12 27");
+			return this.getHolidayWeekday(year + " 12 28");
+		}
+
+		return this.getHolidayWeekday(year + " 12 25");
 	},
 
 	/*	mark holidays on the calendar & save the coloumn values for highlighting/overlaying for resesource views

@@ -60,11 +60,6 @@ export default Ember.Component.extend(WebcelMixin, {
                 year: 1,
                 quarter: "Q2",
                 months: {"Apr":1, "May":1, "Jun":1 }
-            },
-            {
-                year: 1,
-                quarter: "Q3",
-                months: {"Jul":1, "Aug":1, "Sep":1 }
             }
         ];
     }).property('year'),
