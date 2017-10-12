@@ -51,7 +51,8 @@
 }
 section.resourceRow {
     background:#eee;
-    border:1px solid #aaa;
+    border-bottom:1px solid #aaa;
+    border-top:1px solid #aaa;
     box-sizing: border-box;
     border-bottom:none;
     left:-1px;
@@ -335,5 +336,20 @@ section.resourceRow {
             #feefee 15px,
             #feefee 30px
         ) !important;
+    }
+
+    &[data-view="timeaway"] {
+        .calendar .quarter .month .day.selected:after {
+            box-shadow:0 5px 10px 5px rgba(0, 0, 0, 0.4);
+        }
+        [data-type="todayDateLine"] {
+            box-shadow: 0 -5px 5px 5px rgba(0, 0, 0, 0.8)
+        }
+
+        &[data-view-team="true"] {
+            .assignmentViewContainer {
+                padding-bottom:22px;
+            }
+        }
     }
 }
