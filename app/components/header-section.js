@@ -143,7 +143,7 @@ export default Ember.Component.extend({
             var dayNum;     // number of total extra days to account for
             var extraDays;  // extra days to account for when getting values in the weekly & daily view
 
-            var q1 = Ember.$('.calendar').find(`.quarter [data-date="${this.get('year')} 11"] .day`)[0];
+            var q1 = Ember.$('.calendar').find(`.quarter [data-date="${this.get('yearNext')} 01"] .day`)[0];
 
             if(this.get('settings.view') === 'roadmap'){
                 extraDays = {1:0, 2:0, 3:0, 4:1, 5:2, 6:3, 7:4}; // all posible values for a Monday are 1-7th. If > 3, then need to account for days from previous week
